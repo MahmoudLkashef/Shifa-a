@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">Shifa\'a</string>
+
+    <!-- sign in screen -->
+    <string name="welcome_to_shefa_a">Welcome to Shefa`a</string>
+    <string name="login_to_continue">Login to Continue</string>
+    <string name="email_address_hint">Email Address</string>
+    <string name="password_hint">Password</string>
+    <string name="sign_in">Sign In</string>
+    <string name="don_t_have_account">Don\'t have account?</string>
+    <string name="register">Register</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="reset">Reset</string>
+    <!-- sign in screen -->
+
+
 </resources>
