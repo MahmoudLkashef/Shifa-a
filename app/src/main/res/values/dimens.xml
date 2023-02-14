@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Constraints -->
+    <dimen name="spacing_small">8dp</dimen>
+    <dimen name="spacing_normal">16dp</dimen>
+    <dimen name="spacing_large">32dp</dimen>
+    <!-- Constraints -->
+
+    <!-- text size for sign in screen -->
+    <dimen name="sign_in_text_size_large">16sp</dimen>
+    <dimen name="sign_in_text_size_small">14sp</dimen>
+    <dimen name="sign_in_text_size_normal">12sp</dimen>
+    <!-- text size for sign in screen -->
+
+
+</resources>

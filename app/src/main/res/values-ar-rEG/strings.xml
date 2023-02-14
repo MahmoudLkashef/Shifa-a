@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Shifa\'a</string>
+
+    <!-- sign in screen -->
+    <string name="welcome_to_shefa_a">مرحباً بك في شفاء</string>
+    <string name="login_to_continue">للإستمرار سجل الدخول</string>
+    <string name="email_address_hint">البريد الإلكتروني</string>
+    <string name="password_hint">كلمة المرور</string>
+    <string name="sign_in">تسجيل الدخول</string>
+    <string name="don_t_have_account">ليس لديك حساب؟</string>
+    <string name="register">تسجيل</string>
+    <string name="forgot_password">نسيت كلمة المرور؟ اضغط</string>
+    <string name="reset">إعادة تعيين</string>
+    <!-- sign in screen -->
+</resources>
