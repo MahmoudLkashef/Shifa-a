@@ -29,4 +29,26 @@
     <string name="verify">Verify</string>
     <!-- OTP screen -->
 
+    <!-- sign up patient -->
+    <string name="male_signup_patient">Male</string>
+    <string name="female_signup_patient">Female</string>
+    <string name="patient_details_signup_patient">Patient Details</string>
+    <string name="patient_s_name_signup_patient">Patient\'s Name</string>
+    <string name="age_signup_patient">Age</string>
+    <string name="gender_signup_patient">Gender</string>
+    <string name="email_signup_patient">Email</string>
+    <string name="mobile_number_signup_patient">Mobile Number</string>
+    <string name="password_signup_patient">Password</string>
+    <string name="confirm_password_signup_patient">Confirm Password</string>
+    <string name="hint_confirm_password_signup_patient">Confirm Password</string>
+    <string name="confirm_signup_patient">Confirm</string>
+    <string name="hint_password_signup_patient">Password</string>
+    <string name="hint_last_name_signup_patient">Last Name</string>
+    <string name="hint_first_name_signup_patient">First Name</string>
+    <string name="year">Year</string>
+    <string name="month">Month</string>
+    <string name="day">Day</string>
+    <!-- sign up patient -->
+
+
 </resources>
