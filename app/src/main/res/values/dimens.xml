@@ -19,4 +19,9 @@
     <dimen name="reset_password_font_size_large">18sp</dimen>
     <!-- text size for reset password screen -->
 
+    <!-- Main text size dimens -->
+    <dimen name="text_size_normal">16sp</dimen>
+    <dimen name="text_size_small">14sp</dimen>
+    <dimen name="text_size_large">18sp</dimen>
+
 </resources>

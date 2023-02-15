@@ -93,6 +93,7 @@
         android:layout_marginEnd="@dimen/spacing_normal"
         app:boxStrokeColor="@color/main_color"
         app:endIconMode="password_toggle"
+        app:endIconTint="@color/main_color"
         app:hintTextColor="@color/main_color"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -113,18 +114,12 @@
 
     <Button
         android:id="@+id/btn_signin"
-        android:layout_width="0dp"
-        android:layout_height="64dp"
-        android:layout_marginTop="@dimen/spacing_large"
-        android:backgroundTint="@color/main_color"
-        android:fontFamily="@font/poppins_bold"
         android:text="@string/sign_in"
-        android:textAllCaps="false"
-        android:textSize="@dimen/sign_in_text_size_large"
         app:cornerRadius="5dp"
         app:layout_constraintEnd_toEndOf="@+id/til_password"
         app:layout_constraintStart_toStartOf="@+id/til_password"
-        app:layout_constraintTop_toBottomOf="@+id/til_password" />
+        app:layout_constraintTop_toBottomOf="@+id/til_password"
+        style="@style/main_button_style" />
 
     <TextView
         android:id="@+id/tv_dont_have_acc"

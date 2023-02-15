@@ -23,4 +23,72 @@
     <!-- sign in screen -->
 
 
+    <!-- sign up as a doctor screen -->
+    <string name="doctor_details">Doctor Details</string>
+    <string name="name">Name</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="gender">Gender</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="specialty">Specialty</string>
+    <string name="choose_your_specialty">Choose your specialty</string>
+    <string name="mobile_number">Mobile Number</string>
+    <string name="your_phone_number">Your phone number</string>
+    <string name="email">Email</string>
+    <string name="doctor_example_com">Doctor@Example.com</string>
+    <string name="password">Password</string>
+    <string name="hint_password">************</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="sign_up">Sign Up</string>
+    <!-- sign up as a doctor screen -->
+
+
+    <!-- List of specialty (Doctor) -->
+    <string-array name="specialty">
+        <item>Dermatology</item>
+        <item>Dentistry</item>
+        <item>Psychiatry</item>
+        <item>Pediatrics and New Born</item>
+        <item>Neurology</item>
+        <item>Orthopedics</item>
+        <item>Gynaecology and Infertility</item>
+        <item>Ear, Nose and Throat</item>
+        <item>Cardiology and Vascular Disease</item>
+        <item>Allergy and Immunology</item>
+        <item>Andrology and Male Infertility</item>
+        <item>Audiology</item>
+        <item>Cardiology and Thoracic Surgery</item>
+        <item>Chest and Respiratory</item>
+        <item>Diabetes and Endocrinology</item>
+        <item>Diagnostic Radiology</item>
+        <item>Dietitian and Nutrition</item>
+        <item>Family Medicine</item>
+        <item>Gastroenterology and Endoscopy</item>
+        <item>General Practice</item>
+        <item>General Surgery</item>
+        <item>Geriatrics</item>
+        <item>Hematology</item>
+        <item>Hepatology</item>
+        <item>Internal Medicine</item>
+        <item>IVF and Infertility</item>
+        <item>Laboratories</item>
+        <item>Nephrology</item>
+        <item>Obesity and Laparoscopic Surgery</item>
+        <item>Oncology</item>
+        <item>Oncology Surgery</item>
+        <item>Ophthalmology</item>
+        <item>Osteopathy</item>
+        <item>Pain Management</item>
+        <item>Pediatric Surgery</item>
+        <item>Phoniatrics</item>
+        <item>Plastic Surgery</item>
+        <item>Rheumatology</item>
+        <item>Spinal Surgery</item>
+        <item>Urology</item>
+        <item>Vascular Surgery</item>
+    </string-array>
+    <!-- List of specialty (Doctor) -->
+
+
 </resources>
