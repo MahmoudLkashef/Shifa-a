@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="button_main_style">
+
+    <style name="doctor_signup_title_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">16dp</item>
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:fontFamily">@font/poppins_bold</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+        <style name="main_button_style">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">64dp</item>
         <item name="android:layout_marginTop">@dimen/spacing_large</item>
@@ -11,6 +21,19 @@
         <item name="android:textSize">@dimen/sign_in_text_size_large</item>
     </style>
 
+    <style name="button_main_style">
+
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">64dp</item>
+        <item name="android:layout_marginTop">@dimen/spacing_large</item>
+        <item name="android:backgroundTint">@color/main_color</item>
+        <item name="android:fontFamily">@font/poppins_bold</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">@dimen/sign_in_text_size_large</item>
+    </style>
+
+
+
     <!-- Radio button style -->
     <style name="RadioButton" parent="Theme.AppCompat.Light">
         <item name="colorAccent">@color/main_color</item>
@@ -18,4 +41,5 @@
         <item name="colorControlNormal">@color/gray</item>
     </style>
     <!-- Radio button style -->
+
 </resources>

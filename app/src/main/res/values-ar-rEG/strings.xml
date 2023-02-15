@@ -23,6 +23,76 @@
     <string name="reset">إعادة تعيين</string>
     <!-- sign in screen -->
 
+
+    <!-- sign up as a doctor screen -->
+    <string name="doctor_details">بياناتك كطبيب</string>
+    <string name="name">الإسم</string>
+    <string name="first_name">الإسم الاول</string>
+    <string name="last_name">الإسم الاخير</string>
+    <string name="gender">النوع</string>
+    <string name="male">ذكر</string>
+    <string name="female">انثى</string>
+    <string name="specialty">التخصص</string>
+    <string name="choose_your_specialty">اختر تخصصك</string>
+    <string name="mobile_number">رقم الهاتف</string>
+    <string name="your_phone_number">رقم هاتفك</string>
+    <string name="email">البريد الإلكتروني</string>
+    <string name="doctor_example_com">Doctor@Example.com</string>
+    <string name="password">كلمة المرور</string>
+    <string name="hint_password">************</string>
+    <string name="confirm_password">تأكيد كلمة المرور</string>
+    <string name="sign_up">التسجيل</string>
+    <!-- sign up as a doctor screen -->
+
+
+    <!-- List of specialty (Doctor) -->
+    <string-array name="specialty">
+        <item>جلدية</item>
+        <item>اسنان</item>
+        <item>نفسي</item>
+        <item>اطفال و حديثي ولادة</item>
+        <item>مخ و اعصاب</item>
+        <item>عظام</item>
+        <item>نساء و توليد</item>
+        <item>انف و اذن و حنجرة</item>
+        <item>قلب و اوعية دموية</item>
+        <item>حساسية و مناعة</item>
+        <item>ذكورة و عقم</item>
+        <item>سمعيات</item>
+        <item>جراحة قلب و صدر</item>
+        <item>صدر و جهاز تنفسي</item>
+        <item>سكر و غدد صماء</item>
+        <item>مراكز أشعة</item>
+        <item>تخسيس و تغذية</item>
+        <item>طب الأسرة</item>
+        <item>جهاز هضمي و مناظير</item>
+        <item>ممارسة عامة</item>
+        <item>جراحة عامة</item>
+        <item>طب المسنين</item>
+        <item>امراض دم</item>
+        <item>كبد</item>
+        <item>باطنة</item>
+        <item>حصن مجهري و اطفال انابيب</item>
+        <item>معامل و تحاليل</item>
+        <item>كلى</item>
+        <item>جراحة مخ و اعصاب</item>
+        <item>جراحة سمنة و مناظير</item>
+        <item>اورام</item>
+        <item>جراحة أورام</item>
+        <item>عيون</item>
+        <item>طب تقويمي</item>
+        <item>علاج الآلام</item>
+        <item>جراحة اطفال</item>
+        <item>نطق و تخاطب</item>
+        <item>علاج طبيي و اصابات ملاعب</item>
+        <item>جراحة تجميل</item>
+        <item>روماتيزم</item>
+        <item>جراحة عمود فقري</item>
+        <item>مسالك بولية</item>
+        <item>جراعة اوعية دموية</item>
+    </string-array>
+    <!-- List of specialty (Doctor) -->
+
     <!-- OTP screen -->
     <string name="otp_code_verification">التحقق من رمز OTP</string>
     <string name="code_has_been_send_to">تم إرسال الرمز إلى</string>
@@ -38,12 +108,12 @@
     <string name="gender_signup_patient">النوع</string>
     <string name="email_signup_patient">البريد الإلكتروني</string>
     <string name="mobile_number_signup_patient">رقم الهاتف</string>
-    <string name="password_signup_patient">كلمة السر</string>
-    <string name="confirm_password_signup_patient">تأكيد كلمة السر</string>
-    <string name="hint_confirm_password_signup_patient">كلمة السر</string>
-    <string name="confirm_signup_patient">تأكيد</string>
-    <string name="hint_password_signup_patient">كلمة السر</string>
-    <string name="hint_last_name_signup_patient">اسم العائلة</string>
+    <string name="password_signup_patient">كلمة المرور</string>
+    <string name="confirm_password_signup_patient">تأكيد كلمة المرور</string>
+    <string name="hint_confirm_password_signup_patient">كلمة المرور</string>
+    <string name="confirm_signup_patient">تسجيل</string>
+    <string name="hint_password_signup_patient">كلمة المرور</string>
+    <string name="hint_last_name_signup_patient">الإسم الاخير</string>
     <string name="hint_first_name_signup_patient">الاسم الأول</string>
     <string name="patient_details_signup_patient">بيانات المستخدم</string>
     <string name="year">السنة</string>

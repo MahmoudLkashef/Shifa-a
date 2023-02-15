@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<style android:name="RadioButton"
+    android:parent="Theme.AppCompat.Light"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:name="colorAccent">@color/main_color</item>
+    <item android:name="android:textColorSecondary">@color/black</item>
+    <item android:name="colorControlNormal">@color/gray</item>
+</style>
