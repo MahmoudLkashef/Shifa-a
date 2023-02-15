@@ -8,9 +8,9 @@
     <!-- Constraints -->
 
     <!-- text size for sign in screen -->
-    <dimen name="sign_in_text_size_large">16sp</dimen>
     <dimen name="sign_in_text_size_small">14sp</dimen>
-    <dimen name="sign_in_text_size_normal">12sp</dimen>
+    <dimen name="sign_in_text_size_normal">16sp</dimen>
+    <dimen name="sign_in_text_size_large">18sp</dimen>
     <!-- text size for sign in screen -->
 
     <!-- text size for reset password screen -->

@@ -19,7 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.25" />
+        app:layout_constraintGuide_percent="0.2" />
 
     <ImageView
         android:id="@+id/iv_logo"
@@ -52,7 +52,7 @@
         android:fontFamily="@font/poppins_bold"
         android:text="@string/login_to_continue"
         android:textColor="@color/gray"
-        android:textSize="@dimen/sign_in_text_size_small"
+        android:textSize="@dimen/sign_in_text_size_normal"
         app:layout_constraintEnd_toEndOf="@+id/tv_login_greetings"
         app:layout_constraintStart_toStartOf="@+id/tv_login_greetings"
         app:layout_constraintTop_toBottomOf="@+id/tv_login_greetings" />
@@ -134,7 +134,7 @@
         android:fontFamily="@font/poppins_bold"
         android:text="@string/don_t_have_account"
         android:textColor="@color/gray"
-        android:textSize="@dimen/sign_in_text_size_small"
+        android:textSize="@dimen/sign_in_text_size_normal"
         app:layout_constraintStart_toStartOf="@+id/guildline_left"
         app:layout_constraintTop_toBottomOf="@+id/btn_signin" />
 
@@ -146,7 +146,7 @@
         android:fontFamily="@font/poppins_bold"
         android:text="@string/register"
         android:textColor="@color/main_color"
-        android:textSize="@dimen/sign_in_text_size_small"
+        android:textSize="@dimen/sign_in_text_size_normal"
         app:layout_constraintBottom_toBottomOf="@+id/tv_dont_have_acc"
         app:layout_constraintStart_toEndOf="@+id/tv_dont_have_acc"
         app:layout_constraintTop_toTopOf="@+id/tv_dont_have_acc"
@@ -160,7 +160,7 @@
         android:fontFamily="@font/poppins_bold"
         android:text="@string/forgot_password"
         android:textColor="@color/gray"
-        android:textSize="@dimen/sign_in_text_size_small"
+        android:textSize="@dimen/sign_in_text_size_normal"
         app:layout_constraintStart_toStartOf="@+id/tv_dont_have_acc"
         app:layout_constraintTop_toBottomOf="@+id/tv_dont_have_acc" />
 
@@ -172,7 +172,7 @@
         android:fontFamily="@font/poppins_bold"
         android:text="@string/reset"
         android:textColor="@color/main_color"
-        android:textSize="@dimen/sign_in_text_size_small"
+        android:textSize="@dimen/sign_in_text_size_normal"
         app:layout_constraintBottom_toBottomOf="@+id/textView5"
         app:layout_constraintStart_toEndOf="@+id/textView5"
         app:layout_constraintTop_toTopOf="@+id/textView5" />
