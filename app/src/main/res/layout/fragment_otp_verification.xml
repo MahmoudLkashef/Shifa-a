@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".OtpVerificationFragment"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".OtpVerificationFragment">
+
+
+        <ImageView
+            android:id="@+id/img_back_arrow_otp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:src="@drawable/arrow_back_24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_otp_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@string/otp_code_verification"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/img_back_arrow_otp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/img_back_arrow_otp"
+            app:layout_constraintTop_toTopOf="@+id/img_back_arrow_otp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.3" />
+
+        <TextView
+            android:id="@+id/tv_code_send"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/code_has_been_send_to"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/guideline"
+            tools:text="Code has been send to +0110******81" />
+
+        <EditText
+            android:id="@+id/et_first_block"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/custom_square"
+            android:elevation="4dp"
+            android:inputType="number"
+            android:maxLength="1"
+            android:textAlignment="center"
+            android:textColorHighlight="@color/main_color"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toStartOf="@+id/et_second_block"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_code_send" />
+
+        <EditText
+            android:id="@+id/et_second_block"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/custom_square"
+            android:elevation="4dp"
+            android:inputType="number"
+            android:maxLength="1"
+            android:textAlignment="center"
+            android:textColorHighlight="@color/main_color"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/et_first_block"
+            app:layout_constraintEnd_toStartOf="@+id/et_third_block"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/et_first_block"
+            app:layout_constraintTop_toTopOf="@+id/et_first_block" />
+
+        <EditText
+            android:id="@+id/et_third_block"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/custom_square"
+            android:elevation="4dp"
+            android:inputType="number"
+            android:maxLength="1"
+            android:textAlignment="center"
+            android:textColorHighlight="@color/main_color"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/et_second_block"
+            app:layout_constraintEnd_toStartOf="@+id/et_fourth_block"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/et_second_block"
+            app:layout_constraintTop_toTopOf="@+id/et_second_block" />
+
+        <EditText
+            android:id="@+id/et_fourth_block"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/custom_square"
+            android:elevation="4dp"
+            android:inputType="number"
+            android:maxLength="1"
+            android:textAlignment="center"
+            android:textColorHighlight="@color/main_color"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/et_third_block"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/et_third_block"
+            app:layout_constraintTop_toTopOf="@+id/et_third_block" />
+
+        <TextView
+            android:id="@+id/tv_resend_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:text="@string/resend_code_in"
+            app:layout_constraintEnd_toStartOf="@+id/tv_seconds"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_first_block" />
+
+        <TextView
+            android:id="@+id/tv_seconds"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/main_color"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_resend_code"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/tv_resend_code"
+            app:layout_constraintTop_toTopOf="@+id/tv_resend_code"
+            tools:text=" 55" />
+
+        <Button
+            android:id="@+id/btn_verify"
+            style="@style/button_main_style"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/verify"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_resend_code" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</ScrollView>
