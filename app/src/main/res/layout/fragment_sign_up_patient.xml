@@ -4,21 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SignUpPatientFragment"
-    android:fillViewport="true">
+    android:fillViewport="true"
+    tools:context=".SignUpPatientFragment">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageView
+        <ImageButton
             android:id="@+id/img_back_arrow_signup_patient"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/spacing_medium"
-            android:layout_marginTop="@dimen/spacing_medium"
-            android:src="@drawable/arrow_back_24"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="@dimen/spacing_normal"
+            android:layout_marginTop="@dimen/spacing_normal"
+            android:background="@drawable/image_button_round_corner"
+            android:elevation="8dp"
+            android:padding="10dp"
+            android:src="@drawable/back_arrow_ic"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -48,8 +51,8 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/CardView_signup_patient"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/spacing_normal"
             android:layout_marginEnd="@dimen/spacing_normal"
             android:layout_marginBottom="8dp"
@@ -94,6 +97,7 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
                     app:boxStrokeColor="@color/main_color"
+                    app:hintEnabled="false"
                     app:hintTextColor="@color/main_color"
                     app:layout_constraintEnd_toStartOf="@+id/guideline2"
                     app:layout_constraintStart_toStartOf="parent"
@@ -115,6 +119,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="16dp"
                     app:boxStrokeColor="@color/main_color"
+                    app:hintEnabled="false"
                     app:hintTextColor="@color/main_color"
                     app:layout_constraintBottom_toBottomOf="@+id/til_fname_patient"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -219,8 +224,7 @@
                     android:fontFamily="@font/poppins_bold"
                     android:text="@string/gender_signup_patient"
                     android:textColor="@color/black"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
+                    android:textSize="@dimen/text_size_normal"
                     app:layout_constraintStart_toStartOf="@+id/tv_age_title"
                     app:layout_constraintTop_toBottomOf="@+id/til_day_signup_patient" />
 
@@ -275,6 +279,7 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="16dp"
                     app:boxStrokeColor="@color/main_color"
+                    app:hintEnabled="false"
                     app:hintTextColor="@color/main_color"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -285,7 +290,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_regular"
-                        android:hint="example@gmail.com" />
+                        android:hint="example@gmail.com"
+                        android:textSize="@dimen/text_size_small" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
@@ -310,18 +316,25 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="16dp"
                     app:boxStrokeColor="@color/main_color"
+                    app:hintEnabled="false"
                     app:hintTextColor="@color/main_color"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_mobile_number_title">
+                    app:layout_constraintTop_toBottomOf="@+id/tv_mobile_number_title"
+                    app:prefixText="+20">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/et_mobile_number_patient"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/egypt_flag"
+                        android:drawablePadding="6dp"
                         android:fontFamily="@font/poppins_regular"
-                        android:hint="0123456789"
-                        android:inputType="number" />
+                        android:hint="@string/your_phone_number"
+                        android:inputType="phone"
+                        android:maxLength="11"
+                        android:maxLines="1"
+                        android:textSize="@dimen/text_size_small" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
@@ -345,6 +358,8 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
                     app:boxStrokeColor="@color/main_color"
+                    app:endIconMode="password_toggle"
+                    app:endIconTint="@color/main_color"
                     app:hintTextColor="@color/main_color"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -355,7 +370,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_regular"
-                        android:hint="@string/hint_password_signup_patient" />
+                        android:hint="@string/hint_password"
+                        android:inputType="textPassword"
+                        android:textSize="@dimen/spacing_small" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
@@ -381,6 +398,9 @@
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="16dp"
                     app:boxStrokeColor="@color/main_color"
+                    app:endIconMode="password_toggle"
+                    app:endIconTint="@color/main_color"
+                    app:hintEnabled="false"
                     app:hintTextColor="@color/main_color"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -392,7 +412,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_regular"
-                        android:hint="@string/hint_confirm_password_signup_patient" />
+                        android:hint="@string/hint_password"
+                        android:inputType="textPassword"
+                        android:textSize="@dimen/text_size_small" />
                 </com.google.android.material.textfield.TextInputLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -402,12 +424,14 @@
             android:id="@+id/btn_confirm_signup_patient"
             style="@style/button_main_style"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="32dp"
             android:text="@string/confirm_signup_patient"
             android:textAllCaps="false"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/CardView_signup_patient" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
