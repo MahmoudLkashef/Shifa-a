@@ -23,6 +23,7 @@
     <string name="reset">إعادة تعيين</string>
     <!-- sign in screen -->
 
+
     <!-- sign up as a doctor screen -->
     <string name="doctor_details">بياناتك كطبيب</string>
     <string name="name">الإسم</string>
@@ -33,8 +34,8 @@
     <string name="female">انثى</string>
     <string name="specialty">التخصص</string>
     <string name="choose_your_specialty">اختر تخصصك</string>
-    <string name="mobile_number">رقم الجوال</string>
-    <string name="your_phone_number">رقم جوالك</string>
+    <string name="mobile_number">رقم الهاتف</string>
+    <string name="your_phone_number">رقم هاتفك</string>
     <string name="email">البريد الإلكتروني</string>
     <string name="doctor_example_com">Doctor@Example.com</string>
     <string name="password">كلمة المرور</string>
@@ -91,4 +92,35 @@
         <item>جراعة اوعية دموية</item>
     </string-array>
     <!-- List of specialty (Doctor) -->
+
+    <!-- OTP screen -->
+    <string name="otp_code_verification">التحقق من رمز OTP</string>
+    <string name="code_has_been_send_to">تم إرسال الرمز إلى</string>
+    <string name="resend_code_in">إعادة إرسال الرمز في خلال</string>
+    <string name="verify">تحقق</string>
+    <!-- OTP screen -->
+
+    <!-- sign up patient -->
+    <string name="male_signup_patient">ذكر</string>
+    <string name="female_signup_patient">أنثى</string>
+    <string name="patient_s_name_signup_patient">اسم المستخدم</string>
+    <string name="age_signup_patient">العمر</string>
+    <string name="gender_signup_patient">النوع</string>
+    <string name="email_signup_patient">البريد الإلكتروني</string>
+    <string name="mobile_number_signup_patient">رقم الهاتف</string>
+    <string name="password_signup_patient">كلمة المرور</string>
+    <string name="confirm_password_signup_patient">تأكيد كلمة المرور</string>
+    <string name="hint_confirm_password_signup_patient">كلمة المرور</string>
+    <string name="confirm_signup_patient">تسجيل</string>
+    <string name="hint_password_signup_patient">كلمة المرور</string>
+    <string name="hint_last_name_signup_patient">الإسم الاخير</string>
+    <string name="hint_first_name_signup_patient">الاسم الأول</string>
+    <string name="patient_details_signup_patient">بيانات المستخدم</string>
+    <string name="year">السنة</string>
+    <string name="month">الشهر</string>
+    <string name="day">اليوم</string>
+    <!-- sign up patient -->
+
+
+
 </resources>
