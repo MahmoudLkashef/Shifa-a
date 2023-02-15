@@ -22,4 +22,13 @@
     <string name="forgot_password">نسيت كلمة المرور؟ اضغط</string>
     <string name="reset">إعادة تعيين</string>
     <!-- sign in screen -->
+
+    <!-- OTP screen -->
+    <string name="otp_code_verification">التحقق من رمز OTP</string>
+    <string name="code_has_been_send_to">تم إرسال الرمز إلى</string>
+    <string name="resend_code_in">إعادة إرسال الرمز في خلال</string>
+    <string name="verify">تحقق</string>
+    <!-- OTP screen -->
+
+
 </resources>

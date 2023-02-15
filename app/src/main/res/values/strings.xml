@@ -22,5 +22,11 @@
     <string name="reset">Reset</string>
     <!-- sign in screen -->
 
+    <!-- OTP screen -->
+    <string name="otp_code_verification">OTP Code Verification</string>
+    <string name="code_has_been_send_to">Code has been send to</string>
+    <string name="resend_code_in">Resend code in</string>
+    <string name="verify">Verify</string>
+    <!-- OTP screen -->
 
 </resources>
