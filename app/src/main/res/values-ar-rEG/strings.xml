@@ -30,5 +30,27 @@
     <string name="verify">تحقق</string>
     <!-- OTP screen -->
 
+    <!-- sign up patient -->
+    <string name="male_signup_patient">ذكر</string>
+    <string name="female_signup_patient">أنثى</string>
+    <string name="patient_s_name_signup_patient">اسم المستخدم</string>
+    <string name="age_signup_patient">العمر</string>
+    <string name="gender_signup_patient">النوع</string>
+    <string name="email_signup_patient">البريد الإلكتروني</string>
+    <string name="mobile_number_signup_patient">رقم الهاتف</string>
+    <string name="password_signup_patient">كلمة السر</string>
+    <string name="confirm_password_signup_patient">تأكيد كلمة السر</string>
+    <string name="hint_confirm_password_signup_patient">كلمة السر</string>
+    <string name="confirm_signup_patient">تأكيد</string>
+    <string name="hint_password_signup_patient">كلمة السر</string>
+    <string name="hint_last_name_signup_patient">اسم العائلة</string>
+    <string name="hint_first_name_signup_patient">الاسم الأول</string>
+    <string name="patient_details_signup_patient">بيانات المستخدم</string>
+    <string name="year">السنة</string>
+    <string name="month">الشهر</string>
+    <string name="day">اليوم</string>
+    <!-- sign up patient -->
+
+
 
 </resources>
