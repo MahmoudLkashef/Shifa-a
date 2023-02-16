@@ -121,6 +121,14 @@
     <string name="day">اليوم</string>
     <!-- sign up patient -->
 
+    <!--Reset Password Screen -->
+    <string name="create_new_password">إنشاء كلمة مرور جديدة</string>
+    <string name="create_your_new_password">ادخل كلمة المرور الجديدة</string>
+    <string name="new_password">كلمة المرور</string>
+    <string name="confirm_new_password">تأكيد كلمة المرور</string>
+    <string name="reset_password_btn_text">إعادة تعيين كلمة المرور</string>
+    <!--Reset Password Screen -->
+
 
 
 </resources>
