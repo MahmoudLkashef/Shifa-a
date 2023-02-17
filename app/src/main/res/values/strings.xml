@@ -116,14 +116,27 @@
         <item>Urology</item>
         <item>Vascular Surgery</item>
     </string-array>
+    <!-- List of specialty (Doctor) -->
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--Reset Password screen -->
     <string name="create_new_password">Create New Password</string>
     <string name="create_your_new_password">Create Your New Password</string>
     <string name="new_password">New Password</string>
     <string name="confirm_new_password">Confirm New Password</string>
     <string name="reset_password_btn_text">Reset Password</string>
-    <!-- List of specialty (Doctor) -->
+    <!--Reset Password screen -->
+
+
+    <!-- OnBoarding Screens -->
+    <string name="onboarding_first_text"><![CDATA[Thouthands of doctors & experts\n to help you and keep your health in check!]]></string>
+    <string name="onboarding_second_text"><![CDATA[Health checks &\n consultations easily anywhere anytime]]></string>
+    <string name="onboarding_third_text"><![CDATA[Start living\n healthy & well\n with us right now!]]></string>
+    <string name="skip">Skip</string>
+    <string name="next">Next</string>
+    <string name="get_started">Get Started</string>
+    <!-- OnBoarding Screens -->
+
 
 
 </resources>

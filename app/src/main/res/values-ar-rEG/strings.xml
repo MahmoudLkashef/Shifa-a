@@ -129,6 +129,15 @@
     <string name="reset_password_btn_text">إعادة تعيين كلمة المرور</string>
     <!--Reset Password Screen -->
 
+    <!-- OnBoarding Screens -->
+    <string name="onboarding_first_text"><![CDATA[ العديد من الأطباء و الخبراء\n هنا من أجلك و من اجل مساعدتك\n للحفاظ على صحتك]]></string>
+    <string name="onboarding_second_text"><![CDATA[الفحوصات الطبية والاستشارات \nمتاحة من أجلك بسهولة\n في أي مكان وفي أي وقت]]></string>
+    <string name="onboarding_third_text"><![CDATA[عيش معنا بصحة جيدة\nو عافية بمساعدتنا و خدمتنا\n ماذا نتنظر !]]></string>
+    <string name="skip">التخطي</string>
+    <string name="next">التالي</string>
+    <string name="get_started">ابدأ الآن</string>
+    <!-- OnBoarding Screens -->
+
 
 
 </resources>
