@@ -13,13 +13,16 @@
         tools:context=".OtpVerificationFragment">
 
 
-        <ImageView
-            android:id="@+id/img_back_arrow_otp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="24dp"
-            android:src="@drawable/arrow_back_24"
+        <ImageButton
+            android:id="@+id/button_back_otp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="@dimen/spacing_normal"
+            android:layout_marginTop="@dimen/spacing_normal"
+            android:background="@drawable/image_button_round_corner"
+            android:elevation="8dp"
+            android:padding="10dp"
+            android:src="@drawable/back_arrow_ic"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -33,10 +36,10 @@
             android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/img_back_arrow_otp"
+            app:layout_constraintBottom_toBottomOf="@+id/button_back_otp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/img_back_arrow_otp"
-            app:layout_constraintTop_toTopOf="@+id/img_back_arrow_otp" />
+            app:layout_constraintStart_toEndOf="@+id/button_back_otp"
+            app:layout_constraintTop_toTopOf="@+id/button_back_otp" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline"
