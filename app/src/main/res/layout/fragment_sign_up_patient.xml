@@ -290,7 +290,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_regular"
-                        android:hint="example@gmail.com"
+                        android:hint="Patient@Example.com"
                         android:textSize="@dimen/text_size_small" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -358,6 +358,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
                     app:boxStrokeColor="@color/main_color"
+                    app:hintEnabled="false"
                     app:endIconMode="password_toggle"
                     app:endIconTint="@color/main_color"
                     app:hintTextColor="@color/main_color"
@@ -372,7 +373,7 @@
                         android:fontFamily="@font/poppins_regular"
                         android:hint="@string/hint_password"
                         android:inputType="textPassword"
-                        android:textSize="@dimen/spacing_small" />
+                        android:textSize="@dimen/sign_in_text_size_small" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView

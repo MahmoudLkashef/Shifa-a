@@ -117,8 +117,8 @@
         <item>Vascular Surgery</item>
     </string-array>
     <!-- List of specialty (Doctor) -->
-    <!-- TODO: Remove or change this placeholder text -->
-
+ 
+ 
     <!--Reset Password screen -->
     <string name="create_new_password">Create New Password</string>
     <string name="create_your_new_password">Create Your New Password</string>
@@ -138,5 +138,10 @@
     <!-- OnBoarding Screens -->
 
 
+    <!-- sign up role -->
+    <string name="i_am">I am :</string>
+    <string name="patient">PATIENT</string>
+    <string name="doctor">DOCTOR</string>
+    <!-- sign up role -->
 
 </resources>

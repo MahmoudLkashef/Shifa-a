@@ -127,6 +127,9 @@
     <string name="new_password">كلمة المرور</string>
     <string name="confirm_new_password">تأكيد كلمة المرور</string>
     <string name="reset_password_btn_text">إعادة تعيين كلمة المرور</string>
+    <string name="i_am">أنا :</string>
+    <string name="patient">مستخدم</string>
+    <string name="doctor">طبيب</string>
     <!--Reset Password Screen -->
 
     <!-- OnBoarding Screens -->
