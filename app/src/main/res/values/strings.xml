@@ -117,7 +117,6 @@
         <item>Vascular Surgery</item>
     </string-array>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="create_new_password">Create New Password</string>
     <string name="create_your_new_password">Create Your New Password</string>
     <string name="new_password">New Password</string>
@@ -125,5 +124,10 @@
     <string name="reset_password_btn_text">Reset Password</string>
     <!-- List of specialty (Doctor) -->
 
+    <!-- sign up role -->
+    <string name="i_am">I am :</string>
+    <string name="patient">PATIENT</string>
+    <string name="doctor">DOCTOR</string>
+    <!-- sign up role -->
 
 </resources>
