@@ -40,6 +40,24 @@
         <item name="android:textColorSecondary">@color/black</item>
         <item name="colorControlNormal">@color/gray</item>
     </style>
+
+    <style name="onboarding_skip_textview">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">32dp</item>
+        <item name="android:fontFamily">@font/poppins_medium</item>
+        <item name="android:textColor">@color/gray</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="onboarding_text_style">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/poppins_bold</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textColor">@color/main_color</item>
+        <item name="android:textSize">20sp</item>
+    </style>
     <!-- Radio button style -->
 
 </resources>
