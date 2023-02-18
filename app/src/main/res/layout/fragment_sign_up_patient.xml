@@ -152,10 +152,13 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     app:boxStrokeColor="@color/main_color"
                     app:hintEnabled="false"
-                    app:layout_constraintStart_toStartOf="@+id/tv_age_title"
+                    app:layout_constraintEnd_toStartOf="@+id/textInputLayout3"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_age_title">
 
                     <AutoCompleteTextView
@@ -175,9 +178,10 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
                     app:boxStrokeColor="@color/main_color"
                     app:hintEnabled="false"
+                    app:layout_constraintEnd_toStartOf="@+id/textInputLayout4"
+                    app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toEndOf="@+id/til_day_signup_patient"
                     app:layout_constraintTop_toTopOf="@+id/til_day_signup_patient">
 
@@ -198,9 +202,11 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="8dp"
                     app:boxStrokeColor="@color/main_color"
                     app:hintEnabled="false"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toEndOf="@+id/textInputLayout3"
                     app:layout_constraintTop_toTopOf="@+id/textInputLayout3">
 
@@ -358,9 +364,9 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
                     app:boxStrokeColor="@color/main_color"
-                    app:hintEnabled="false"
                     app:endIconMode="password_toggle"
                     app:endIconTint="@color/main_color"
+                    app:hintEnabled="false"
                     app:hintTextColor="@color/main_color"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -428,7 +434,7 @@
             android:layout_marginTop="24dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="32dp"
-            android:text="@string/register"
+            android:text="@string/sign_up"
             android:textAllCaps="false"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

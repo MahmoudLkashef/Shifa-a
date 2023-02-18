@@ -71,15 +71,6 @@
             app:exitAnim="@anim/to_left"
             app:popEnterAnim="@anim/from_left"
             app:popExitAnim="@anim/to_right" />
-        <action
-            android:id="@+id/action_signUpRoleFragment_to_signInFragment"
-            app:destination="@id/signInFragment"
-            app:enterAnim="@anim/from_left"
-            app:exitAnim="@anim/to_right"
-            app:popEnterAnim="@anim/from_right"
-            app:popExitAnim="@anim/to_right"
-            app:popUpTo="@id/signInFragment"
-            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/forgetPasswordFragment"
@@ -93,15 +84,6 @@
             app:exitAnim="@anim/to_left"
             app:popEnterAnim="@anim/from_left"
             app:popExitAnim="@anim/to_right" />
-        <action
-            android:id="@+id/action_forgetPasswordFragment_to_signInFragment"
-            app:destination="@id/signInFragment"
-            app:enterAnim="@anim/from_left"
-            app:exitAnim="@anim/to_right"
-            app:popEnterAnim="@anim/from_right"
-            app:popExitAnim="@anim/to_left"
-            app:popUpTo="@id/signInFragment"
-            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/otpVerificationFragment"
@@ -116,15 +98,6 @@
             app:popEnterAnim="@anim/from_left"
             app:popExitAnim="@anim/to_right"
             app:popUpTo="@id/signInFragment"
-            app:popUpToInclusive="true" />
-        <action
-            android:id="@+id/action_otpVerificationFragment_to_forgetPasswordFragment"
-            app:destination="@id/forgetPasswordFragment"
-            app:enterAnim="@anim/from_left"
-            app:exitAnim="@anim/to_right"
-            app:popEnterAnim="@anim/from_right"
-            app:popExitAnim="@anim/to_left"
-            app:popUpTo="@id/forgetPasswordFragment"
             app:popUpToInclusive="true" />
     </fragment>
     <fragment
@@ -148,15 +121,6 @@
         android:label="fragment_sign_up_patient"
         tools:layout="@layout/fragment_sign_up_patient" >
         <action
-            android:id="@+id/action_signUpPatientFragment_to_signUpRoleFragment"
-            app:destination="@id/signUpRoleFragment"
-            app:enterAnim="@anim/from_left"
-            app:exitAnim="@anim/to_right"
-            app:popEnterAnim="@anim/from_right"
-            app:popExitAnim="@anim/to_left"
-            app:popUpTo="@id/signUpRoleFragment"
-            app:popUpToInclusive="true" />
-        <action
             android:id="@+id/action_signUpPatientFragment_to_signInFragment"
             app:destination="@id/signInFragment"
             app:enterAnim="@anim/from_left"
@@ -171,15 +135,6 @@
         android:name="com.syncdev.shifaa.SignUpDoctorFragment"
         android:label="fragment_sign_up_doctor"
         tools:layout="@layout/fragment_sign_up_doctor" >
-        <action
-            android:id="@+id/action_signUpDoctorFragment_to_signUpRoleFragment"
-            app:destination="@id/signUpRoleFragment"
-            app:enterAnim="@anim/from_left"
-            app:exitAnim="@anim/to_right"
-            app:popEnterAnim="@anim/from_right"
-            app:popExitAnim="@anim/to_left"
-            app:popUpTo="@id/signUpRoleFragment"
-            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_signUpDoctorFragment_to_signInFragment"
             app:destination="@id/signInFragment"

@@ -28,7 +28,7 @@ class SignUpRoleFragment : Fragment() {
         }
 
         binding.buttonBackSignUpRole.setOnClickListener {
-            findNavController().navigate(SignUpRoleFragmentDirections.actionSignUpRoleFragmentToSignInFragment())
+            findNavController().popBackStack()
         }
 
         return binding.root

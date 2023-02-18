@@ -20,7 +20,7 @@ class SignUpPatientFragment : Fragment() {
         binding = FragmentSignUpPatientBinding.inflate(inflater,container,false)
 
         binding.imgBackArrowSignupPatient.setOnClickListener {
-            findNavController().navigate(SignUpPatientFragmentDirections.actionSignUpPatientFragmentToSignUpRoleFragment())
+            findNavController().popBackStack()
         }
 
         binding.btnConfirmSignupPatient.setOnClickListener {

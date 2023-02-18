@@ -24,7 +24,7 @@ class ForgetPasswordFragment : Fragment() {
         }
 
         binding.buttonBackForgot.setOnClickListener {
-            findNavController().navigate(ForgetPasswordFragmentDirections.actionForgetPasswordFragmentToSignInFragment())
+            findNavController().popBackStack()
         }
 
         return binding.root
