@@ -25,7 +25,7 @@ class OtpVerificationFragment : Fragment() {
         }
 
         binding.buttonBackOtp.setOnClickListener {
-            findNavController().navigate(OtpVerificationFragmentDirections.actionOtpVerificationFragmentToForgetPasswordFragment())
+            findNavController().popBackStack()
         }
 
         return binding.root

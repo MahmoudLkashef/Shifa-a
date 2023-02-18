@@ -22,7 +22,7 @@ class SignUpDoctorFragment : Fragment() {
         binding = FragmentSignUpDoctorBinding.inflate(inflater,container,false)
 
         binding.buttonBack.setOnClickListener {
-            findNavController().navigate(SignUpDoctorFragmentDirections.actionSignUpDoctorFragmentToSignUpRoleFragment())
+            findNavController().popBackStack()
         }
 
         binding.btnDoctorSignup.setOnClickListener {
