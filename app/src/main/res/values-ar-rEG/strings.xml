@@ -141,6 +141,21 @@
     <string name="get_started">ابدأ الآن</string>
     <!-- OnBoarding Screens -->
 
-
+    <!-- months -->
+    <string-array name="month">
+        <item>يناير</item>
+        <item>فبراير</item>
+        <item>مارس</item>
+        <item>أبريل</item>
+        <item>مايو</item>
+        <item>يونيو</item>
+        <item>يوليو</item>
+        <item>أغسطس</item>
+        <item>سبتمبر</item>
+        <item>أكتوبر</item>
+        <item>نوفمبر</item>
+        <item>ديسمبر</item>
+    </string-array>
+    <!-- months -->
 
 </resources>
