@@ -23,6 +23,7 @@ class SignUpDoctorFragment : Fragment() {
         binding = FragmentSignUpDoctorBinding.inflate(inflater,container,false)
 
         val specialty = resources.getStringArray(R.array.specialty)
+        specialty.sort()
         val arrayAdapter = ArrayAdapter(requireContext(),R.layout.dropdown_item,specialty)
         binding.dropdownMenuDoctorSpecialty.setAdapter(arrayAdapter)
 
