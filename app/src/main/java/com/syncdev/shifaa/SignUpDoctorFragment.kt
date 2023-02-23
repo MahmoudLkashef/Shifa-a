@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import androidx.navigation.fragment.findNavController
 import com.syncdev.shifaa.databinding.FragmentSignUpDoctorBinding
 
@@ -20,6 +21,10 @@ class SignUpDoctorFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentSignUpDoctorBinding.inflate(inflater,container,false)
+
+        val specialty = resources.getStringArray(R.array.specialty)
+        val arrayAdapter = ArrayAdapter(requireContext(),R.layout.dropdown_item,specialty)
+        binding.dropdownMenuDoctorSpecialty.setAdapter(arrayAdapter)
 
         binding.buttonBack.setOnClickListener {
             findNavController().popBackStack()
