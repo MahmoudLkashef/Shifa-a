@@ -8,9 +8,11 @@
     tools:context=".ui.auth.onboarding.screens.OnBoardingSecondFragment">
 
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.constraintlayout.motion.widget.MotionLayout
+        android:id="@+id/constraintLayout2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:layoutDescription="@xml/fragment_on_boarding_second_xml_constraintlayout2_scene">
 
         <ImageView
             android:id="@+id/iv_onBoarding_second"
@@ -67,5 +69,5 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/iv_onBoarding_second" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.motion.widget.MotionLayout>
 </ScrollView>
