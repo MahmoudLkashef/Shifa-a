@@ -117,8 +117,8 @@
         <item>Vascular Surgery</item>
     </string-array>
     <!-- List of specialty (Doctor) -->
- 
- 
+
+
     <!--Reset Password screen -->
     <string name="create_new_password">Create New Password</string>
     <string name="create_your_new_password">Create Your New Password</string>
