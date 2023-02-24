@@ -68,8 +68,8 @@
             android:layout_height="wrap_content"
             motion:layout_constraintTop_toBottomOf="@+id/btn_onboarding_first_next"
             motion:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="8dp"
             android:translationY="20dp"
+            android:layout_marginTop="10dp"
             android:alpha="0" />
     </ConstraintSet>
 
