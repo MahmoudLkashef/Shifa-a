@@ -1,4 +1,4 @@
-package com.syncdev.shifaa.onboarding.screens
+package com.syncdev.shifaa.ui.auth.onboarding.screens
 
 import android.content.Context
 import android.os.Bundle
@@ -8,8 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.syncdev.shifaa.databinding.FragmentOnBoardingThirdBinding
-import com.syncdev.shifaa.onboarding.Constants
-import com.syncdev.shifaa.onboarding.ViewPagerFragmentDirections
+import com.syncdev.shifaa.utils.OnBoardingConstants
+import com.syncdev.shifaa.ui.auth.onboarding.ViewPagerFragmentDirections
 
 
 class OnBoardingThirdFragment : Fragment() {
@@ -32,9 +32,9 @@ class OnBoardingThirdFragment : Fragment() {
     }
 
     private fun onBoardingFinish(){
-        val sharedPref = requireActivity().getSharedPreferences(Constants.ON_BOARDING_STATE,Context.MODE_PRIVATE)
+        val sharedPref = requireActivity().getSharedPreferences(OnBoardingConstants.ON_BOARDING_STATE,Context.MODE_PRIVATE)
         val editor = sharedPref.edit()
-        editor.putBoolean(Constants.ON_BOARDING_FINISHED,true)
+        editor.putBoolean(OnBoardingConstants.ON_BOARDING_FINISHED,true)
         editor.apply()
     }
 

@@ -1,7 +1,8 @@
-package com.syncdev.shifaa
+package com.syncdev.shifaa.ui.auth
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.syncdev.shifaa.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

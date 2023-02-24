@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/splashFragment"
-        android:name="com.syncdev.shifaa.SplashFragment"
+        android:name="com.syncdev.shifaa.ui.auth.splash.SplashFragment"
         android:label="fragment_splash"
         tools:layout="@layout/fragment_splash" >
         <action
@@ -23,7 +23,7 @@
     </fragment>
     <fragment
         android:id="@+id/viewPagerFragment"
-        android:name="com.syncdev.shifaa.onboarding.ViewPagerFragment"
+        android:name="com.syncdev.shifaa.ui.auth.onboarding.ViewPagerFragment"
         android:label="fragment_view_pager"
         tools:layout="@layout/fragment_view_pager" >
         <action
@@ -34,7 +34,7 @@
     </fragment>
     <fragment
         android:id="@+id/signInFragment"
-        android:name="com.syncdev.shifaa.SignInFragment"
+        android:name="com.syncdev.shifaa.ui.auth.login.SignInFragment"
         android:label="fragment_sign_in"
         tools:layout="@layout/fragment_sign_in" >
         <action
@@ -54,7 +54,7 @@
     </fragment>
     <fragment
         android:id="@+id/signUpRoleFragment"
-        android:name="com.syncdev.shifaa.SignUpRoleFragment"
+        android:name="com.syncdev.shifaa.ui.auth.register.SignUpRoleFragment"
         android:label="fragment_sign_up_role"
         tools:layout="@layout/fragment_sign_up_role" >
         <action
@@ -74,7 +74,7 @@
     </fragment>
     <fragment
         android:id="@+id/forgetPasswordFragment"
-        android:name="com.syncdev.shifaa.ForgetPasswordFragment"
+        android:name="com.syncdev.shifaa.ui.auth.forget_password.ForgetPasswordFragment"
         android:label="fragment_forget_password"
         tools:layout="@layout/fragment_forget_password" >
         <action
@@ -87,7 +87,7 @@
     </fragment>
     <fragment
         android:id="@+id/otpVerificationFragment"
-        android:name="com.syncdev.shifaa.OtpVerificationFragment"
+        android:name="com.syncdev.shifaa.ui.auth.forget_password.OtpVerificationFragment"
         android:label="fragment_otp_verification"
         tools:layout="@layout/fragment_otp_verification" >
         <action
@@ -102,7 +102,7 @@
     </fragment>
     <fragment
         android:id="@+id/resetPasswordFragment"
-        android:name="com.syncdev.shifaa.ResetPasswordFragment"
+        android:name="com.syncdev.shifaa.ui.auth.forget_password.ResetPasswordFragment"
         android:label="fragment_reset_password"
         tools:layout="@layout/fragment_reset_password" >
         <action
@@ -117,7 +117,7 @@
     </fragment>
     <fragment
         android:id="@+id/signUpPatientFragment"
-        android:name="com.syncdev.shifaa.SignUpPatientFragment"
+        android:name="com.syncdev.shifaa.ui.auth.register.SignUpPatientFragment"
         android:label="fragment_sign_up_patient"
         tools:layout="@layout/fragment_sign_up_patient" >
         <action
@@ -132,7 +132,7 @@
     </fragment>
     <fragment
         android:id="@+id/signUpDoctorFragment"
-        android:name="com.syncdev.shifaa.SignUpDoctorFragment"
+        android:name="com.syncdev.shifaa.ui.auth.register.SignUpDoctorFragment"
         android:label="fragment_sign_up_doctor"
         tools:layout="@layout/fragment_sign_up_doctor" >
         <action

@@ -1,15 +1,14 @@
-package com.syncdev.shifaa
+package com.syncdev.shifaa.ui.auth.splash
 
 import android.content.Context
 import android.os.Bundle
-import android.os.Handler
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.syncdev.shifaa.databinding.FragmentSplashBinding
-import com.syncdev.shifaa.onboarding.Constants
+import com.syncdev.shifaa.utils.OnBoardingConstants
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -42,8 +41,8 @@ class SplashFragment : Fragment() {
     }
 
     private fun onBoardingFinished(): Boolean{
-        val sharedPref = requireActivity().getSharedPreferences(Constants.ON_BOARDING_STATE,Context.MODE_PRIVATE)
-        return sharedPref.getBoolean(Constants.ON_BOARDING_FINISHED,false)
+        val sharedPref = requireActivity().getSharedPreferences(OnBoardingConstants.ON_BOARDING_STATE,Context.MODE_PRIVATE)
+        return sharedPref.getBoolean(OnBoardingConstants.ON_BOARDING_FINISHED,false)
     }
 
 

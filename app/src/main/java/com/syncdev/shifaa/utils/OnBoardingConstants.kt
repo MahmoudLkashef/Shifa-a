@@ -1,6 +1,6 @@
-package com.syncdev.shifaa.onboarding
+package com.syncdev.shifaa.utils
 
-object Constants {
+object OnBoardingConstants {
     //On Boarding
     val ON_BOARDING_STATE = "onBoarding"
     val ON_BOARDING_FINISHED = "Finished"
