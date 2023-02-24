@@ -1,4 +1,4 @@
-package com.syncdev.shifaa
+package com.syncdev.shifaa.ui.auth.register
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

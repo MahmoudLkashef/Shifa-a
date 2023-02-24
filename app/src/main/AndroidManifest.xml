@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <application
+        android:name=".ShifaaApp"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -12,10 +13,13 @@
         android:theme="@style/Theme.Shifaa"
         tools:targetApi="31">
         <activity
-            android:name=".PatientActivity"
+            android:name=".ui.doctor.DoctorActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.patient.PatientActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.auth.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

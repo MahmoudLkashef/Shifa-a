@@ -1,4 +1,4 @@
-package com.syncdev.shifaa
+package com.syncdev.shifaa.ui.auth.register
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.navigation.fragment.findNavController
+import com.syncdev.shifaa.R
 import com.syncdev.shifaa.databinding.FragmentSignUpDoctorBinding
 
 
@@ -24,7 +25,7 @@ class SignUpDoctorFragment : Fragment() {
 
         val specialty = resources.getStringArray(R.array.specialty)
         specialty.sort()
-        val arrayAdapter = ArrayAdapter(requireContext(),R.layout.dropdown_item,specialty)
+        val arrayAdapter = ArrayAdapter(requireContext(), R.layout.dropdown_item,specialty)
         binding.dropdownMenuDoctorSpecialty.setAdapter(arrayAdapter)
 
         binding.buttonBack.setOnClickListener {

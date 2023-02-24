@@ -1,8 +1,7 @@
-package com.syncdev.shifaa
+package com.syncdev.shifaa.ui.auth.register
 
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.annotation.RequiresApi
 import androidx.navigation.fragment.findNavController
+import com.syncdev.shifaa.R
 import com.syncdev.shifaa.databinding.FragmentSignUpPatientBinding
 import com.syncdev.shifaa.utils.DateUtils
 

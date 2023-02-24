@@ -1,4 +1,4 @@
-package com.syncdev.shifaa
+package com.syncdev.shifaa.ui.auth.forget_password
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.syncdev.shifaa.databinding.FragmentForgetPasswordBinding
+
 
 class ForgetPasswordFragment : Fragment() {
 

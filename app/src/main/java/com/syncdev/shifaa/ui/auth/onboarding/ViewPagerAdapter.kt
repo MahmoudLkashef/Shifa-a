@@ -1,4 +1,4 @@
-package com.syncdev.shifaa.onboarding
+package com.syncdev.shifaa.ui.auth.onboarding
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager

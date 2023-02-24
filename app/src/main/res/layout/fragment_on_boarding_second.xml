@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    tools:context=".onboarding.screens.OnBoardingSecondFragment">
+    tools:context=".ui.auth.onboarding.screens.OnBoardingSecondFragment">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
