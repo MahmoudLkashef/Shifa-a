@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/patient_nav_graph"
+    app:startDestination="@id/patientHomeFragment">
+
+    <fragment
+        android:id="@+id/patientHomeFragment"
+        android:name="com.syncdev.shifaa.ui.patient.home.PatientHomeFragment"
+        android:label="fragment_patient_home"
+        tools:layout="@layout/fragment_patient_home" />
+    <fragment
+        android:id="@+id/patientReportsFragment"
+        android:name="com.syncdev.shifaa.ui.patient.reports.PatientReportsFragment"
+        android:label="fragment_patient_reports"
+        tools:layout="@layout/fragment_patient_reports" />
+    <fragment
+        android:id="@+id/patientAppointmentsFragment"
+        android:name="com.syncdev.shifaa.ui.patient.appointments.PatientAppointmentsFragment"
+        android:label="fragment_patient_appointments"
+        tools:layout="@layout/fragment_patient_appointments" />
+    <fragment
+        android:id="@+id/patientMedicineFragment"
+        android:name="com.syncdev.shifaa.ui.patient.medicine.PatientMedicineFragment"
+        android:label="fragment_patient_medicine"
+        tools:layout="@layout/fragment_patient_medicine" />
+    <fragment
+        android:id="@+id/patientProfileFragment"
+        android:name="com.syncdev.shifaa.ui.patient.profile.PatientProfileFragment"
+        android:label="fragment_patient_profile"
+        tools:layout="@layout/fragment_patient_profile" />
+</navigation>
