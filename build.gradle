@@ -6,6 +6,7 @@ buildscript {
         nav_version = "2.5.3"
         lifecycle_version = "2.5.1"
         coroutines_version = "1.6.4"
+        coil_version="2.2.2"
     }
     dependencies {
         //SafeArgs
