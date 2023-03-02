@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/doctor_nav_graph"
+    app:startDestination="@id/doctorHomeFragment">
+
+    <fragment
+        android:id="@+id/doctorHomeFragment"
+        android:name="com.syncdev.shifaa.ui.doctor.home.DoctorHomeFragment"
+        android:label="fragment_doctor_home"
+        tools:layout="@layout/fragment_doctor_home" />
+    <fragment
+        android:id="@+id/doctorScheduleFragment"
+        android:name="com.syncdev.shifaa.ui.doctor.schedule.DoctorScheduleFragment"
+        android:label="fragment_doctor_schedule"
+        tools:layout="@layout/fragment_doctor_schedule" />
+    <fragment
+        android:id="@+id/doctorPatientsFragment"
+        android:name="com.syncdev.shifaa.ui.doctor.patients.DoctorPatientsFragment"
+        android:label="fragment_doctor_patients"
+        tools:layout="@layout/fragment_doctor_patients" />
+    <fragment
+        android:id="@+id/doctorDashboardFragment"
+        android:name="com.syncdev.shifaa.ui.doctor.dashboard.DoctorDashboardFragment"
+        android:label="fragment_doctor_dashboard"
+        tools:layout="@layout/fragment_doctor_dashboard" />
+    <fragment
+        android:id="@+id/doctorProfileFragment"
+        android:name="com.syncdev.shifaa.ui.doctor.profile.DoctorProfileFragment"
+        android:label="fragment_doctor_profile"
+        tools:layout="@layout/fragment_doctor_profile" />
+</navigation>

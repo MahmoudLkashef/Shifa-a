@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/doctorHomeFragment"
+        android:title="Home"
+        android:icon="@drawable/home"
+        />
+    <item
+        android:id="@+id/doctorScheduleFragment"
+        android:title="Schedule"
+        android:icon="@drawable/appointments"
+        />
+    <item
+        android:id="@+id/doctorPatientsFragment"
+        android:title="Patients"
+        android:icon="@drawable/patients"
+        />
+    <item
+        android:id="@+id/doctorDashboardFragment"
+        android:title="Dashboard"
+        android:icon="@drawable/dashboard"
+        />
+    <item
+        android:id="@+id/doctorProfileFragment"
+        android:title="Profile"
+        android:icon="@drawable/doctor_profile"
+        />
+</menu>

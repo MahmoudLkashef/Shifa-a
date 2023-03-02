@@ -15,11 +15,12 @@
         android:padding="8dp"
         app:elevation="4dp"
         app:itemIconTint="@drawable/bottom_nav_color"
+        app:itemRippleColor="@color/main_color"
         app:itemTextColor="@color/main_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/patient_bottom_nva_menu" />
+        app:menu="@menu/patient_bottom_nav_menu" />
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment_container_patient"
