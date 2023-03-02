@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/patientHomeFragment"
+        android:title="Home"
+        android:icon="@drawable/home"/>
+    <item
+        android:id="@+id/patientReportsFragment"
+        android:title="Reports"
+        android:icon="@drawable/reports"/>
+    <item
+        android:id="@+id/patientAppointmentsFragment"
+        android:title="Appointments"
+        android:icon="@drawable/appointments"/>
+    <item
+        android:id="@+id/patientMedicineFragment"
+        android:title="Medicine"
+        android:icon="@drawable/medicine"/>
+    <item
+        android:id="@+id/patientProfileFragment"
+        android:title="Profile"
+        android:icon="@drawable/patient_profile"
+        />
+</menu>
