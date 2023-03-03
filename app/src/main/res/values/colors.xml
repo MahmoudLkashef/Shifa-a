@@ -16,4 +16,7 @@
     <color name="gray">#828282</color>
     <!-- gray color -->
 
+    <!-- Ternary color -->
+    <color name="ternary_color">#E3F2FD</color>
+    <!-- Ternary color -->
 </resources>
