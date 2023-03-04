@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.syncdev.shifaa.R
 import com.syncdev.shifaa.databinding.FragmentDoctorNewPatientsBinding
 import com.syncdev.shifaa.ui.doctor.patients.past_patients.PatientTest
@@ -28,8 +30,9 @@ class DoctorNewPatientsFragment : Fragment() {
             container,
             false
         )
+        val navController = findNavController()
 
-        adapter = DoctorNewPatientAdapter()
+        adapter = DoctorNewPatientAdapter(navController)
         val newPatientsList = listOf<PatientTest>(
             PatientTest(1,"Mohammed Magdy","22 Feb 2023","10:00 AM",R.drawable.patient_male),
             PatientTest(2,"Mohammed Ayman","29 Feb 2023","10:30 AM",R.drawable.patient_male),

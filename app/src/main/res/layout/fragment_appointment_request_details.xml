@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        tools:context=".ui.doctor.patients.new_patients.request_details.AppointmentRequestDetailsFragment">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_accept_appointment_request"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginBottom="32dp"
+                android:background="@drawable/custom_filled_rounded_button"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Accept"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/guidelineVertical_guideline_appointment_request"
+                app:layout_constraintTop_toBottomOf="@+id/tv_comments_details_appointment_request" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_horizontal_guideline_appointment_request"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.4" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guidelineVertical_guideline_appointment_request"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.5" />
+
+            <View
+                android:id="@+id/view_guideline_background_appointment_request"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_guideline_appointment_request"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:background="@drawable/appointment_req_details_background"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/iv_back_appointment_request"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:src="@drawable/back_arrow_white_icon"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_back_appointment_request"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="Appointment Request"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_large"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_back_appointment_request"
+                app:layout_constraintStart_toEndOf="@+id/iv_back_appointment_request"
+                app:layout_constraintTop_toTopOf="@+id/iv_back_appointment_request" />
+
+            <View
+                android:id="@+id/view_circle_appointment_request"
+                android:layout_width="93dp"
+                android:layout_height="93dp"
+                android:layout_marginEnd="48dp"
+                android:layout_marginBottom="-24dp"
+                android:background="@drawable/white_circle"
+                app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_guideline_appointment_request"
+                app:layout_constraintEnd_toStartOf="@+id/guidelineVertical_guideline_appointment_request" />
+
+            <ImageView
+                android:id="@+id/iv_patient_pic_appointment_request"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:src="@drawable/patient_male"
+                app:layout_constraintBottom_toBottomOf="@+id/view_circle_appointment_request"
+                app:layout_constraintEnd_toEndOf="@+id/view_circle_appointment_request"
+                app:layout_constraintStart_toStartOf="@+id/view_circle_appointment_request"
+                app:layout_constraintTop_toTopOf="@+id/view_circle_appointment_request"
+                app:layout_constraintVertical_bias="0.44" />
+
+            <TextView
+                android:id="@+id/tv_ptient_name_appointment_request"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="Mostafa Salem"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                app:layout_constraintStart_toStartOf="@+id/view_circle_appointment_request"
+                app:layout_constraintTop_toBottomOf="@+id/view_circle_appointment_request" />
+
+            <TextView
+                android:id="@+id/tv_comments_appointment_request"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Comments"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_normal"
+                app:layout_constraintStart_toStartOf="@+id/tv_ptient_name_appointment_request"
+                app:layout_constraintTop_toBottomOf="@+id/tv_ptient_name_appointment_request" />
+
+            <TextView
+                android:id="@+id/tv_comments_details_appointment_request"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="48dp"
+                android:fontFamily="@font/poppins_regular"
+                android:text="It is not appropriate to create dummy medical symptoms for any purpose, including app design. Medical symptoms can have serious implications for a person's health, and it is important to take them seriously."
+                android:textColor="@color/gray"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/tv_comments_appointment_request"
+                app:layout_constraintTop_toBottomOf="@+id/tv_comments_appointment_request" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_decline_appointment_request"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="32dp"
+                android:background="@drawable/custom_outlined_button"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Decline"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/guidelineVertical_guideline_appointment_request"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_comments_details_appointment_request" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>
