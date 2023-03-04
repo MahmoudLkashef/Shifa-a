@@ -27,8 +27,8 @@ class DoctorPatientsFragment : Fragment() {
         adapter = DoctorPatientsAdapter(childFragmentManager,lifecycle)
 
         //adding the tabs to the tabLayout
-/*        binding.tlDoctorPatients.addTab(binding.tlDoctorPatients.newTab().setText("Past"))
-        binding.tlDoctorPatients.addTab(binding.tlDoctorPatients.newTab().setText("New"),true)*/
+        binding.tlDoctorPatients.addTab(binding.tlDoctorPatients.newTab().setText("Past"))
+        binding.tlDoctorPatients.addTab(binding.tlDoctorPatients.newTab().setText("New"),true)
 
 
         binding.vpDoctorPatients.adapter = adapter
