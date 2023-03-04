@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="5dp"
+    app:cardUseCompatPadding="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp">
+
+        <ImageView
+            android:id="@+id/img_doctor_canceled_appointments"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/doctor_male" />
+
+        <TextView
+            android:id="@+id/tv_doctor_name_canceled_appointments"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:fontFamily="@font/poppins_bold"
+            android:text="Karma Mohamed"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/img_doctor_canceled_appointments"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/img_doctor_canceled_appointments"
+            app:layout_constraintTop_toTopOf="@+id/img_doctor_canceled_appointments"
+            app:layout_constraintVertical_bias="0.25" />
+
+        <TextView
+            android:id="@+id/tv_canceled_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/custom_outline_rectangle_button"
+            android:fontFamily="@font/poppins_medium"
+            android:padding="5dp"
+            android:text="Canceled"
+            android:textColor="@android:color/holo_red_light"
+            app:layout_constraintStart_toStartOf="@+id/tv_doctor_name_canceled_appointments"
+            app:layout_constraintTop_toBottomOf="@+id/tv_doctor_name_canceled_appointments" />
+
+        <View
+            android:id="@+id/view_line_canceled_appointments"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@color/gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/img_doctor_canceled_appointments" />
+
+        <ImageView
+            android:id="@+id/img_calender_canceled_appointments_icon"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="@+id/view_line_canceled_appointments"
+            app:layout_constraintTop_toBottomOf="@+id/view_line_canceled_appointments"
+            app:srcCompat="@drawable/appointments" />
+
+        <TextView
+            android:id="@+id/tv_date_canceled_appointments"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/poppins_regular"
+            android:text="10 Jan 2023"
+            app:layout_constraintBottom_toBottomOf="@+id/img_calender_canceled_appointments_icon"
+            app:layout_constraintEnd_toStartOf="@+id/guideline3"
+            app:layout_constraintStart_toEndOf="@+id/img_calender_canceled_appointments_icon"
+            app:layout_constraintTop_toTopOf="@+id/img_calender_canceled_appointments_icon" />
+
+        <ImageView
+            android:id="@+id/img_time_canceled_appointments_icon"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/img_calender_canceled_appointments_icon"
+            app:layout_constraintStart_toEndOf="@+id/guideline3"
+            app:layout_constraintTop_toTopOf="@+id/img_calender_canceled_appointments_icon"
+            app:srcCompat="@drawable/baseline_access_time_24" />
+
+        <TextView
+            android:id="@+id/tv_canceled_appointments_time"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/poppins_regular"
+            android:text="11:30 AM"
+            app:layout_constraintBottom_toBottomOf="@+id/img_time_canceled_appointments_icon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/img_time_canceled_appointments_icon"
+            app:layout_constraintTop_toTopOf="@+id/img_time_canceled_appointments_icon" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
