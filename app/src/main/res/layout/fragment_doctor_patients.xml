@@ -18,38 +18,23 @@
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:background="@drawable/tab_layout_style"
             android:padding="4dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_doctor_patients_title"
+            app:tabGravity="fill"
             app:tabIndicator="@drawable/tab_indicator"
             app:tabIndicatorAnimationMode="elastic"
             app:tabIndicatorColor="@null"
-            app:tabGravity="fill"
-            app:tabMaxWidth="0dp"
             app:tabIndicatorGravity="stretch"
+            app:tabMaxWidth="0dp"
             app:tabMode="fixed"
             app:tabSelectedTextColor="@color/black"
-            app:tabTextColor="@color/white">
-
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="Past"
-                />
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="New"
-                />
-
-        </com.google.android.material.tabs.TabLayout>
+            app:tabTextColor="@color/white" />
 
 
         <androidx.viewpager2.widget.ViewPager2
@@ -63,6 +48,19 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tl_doctor_patients" />
+
+        <TextView
+            android:id="@+id/tv_doctor_patients_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/poppins_bold"
+            android:text="Patients"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
