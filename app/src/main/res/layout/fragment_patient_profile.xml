@@ -1,432 +1,439 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fillViewport="true"
-    tools:context=".ui.patient.profile.PatientProfileFragment">
+    xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    </data>
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        tools:context=".ui.patient.profile.PatientProfileFragment">
 
-        <TextView
-            android:id="@+id/tv_profile_title_patient"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:fontFamily="@font/poppins_bold"
-            android:text="Profile"
-            android:textColor="@color/black"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView2"
-            app:layout_constraintStart_toEndOf="@+id/imageView2"
-            app:layout_constraintTop_toTopOf="@+id/imageView2" />
 
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:src="@drawable/circular_logo"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/img_patient_profile_pic"
-            android:layout_width="140dp"
-            android:layout_height="140dp"
-            android:layout_marginTop="32dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_profile_title_patient"
-            android:src="@drawable/patient_male"
-            tools:src="@drawable/patient_male" />
+            <TextView
+                android:id="@+id/tv_profile_title_patient"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="Profile"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+                app:layout_constraintStart_toEndOf="@+id/imageView2"
+                app:layout_constraintTop_toTopOf="@+id/imageView2" />
 
-        <TextView
-            android:id="@+id/tv_patient_name_profile"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:fontFamily="@font/poppins_bold"
-            android:text="Mahmoud Reda"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/img_patient_profile_pic" />
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:src="@drawable/circular_logo"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/tv_patient_number_profile"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:fontFamily="@font/poppins_regular"
-            android:text="+01111698412"
-            android:textColor="@color/black"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_patient_name_profile" />
+            <ImageView
+                android:id="@+id/img_patient_profile_pic"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                android:layout_marginTop="32dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_profile_title_patient"
+                android:src="@drawable/patient_male"
+                tools:src="@drawable/patient_male" />
 
-        <View
-            android:id="@+id/view"
-            android:layout_width="0dp"
-            android:layout_height="0.5dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:background="@color/gray"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_patient_number_profile" />
+            <TextView
+                android:id="@+id/tv_patient_name_profile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="Mahmoud Reda"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/img_patient_profile_pic" />
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cv_edit_profile_patient"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            app:cardElevation="0dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/view">
+            <TextView
+                android:id="@+id/tv_patient_number_profile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/poppins_regular"
+                android:text="+01111698412"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_patient_name_profile" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="8dp">
+            <View
+                android:id="@+id/view"
+                android:layout_width="0dp"
+                android:layout_height="0.5dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:background="@color/gray"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_patient_number_profile" />
 
-                <ImageView
-                    android:id="@+id/img_edit_profile_patient"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginStart="16dp"
-                    android:src="@drawable/profile_icon"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_edit_profile_patient"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:cardElevation="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view">
 
-                <TextView
-                    android:id="@+id/tv_edit_profile_title_patient"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:fontFamily="@font/poppins_bold"
-                    android:text="Edit Profile"
-                    android:textColor="@color/black"
-                    app:layout_constraintBottom_toBottomOf="@+id/img_edit_profile_patient"
-                    app:layout_constraintStart_toEndOf="@+id/img_edit_profile_patient"
-                    app:layout_constraintTop_toTopOf="@+id/img_edit_profile_patient" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="8dp">
 
-                <ImageView
-                    android:id="@+id/forward_arrow_1_patient"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginEnd="16dp"
-                    android:src="@drawable/forward_arrow"
-                    app:layout_constraintBottom_toBottomOf="@+id/tv_edit_profile_title_patient"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/tv_edit_profile_title_patient" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.cardview.widget.CardView>
+                    <ImageView
+                        android:id="@+id/img_edit_profile_patient"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="16dp"
+                        android:src="@drawable/profile_icon"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cv_notification_patient"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            app:cardElevation="0dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cv_edit_profile_patient">
+                    <TextView
+                        android:id="@+id/tv_edit_profile_title_patient"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="Edit Profile"
+                        android:textColor="@color/black"
+                        app:layout_constraintBottom_toBottomOf="@+id/img_edit_profile_patient"
+                        app:layout_constraintStart_toEndOf="@+id/img_edit_profile_patient"
+                        app:layout_constraintTop_toTopOf="@+id/img_edit_profile_patient" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="8dp">
+                    <ImageView
+                        android:id="@+id/forward_arrow_1_patient"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginEnd="16dp"
+                        android:src="@drawable/forward_arrow"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_edit_profile_title_patient"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/tv_edit_profile_title_patient" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
 
-                <ImageView
-                    android:id="@+id/img_notification_patient_profile"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginStart="16dp"
-                    android:src="@drawable/notification_icon"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_notification_patient"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:cardElevation="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cv_edit_profile_patient">
 
-                <TextView
-                    android:id="@+id/tv_notification_title_patient_profile"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:fontFamily="@font/poppins_bold"
-                    android:text="Notification"
-                    android:textColor="@color/black"
-                    app:layout_constraintBottom_toBottomOf="@+id/img_notification_patient_profile"
-                    app:layout_constraintStart_toEndOf="@+id/img_notification_patient_profile"
-                    app:layout_constraintTop_toTopOf="@+id/img_notification_patient_profile" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="8dp">
 
-                <ImageView
-                    android:id="@+id/forward_arrow_2_patient"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginEnd="16dp"
-                    android:src="@drawable/forward_arrow"
-                    app:layout_constraintBottom_toBottomOf="@+id/tv_notification_title_patient_profile"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/tv_notification_title_patient_profile" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.cardview.widget.CardView>
+                    <ImageView
+                        android:id="@+id/img_notification_patient_profile"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="16dp"
+                        android:src="@drawable/notification_icon"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cv_security_patient"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            app:cardElevation="0dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cv_notification_patient">
+                    <TextView
+                        android:id="@+id/tv_notification_title_patient_profile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="Notification"
+                        android:textColor="@color/black"
+                        app:layout_constraintBottom_toBottomOf="@+id/img_notification_patient_profile"
+                        app:layout_constraintStart_toEndOf="@+id/img_notification_patient_profile"
+                        app:layout_constraintTop_toTopOf="@+id/img_notification_patient_profile" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="8dp">
+                    <ImageView
+                        android:id="@+id/forward_arrow_2_patient"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginEnd="16dp"
+                        android:src="@drawable/forward_arrow"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_notification_title_patient_profile"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/tv_notification_title_patient_profile" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
 
-                <ImageView
-                    android:id="@+id/img_security_patient_profile"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginStart="16dp"
-                    android:src="@drawable/security_icon"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_security_patient"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:cardElevation="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cv_notification_patient">
 
-                <TextView
-                    android:id="@+id/tv_security_title_patient"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:fontFamily="@font/poppins_bold"
-                    android:text="Security"
-                    android:textColor="@color/black"
-                    app:layout_constraintBottom_toBottomOf="@+id/img_security_patient_profile"
-                    app:layout_constraintStart_toEndOf="@+id/img_security_patient_profile"
-                    app:layout_constraintTop_toTopOf="@+id/img_security_patient_profile" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="8dp">
 
-                <ImageView
-                    android:id="@+id/forward_arrow_3_patient"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginEnd="16dp"
-                    android:src="@drawable/forward_arrow"
-                    app:layout_constraintBottom_toBottomOf="@+id/tv_security_title_patient"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/tv_security_title_patient" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.cardview.widget.CardView>
+                    <ImageView
+                        android:id="@+id/img_security_patient_profile"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="16dp"
+                        android:src="@drawable/security_icon"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cv_language_patient"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            app:cardElevation="0dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cv_security_patient">
+                    <TextView
+                        android:id="@+id/tv_security_title_patient"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="Security"
+                        android:textColor="@color/black"
+                        app:layout_constraintBottom_toBottomOf="@+id/img_security_patient_profile"
+                        app:layout_constraintStart_toEndOf="@+id/img_security_patient_profile"
+                        app:layout_constraintTop_toTopOf="@+id/img_security_patient_profile" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="8dp">
+                    <ImageView
+                        android:id="@+id/forward_arrow_3_patient"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginEnd="16dp"
+                        android:src="@drawable/forward_arrow"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_security_title_patient"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/tv_security_title_patient" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
 
-                <ImageView
-                    android:id="@+id/img_language_patient"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginStart="16dp"
-                    android:src="@drawable/language_icon"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_language_patient"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:cardElevation="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cv_security_patient">
 
-                <TextView
-                    android:id="@+id/tv_language_title_patient"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:fontFamily="@font/poppins_bold"
-                    android:text="Language"
-                    android:textColor="@color/black"
-                    app:layout_constraintBottom_toBottomOf="@+id/img_language_patient"
-                    app:layout_constraintStart_toEndOf="@+id/img_language_patient"
-                    app:layout_constraintTop_toTopOf="@+id/img_language_patient" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="8dp">
 
-                <ImageView
-                    android:id="@+id/forward_arrow_4_patient"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginEnd="16dp"
-                    android:src="@drawable/forward_arrow"
-                    app:layout_constraintBottom_toBottomOf="@+id/tv_language_title_patient"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/tv_language_title_patient" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.cardview.widget.CardView>
+                    <ImageView
+                        android:id="@+id/img_language_patient"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="16dp"
+                        android:src="@drawable/language_icon"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cv_help_center_patient"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            app:cardElevation="0dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cv_language_patient">
+                    <TextView
+                        android:id="@+id/tv_language_title_patient"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="Language"
+                        android:textColor="@color/black"
+                        app:layout_constraintBottom_toBottomOf="@+id/img_language_patient"
+                        app:layout_constraintStart_toEndOf="@+id/img_language_patient"
+                        app:layout_constraintTop_toTopOf="@+id/img_language_patient" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="8dp">
+                    <ImageView
+                        android:id="@+id/forward_arrow_4_patient"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginEnd="16dp"
+                        android:src="@drawable/forward_arrow"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_language_title_patient"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/tv_language_title_patient" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
 
-                <ImageView
-                    android:id="@+id/img_help_center_patient"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginStart="16dp"
-                    android:src="@drawable/help_center_icon"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_help_center_patient"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:cardElevation="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cv_language_patient">
 
-                <TextView
-                    android:id="@+id/tv_help_center_title_patient"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:fontFamily="@font/poppins_bold"
-                    android:text="Help Center"
-                    android:textColor="@color/black"
-                    app:layout_constraintBottom_toBottomOf="@+id/img_help_center_patient"
-                    app:layout_constraintStart_toEndOf="@+id/img_help_center_patient"
-                    app:layout_constraintTop_toTopOf="@+id/img_help_center_patient" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="8dp">
 
-                <ImageView
-                    android:id="@+id/forward_arrow_5_patient"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginEnd="16dp"
-                    android:src="@drawable/forward_arrow"
-                    app:layout_constraintBottom_toBottomOf="@+id/tv_help_center_title_patient"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/tv_help_center_title_patient" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.cardview.widget.CardView>
+                    <ImageView
+                        android:id="@+id/img_help_center_patient"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="16dp"
+                        android:src="@drawable/help_center_icon"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cv_invite_friend_patient"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            app:cardElevation="0dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cv_help_center_patient">
+                    <TextView
+                        android:id="@+id/tv_help_center_title_patient"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="Help Center"
+                        android:textColor="@color/black"
+                        app:layout_constraintBottom_toBottomOf="@+id/img_help_center_patient"
+                        app:layout_constraintStart_toEndOf="@+id/img_help_center_patient"
+                        app:layout_constraintTop_toTopOf="@+id/img_help_center_patient" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="8dp">
+                    <ImageView
+                        android:id="@+id/forward_arrow_5_patient"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginEnd="16dp"
+                        android:src="@drawable/forward_arrow"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_help_center_title_patient"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/tv_help_center_title_patient" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
 
-                <ImageView
-                    android:id="@+id/img_invite_friend_patient"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginStart="16dp"
-                    android:src="@drawable/invite_friends_icon"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_invite_friend_patient"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:cardElevation="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cv_help_center_patient">
 
-                <TextView
-                    android:id="@+id/tv_invite_friends_title_patient"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:fontFamily="@font/poppins_bold"
-                    android:text="Invite Friends"
-                    android:textColor="@color/black"
-                    app:layout_constraintBottom_toBottomOf="@+id/img_invite_friend_patient"
-                    app:layout_constraintStart_toEndOf="@+id/img_invite_friend_patient"
-                    app:layout_constraintTop_toTopOf="@+id/img_invite_friend_patient" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="8dp">
 
-                <ImageView
-                    android:id="@+id/forward_arrow_6_patient"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginEnd="16dp"
-                    android:src="@drawable/forward_arrow"
-                    app:layout_constraintBottom_toBottomOf="@+id/tv_invite_friends_title_patient"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/tv_invite_friends_title_patient" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.cardview.widget.CardView>
+                    <ImageView
+                        android:id="@+id/img_invite_friend_patient"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="16dp"
+                        android:src="@drawable/invite_friends_icon"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cv_logout_patient"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            app:cardElevation="0dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cv_invite_friend_patient">
+                    <TextView
+                        android:id="@+id/tv_invite_friends_title_patient"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="Invite Friends"
+                        android:textColor="@color/black"
+                        app:layout_constraintBottom_toBottomOf="@+id/img_invite_friend_patient"
+                        app:layout_constraintStart_toEndOf="@+id/img_invite_friend_patient"
+                        app:layout_constraintTop_toTopOf="@+id/img_invite_friend_patient" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="8dp">
+                    <ImageView
+                        android:id="@+id/forward_arrow_6_patient"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginEnd="16dp"
+                        android:src="@drawable/forward_arrow"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_invite_friends_title_patient"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/tv_invite_friends_title_patient" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
 
-                <ImageView
-                    android:id="@+id/img_logout_patient"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginStart="16dp"
-                    android:src="@drawable/logout_icon"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_logout_patient"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:cardElevation="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cv_invite_friend_patient">
 
-                <TextView
-                    android:id="@+id/tv_logout_title_patient"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:fontFamily="@font/poppins_bold"
-                    android:text="Logout"
-                    android:textColor="@android:color/holo_red_light"
-                    app:layout_constraintBottom_toBottomOf="@+id/img_logout_patient"
-                    app:layout_constraintStart_toEndOf="@+id/img_logout_patient"
-                    app:layout_constraintTop_toTopOf="@+id/img_logout_patient" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="8dp">
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.cardview.widget.CardView>
+                    <ImageView
+                        android:id="@+id/img_logout_patient"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="16dp"
+                        android:src="@drawable/logout_icon"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+                    <TextView
+                        android:id="@+id/tv_logout_title_patient"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="Logout"
+                        android:textColor="@android:color/holo_red_light"
+                        app:layout_constraintBottom_toBottomOf="@+id/img_logout_patient"
+                        app:layout_constraintStart_toEndOf="@+id/img_logout_patient"
+                        app:layout_constraintTop_toTopOf="@+id/img_logout_patient" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>
