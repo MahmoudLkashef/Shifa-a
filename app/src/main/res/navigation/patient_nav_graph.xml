@@ -37,9 +37,20 @@
         android:id="@+id/patientProfileFragment"
         android:name="com.syncdev.shifaa.ui.patient.profile.PatientProfileFragment"
         android:label="fragment_patient_profile"
+        tools:layout="@layout/fragment_patient_profile" >
+        <action
+            android:id="@+id/action_patientProfileFragment_to_patientEditProfileFragment"
+            app:destination="@id/patientEditProfileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/patientEditProfileFragment"
+        android:name="com.syncdev.shifaa.ui.patient.profile.edit_profile.PatientEditProfileFragment"
+        android:label="PatientEditProfileFragment"
+        tools:layout="@layout/fragment_patient_edit_profile"/>
         tools:layout="@layout/fragment_patient_profile" />
     <fragment
         android:id="@+id/bookAppointmentDetailsFragment"
         android:name="com.syncdev.shifaa.ui.patient.home.book_appointment.appointment_details.BookAppointmentDetailsFragment"
         android:label="BookAppointmentDetailsFragment" />
+
 </navigation>

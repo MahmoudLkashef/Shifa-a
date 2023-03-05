@@ -60,4 +60,10 @@
     </style>
     <!-- Radio button style -->
 
+    <!--date dialog background-->
+    <style name="DatePickerDialogTheme" parent="ThemeOverlay.MaterialComponents.MaterialCalendar">
+        <item name="colorAccent">@color/main_color</item>
+    </style>
+    <!--date dialog background-->
+
 </resources>
