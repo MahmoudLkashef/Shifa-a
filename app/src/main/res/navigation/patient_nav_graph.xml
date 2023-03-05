@@ -40,17 +40,21 @@
         tools:layout="@layout/fragment_patient_profile" >
         <action
             android:id="@+id/action_patientProfileFragment_to_patientEditProfileFragment"
-            app:destination="@id/patientEditProfileFragment" />
+            app:destination="@id/patientEditProfileFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
     </fragment>
     <fragment
         android:id="@+id/patientEditProfileFragment"
         android:name="com.syncdev.shifaa.ui.patient.profile.edit_profile.PatientEditProfileFragment"
         android:label="PatientEditProfileFragment"
         tools:layout="@layout/fragment_patient_edit_profile"/>
-        tools:layout="@layout/fragment_patient_profile" />
     <fragment
         android:id="@+id/bookAppointmentDetailsFragment"
         android:name="com.syncdev.shifaa.ui.patient.home.book_appointment.appointment_details.BookAppointmentDetailsFragment"
-        android:label="BookAppointmentDetailsFragment" />
+        android:label="BookAppointmentDetailsFragment"
+        tools:layout="@layout/fragment_book_appointment_details"/>
 
 </navigation>
