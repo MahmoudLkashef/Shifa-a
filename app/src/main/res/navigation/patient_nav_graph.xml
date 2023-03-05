@@ -9,7 +9,15 @@
         android:id="@+id/patientHomeFragment"
         android:name="com.syncdev.shifaa.ui.patient.home.PatientHomeFragment"
         android:label="fragment_patient_home"
-        tools:layout="@layout/fragment_patient_home" />
+        tools:layout="@layout/fragment_patient_home" >
+        <action
+            android:id="@+id/action_patientHomeFragment_to_bookAppointmentDetailsFragment"
+            app:destination="@id/bookAppointmentDetailsFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
+    </fragment>
     <fragment
         android:id="@+id/patientReportsFragment"
         android:name="com.syncdev.shifaa.ui.patient.reports.PatientReportsFragment"
@@ -30,4 +38,8 @@
         android:name="com.syncdev.shifaa.ui.patient.profile.PatientProfileFragment"
         android:label="fragment_patient_profile"
         tools:layout="@layout/fragment_patient_profile" />
+    <fragment
+        android:id="@+id/bookAppointmentDetailsFragment"
+        android:name="com.syncdev.shifaa.ui.patient.home.book_appointment.appointment_details.BookAppointmentDetailsFragment"
+        android:label="BookAppointmentDetailsFragment" />
 </navigation>
