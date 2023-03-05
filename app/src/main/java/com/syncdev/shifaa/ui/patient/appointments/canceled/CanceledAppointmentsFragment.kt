@@ -28,7 +28,7 @@ class CanceledAppointmentsFragment : Fragment() {
 
         val doctors= listOf<SchedulePatient>(
             SchedulePatient(1,"Ahmed Nader","canceled","10 Jan 2023","10:30 AM"),
-            SchedulePatient(2,"Abdelfattah Wazeer","canceled","10 Jan 2023","10:30 AM"),
+            SchedulePatient(2,"Wazeer","canceled","10 Jan 2023","10:30 AM"),
             SchedulePatient(3,"Mohamed Hasaan","canceled","10 Jan 2023","10:30 AM"),
             SchedulePatient(4,"Mahmoud Reda","canceled","10 Jan 2023","10:30 AM"),
         )
