@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
+import androidx.viewpager2.widget.ViewPager2
 import com.syncdev.shifaa.R
 import com.syncdev.shifaa.databinding.FragmentPatientSignInBinding
 import com.syncdev.shifaa.ui.auth.login.SignInFragmentDirections
@@ -32,6 +33,8 @@ class PatientSignInFragment : Fragment() {
             false
         )
 
+        val viewPager = requireActivity().findViewById<ViewPager2>(R.id.viewPager_signin)
+
         with(binding){
             tvPatientResetPassword.setOnClickListener {
                 findNavController().navigate(
@@ -43,6 +46,10 @@ class PatientSignInFragment : Fragment() {
                 findNavController().navigate(
                     SignInFragmentDirections.actionSignInFragmentToSignUpPatientFragment()
                 )
+            }
+
+            viewSwipeToDoctorCircle.setOnClickListener {
+                viewPager.currentItem = 1
             }
 
             btnPatientSignin.setOnClickListener {
