@@ -7,10 +7,14 @@ buildscript {
         lifecycle_version = "2.5.1"
         coroutines_version = "1.6.4"
         coil_version="2.2.2"
+        android_gif_version = "1.2.25"
     }
     dependencies {
         //SafeArgs
         classpath("androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version")
+    }
+    repositories {
+        mavenCentral()
     }
 }
 

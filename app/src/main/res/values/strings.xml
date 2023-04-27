@@ -12,6 +12,8 @@
 
     <!-- sign in screen -->
     <string name="welcome_to_shefa_a">Welcome to Shefa`a</string>
+    <string name="welcome_to_shefa_a_patient">Dear Patient\nWelcome to Shefa`a</string>
+    <string name="welcome_to_shefa_a_doctor">Dear Doctor\nWelcome to Shefa`a</string>
     <string name="login_to_continue">Login to Continue</string>
     <string name="email_address_hint">Email Address</string>
     <string name="password_hint">Password</string>

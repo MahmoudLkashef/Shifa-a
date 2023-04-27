@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        tools:context=".ui.auth.login.doctor.DoctorSignInFragment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".ui.auth.login.doctor.DoctorSignInFragment">
+
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/doctor_guideline_upper"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.15" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/doctor_guideline_left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.2" />
+
+            <pl.droidsonroids.gif.GifImageView
+                android:id="@+id/iv_doctor_logo"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:src="@drawable/login_doctor"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/view_swipe_to_patient_signin"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_doctor_login_greetings"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_bold"
+                android:text="@string/welcome_to_shefa_a_doctor"
+
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textColorHint="@color/gray"
+                android:textSize="@dimen/sign_in_text_size_normal"
+                app:layout_constraintEnd_toEndOf="@+id/iv_doctor_logo"
+                app:layout_constraintStart_toStartOf="@+id/iv_doctor_logo"
+                app:layout_constraintTop_toBottomOf="@+id/iv_doctor_logo" />
+
+
+            <TextView
+                android:id="@+id/tv_doctor_login_to_continue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:fontFamily="@font/poppins_bold"
+                android:text="@string/login_to_continue"
+                android:textColor="@color/gray"
+                android:textSize="@dimen/sign_in_text_size_normal"
+                app:layout_constraintEnd_toEndOf="@+id/tv_doctor_login_greetings"
+                app:layout_constraintStart_toStartOf="@+id/tv_doctor_login_greetings"
+                app:layout_constraintTop_toBottomOf="@+id/tv_doctor_login_greetings" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_doctor_email"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                app:boxStrokeColor="@color/main_color"
+                app:hintTextColor="@color/main_color"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/view_swipe_to_patient_signin"
+                app:layout_constraintTop_toBottomOf="@+id/tv_doctor_login_to_continue">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_doctor_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:hint="@string/email_address_hint"
+                    android:maxLines="1"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/gray"
+                    android:textSize="@dimen/sign_in_text_size_normal" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_doctor_password"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:layout_marginEnd="16dp"
+                app:boxStrokeColor="@color/main_color"
+                app:endIconMode="password_toggle"
+                app:endIconTint="@color/main_color"
+                app:hintTextColor="@color/main_color"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/view_swipe_to_patient_signin"
+                app:layout_constraintTop_toBottomOf="@+id/til_doctor_email">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_doctor_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:hint="@string/password_hint"
+                    android:inputType="textPassword"
+                    android:maxLines="1"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/gray"
+                    android:textSize="@dimen/sign_in_text_size_normal" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/btn_doctor_signin"
+                style="@style/button_main_style"
+                android:layout_marginTop="16dp"
+                android:text="@string/sign_in"
+                app:cornerRadius="5dp"
+                app:layout_constraintEnd_toEndOf="@+id/til_doctor_password"
+                app:layout_constraintStart_toStartOf="@+id/til_doctor_password"
+                app:layout_constraintTop_toBottomOf="@+id/til_doctor_password" />
+
+            <TextView
+                android:id="@+id/tv_doctor_dont_have_acc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="@string/don_t_have_account"
+                android:textColor="@color/gray"
+                android:textSize="@dimen/sign_in_text_size_normal"
+                app:layout_constraintStart_toStartOf="@+id/doctor_guideline_left"
+                app:layout_constraintTop_toBottomOf="@+id/btn_doctor_signin" />
+
+            <TextView
+                android:id="@+id/tv_doctor_register"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_small"
+                android:fontFamily="@font/poppins_bold"
+                android:text="@string/register"
+                android:textColor="@color/main_color"
+                android:textSize="@dimen/sign_in_text_size_normal"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_doctor_dont_have_acc"
+                app:layout_constraintStart_toEndOf="@+id/tv_doctor_dont_have_acc"
+                app:layout_constraintTop_toTopOf="@+id/tv_doctor_dont_have_acc"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <TextView
+                android:id="@+id/tv_doctor_forgot_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="@string/forgot_password"
+                android:textColor="@color/gray"
+                android:textSize="@dimen/sign_in_text_size_normal"
+                app:layout_constraintBottom_toBottomOf="@+id/view_swipe_to_patient_signin"
+                app:layout_constraintStart_toStartOf="@+id/tv_doctor_dont_have_acc"
+                app:layout_constraintTop_toBottomOf="@+id/tv_doctor_dont_have_acc" />
+
+            <TextView
+                android:id="@+id/tv_doctor_reset_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_small"
+                android:fontFamily="@font/poppins_bold"
+                android:text="@string/reset"
+                android:textColor="@color/main_color"
+                android:textSize="@dimen/sign_in_text_size_normal"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_doctor_forgot_password"
+                app:layout_constraintStart_toEndOf="@+id/tv_doctor_forgot_password"
+                app:layout_constraintTop_toTopOf="@+id/tv_doctor_forgot_password" />
+
+            <View
+                android:id="@+id/view_swipe_to_patient_signin"
+                android:layout_width="20dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="-10dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="32dp"
+                android:background="@drawable/custom_filled_rounded_button"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/view_swipe_to_patient_circle"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginStart="-40dp"
+                android:background="@drawable/custom_filled_circle"
+                app:layout_constraintBottom_toBottomOf="@+id/view_swipe_to_patient_signin"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <pl.droidsonroids.gif.GifImageView
+                android:id="@+id/gif_swipe_to_doctor"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layoutDirection="locale"
+                android:src="@drawable/back_gif"
+                app:layout_constraintBottom_toBottomOf="@+id/view_swipe_to_patient_circle"
+                app:layout_constraintEnd_toEndOf="@+id/view_swipe_to_patient_circle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/view_swipe_to_patient_circle" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

@@ -13,6 +13,8 @@
     
     <!-- sign in screen -->
     <string name="welcome_to_shefa_a">مرحباً بك في شفاء</string>
+    <string name="welcome_to_shefa_a_patient">عزيزي المستخدم\nمرحباً بك في شفاء</string>
+    <string name="welcome_to_shefa_a_doctor">عزيزي الطبيب\nمرحباً بك في شفاء</string>
     <string name="login_to_continue">للإستمرار سجل الدخول</string>
     <string name="email_address_hint">البريد الإلكتروني</string>
     <string name="password_hint">كلمة المرور</string>
