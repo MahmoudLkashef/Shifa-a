@@ -38,34 +38,21 @@
         android:label="fragment_sign_in"
         tools:layout="@layout/fragment_sign_in" >
         <action
-            android:id="@+id/action_signInFragment_to_signUpRoleFragment"
-            app:destination="@id/signUpRoleFragment"
-            app:enterAnim="@anim/from_right"
-            app:exitAnim="@anim/to_left"
-            app:popEnterAnim="@anim/from_left"
-            app:popExitAnim="@anim/to_right" />
-        <action
             android:id="@+id/action_signInFragment_to_forgetPasswordFragment"
             app:destination="@id/forgetPasswordFragment"
             app:enterAnim="@anim/from_right"
             app:exitAnim="@anim/to_left"
             app:popEnterAnim="@anim/from_left"
             app:popExitAnim="@anim/to_right" />
-    </fragment>
-    <fragment
-        android:id="@+id/signUpRoleFragment"
-        android:name="com.syncdev.shifaa.ui.auth.register.SignUpRoleFragment"
-        android:label="fragment_sign_up_role"
-        tools:layout="@layout/fragment_sign_up_role" >
         <action
-            android:id="@+id/action_signUpRoleFragment_to_signUpPatientFragment"
+            android:id="@+id/action_signInFragment_to_signUpPatientFragment"
             app:destination="@id/signUpPatientFragment"
             app:enterAnim="@anim/from_right"
             app:exitAnim="@anim/to_left"
             app:popEnterAnim="@anim/from_left"
             app:popExitAnim="@anim/to_right" />
         <action
-            android:id="@+id/action_signUpRoleFragment_to_signUpDoctorFragment"
+            android:id="@+id/action_signInFragment_to_signUpDoctorFragment"
             app:destination="@id/signUpDoctorFragment"
             app:enterAnim="@anim/from_right"
             app:exitAnim="@anim/to_left"

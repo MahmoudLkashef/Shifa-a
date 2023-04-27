@@ -74,4 +74,7 @@ dependencies {
     // Coil
     implementation("io.coil-kt:coil:$coil_version")
 
+    //Android GIF
+    implementation ("pl.droidsonroids.gif:android-gif-drawable:$android_gif_version")
+
 }
