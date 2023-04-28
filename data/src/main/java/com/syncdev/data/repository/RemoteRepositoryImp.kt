@@ -1,4 +1,6 @@
 package com.syncdev.data.repository
 
-class RemoteRepositoryImp {
+import com.syncdev.domain.repo.remote.RemoteRepository
+
+class RemoteRepositoryImp:RemoteRepository {
 }

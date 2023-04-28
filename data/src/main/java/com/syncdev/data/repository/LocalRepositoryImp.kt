@@ -1,4 +1,6 @@
 package com.syncdev.data.repository
 
-class LocalRepositoryImp {
+import com.syncdev.domain.repo.local.LocalRepository
+
+class LocalRepositoryImp:LocalRepository {
 }
