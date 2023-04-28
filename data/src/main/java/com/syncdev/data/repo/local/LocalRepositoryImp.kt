@@ -1,4 +1,4 @@
-package com.syncdev.data.repository
+package com.syncdev.data.repo.local
 
 import com.syncdev.domain.repo.local.LocalRepository
 
