@@ -8,12 +8,17 @@ buildscript {
         coroutines_version = "1.6.4"
         coil_version="2.2.2"
         android_gif_version = "1.2.25"
+        firebase_version="31.5.0"
+        gms_version="4.3.15"
     }
     dependencies {
         //SafeArgs
         classpath("androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version")
+        classpath "com.google.gms:google-services:$gms_version"
+
     }
     repositories {
+        google()
         mavenCentral()
     }
 }
