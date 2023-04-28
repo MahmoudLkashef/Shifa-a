@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "204775000538",
+    "project_id": "shifaa-bba74",
+    "storage_bucket": "shifaa-bba74.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:204775000538:android:c2a462371398a5650518e3",
+        "android_client_info": {
+          "package_name": "com.syncdev.shifaa"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "204775000538-j8o3d7j7nf77gpi2kgmfd78hcvj0ueg5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.syncdev.shifaa",
+            "certificate_hash": "6b196aa1271bcad75d6e693822564d0f271161af"
+          }
+        },
+        {
+          "client_id": "204775000538-en32feb7a0ntf8fb8rn6nb0mmlhsal05.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAa_0S_25iMlHrdbdoA_A6uxAKjFzg2nlU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "204775000538-en32feb7a0ntf8fb8rn6nb0mmlhsal05.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
