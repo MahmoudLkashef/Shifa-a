@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
-        tools:context=".ui.patient.appointments.booking.SelectAppointmentDateTimeFragment">
+        tools:context=".ui.patient.home.book_appointment.appointment_details.SelectAppointmentDateTimeFragment">
 
 
         <androidx.constraintlayout.widget.ConstraintLayout

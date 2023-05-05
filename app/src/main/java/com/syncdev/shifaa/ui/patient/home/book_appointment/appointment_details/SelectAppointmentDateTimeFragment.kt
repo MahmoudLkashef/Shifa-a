@@ -1,4 +1,4 @@
-package com.syncdev.shifaa.ui.patient.appointments.booking
+package com.syncdev.shifaa.ui.patient.home.book_appointment.appointment_details
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
