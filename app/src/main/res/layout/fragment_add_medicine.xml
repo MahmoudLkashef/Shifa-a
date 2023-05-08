@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        tools:context=".ui.patient.medicine.AddMedicineFragment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <ImageButton
+                android:id="@+id/btn_back_add_medicine"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="@dimen/spacing_normal"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:background="@drawable/image_button_round_corner"
+                android:elevation="8dp"
+                android:padding="10dp"
+                android:src="@drawable/back_arrow_ic"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_add_medicine_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="Add Medicine"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                app:layout_constraintTop_toBottomOf="@+id/btn_back_add_medicine"
+                tools:layout_editor_absoluteX="16dp" />
+
+            <ImageView
+                android:id="@+id/img_medicine"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp"
+                android:src="@drawable/pills_medicine"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_medicine_name"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="24dp"
+                android:hint="Medicine Name"
+                app:boxStrokeColor="@color/main_color"
+                app:hintTextColor="@color/main_color"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/img_medicine">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_medicine_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:maxLines="1"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/gray"
+                    android:textSize="@dimen/sign_in_text_size_normal" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_medicine_type"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="24dp"
+                app:boxStrokeColor="@color/main_color"
+                app:hintEnabled="false"
+                app:layout_constraintEnd_toStartOf="@+id/guideline5"
+                app:layout_constraintStart_toStartOf="@+id/tv_medicine_type"
+                app:layout_constraintTop_toBottomOf="@+id/tv_medicine_type">
+
+                <AutoCompleteTextView
+                    android:id="@+id/dropdown_menu_medicine_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/poppins_medium"
+                    android:hint="Pill"
+                    android:inputType="none"
+                    android:textColorHint="@color/gray"
+                    android:textSize="@dimen/text_size_small" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="200dp"
+                app:layout_constraintGuide_percent="0.5"/>
+
+            <TextView
+                android:id="@+id/tv_medicine_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Type"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/til_medicine_name" />
+
+            <View
+                android:id="@+id/view_amount"
+                android:layout_width="0dp"
+                android:layout_height="58dp"
+                android:layout_marginEnd="24dp"
+                android:background="@drawable/custom_rectangular_frame"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/tv_medicine_amount"
+                app:layout_constraintTop_toTopOf="@+id/til_medicine_type" />
+
+            <TextView
+                android:id="@+id/tv_medicine_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Amount"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintStart_toEndOf="@+id/guideline5"
+                app:layout_constraintTop_toTopOf="@+id/tv_medicine_type" />
+
+            <ImageButton
+                android:id="@+id/btn_increase_amount"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/custom_filled_circle"
+                android:src="@drawable/baseline_add_24"
+                app:layout_constraintBottom_toBottomOf="@+id/view_amount"
+                app:layout_constraintEnd_toEndOf="@+id/view_amount"
+                app:layout_constraintTop_toTopOf="@+id/view_amount" />
+
+            <ImageButton
+                android:id="@+id/btn_decrease_amount"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/custom_circle"
+                android:backgroundTint="#E4E1E1"
+                android:src="@drawable/baseline_remove_24"
+                app:layout_constraintBottom_toBottomOf="@+id/view_amount"
+                app:layout_constraintStart_toStartOf="@+id/view_amount"
+                app:layout_constraintTop_toTopOf="@+id/view_amount" />
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:gravity="center"
+                android:text="2"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/view_amount"
+                app:layout_constraintEnd_toStartOf="@+id/btn_increase_amount"
+                app:layout_constraintStart_toEndOf="@+id/btn_decrease_amount"
+                app:layout_constraintTop_toTopOf="@+id/view_amount" />
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_medicine_duration"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="24dp"
+                android:hint="Days"
+                app:startIconDrawable="@drawable/calendar_month_icon"
+                app:startIconTint="@color/main_color"
+                app:boxStrokeColor="@color/main_color"
+                app:hintTextColor="@color/main_color"
+                app:layout_constraintEnd_toStartOf="@+id/guideline5"
+                app:layout_constraintStart_toStartOf="@+id/tv_medicine_duration"
+                app:layout_constraintTop_toBottomOf="@+id/tv_medicine_duration">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_medicine_duration"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:maxLines="1"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/gray"
+                    android:textSize="@dimen/sign_in_text_size_normal" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/tv_medicine_duration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Duration"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="@+id/til_medicine_type"
+                app:layout_constraintTop_toBottomOf="@+id/til_medicine_type" />
+
+            <TextView
+                android:id="@+id/tv_medicine_frequency"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Frequency"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintStart_toEndOf="@+id/guideline5"
+                app:layout_constraintTop_toTopOf="@+id/tv_medicine_duration" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_medicine_frequency"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="24dp"
+                app:boxStrokeColor="@color/main_color"
+                app:hintEnabled="false"
+                app:startIconDrawable="@drawable/available_time_icon"
+                app:startIconTint="@color/main_color"
+                app:layout_constraintBottom_toBottomOf="@+id/til_medicine_duration"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/tv_medicine_frequency"
+                app:layout_constraintTop_toTopOf="@+id/til_medicine_duration">
+
+                <AutoCompleteTextView
+                    android:id="@+id/dropdown_menu_medicine_frequency"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/poppins_medium"
+                    android:hint="Daily"
+                    android:inputType="none"
+                    android:textColorHint="@color/gray"
+                    android:textSize="@dimen/text_size_small" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Add Schedule"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="@+id/til_medicine_duration"
+                app:layout_constraintTop_toBottomOf="@+id/til_medicine_duration" />
+
+            <TextView
+                android:id="@+id/textView14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Add Reminder"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="@+id/chipGroup_medication_schedule"
+                app:layout_constraintTop_toBottomOf="@+id/chipGroup_medication_schedule" />
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chipGroup_medication_schedule"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@+id/textView13"
+                app:layout_constraintTop_toBottomOf="@+id/textView13">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="After Breakfast"
+                    app:chipCornerRadius="5dp"
+                    app:chipMinHeight="50dp"
+                    app:closeIconVisible="true" />
+
+            </com.google.android.material.chip.ChipGroup>
+
+            <ImageButton
+                android:id="@+id/btn_add_medicine_schedule"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/custom_filled_circle"
+                android:src="@drawable/baseline_add_24"
+                app:layout_constraintBottom_toBottomOf="@+id/chipGroup_medication_schedule"
+                app:layout_constraintStart_toEndOf="@+id/chipGroup_medication_schedule"
+                app:layout_constraintTop_toTopOf="@+id/chipGroup_medication_schedule" />
+
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chipGroup_add_medicine_reminder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toTopOf="@+id/btn_add_medicine"
+                app:layout_constraintStart_toStartOf="@+id/textView14"
+                app:layout_constraintTop_toBottomOf="@+id/textView14">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="7:00 AM"
+                    app:chipCornerRadius="5dp"
+                    app:chipMinHeight="50dp"
+                    app:closeIconVisible="true" />
+
+            </com.google.android.material.chip.ChipGroup>
+
+            <ImageButton
+                android:id="@+id/btn_add_medicine_reminder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/custom_filled_circle"
+                android:src="@drawable/baseline_add_24"
+                app:layout_constraintBottom_toBottomOf="@+id/chipGroup_add_medicine_reminder"
+                app:layout_constraintStart_toEndOf="@+id/chipGroup_add_medicine_reminder"
+                app:layout_constraintTop_toTopOf="@+id/chipGroup_add_medicine_reminder" />
+
+            <Button
+                android:id="@+id/btn_add_medicine"
+                style="@style/main_button_style"
+                android:layout_width="0dp"
+                android:layout_height="55dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginBottom="8dp"
+                android:text="Add"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+</layout>
