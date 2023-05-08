@@ -2,6 +2,7 @@ package com.syncdev.domain.repo.remote
 
 import com.google.firebase.auth.FirebaseUser
 import com.syncdev.domain.model.Patient
+import com.syncdev.domain.model.Doctor
 
 /**
  * An interface representing a repository for accessing remote data sources.
