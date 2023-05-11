@@ -3,6 +3,8 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id("androidx.navigation.safeargs.kotlin")
     id 'com.google.gms.google-services'
+    id("kotlin-kapt")
+    id("com.google.dagger.hilt.android")
 
 }
 
@@ -82,6 +84,10 @@ dependencies {
 
     // Coil
     implementation("io.coil-kt:coil:$coil_version")
+
+    // Hilt
+    implementation("com.google.dagger:hilt-android:$hilt_version")
+    kapt("com.google.dagger:hilt-android-compiler:$hilt_version")
 
     //Android GIF
     implementation ("pl.droidsonroids.gif:android-gif-drawable:$android_gif_version")
