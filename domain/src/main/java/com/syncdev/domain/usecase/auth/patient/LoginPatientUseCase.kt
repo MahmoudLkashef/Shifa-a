@@ -11,7 +11,7 @@ import javax.inject.Inject
  *
  * @param remoteRepository The [RemoteRepository] dependency used to make the network request.
  */
-class LoginPatientUseCase @Inject constructor(
+class LoginPatientUseCase(
     private val remoteRepository: RemoteRepository
 ) {
     /**

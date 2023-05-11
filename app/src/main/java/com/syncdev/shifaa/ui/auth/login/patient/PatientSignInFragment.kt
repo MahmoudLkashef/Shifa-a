@@ -13,8 +13,9 @@ import com.syncdev.shifaa.R
 import com.syncdev.shifaa.databinding.FragmentPatientSignInBinding
 import com.syncdev.shifaa.ui.auth.login.SignInFragmentDirections
 import com.syncdev.shifaa.ui.patient.PatientActivity
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class PatientSignInFragment : Fragment() {
 
 
