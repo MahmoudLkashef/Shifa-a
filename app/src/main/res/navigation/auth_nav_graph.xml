@@ -104,7 +104,7 @@
     </fragment>
     <fragment
         android:id="@+id/signUpPatientFragment"
-        android:name="com.syncdev.shifaa.ui.auth.register.SignUpPatientFragment"
+        android:name="com.syncdev.shifaa.ui.auth.register.patient.SignUpPatientFragment"
         android:label="fragment_sign_up_patient"
         tools:layout="@layout/fragment_sign_up_patient" >
         <action
@@ -119,7 +119,7 @@
     </fragment>
     <fragment
         android:id="@+id/signUpDoctorFragment"
-        android:name="com.syncdev.shifaa.ui.auth.register.SignUpDoctorFragment"
+        android:name="com.syncdev.shifaa.ui.auth.register.doctor.SignUpDoctorFragment"
         android:label="fragment_sign_up_doctor"
         tools:layout="@layout/fragment_sign_up_doctor" >
         <action

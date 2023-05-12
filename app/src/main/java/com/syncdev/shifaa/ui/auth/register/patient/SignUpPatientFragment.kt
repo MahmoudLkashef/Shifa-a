@@ -1,4 +1,4 @@
-package com.syncdev.shifaa.ui.auth.register
+package com.syncdev.shifaa.ui.auth.register.patient
 
 import android.os.Build
 import android.os.Bundle

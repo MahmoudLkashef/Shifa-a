@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    tools:context=".ui.auth.register.SignUpPatientFragment">
+    tools:context=".ui.auth.register.patient.SignUpPatientFragment">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
