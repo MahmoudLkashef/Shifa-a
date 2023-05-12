@@ -12,6 +12,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
+import com.syncdev.domain.utils.Constants
 import com.syncdev.shifaa.R
 import com.syncdev.shifaa.databinding.FragmentDoctorSignInBinding
 import com.syncdev.shifaa.ui.auth.login.SignInFragmentDirections
@@ -45,7 +46,7 @@ class DoctorSignInFragment : Fragment() {
 
             tvDoctorResetPassword.setOnClickListener {
                 findNavController().navigate(
-                    SignInFragmentDirections.actionSignInFragmentToForgetPasswordFragment()
+                    SignInFragmentDirections.actionSignInFragmentToForgetPasswordFragment("Doctor")
                 )
             }
             tvDoctorRegister.setOnClickListener {

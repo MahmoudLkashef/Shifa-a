@@ -19,9 +19,6 @@ class OtpVerificationFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        val selectedMethod = arguments?.getString("otpMethod")
-        Log.i(TAG, "selected method : $selectedMethod")
         // Inflate the layout for this fragment
         binding = FragmentOtpVerificationBinding.inflate(inflater,container,false)
 
