@@ -12,11 +12,13 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.snackbar.Snackbar
 import com.syncdev.domain.utils.Constants
 import com.syncdev.shifaa.R
 import com.syncdev.shifaa.databinding.FragmentDoctorSignInBinding
 import com.syncdev.shifaa.ui.auth.login.SignInFragmentDirections
 import com.syncdev.shifaa.ui.doctor.DoctorActivity
+import com.syncdev.shifaa.utils.Validation
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -24,7 +26,8 @@ class DoctorSignInFragment : Fragment() {
     private val TAG = "DoctorSignInFragment"
 
     private lateinit var binding: FragmentDoctorSignInBinding
-
+    private var validEmail = false
+    private var validPassword = false
     private val doctorViewModel by viewModels<DoctorSignInViewModel>()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -60,8 +63,12 @@ class DoctorSignInFragment : Fragment() {
             }
 
             btnDoctorSignin.setOnClickListener {
-                Log.i(TAG, "onCreateView: ")
-                doctorViewModel.loginDoctor()
+                if (validaData()){
+                    doctorViewModel.loginDoctor()
+                    loadingButton()
+                }else{
+                    Snackbar.make(requireView(),"Fill Missing Field", Snackbar.ANIMATION_MODE_SLIDE).show()
+                }
             }
         }
 
@@ -72,7 +79,25 @@ class DoctorSignInFragment : Fragment() {
             }
         })
 
+        doctorViewModel.email.observe(viewLifecycleOwner, Observer { email ->
+            validEmail = Validation.isEmptyTextInput(email,binding.tilDoctorEmail)
+        })
+
+        doctorViewModel.password.observe(viewLifecycleOwner, Observer { password ->
+            validPassword = Validation.isEmptyTextInput(password,binding.tilDoctorPassword)
+        })
+
         return binding.root
+    }
+
+    private fun validaData(): Boolean{
+        return validEmail and validPassword
+    }
+
+    private fun loadingButton(){
+        binding.btnDoctorSignin.isEnabled = false
+        binding.btnDoctorSignin.text = "Logging in..."
+        binding.btnDoctorSignin.setTextColor(resources.getColor(R.color.white))
     }
 
 }

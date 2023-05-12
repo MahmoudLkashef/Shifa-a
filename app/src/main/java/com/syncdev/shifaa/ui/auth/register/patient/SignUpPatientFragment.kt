@@ -28,6 +28,8 @@ class SignUpPatientFragment : Fragment() {
 
     private lateinit var binding: FragmentSignUpPatientBinding
     private val TAG = "SignUpPatientFragment"
+    private var validFirstName = false
+    private var validLastName = false
     private var validEmail = false
     private var validDay = false
     private var validMonth = false
@@ -102,12 +104,20 @@ class SignUpPatientFragment : Fragment() {
             btnConfirmSignupPatient.setOnClickListener {
                 if (validaData()) {
                     patientSignUpViewModel.signUpPatient()
+                    loadingButton()
                 }else{
                     Snackbar.make(requireView(),"Please Fill Missing Fields",Snackbar.ANIMATION_MODE_SLIDE).show()
                 }
             }
         }
 
+        patientSignUpViewModel.firstName.observe(viewLifecycleOwner, Observer { firstName->
+            validFirstName = Validation.validateName(firstName,binding.tilFnamePatient)
+        })
+
+        patientSignUpViewModel.lastName.observe(viewLifecycleOwner, Observer { lastName ->
+            validLastName = Validation.validateName(lastName,binding.tilLnamePatient)
+        })
 
         patientSignUpViewModel.email.observe(viewLifecycleOwner, Observer { email->
             validEmail =Validation.validateEmail(email,binding.tilEmailPatient)
@@ -157,6 +167,14 @@ class SignUpPatientFragment : Fragment() {
     }
 
     private fun validaData(): Boolean{
-        return validDay and validMonth and validYear and validEmail and validPassword and validConfirmPassword and validGender
+        return validFirstName and validLastName and validDay and validMonth and
+                validYear and validEmail and validPassword and
+                validConfirmPassword and validGender and validPhoneNumber
+    }
+
+    private fun loadingButton(){
+        binding.btnConfirmSignupPatient.isEnabled = false
+        binding.btnConfirmSignupPatient.text = "Registering..."
+        binding.btnConfirmSignupPatient.setTextColor(resources.getColor(R.color.white))
     }
 }

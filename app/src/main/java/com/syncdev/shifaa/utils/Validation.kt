@@ -7,6 +7,23 @@ import com.google.android.material.textfield.TextInputLayout
 
 object Validation {
 
+    fun isEmptyTextInput(text: String, view: TextInputLayout): Boolean{
+        return if (text.isEmpty()){
+            view.error = "This field cannot be empty"
+            false
+        }else{
+            true
+        }
+    }
+    fun validateName(name: String, view: TextInputLayout): Boolean{
+        return if (name.isEmpty()){
+            view.error = "This field is required"
+            false
+        }else{
+            true
+        }
+    }
+
     fun validateDay(day: String, view: TextInputLayout): Boolean{
         return if (day.isEmpty()){
             false
@@ -93,5 +110,16 @@ object Validation {
         }
     }
 
+    fun validateSpeciality(speciality: String, specialities: Array<out String>,view: TextInputLayout):Boolean{
+        return if (speciality.isEmpty()){
+            false
+        }else if (!specialities.contains(speciality)){
+            view.error = "Select speciality"
+            false
+        }else{
+            view.error = null
+            true
+        }
+    }
 
 }
