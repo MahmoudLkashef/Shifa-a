@@ -59,19 +59,19 @@ class SignUpPatientFragment : Fragment() {
                 }
             }
 
-            dropDownMenuDay.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
+            dropDownMenuDay.onItemClickListener = AdapterView.OnItemClickListener { parent, _, position, _ ->
                 val selectedItem = parent.getItemAtPosition(position) as String
                 Log.i(TAG, "onCreateView: $selectedItem")
                 patientSignUpViewModel.day.value = selectedItem
             }
 
-            dropDownMenuMonth.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
+            dropDownMenuMonth.onItemClickListener = AdapterView.OnItemClickListener { parent, _, position, _ ->
                 val selectedItem = parent.getItemAtPosition(position) as String
                 Log.i(TAG, "onCreateView: $selectedItem")
                 patientSignUpViewModel.month.value = selectedItem
             }
 
-            dropDownMenuYear.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
+            dropDownMenuYear.onItemClickListener = AdapterView.OnItemClickListener { parent, _, position, _ ->
                 val selectedItem = parent.getItemAtPosition(position) as String
                 Log.i(TAG, "onCreateView: $selectedItem")
                 patientSignUpViewModel.year.value = selectedItem
