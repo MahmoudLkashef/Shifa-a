@@ -1,6 +1,7 @@
 package com.syncdev.shifaa.ui.auth.register.doctor
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -21,6 +22,7 @@ class SignUpDoctorFragment : Fragment() {
     private val TAG = "SignUpDoctorFragment"
     private lateinit var binding: FragmentSignUpDoctorBinding
     private val doctorViewModel by viewModels<SignUpDoctorViewModel>()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
