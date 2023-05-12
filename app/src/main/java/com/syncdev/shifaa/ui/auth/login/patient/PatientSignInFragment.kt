@@ -11,16 +11,20 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.snackbar.Snackbar
 import com.syncdev.shifaa.R
 import com.syncdev.shifaa.databinding.FragmentPatientSignInBinding
 import com.syncdev.shifaa.ui.auth.login.SignInFragmentDirections
 import com.syncdev.shifaa.ui.patient.PatientActivity
+import com.syncdev.shifaa.utils.Validation
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class PatientSignInFragment : Fragment() {
 
     private lateinit var binding: FragmentPatientSignInBinding
+    private var validEmail = false
+    private var validPassword = false
     private val patientSignInViewModel by viewModels<PatientSignInViewModel>()
 
     override fun onCreateView(
@@ -56,7 +60,12 @@ class PatientSignInFragment : Fragment() {
             }
 
             btnPatientSignin.setOnClickListener {
-                patientSignInViewModel.loginPatient()
+                if (validaData()){
+                    patientSignInViewModel.loginPatient()
+                    loadingButton()
+                }else{
+                    Snackbar.make(requireView(),"Fill Missing Field",Snackbar.ANIMATION_MODE_SLIDE).show()
+                }
             }
         }
 
@@ -67,8 +76,24 @@ class PatientSignInFragment : Fragment() {
             }
         })
 
+        patientSignInViewModel.email.observe(viewLifecycleOwner, Observer { email ->
+            validEmail = Validation.isEmptyTextInput(email,binding.tilPatientEmail)
+        })
+
+        patientSignInViewModel.password.observe(viewLifecycleOwner, Observer { password ->
+            validPassword = Validation.isEmptyTextInput(password,binding.tilPatientPassword)
+        })
+
         return binding.root
     }
 
+    private fun validaData(): Boolean{
+        return validEmail and validPassword
+    }
 
+    private fun loadingButton(){
+        binding.btnPatientSignin.isEnabled = false
+        binding.btnPatientSignin.text = "Logging in..."
+        binding.btnPatientSignin.setTextColor(resources.getColor(R.color.white))
+    }
 }
