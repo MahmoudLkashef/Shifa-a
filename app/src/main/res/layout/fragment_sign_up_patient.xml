@@ -114,6 +114,8 @@
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/et_fname_patient"
                             android:layout_width="match_parent"
+                            android:maxLength="20"
+                            android:maxLines="1"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/poppins_regular"
                             android:hint="@string/hint_first_name_signup_patient"
@@ -138,6 +140,8 @@
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/et_lname_patient"
                             android:layout_width="match_parent"
+                            android:maxLength="20"
+                            android:maxLines="1"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/poppins_regular"
                             android:hint="@string/hint_last_name_signup_patient"
@@ -166,7 +170,7 @@
                         android:layout_marginTop="8dp"
                         app:boxStrokeColor="@color/main_color"
                         app:hintEnabled="false"
-                        app:layout_constraintEnd_toStartOf="@+id/textInputLayout3"
+                        app:layout_constraintEnd_toStartOf="@+id/til_month_signup_patient"
                         app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/tv_age_title">
@@ -184,14 +188,14 @@
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/textInputLayout3"
+                        android:id="@+id/til_month_signup_patient"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:boxStrokeColor="@color/main_color"
                         app:hintEnabled="false"
                         app:layout_constraintBottom_toBottomOf="@+id/til_day_signup_patient"
-                        app:layout_constraintEnd_toStartOf="@+id/textInputLayout4"
+                        app:layout_constraintEnd_toStartOf="@+id/til_year_signup_patient"
                         app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toEndOf="@+id/til_day_signup_patient"
                         app:layout_constraintTop_toTopOf="@+id/til_day_signup_patient">
@@ -209,18 +213,18 @@
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/textInputLayout4"
+                        android:id="@+id/til_year_signup_patient"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
                         app:boxStrokeColor="@color/main_color"
                         app:hintEnabled="false"
-                        app:layout_constraintBottom_toBottomOf="@+id/textInputLayout3"
+                        app:layout_constraintBottom_toBottomOf="@+id/til_month_signup_patient"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toEndOf="@+id/textInputLayout3"
-                        app:layout_constraintTop_toTopOf="@+id/textInputLayout3">
+                        app:layout_constraintStart_toEndOf="@+id/til_month_signup_patient"
+                        app:layout_constraintTop_toTopOf="@+id/til_month_signup_patient">
 
                         <AutoCompleteTextView
                             android:id="@+id/drop_down_menu_year"
@@ -307,6 +311,7 @@
                             android:id="@+id/et_email_patient"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:maxLines="1"
                             android:fontFamily="@font/poppins_regular"
                             android:hint="Patient@Example.com"
                             android:text="@={viewModel.email}"
@@ -390,6 +395,8 @@
                             android:id="@+id/et_password_patient"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:maxLength="16"
+                            android:maxLines="1"
                             android:fontFamily="@font/poppins_regular"
                             android:hint="@string/hint_password"
                             android:inputType="textPassword"
@@ -433,6 +440,8 @@
                             android:id="@+id/et_confirm_password_patient"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:maxLength="16"
+                            android:maxLines="1"
                             android:fontFamily="@font/poppins_regular"
                             android:hint="@string/hint_password"
                             android:inputType="textPassword"
