@@ -96,7 +96,7 @@ class RemoteRepositoryImp @Inject constructor(
                 val result = auth.createUserWithEmailAndPassword(doctor.email, password).await()
                 val user = result.user
                 Log.d("RegisterDoctor", "success")
-                saveUserData(doctor, Constants.DOCTORS_TABLE)
+                if(user!=null)saveUserData(doctor, Constants.DOCTORS_TABLE)
                 user
             } catch (e: Exception) {
                 Log.w("RegisterDoctor", "failure ${e.message}")
@@ -122,7 +122,7 @@ class RemoteRepositoryImp @Inject constructor(
             is Patient -> {model.id = id}
             is Doctor -> {model.id = id}
         }
-
+        
         // Set the value of the newly created child node to the `model` object using the `setValue()` method
         // on the child node reference obtained by appending the `id` to the `database` reference.
         database.child(id).setValue(model)

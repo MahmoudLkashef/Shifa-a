@@ -1,402 +1,422 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
     tools:context=".ui.auth.register.doctor.SignUpDoctorFragment">
+  
+    <data>
 
+        <variable
+            name="viewModel"
+            type="com.syncdev.shifaa.ui.auth.register.doctor.SignUpDoctorViewModel" />
+    </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        tools:context=".ui.auth.register.doctor.SignUpDoctorFragment">
 
 
-        <ImageButton
-            android:id="@+id/button_back"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="@dimen/spacing_normal"
-            android:layout_marginTop="@dimen/spacing_normal"
-            android:background="@drawable/image_button_round_corner"
-            android:elevation="8dp"
-            android:padding="10dp"
-            android:src="@drawable/back_arrow_ic"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/tv_create_new_password"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/spacing_normal"
-            android:layout_marginTop="4dp"
-            android:fontFamily="@font/poppins_bold"
-            android:text="@string/doctor_details"
-            android:textColor="@color/black"
-            android:textSize="@dimen/text_size_large"
-            app:layout_constraintBottom_toBottomOf="@+id/button_back"
-            app:layout_constraintStart_toEndOf="@+id/button_back"
-            app:layout_constraintTop_toTopOf="@+id/button_back" />
-
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_small"
-            android:src="@drawable/doctor_register"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_create_new_password" />
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cv_doctor_form"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/spacing_normal"
-            android:layout_marginEnd="@dimen/spacing_normal"
-            app:cardCornerRadius="20dp"
-            app:cardElevation="20dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
 
-                <androidx.constraintlayout.widget.Guideline
-                    android:id="@+id/guideline"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    app:layout_constraintGuide_percent="0.5" />
+            <ImageButton
+                android:id="@+id/button_back"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="@dimen/spacing_normal"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:background="@drawable/image_button_round_corner"
+                android:elevation="8dp"
+                android:padding="10dp"
+                android:src="@drawable/back_arrow_ic"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/tv_doctor_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/spacing_normal"
-                    android:layout_marginTop="@dimen/spacing_normal"
-                    android:fontFamily="@font/poppins_bold"
-                    android:text="@string/name"
-                    android:textColor="@color/black"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/tv_create_new_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_normal"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="@string/doctor_details"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_large"
+                app:layout_constraintBottom_toBottomOf="@+id/button_back"
+                app:layout_constraintStart_toEndOf="@+id/button_back"
+                app:layout_constraintTop_toTopOf="@+id/button_back" />
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/til_fname_doctor"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/spacing_normal"
-                    android:layout_marginTop="@dimen/spacing_small"
-                    android:layout_marginEnd="@dimen/spacing_small"
-                    app:boxStrokeColor="@color/main_color"
-                    app:hintTextColor="@color/main_color"
-                    app:layout_constraintEnd_toStartOf="@+id/guideline"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_doctor_name">
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:src="@drawable/doctor_register"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_create_new_password" />
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/et_fname_doctor"
-                        android:layout_width="match_parent"
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_doctor_form"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_normal"
+                android:layout_marginEnd="@dimen/spacing_normal"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/guideline"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins_medium"
-                        android:hint="@string/first_name"
-                        android:maxLines="1"
-                        android:textColor="@color/black"
-                        android:textColorHint="@color/gray"
-                        android:textSize="@dimen/sign_in_text_size_small" />
-                </com.google.android.material.textfield.TextInputLayout>
+                        android:orientation="vertical"
+                        app:layout_constraintGuide_percent="0.5" />
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/til_lname_doctor"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/spacing_small"
-                    android:layout_marginEnd="@dimen/spacing_normal"
-                    app:boxStrokeColor="@color/main_color"
-                    app:hintTextColor="@color/main_color"
-                    app:layout_constraintBottom_toBottomOf="@+id/til_fname_doctor"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/guideline"
-                    app:layout_constraintTop_toTopOf="@+id/til_fname_doctor">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/et_lname_doctor"
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:id="@+id/tv_doctor_name"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins_medium"
-                        android:hint="@string/last_name"
-                        android:maxLines="1"
+                        android:layout_marginStart="@dimen/spacing_normal"
+                        android:layout_marginTop="@dimen/spacing_normal"
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="@string/name"
                         android:textColor="@color/black"
-                        android:textColorHint="@color/gray"
-                        android:textSize="@dimen/sign_in_text_size_small" />
-                </com.google.android.material.textfield.TextInputLayout>
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/tv_doctor_gender"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/spacing_normal"
-                    android:layout_marginTop="@dimen/spacing_normal"
-                    android:fontFamily="@font/poppins_bold"
-                    android:text="@string/gender"
-                    android:textColor="@color/black"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/til_fname_doctor" />
-
-                <RadioGroup
-                    android:id="@+id/radoi_group_doctor_gender"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/spacing_small"
-                    android:orientation="horizontal"
-                    android:paddingStart="10dp"
-                    android:paddingEnd="10dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_doctor_gender">
-
-                    <RadioButton
-                        android:id="@+id/radio_btn_doctor_male"
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/til_fname_doctor"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="0dp"
-                        android:layout_height="48dp"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/poppins_regular"
-                        android:paddingTop="10dp"
-                        android:paddingBottom="10dp"
-                        android:text="@string/male"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/text_size_normal"
-                        android:theme="@style/RadioButton" />
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_normal"
+                        android:layout_marginTop="@dimen/spacing_small"
+                        android:layout_marginEnd="@dimen/spacing_small"
+                        app:boxStrokeColor="@color/main_color"
+                        app:hintTextColor="@color/main_color"
+                        app:layout_constraintEnd_toStartOf="@+id/guideline"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_doctor_name">
 
-                    <RadioButton
-                        android:id="@+id/radio_btn_doctor_female"
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/et_fname_doctor"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_medium"
+                            android:hint="@string/first_name"
+                            android:maxLines="1"
+                            android:text="@={viewModel.firstName}"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/gray"
+                            android:textSize="@dimen/sign_in_text_size_small" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/til_lname_doctor"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="0dp"
-                        android:layout_height="48dp"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/poppins_regular"
-                        android:paddingTop="10dp"
-                        android:paddingBottom="10dp"
-                        android:text="@string/female"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_small"
+                        android:layout_marginEnd="@dimen/spacing_normal"
+                        app:boxStrokeColor="@color/main_color"
+                        app:hintTextColor="@color/main_color"
+                        app:layout_constraintBottom_toBottomOf="@+id/til_fname_doctor"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/guideline"
+                        app:layout_constraintTop_toTopOf="@+id/til_fname_doctor">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/et_lname_doctor"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_medium"
+                            android:hint="@string/last_name"
+                            android:maxLines="1"
+                            android:text="@={viewModel.lastName}"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/gray"
+                            android:textSize="@dimen/sign_in_text_size_small" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <TextView
+                        android:id="@+id/tv_doctor_gender"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_normal"
+                        android:layout_marginTop="@dimen/spacing_normal"
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="@string/gender"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/text_size_normal"
-                        android:theme="@style/RadioButton" />
-                </RadioGroup>
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/til_fname_doctor" />
 
-                <TextView
-                    android:id="@+id/tv_doctor_specialty"
-                    style="@style/doctor_signup_title_style"
-                    android:text="@string/specialty"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/radoi_group_doctor_gender" />
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/til_docor_specialty"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/spacing_normal"
-                    android:layout_marginTop="@dimen/spacing_small"
-                    android:layout_marginEnd="@dimen/spacing_normal"
-                    app:boxStrokeColor="@color/main_color"
-                    app:hintEnabled="false"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_doctor_specialty">
-
-                    <AutoCompleteTextView
-                        android:id="@+id/dropdown_menu_doctor_specialty"
-                        android:layout_width="match_parent"
+                    <RadioGroup
+                        android:id="@+id/radoi_group_doctor_gender"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/poppins_medium"
-                        android:hint="@string/choose_your_specialty"
-                        android:inputType="none"
-                        android:textColorHint="@color/gray"
-                        android:textSize="@dimen/text_size_small" />
+                        android:layout_marginTop="@dimen/spacing_small"
+                        android:orientation="horizontal"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_doctor_gender">
 
-                </com.google.android.material.textfield.TextInputLayout>
+                        <RadioButton
+                            android:id="@+id/radio_btn_doctor_male"
+                            android:layout_width="0dp"
+                            android:layout_height="48dp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/poppins_regular"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp"
+                            android:text="@string/male"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_size_normal"
+                            android:theme="@style/RadioButton" />
 
-                <TextView
-                    android:id="@+id/tv_doctor_mobile_number"
-                    style="@style/doctor_signup_title_style"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/spacing_normal"
-                    android:layout_marginTop="@dimen/spacing_normal"
-                    android:text="@string/mobile_number"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/til_docor_specialty" />
+                        <RadioButton
+                            android:id="@+id/radio_btn_doctor_female"
+                            android:layout_width="0dp"
+                            android:layout_height="48dp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/poppins_regular"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp"
+                            android:text="@string/female"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_size_normal"
+                            android:theme="@style/RadioButton" />
+                    </RadioGroup>
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/til_doctor_mobile_number"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/spacing_normal"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="@dimen/spacing_normal"
-                    app:boxStrokeColor="@color/main_color"
-                    app:hintEnabled="false"
-                    app:hintTextColor="@color/gray"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_doctor_mobile_number"
-                    app:prefixText="+20">
+                    <TextView
+                        android:id="@+id/tv_doctor_specialty"
+                        style="@style/doctor_signup_title_style"
+                        android:text="@string/specialty"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/radoi_group_doctor_gender" />
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/et_doctor_mobile_number"
-                        android:layout_width="match_parent"
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/til_docor_specialty"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:drawableStart="@drawable/egypt_flag"
-                        android:drawablePadding="6dp"
-                        android:fontFamily="@font/poppins_regular"
-                        android:hint="@string/your_phone_number"
-                        android:inputType="phone"
-                        android:maxLength="11"
-                        android:maxLines="1"
-                        android:textSize="@dimen/text_size_small" />
-                </com.google.android.material.textfield.TextInputLayout>
+                        android:layout_marginStart="@dimen/spacing_normal"
+                        android:layout_marginTop="@dimen/spacing_small"
+                        android:layout_marginEnd="@dimen/spacing_normal"
+                        app:boxStrokeColor="@color/main_color"
+                        app:hintEnabled="false"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_doctor_specialty">
 
-                <TextView
-                    android:id="@+id/tv_doctor_email"
-                    style="@style/doctor_signup_title_style"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/spacing_normal"
-                    android:layout_marginTop="@dimen/spacing_normal"
-                    android:text="@string/email"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/til_doctor_mobile_number" />
+                        <AutoCompleteTextView
+                            android:id="@+id/dropdown_menu_doctor_specialty"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/poppins_medium"
+                            android:hint="@string/choose_your_specialty"
+                            android:inputType="none"
+                            android:textColorHint="@color/gray"
+                            android:textSize="@dimen/text_size_small" />
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/til_doctor_email"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/spacing_normal"
-                    android:layout_marginTop="@dimen/spacing_small"
-                    android:layout_marginEnd="@dimen/spacing_normal"
-                    app:boxStrokeColor="@color/main_color"
-                    app:hintEnabled="false"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_doctor_email">
+                    </com.google.android.material.textfield.TextInputLayout>
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/et_doctor_email"
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:id="@+id/tv_doctor_mobile_number"
+                        style="@style/doctor_signup_title_style"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins_regular"
-                        android:hint="@string/doctor_example_com"
-                        android:inputType="textEmailAddress"
-                        android:maxLines="1"
-                        android:textColor="@color/black"
-                        android:textColorHint="@color/gray"
-                        android:textSize="@dimen/text_size_small" />
-                </com.google.android.material.textfield.TextInputLayout>
+                        android:layout_marginStart="@dimen/spacing_normal"
+                        android:layout_marginTop="@dimen/spacing_normal"
+                        android:text="@string/mobile_number"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/til_docor_specialty" />
 
-                <TextView
-                    android:id="@+id/tv_doctor_password"
-                    style="@style/doctor_signup_title_style"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/spacing_normal"
-                    android:layout_marginTop="@dimen/spacing_normal"
-                    android:text="@string/password"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/til_doctor_email" />
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/til_doctor_password"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/spacing_normal"
-                    android:layout_marginTop="@dimen/spacing_small"
-                    android:layout_marginEnd="@dimen/spacing_normal"
-                    app:boxStrokeColor="@color/main_color"
-                    app:endIconMode="password_toggle"
-                    app:endIconTint="@color/main_color"
-                    app:hintEnabled="false"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_doctor_password">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/et_doctor_password"
-                        android:layout_width="match_parent"
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/til_doctor_mobile_number"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins_regular"
-                        android:hint="@string/hint_password"
-                        android:inputType="textPassword"
-                        android:textColorHint="@color/gray"
-                        android:textSize="@dimen/text_size_small" />
-                </com.google.android.material.textfield.TextInputLayout>
+                        android:layout_marginStart="@dimen/spacing_normal"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="@dimen/spacing_normal"
+                        app:boxStrokeColor="@color/main_color"
+                        app:hintEnabled="false"
+                        app:hintTextColor="@color/gray"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_doctor_mobile_number"
+                        app:prefixText="+20">
 
-                <TextView
-                    android:id="@+id/tv_doctor_confirm_password"
-                    style="@style/doctor_signup_title_style"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/spacing_normal"
-                    android:layout_marginTop="@dimen/spacing_normal"
-                    android:text="@string/confirm_password"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/til_doctor_password" />
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/et_doctor_mobile_number"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/egypt_flag"
+                            android:drawablePadding="6dp"
+                            android:fontFamily="@font/poppins_regular"
+                            android:hint="@string/your_phone_number"
+                            android:inputType="phone"
+                            android:text="@={viewModel.phoneNumber}"
+                            android:maxLength="11"
+                            android:maxLines="1"
+                            android:textSize="@dimen/text_size_small" />
+                    </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/itl_doctor_confirm_password"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/spacing_normal"
-                    android:layout_marginTop="@dimen/spacing_small"
-                    android:layout_marginEnd="@dimen/spacing_normal"
-                    android:layout_marginBottom="@dimen/spacing_normal"
-                    app:boxStrokeColor="@color/main_color"
-                    app:endIconMode="password_toggle"
-                    app:endIconTint="@color/main_color"
-                    app:hintEnabled="false"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_doctor_confirm_password">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/et_doctor_confirm_password"
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:id="@+id/tv_doctor_email"
+                        style="@style/doctor_signup_title_style"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins_regular"
-                        android:hint="@string/hint_password"
-                        android:inputType="textPassword"
-                        android:textColor="@color/black"
-                        android:textColorHint="@color/gray"
-                        android:textSize="@dimen/text_size_small" />
-                </com.google.android.material.textfield.TextInputLayout>
+                        android:layout_marginStart="@dimen/spacing_normal"
+                        android:layout_marginTop="@dimen/spacing_normal"
+                        android:text="@string/email"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/til_doctor_mobile_number" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.cardview.widget.CardView>
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/til_doctor_email"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_normal"
+                        android:layout_marginTop="@dimen/spacing_small"
+                        android:layout_marginEnd="@dimen/spacing_normal"
+                        app:boxStrokeColor="@color/main_color"
+                        app:hintEnabled="false"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_doctor_email">
 
-        <Button
-            android:id="@+id/btn_doctor_signup"
-            style="@style/main_button_style"
-            android:layout_width="0dp"
-            android:layout_height="64dp"
-            android:layout_marginStart="@dimen/spacing_normal"
-            android:layout_marginTop="@dimen/spacing_large"
-            android:layout_marginEnd="@dimen/spacing_normal"
-            android:layout_marginBottom="@dimen/spacing_large"
-            android:text="@string/sign_up"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cv_doctor_form" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/et_doctor_email"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_regular"
+                            android:hint="@string/doctor_example_com"
+                            android:inputType="textEmailAddress"
+                            android:maxLines="1"
+                            android:text="@={viewModel.email}"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/gray"
+                            android:textSize="@dimen/text_size_small" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <TextView
+                        android:id="@+id/tv_doctor_password"
+                        style="@style/doctor_signup_title_style"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_normal"
+                        android:layout_marginTop="@dimen/spacing_normal"
+                        android:text="@string/password"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/til_doctor_email" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/til_doctor_password"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_normal"
+                        android:layout_marginTop="@dimen/spacing_small"
+                        android:layout_marginEnd="@dimen/spacing_normal"
+                        app:boxStrokeColor="@color/main_color"
+                        app:endIconMode="password_toggle"
+                        app:endIconTint="@color/main_color"
+                        app:hintEnabled="false"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_doctor_password">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/et_doctor_password"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_regular"
+                            android:hint="@string/hint_password"
+                            android:inputType="textPassword"
+                            android:text="@={viewModel.password}"
+                            android:textColorHint="@color/gray"
+                            android:textSize="@dimen/text_size_small" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <TextView
+                        android:id="@+id/tv_doctor_confirm_password"
+                        style="@style/doctor_signup_title_style"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_normal"
+                        android:layout_marginTop="@dimen/spacing_normal"
+                        android:text="@string/confirm_password"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/til_doctor_password" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/itl_doctor_confirm_password"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_normal"
+                        android:layout_marginTop="@dimen/spacing_small"
+                        android:layout_marginEnd="@dimen/spacing_normal"
+                        android:layout_marginBottom="@dimen/spacing_normal"
+                        app:boxStrokeColor="@color/main_color"
+                        app:endIconMode="password_toggle"
+                        app:endIconTint="@color/main_color"
+                        app:hintEnabled="false"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_doctor_confirm_password">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/et_doctor_confirm_password"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_regular"
+                            android:hint="@string/hint_password"
+                            android:inputType="textPassword"
+                            android:textColor="@color/black"
+                            android:text="@={viewModel.confirmPassword}"
+                            android:textColorHint="@color/gray"
+                            android:textSize="@dimen/text_size_small" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <Button
+                android:id="@+id/btn_doctor_signup"
+                style="@style/main_button_style"
+                android:layout_width="0dp"
+                android:layout_height="64dp"
+                android:layout_marginStart="@dimen/spacing_normal"
+                android:layout_marginTop="@dimen/spacing_large"
+                android:layout_marginEnd="@dimen/spacing_normal"
+                android:layout_marginBottom="@dimen/spacing_large"
+                android:text="@string/sign_up"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cv_doctor_form" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

@@ -22,7 +22,6 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class SignUpPatientFragment : Fragment() {
 
-
     private lateinit var binding: FragmentSignUpPatientBinding
     private val TAG = "SignUpPatientFragment"
     private val patientSignUpViewModel by viewModels<SignUpPatientViewModel>()
@@ -103,5 +102,4 @@ class SignUpPatientFragment : Fragment() {
         val confirmPass = binding.etConfirmPasswordPatient.text.toString()
         return pass == confirmPass
     }
-
 }
