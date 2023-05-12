@@ -24,6 +24,8 @@ class ForgetPasswordFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentForgetPasswordBinding.inflate(inflater,container,false)
 
+        var role=arguments?.getString("role")
+
         with(binding){
             btnContinue.isVisible = false
             cardViewPhone.isChecked = false
@@ -49,7 +51,8 @@ class ForgetPasswordFragment : Fragment() {
                     }
                     Log.i(TAG, "continue using : $selectedMethod")
                     findNavController().navigate(
-                        ForgetPasswordFragmentDirections.actionForgetPasswordFragmentToOtpVerificationFragment(selectedMethod)
+                        ForgetPasswordFragmentDirections.
+                        actionForgetPasswordFragmentToSendOtpFragment(role!!,selectedMethod)
                     )
                 }
             }

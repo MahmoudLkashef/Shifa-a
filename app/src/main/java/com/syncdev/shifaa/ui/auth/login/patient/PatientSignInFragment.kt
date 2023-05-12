@@ -41,7 +41,7 @@ class PatientSignInFragment : Fragment() {
             viewModel = patientSignInViewModel
             tvPatientResetPassword.setOnClickListener {
                 findNavController().navigate(
-                    SignInFragmentDirections.actionSignInFragmentToForgetPasswordFragment()
+                    SignInFragmentDirections.actionSignInFragmentToForgetPasswordFragment("Patient")
                 )
             }
 
