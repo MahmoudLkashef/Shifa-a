@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.syncdev.shifaa.R
@@ -18,9 +20,8 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class PatientSignInFragment : Fragment() {
 
-
-
     private lateinit var binding: FragmentPatientSignInBinding
+    private val patientSignInViewModel by viewModels<PatientSignInViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,6 +38,7 @@ class PatientSignInFragment : Fragment() {
         val viewPager = requireActivity().findViewById<ViewPager2>(R.id.viewPager_signin)
 
         with(binding){
+            viewModel = patientSignInViewModel
             tvPatientResetPassword.setOnClickListener {
                 findNavController().navigate(
                     SignInFragmentDirections.actionSignInFragmentToForgetPasswordFragment()
@@ -54,10 +56,16 @@ class PatientSignInFragment : Fragment() {
             }
 
             btnPatientSignin.setOnClickListener {
+                patientSignInViewModel.loginPatient()
+            }
+        }
+
+        patientSignInViewModel.navigate.observe(viewLifecycleOwner, Observer { validUser ->
+            if (validUser){
                 startActivity(Intent(requireContext(), PatientActivity::class.java))
                 activity?.finish()
             }
-        }
+        })
 
         return binding.root
     }

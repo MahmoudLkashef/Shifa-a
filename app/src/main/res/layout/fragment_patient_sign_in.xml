@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.syncdev.shifaa.ui.auth.login.patient.PatientSignInViewModel" />
     </data>
 
     <ScrollView
@@ -93,6 +96,7 @@
                     android:fontFamily="@font/poppins_regular"
                     android:hint="@string/email_address_hint"
                     android:maxLines="1"
+                    android:text="@={viewModel.email}"
                     android:textColor="@color/black"
                     android:textColorHint="@color/gray"
                     android:textSize="@dimen/sign_in_text_size_normal" />
@@ -122,6 +126,7 @@
                     android:hint="@string/password_hint"
                     android:inputType="textPassword"
                     android:maxLines="1"
+                    android:text="@={viewModel.password}"
                     android:textColor="@color/black"
                     android:textColorHint="@color/gray"
                     android:textSize="@dimen/sign_in_text_size_normal" />
@@ -213,8 +218,8 @@
                 android:id="@+id/gif_swipe_to_doctor"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:src="@drawable/next_gif"
                 android:layoutDirection="locale"
+                android:src="@drawable/next_gif"
                 app:layout_constraintBottom_toBottomOf="@+id/view_swipe_to_doctor_circle"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/view_swipe_to_doctor_circle"

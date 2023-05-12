@@ -15,7 +15,7 @@ package com.syncdev.domain.model
  * @property email The email address of the patient.
  */
 data class Patient(
-    val id: String,
+    var id: String? = null,
     val firstName: String,
     val lastName: String,
     val age: String,
