@@ -86,6 +86,9 @@
             app:popExitAnim="@anim/to_right"
             app:popUpTo="@id/signInFragment"
             app:popUpToInclusive="true" />
+        <argument
+            android:name="otpMethod"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/resetPasswordFragment"
