@@ -1,4 +1,4 @@
-package com.syncdev.shifaa.ui.auth.register
+package com.syncdev.shifaa.ui.auth.register.doctor
 
 import android.os.Bundle
 import android.util.Log
@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.RadioButton
-import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.syncdev.domain.model.Doctor
 import com.syncdev.shifaa.R

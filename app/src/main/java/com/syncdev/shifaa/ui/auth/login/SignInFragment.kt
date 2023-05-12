@@ -13,8 +13,10 @@ import com.syncdev.shifaa.ui.auth.login.patient.PatientSignInFragment
 import com.syncdev.shifaa.ui.auth.onboarding.ViewPagerAdapter
 import com.syncdev.shifaa.ui.doctor.DoctorActivity
 import com.syncdev.shifaa.ui.patient.PatientActivity
+import dagger.hilt.android.AndroidEntryPoint
 
 
+@AndroidEntryPoint
 class SignInFragment : Fragment() {
 
 

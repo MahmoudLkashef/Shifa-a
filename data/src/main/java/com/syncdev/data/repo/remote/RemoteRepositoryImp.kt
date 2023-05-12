@@ -118,9 +118,21 @@ class RemoteRepositoryImp @Inject constructor(
         // Generate a unique key for the new child node and store it in the `id` variable
         val id = database.push().key!!
 
+        when(model){
+            is Patient -> {model.id = id}
+            is Doctor -> {model.id = id}
+        }
+
         // Set the value of the newly created child node to the `model` object using the `setValue()` method
         // on the child node reference obtained by appending the `id` to the `database` reference.
         database.child(id).setValue(model)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Log.d("SaveData", "Data saved successfully")
+                } else {
+                    Log.w("SaveData", "Failed to save data: ${task.exception}")
+                }
+            }
     }
 
 
