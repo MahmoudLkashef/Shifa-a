@@ -5,8 +5,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.google.firebase.auth.FirebaseUser
 import com.syncdev.domain.model.Doctor
 import com.syncdev.domain.usecase.auth.doctor.RegisterDoctorUseCase
+import com.syncdev.shifaa.utils.Internet
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -26,6 +28,7 @@ class SignUpDoctorViewModel @Inject constructor(private val registerDoctorUseCas
     val email = MutableLiveData<String>()
     val password = MutableLiveData<String>()
     val confirmPassword=MutableLiveData<String>()
+    var firebaseUser = MutableLiveData<FirebaseUser>()
 
 
     fun registerDoctor(){
@@ -38,10 +41,10 @@ class SignUpDoctorViewModel @Inject constructor(private val registerDoctorUseCas
                     phoneNumber = phoneNumber.value.toString(),
                     email = email.value.toString()
                 )
-               val firebaseUser= registerDoctorUseCase.invoke(doctor, password.value.toString())
-                firebaseUser?.let {
+               firebaseUser.value = registerDoctorUseCase.invoke(doctor, password.value.toString())
+                firebaseUser.value?.let {
                     _navigate.value=true
-                    Log.i(TAG, "registerDoctor: ${firebaseUser.displayName}")
+                    Log.i(TAG, "registerDoctor: ${it.displayName}")
                 }
             }catch (e:Exception){
                 Log.e(TAG, "registerDoctor: ${e.message}")

@@ -8,12 +8,15 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FirebaseUser
 import com.syncdev.shifaa.utils.Validation
 import com.syncdev.shifaa.R
 import com.syncdev.shifaa.databinding.FragmentSignUpDoctorBinding
+import com.syncdev.shifaa.utils.Internet
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -54,8 +57,7 @@ class SignUpDoctorFragment : Fragment() {
 
             btnDoctorSignup.setOnClickListener {
                 if (validaData()) {
-                    doctorViewModel.registerDoctor()
-                    loadingButton()
+                    validateUser()
                 }else{
                     Snackbar.make(requireView(),"Please Fill Missing Fields", Snackbar.ANIMATION_MODE_SLIDE).show()
                 }
@@ -133,9 +135,40 @@ class SignUpDoctorFragment : Fragment() {
                 validConfirmPassword and validGender
     }
 
+    private fun validateUser(){
+        if (checkInternetConnectivity()) {
+            doctorViewModel.registerDoctor()
+            loadingButton()
+            doctorViewModel.firebaseUser.observe(viewLifecycleOwner, Observer { user ->
+                if (user == null) {
+                    Snackbar.make(
+                        requireView(),
+                        "Failed to create an account",
+                        Snackbar.ANIMATION_MODE_SLIDE
+                    ).show()
+                    resetButton()
+                }
+            })
+        }else{
+            Snackbar.make(requireView(),"Check Your Internet Connection", Snackbar.ANIMATION_MODE_SLIDE)
+                .setAction("Retry") { validateUser() }
+                .show()
+        }
+    }
+
+    private fun checkInternetConnectivity():Boolean{
+        return Internet.isInternetConnected(requireContext().applicationContext)
+    }
+
     private fun loadingButton(){
         binding.btnDoctorSignup.isEnabled = false
         binding.btnDoctorSignup.text = "Registering..."
+        binding.btnDoctorSignup.setTextColor(resources.getColor(R.color.white))
+    }
+
+    private fun resetButton(){
+        binding.btnDoctorSignup.isEnabled = true
+        binding.btnDoctorSignup.text = "Register"
         binding.btnDoctorSignup.setTextColor(resources.getColor(R.color.white))
     }
 }

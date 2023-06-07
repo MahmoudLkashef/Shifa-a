@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.google.firebase.auth.FirebaseUser
 import com.syncdev.domain.model.Patient
 import com.syncdev.domain.usecase.auth.patient.RegisterPatientUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -30,15 +31,16 @@ constructor(
     var month = MutableLiveData<String>()
     var year = MutableLiveData<String>()
     var gender = MutableLiveData<String>()
+    var firebaseUser = MutableLiveData<FirebaseUser>()
     private val _navigate = MutableLiveData(false)
     val navigate: LiveData<Boolean> get() = _navigate
 
     fun signUpPatient(){
         viewModelScope.launch {
             try {
-                val firebaseUser = registerPatientUseCase
+                firebaseUser.value = registerPatientUseCase
                     .invoke(getPatientData(),password.value.toString())
-                firebaseUser?.let { 
+                firebaseUser.value?.let {
                     _navigate.value = true
                     Log.i(TAG, "loginPatient: login successfully ${it.displayName}")
                 }

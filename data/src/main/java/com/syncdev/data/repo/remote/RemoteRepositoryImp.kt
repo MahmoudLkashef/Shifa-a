@@ -3,7 +3,10 @@ package com.syncdev.data.repo.remote
 import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.syncdev.domain.model.Patient
 import com.syncdev.domain.model.Doctor
 import com.syncdev.domain.repo.remote.RemoteRepository
@@ -75,7 +78,9 @@ class RemoteRepositoryImp @Inject constructor(
                 val result = auth.createUserWithEmailAndPassword(patient.email, password).await()
                 val user = result.user
                 Log.d("RegisterPatient", "success")
-                saveUserData(patient, Constants.PATIENTS_TABLE)
+                if (user != null) {
+                    saveUserData(patient, Constants.PATIENTS_TABLE, user.uid)
+                }
                 user
             } catch (e: Exception) {
                 Log.w("RegisterPatient", "failure ${e.message}")
@@ -96,7 +101,9 @@ class RemoteRepositoryImp @Inject constructor(
                 val result = auth.createUserWithEmailAndPassword(doctor.email, password).await()
                 val user = result.user
                 Log.d("RegisterDoctor", "success")
-                if(user!=null)saveUserData(doctor, Constants.DOCTORS_TABLE)
+                if(user!=null){
+                    saveUserData(doctor, Constants.DOCTORS_TABLE, user.uid)
+                }
                 user
             } catch (e: Exception) {
                 Log.w("RegisterDoctor", "failure ${e.message}")
@@ -105,19 +112,55 @@ class RemoteRepositoryImp @Inject constructor(
         }
     }
 
+    override suspend fun searchDoctorById(
+        doctorId: String,
+        onDoctorLoaded: (Doctor?) -> Unit
+    ){
+        val database = firebaseDatabase.reference.child("Doctors")
+        database.orderByChild("id").equalTo(doctorId)
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val doctor = snapshot.children.firstOrNull()?.getValue(Doctor::class.java)
+                    onDoctorLoaded(doctor)
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    // Handle any errors that occurred during retrieval
+                    onDoctorLoaded(null)
+                }
+            })
+    }
+
+    override suspend fun searchPatientById(
+        patientId: String,
+        onPatientLoaded: (Patient?) -> Unit
+    ){
+        val database = firebaseDatabase.reference.child("Patients")
+        database.orderByChild("id").equalTo(patientId)
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val patient = snapshot.children.firstOrNull()?.getValue(Patient::class.java)
+                    onPatientLoaded(patient)
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    // Handle any errors that occurred during retrieval
+                    onPatientLoaded(null)
+                }
+            })
+    }
+
     /**
      * Saves a data object to the Firebase Realtime Database at the specified [reference].
      *
      * @param model The data object to save.
      * @param reference The path to the Firebase Realtime Database reference where the object should be saved.
      */
-    private fun saveUserData(model: Any, reference: String) {
+    private fun saveUserData(model: Any, reference: String, id: String) {
         // Get a reference to the Firebase Realtime Database at the specified path
         val database = firebaseDatabase.getReference(reference)
 
         // Generate a unique key for the new child node and store it in the `id` variable
-        val id = database.push().key!!
-
         when(model){
             is Patient -> {model.id = id}
             is Doctor -> {model.id = id}
