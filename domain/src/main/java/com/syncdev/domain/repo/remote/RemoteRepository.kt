@@ -44,4 +44,8 @@ interface RemoteRepository {
      * @return The FirebaseUser object representing the registered user, or null if registration fails.
      */
     suspend fun registerDoctor(doctor: Doctor, password: String): FirebaseUser?
+
+    suspend fun searchDoctorById(doctorId: String, onDoctorLoaded: (Doctor?) -> Unit)
+
+    suspend fun searchPatientById(patientId: String, onPatientLoaded: (Patient?) -> Unit)
 }

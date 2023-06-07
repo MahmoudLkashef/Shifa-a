@@ -5,6 +5,8 @@ import com.syncdev.domain.usecase.auth.doctor.LoginDoctorUseCase
 import com.syncdev.domain.usecase.auth.doctor.RegisterDoctorUseCase
 import com.syncdev.domain.usecase.auth.patient.LoginPatientUseCase
 import com.syncdev.domain.usecase.auth.patient.RegisterPatientUseCase
+import com.syncdev.domain.usecase.doctor.SearchDoctorByIdUseCase
+import com.syncdev.domain.usecase.patient.SearchPatientByIdUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -55,5 +57,15 @@ object UseCaseModule {
     @Provides
     fun provideLoginDoctorUseCase(remoteRepository: RemoteRepository): LoginDoctorUseCase {
         return LoginDoctorUseCase(remoteRepository)
+    }
+
+    @Provides
+    fun provideSearchDoctorByIdUseCase(remoteRepository: RemoteRepository): SearchDoctorByIdUseCase{
+        return SearchDoctorByIdUseCase(remoteRepository)
+    }
+
+    @Provides
+    fun provideSearchPatientById(remoteRepository: RemoteRepository): SearchPatientByIdUseCase{
+        return SearchPatientByIdUseCase(remoteRepository)
     }
 }

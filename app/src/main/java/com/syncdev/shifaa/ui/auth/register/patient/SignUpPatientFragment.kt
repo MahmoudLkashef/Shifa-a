@@ -20,6 +20,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.syncdev.shifaa.R
 import com.syncdev.shifaa.databinding.FragmentSignUpPatientBinding
 import com.syncdev.shifaa.utils.DateUtils
+import com.syncdev.shifaa.utils.Internet
 import com.syncdev.shifaa.utils.Validation
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -172,9 +173,40 @@ class SignUpPatientFragment : Fragment() {
                 validConfirmPassword and validGender and validPhoneNumber
     }
 
+    private fun validateUser(){
+        if (checkInternetConnectivity()) {
+            patientSignUpViewModel.signUpPatient()
+            loadingButton()
+            patientSignUpViewModel.firebaseUser.observe(viewLifecycleOwner, Observer { user ->
+                if (user == null) {
+                    Snackbar.make(
+                        requireView(),
+                        "Failed to create an account",
+                        Snackbar.ANIMATION_MODE_SLIDE
+                    ).show()
+                    resetButton()
+                }
+            })
+        }else{
+            Snackbar.make(requireView(),"Check Your Internet Connection", Snackbar.ANIMATION_MODE_SLIDE)
+                .setAction("Retry") { validateUser() }
+                .show()
+        }
+    }
+
+    private fun checkInternetConnectivity():Boolean{
+        return Internet.isInternetConnected(requireContext().applicationContext)
+    }
+
     private fun loadingButton(){
         binding.btnConfirmSignupPatient.isEnabled = false
         binding.btnConfirmSignupPatient.text = "Registering..."
+        binding.btnConfirmSignupPatient.setTextColor(resources.getColor(R.color.white))
+    }
+
+    private fun resetButton(){
+        binding.btnConfirmSignupPatient.isEnabled = true
+        binding.btnConfirmSignupPatient.text = "Register"
         binding.btnConfirmSignupPatient.setTextColor(resources.getColor(R.color.white))
     }
 }

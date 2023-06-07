@@ -4,6 +4,7 @@ import android.os.Build
 import android.util.Patterns
 import androidx.annotation.RequiresApi
 import com.google.android.material.textfield.TextInputLayout
+import com.google.firebase.auth.FirebaseUser
 
 object Validation {
 
@@ -15,6 +16,7 @@ object Validation {
             true
         }
     }
+
     fun validateName(name: String, view: TextInputLayout): Boolean{
         return if (name.isEmpty()){
             view.error = "This field is required"

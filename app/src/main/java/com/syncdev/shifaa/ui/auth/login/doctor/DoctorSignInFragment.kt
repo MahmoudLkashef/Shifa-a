@@ -18,6 +18,7 @@ import com.syncdev.shifaa.R
 import com.syncdev.shifaa.databinding.FragmentDoctorSignInBinding
 import com.syncdev.shifaa.ui.auth.login.SignInFragmentDirections
 import com.syncdev.shifaa.ui.doctor.DoctorActivity
+import com.syncdev.shifaa.utils.Internet
 import com.syncdev.shifaa.utils.Validation
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -64,8 +65,7 @@ class DoctorSignInFragment : Fragment() {
 
             btnDoctorSignin.setOnClickListener {
                 if (validaData()){
-                    doctorViewModel.loginDoctor()
-                    loadingButton()
+                    validateUser()
                 }else{
                     Snackbar.make(requireView(),"Fill Missing Field", Snackbar.ANIMATION_MODE_SLIDE).show()
                 }
@@ -94,9 +94,36 @@ class DoctorSignInFragment : Fragment() {
         return validEmail and validPassword
     }
 
+    private fun validateUser(){
+        if (checkInternetConnectivity()) {
+            doctorViewModel.loginDoctor()
+            loadingButton()
+            doctorViewModel.firebaseUser.observe(viewLifecycleOwner, Observer { user ->
+                if (user == null) {
+                    binding.tilDoctorEmail.error = "Incorrect Email or Password"
+                    resetButton()
+                }
+            })
+        }else{
+            Snackbar.make(requireView(),"Check Your Internet Connection", Snackbar.ANIMATION_MODE_SLIDE)
+                .setAction("Retry") { validateUser() }
+                .show()
+        }
+    }
+
+    private fun checkInternetConnectivity():Boolean{
+        return Internet.isInternetConnected(requireContext().applicationContext)
+    }
+
     private fun loadingButton(){
         binding.btnDoctorSignin.isEnabled = false
         binding.btnDoctorSignin.text = "Logging in..."
+        binding.btnDoctorSignin.setTextColor(resources.getColor(R.color.white))
+    }
+
+    private fun resetButton(){
+        binding.btnDoctorSignin.isEnabled = true
+        binding.btnDoctorSignin.text = "Sign In"
         binding.btnDoctorSignin.setTextColor(resources.getColor(R.color.white))
     }
 

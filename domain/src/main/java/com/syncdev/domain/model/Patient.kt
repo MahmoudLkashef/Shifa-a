@@ -22,5 +22,8 @@ data class Patient(
     val gender: String,
     val phoneNumber: String,
     val email: String
-)
+){
+    // Add a no-argument constructor
+    constructor() : this("", "", "", "", "", "", "")
+}
 
