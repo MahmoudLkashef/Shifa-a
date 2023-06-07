@@ -11,7 +11,9 @@ import com.syncdev.domain.model.Patient
 import com.syncdev.domain.model.Doctor
 import com.syncdev.domain.repo.remote.RemoteRepository
 import com.syncdev.domain.utils.Constants
+import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -38,7 +40,28 @@ class RemoteRepositoryImp @Inject constructor(
                 val result = auth.signInWithEmailAndPassword(email, password).await()
                 val user = result.user
                 Log.d("LoginPatient", "success")
-                user
+                val database = firebaseDatabase.reference.child("Patients")
+                val deferred = CompletableDeferred<Boolean>()
+
+                database.orderByChild("email").equalTo(email)
+                    .addListenerForSingleValueEvent(object : ValueEventListener {
+                        override fun onDataChange(snapshot: DataSnapshot) {
+                            val exists = snapshot.exists()
+                            Log.i("loginPatient", "onDataChange: $exists")
+                            deferred.complete(exists)
+                        }
+
+                        override fun onCancelled(error: DatabaseError) {
+                            Log.i("loginPatient", "onCancelled: ${error.message} ")
+                            deferred.complete(false)
+                        }
+                    })
+
+                val exists = deferred.await()
+                Log.i("loginPatient", "exists: $exists")
+
+                if(exists) user
+                else null
             } catch (e: Exception) {
                 Log.w("LoginPatient", "failure ${e.message}")
                 null
@@ -58,7 +81,31 @@ class RemoteRepositoryImp @Inject constructor(
                 val result = auth.signInWithEmailAndPassword(email, password).await()
                 val user = result.user
                 Log.d("LoginDoctor", "success")
-                user
+                val database = firebaseDatabase.reference.child("Doctors")
+                val deferred = CompletableDeferred<Boolean>()
+
+                database.orderByChild("email").equalTo(email)
+                    .addListenerForSingleValueEvent(object : ValueEventListener {
+                        override fun onDataChange(snapshot: DataSnapshot) {
+                            val exists = snapshot.exists()
+                            Log.i("loginDoctor", "onDataChange: $exists")
+                            deferred.complete(exists)
+                        }
+
+                        override fun onCancelled(error: DatabaseError) {
+                            Log.i("loginDoctor", "onCancelled: ${error.message} ")
+                            deferred.complete(false)
+                        }
+                    })
+
+                val exists = deferred.await()
+                Log.i("loginDoctor", "exists: $exists")
+
+                if (exists) {
+                    user
+                } else {
+                    null
+                }
             } catch (e: Exception) {
                 Log.w("LoginDoctor", "failure ${e.message}")
                 null
