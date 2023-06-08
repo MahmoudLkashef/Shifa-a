@@ -33,6 +33,20 @@ class SharedPreferencesUtils {
         return null
     }
 
+    fun deleteFirebaseUserFromSharedPreferences(context: Context) {
+        val sharedPreferences: SharedPreferences =
+            context.getSharedPreferences(Constants.NAVIGATION_STATE, Context.MODE_PRIVATE)
+        val editor: SharedPreferences.Editor = sharedPreferences.edit()
+
+        // Remove the specified key from SharedPreferences
+        editor.remove(Constants.USER_UID)
+        editor.remove(Constants.USER)
+
+        // Commit the changes
+        editor.apply()
+    }
+
+
     fun savePatientToSharedPreferences(context: Context, patient: Patient) {
         val sharedPreferences = context.getSharedPreferences(Constants.USER_DATA, Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
@@ -44,9 +58,21 @@ class SharedPreferencesUtils {
 
     fun getPatientFromSharedPreferences(context: Context): Patient? {
         val sharedPreferences = context.getSharedPreferences(Constants.USER_DATA, Context.MODE_PRIVATE)
-        val patientJson = sharedPreferences.getString(Constants.DOCTOR_DATA, null)
+        val patientJson = sharedPreferences.getString(Constants.PATIENT_DATA, null)
         val gson = Gson()
         return gson.fromJson(patientJson, Patient::class.java)
+    }
+
+    fun deletePatientFromSharedPreferences(context: Context) {
+        val sharedPreferences: SharedPreferences =
+            context.getSharedPreferences(Constants.USER_DATA, Context.MODE_PRIVATE)
+        val editor: SharedPreferences.Editor = sharedPreferences.edit()
+
+        // Remove the specified key from SharedPreferences
+        editor.remove(Constants.PATIENT_DATA)
+
+        // Commit the changes
+        editor.apply()
     }
 
     fun saveDoctorToSharedPreferences(context: Context, doctor: Doctor) {
@@ -63,5 +89,17 @@ class SharedPreferencesUtils {
         val doctorJson = sharedPreferences.getString(Constants.DOCTOR_DATA, null)
         val gson = Gson()
         return gson.fromJson(doctorJson, Doctor::class.java)
+    }
+
+    fun deleteDoctorFromSharedPreferences(context: Context) {
+        val sharedPreferences: SharedPreferences =
+            context.getSharedPreferences(Constants.USER_DATA, Context.MODE_PRIVATE)
+        val editor: SharedPreferences.Editor = sharedPreferences.edit()
+
+        // Remove the specified key from SharedPreferences
+        editor.remove(Constants.DOCTOR_DATA)
+
+        // Commit the changes
+        editor.apply()
     }
 }

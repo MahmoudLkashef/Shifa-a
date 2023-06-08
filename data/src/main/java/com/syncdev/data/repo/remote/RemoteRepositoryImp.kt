@@ -197,6 +197,10 @@ class RemoteRepositoryImp @Inject constructor(
             })
     }
 
+    override suspend fun signOut() {
+        auth.signOut()
+    }
+
     /**
      * Saves a data object to the Firebase Realtime Database at the specified [reference].
      *

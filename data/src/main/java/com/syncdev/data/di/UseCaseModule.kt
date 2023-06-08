@@ -1,6 +1,7 @@
 package com.syncdev.data.di
 
 import com.syncdev.domain.repo.remote.RemoteRepository
+import com.syncdev.domain.usecase.auth.SignOutUseCase
 import com.syncdev.domain.usecase.auth.doctor.LoginDoctorUseCase
 import com.syncdev.domain.usecase.auth.doctor.RegisterDoctorUseCase
 import com.syncdev.domain.usecase.auth.patient.LoginPatientUseCase
@@ -67,5 +68,10 @@ object UseCaseModule {
     @Provides
     fun provideSearchPatientById(remoteRepository: RemoteRepository): SearchPatientByIdUseCase{
         return SearchPatientByIdUseCase(remoteRepository)
+    }
+
+    @Provides
+    fun signOut(remoteRepository: RemoteRepository): SignOutUseCase{
+        return SignOutUseCase(remoteRepository)
     }
 }
