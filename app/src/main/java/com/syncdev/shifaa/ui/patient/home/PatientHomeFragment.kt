@@ -27,8 +27,7 @@ class PatientHomeFragment : Fragment() {
         )
 
         binding.btnBook.setOnClickListener {
-            findNavController()
-                .navigate(PatientHomeFragmentDirections.actionPatientHomeFragmentToBookAppointmentDetailsFragment())
+            findNavController().navigate(PatientHomeFragmentDirections.actionPatientHomeFragmentToFindDoctorFragment())
         }
 
         return binding.root
