@@ -11,8 +11,8 @@
         android:label="fragment_patient_home"
         tools:layout="@layout/fragment_patient_home" >
         <action
-            android:id="@+id/action_patientHomeFragment_to_bookAppointmentDetailsFragment"
-            app:destination="@id/bookAppointmentDetailsFragment"
+            android:id="@+id/action_patientHomeFragment_to_findDoctorFragment"
+            app:destination="@id/findDoctorFragment"
             app:enterAnim="@anim/from_right"
             app:exitAnim="@anim/to_left"
             app:popEnterAnim="@anim/from_left"
@@ -56,5 +56,18 @@
         android:name="com.syncdev.shifaa.ui.patient.home.book_appointment.appointment_details.BookAppointmentDetailsFragment"
         android:label="BookAppointmentDetailsFragment"
         tools:layout="@layout/fragment_book_appointment_details"/>
+    <fragment
+        android:id="@+id/findDoctorFragment"
+        android:name="com.syncdev.shifaa.ui.patient.home.find_doctor.FindDoctorFragment"
+        android:label="FindDoctorFragment"
+        tools:layout="@layout/fragment_find_doctor">
+        <action
+            android:id="@+id/action_findDoctorFragment_to_bookAppointmentDetailsFragment"
+            app:destination="@id/bookAppointmentDetailsFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
+    </fragment>
 
 </navigation>

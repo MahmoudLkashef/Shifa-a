@@ -40,6 +40,31 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btn_back_find_doctor" />
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_filter_specialty"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            app:boxBackgroundColor="@android:color/transparent"
+            app:boxStrokeColor="@android:color/transparent"
+            app:hintEnabled="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sv_find_doctor">
+
+            <AutoCompleteTextView
+                android:id="@+id/dropdown_menu_filter_specialty"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:inputType="none" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
         <TextView
             android:id="@+id/tv_doctors_title_find_doctor"
             android:layout_width="wrap_content"
@@ -54,13 +79,14 @@
             app:layout_constraintTop_toTopOf="@+id/btn_back_find_doctor" />
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/sv_find_doctor"
-            tools:listitem="@layout/doctors_list_item"/>
+            app:layout_constraintTop_toBottomOf="@+id/til_filter_specialty"
+            tools:listitem="@layout/doctors_list_item" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
