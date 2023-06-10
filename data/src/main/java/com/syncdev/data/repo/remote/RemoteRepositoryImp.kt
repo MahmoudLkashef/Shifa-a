@@ -7,6 +7,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.syncdev.domain.model.AppointmentRequest
 import com.syncdev.domain.model.Patient
 import com.syncdev.domain.model.Doctor
 import com.syncdev.domain.repo.remote.RemoteRepository
@@ -201,6 +202,68 @@ class RemoteRepositoryImp @Inject constructor(
     override suspend fun signOut() {
         auth.signOut()
     }
+
+
+    override suspend fun fetchDoctorsFromFirebase(callback: (List<Doctor>?, DatabaseError?) -> Unit) {
+        val database = firebaseDatabase.reference.child("Doctors")
+
+        database.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val doctorsList: MutableList<Doctor> = mutableListOf()
+
+                for (doctorSnapshot in snapshot.children) {
+                    val doctor = doctorSnapshot.getValue(Doctor::class.java)
+                    doctor?.let {
+                        doctorsList.add(it)
+                    }
+                }
+
+                callback(doctorsList, null)
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                callback(null, error)
+            }
+        })
+    }
+
+    /**
+     * Creates an appointment request by saving the provided [appointmentRequest] object to the Firebase Realtime Database.
+     * Returns a [Boolean] value indicating whether the data is saved successfully or not.
+     *
+     * @param appointmentRequest The appointment request object to be saved.
+     * @return True if the data is saved successfully, false otherwise.
+     */
+    override suspend fun createAppointmentRequest(appointmentRequest: AppointmentRequest): Boolean {
+        // Get a reference to the Firebase Realtime Database at the specified path
+        val database = firebaseDatabase.getReference("Appointment Requests")
+
+        // Create a CompletableDeferred<Boolean> to hold the result of the asynchronous operation
+        val deferred = CompletableDeferred<Boolean>()
+
+        // Generate a unique ID for the appointment request
+        val id = database.push().key!!
+
+        // Set the value of the newly created child node to the `appointmentRequest` object using the `setValue()` method
+        // on the child node reference obtained by appending the `id` to the `database` reference.
+        database.child(id).setValue(appointmentRequest)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    // Data saved successfully
+                    Log.d("createAppointmentRequest", "Data saved successfully")
+                    deferred.complete(true) // Complete the deferred with a value of true
+                } else {
+                    // Failed to save data
+                    Log.w("createAppointmentRequest", "Failed to save data: ${task.exception}")
+                    deferred.complete(false) // Complete the deferred with a value of false
+                }
+            }
+
+        // Suspend the coroutine and wait for the result of the deferred operation
+        return deferred.await()
+    }
+
+
 
     override suspend fun updateDoctorDataById(doctor: Doctor): Boolean {
         return try {

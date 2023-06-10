@@ -13,7 +13,7 @@
         android:padding="10dp">
 
         <ImageView
-            android:id="@+id/imageView4"
+            android:id="@+id/iv_doctor_pic_item"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginStart="8dp"
@@ -31,8 +31,8 @@
             android:fontFamily="@font/poppins_bold"
             android:textColor="@color/black"
             android:textSize="20sp"
-            app:layout_constraintStart_toEndOf="@+id/imageView4"
-            app:layout_constraintTop_toTopOf="@+id/imageView4"
+            app:layout_constraintStart_toEndOf="@+id/iv_doctor_pic_item"
+            app:layout_constraintTop_toTopOf="@+id/iv_doctor_pic_item"
             tools:text="Mahmoud Reda" />
 
         <TextView

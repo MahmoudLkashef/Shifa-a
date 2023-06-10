@@ -29,7 +29,7 @@ class PatientProfileFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
 
-        binding=DataBindingUtil.inflate(
+        binding = DataBindingUtil.inflate(
             layoutInflater,
             R.layout.fragment_patient_profile,
             container,
@@ -42,7 +42,7 @@ class PatientProfileFragment : Fragment() {
             viewModel = patientProfileViewModel
 
             cvLogoutPatient.setOnClickListener {
-                Dialogs().showSignOutDialog(requireContext()){
+                Dialogs().showSignOutDialog(requireContext()) {
                     patientProfileViewModel.signOut()
                 }
             }
@@ -52,8 +52,8 @@ class PatientProfileFragment : Fragment() {
             }
         }
 
-        patientProfileViewModel.signedOut.observe(viewLifecycleOwner, Observer { signedOut->
-            if (signedOut){
+        patientProfileViewModel.signedOut.observe(viewLifecycleOwner, Observer { signedOut ->
+            if (signedOut) {
                 startActivity(Intent(requireContext(), MainActivity::class.java))
                 activity?.finish()
             }

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.syncdev.shifaa.ui.doctor.profile.DoctorProfileViewModel" />
@@ -49,11 +50,11 @@
                 android:layout_width="140dp"
                 android:layout_height="140dp"
                 android:layout_marginTop="32dp"
+                app:ImgGender="@{viewModel.doctor.gender}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_profile_title_doctor"
-                android:src="@drawable/doctor_male"
                 tools:src="@drawable/doctor_male" />
 
             <TextView
@@ -76,8 +77,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/poppins_regular"
-                android:text="@{viewModel.doctor.phoneNumber}"
                 android:hint="+201111698412"
+                android:text="@{viewModel.doctor.phoneNumber}"
                 android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"

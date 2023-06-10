@@ -55,7 +55,35 @@
         android:id="@+id/bookAppointmentDetailsFragment"
         android:name="com.syncdev.shifaa.ui.patient.home.book_appointment.appointment_details.BookAppointmentDetailsFragment"
         android:label="BookAppointmentDetailsFragment"
-        tools:layout="@layout/fragment_book_appointment_details"/>
+        tools:layout="@layout/fragment_book_appointment_details">
+        <action
+            android:id="@+id/action_bookAppointmentDetailsFragment_to_selectAppointmentDateTimeFragment"
+            app:destination="@id/selectAppointmentDateTimeFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
+        <argument
+            android:name="doctorId"
+            app:argType="string" />
+        <argument
+            android:name="date"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue=""/>
+        <argument
+            android:name="time"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue=""/>
+        <action
+            android:id="@+id/action_bookAppointmentDetailsFragment_to_problemDescriptionFragment"
+            app:destination="@id/problemDescriptionFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
+    </fragment>
     <fragment
         android:id="@+id/findDoctorFragment"
         android:name="com.syncdev.shifaa.ui.patient.home.find_doctor.FindDoctorFragment"
@@ -68,6 +96,48 @@
             app:exitAnim="@anim/to_left"
             app:popEnterAnim="@anim/from_left"
             app:popExitAnim="@anim/to_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/selectAppointmentDateTimeFragment"
+        android:name="com.syncdev.shifaa.ui.patient.home.book_appointment.appointment_date_time.SelectAppointmentDateTimeFragment"
+        android:label="SelectAppointmentDateTimeFragment"
+        tools:layout="@layout/fragment_select_appointment_date_time">
+        <action
+            android:id="@+id/action_selectAppointmentDateTimeFragment_to_bookAppointmentDetailsFragment"
+            app:destination="@id/bookAppointmentDetailsFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right"
+            app:popEnterAnim="@anim/from_right"
+            app:popExitAnim="@anim/to_left"
+            app:popUpTo="@id/bookAppointmentDetailsFragment"
+            app:popUpToInclusive="true" />
+        <argument
+            android:name="doctorId"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/problemDescriptionFragment"
+        android:name="com.syncdev.shifaa.ui.patient.home.book_appointment.problem_description.ProblemDescriptionFragment"
+        android:label="fragment_problem_description"
+        tools:layout="@layout/fragment_problem_description" >
+        <argument
+            android:name="doctorId"
+            app:argType="string" />
+        <argument
+            android:name="time"
+            app:argType="string" />
+        <argument
+            android:name="date"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_problemDescriptionFragment_to_patientHomeFragment"
+            app:destination="@id/patientHomeFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right"
+            app:popEnterAnim="@anim/from_right"
+            app:popExitAnim="@anim/to_left"
+            app:popUpTo="@id/patientHomeFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 
 </navigation>

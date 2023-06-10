@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.syncdev.shifaa.ui.patient.home.book_appointment.appointment_details.BookAppointmentDetailsViewModel" />
     </data>
 
     <ScrollView
@@ -80,10 +83,11 @@
                 android:layout_height="80dp"
                 android:layout_marginStart="16dp"
                 android:elevation="12dp"
-                android:src="@drawable/doctor_female"
+                app:ImgGender="@{viewModel.doctor.gender}"
                 app:layout_constraintBottom_toBottomOf="@+id/view_white_book_appointment_details"
                 app:layout_constraintStart_toStartOf="@+id/view_white_book_appointment_details"
-                app:layout_constraintTop_toTopOf="@+id/view_white_book_appointment_details" />
+                app:layout_constraintTop_toTopOf="@+id/view_white_book_appointment_details"
+                tools:src="@drawable/doctor_female" />
 
             <TextView
                 android:id="@+id/tv_doctor_name_book_appointment_details"
@@ -93,7 +97,8 @@
                 android:layout_marginEnd="8dp"
                 android:elevation="12dp"
                 android:fontFamily="@font/poppins_bold"
-                android:text="Sarah Magdy"
+                android:hint="Sarah Magdy"
+                android:text=""
                 android:textColor="@color/black"
                 android:textSize="@dimen/text_size_normal"
                 app:layout_constraintBottom_toTopOf="@+id/guidelineHorizontal_book_appointment_details"
@@ -110,7 +115,8 @@
                 android:layout_marginEnd="8dp"
                 android:elevation="12dp"
                 android:fontFamily="@font/poppins_regular"
-                android:text="Internal Medicine"
+                android:hint="Internal Medicine"
+                android:text="@{viewModel.doctor.speciality}"
                 android:textColor="@color/gray"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="@+id/view_white_book_appointment_details"
@@ -207,7 +213,8 @@
                 android:layout_marginEnd="16dp"
                 android:elevation="4dp"
                 android:fontFamily="@font/poppins_medium"
-                android:text="100+"
+                android:hint="100+"
+                android:text="@{String.valueOf(viewModel.doctor.numOfPatients)}"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="@+id/view_num_of_patients_book_appointment_details"
@@ -221,7 +228,8 @@
                 android:layout_height="wrap_content"
                 android:elevation="4dp"
                 android:fontFamily="@font/poppins_medium"
-                android:text="10 yr"
+                android:hint="10 yr"
+                android:text="@{viewModel.doctor.yearsOfExperience + `yr`}"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="@+id/view_experience_years_book_appointment_details"
@@ -235,7 +243,8 @@
                 android:layout_height="wrap_content"
                 android:elevation="4dp"
                 android:fontFamily="@font/poppins_medium"
-                android:text="4.67"
+                android:hint="4.6"
+                android:text=""
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="@+id/view_rating_book_appointment_details"
@@ -263,7 +272,8 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="32dp"
                 android:fontFamily="@font/poppins_medium"
-                android:text="MBBS, Ph.D., Fellow, International College of Surgeons. \n\nEx-Professor &amp; Head of Department \nDepartment of Internal Medicine \nDhaka Medical College &amp; Hospital"
+                android:hint="MBBS, Ph.D., Fellow, International College of Surgeons. \n\nEx-Professor &amp; Head of Department \nDepartment of Internal Medicine \nDhaka Medical College &amp; Hospital"
+                android:text="@{viewModel.doctor.aboutDoctor}"
                 android:textColor="@color/gray"
                 android:textSize="@dimen/sign_in_text_size_small"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -320,6 +330,7 @@
                         android:fontFamily="@font/poppins_medium"
                         android:text="Availability"
                         android:textColor="@color/black"
+                        android:textSize="@dimen/sign_in_text_size_normal"
                         app:layout_constraintEnd_toStartOf="@+id/imageView6"
                         app:layout_constraintStart_toEndOf="@+id/view_num_of_patients_book_appointment_details3"
                         app:layout_constraintTop_toTopOf="@+id/view_num_of_patients_book_appointment_details3" />
@@ -330,7 +341,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
                         android:fontFamily="@font/poppins_bold"
-                        android:text="6 PM - 9 PM"
+                        android:text="9 AM - 4 PM"
                         android:textColor="@color/black"
                         android:textSize="@dimen/text_size_normal"
                         app:layout_constraintBottom_toBottomOf="@+id/view_num_of_patients_book_appointment_details3"
@@ -346,6 +357,54 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_selected_time"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:textColor="@color/black"
+                        app:layout_constraintBottom_toBottomOf="@+id/iv_seleted_time"
+                        app:layout_constraintEnd_toStartOf="@+id/imageView6"
+                        app:layout_constraintStart_toEndOf="@+id/iv_seleted_time"
+                        app:layout_constraintTop_toTopOf="@+id/iv_seleted_time" />
+
+                    <ImageView
+                        android:id="@+id/iv_seleted_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:visibility="invisible"
+                        app:layout_constraintStart_toEndOf="@+id/view_num_of_patients_book_appointment_details3"
+                        app:layout_constraintTop_toTopOf="@+id/view_num_of_patients_book_appointment_details3"
+                        app:srcCompat="@drawable/baseline_access_time_24" />
+
+                    <ImageView
+                        android:id="@+id/iv_selected_date"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginBottom="8dp"
+                        android:visibility="invisible"
+                        app:layout_constraintBottom_toBottomOf="@+id/view_num_of_patients_book_appointment_details3"
+                        app:layout_constraintStart_toEndOf="@+id/view_num_of_patients_book_appointment_details3"
+                        app:srcCompat="@drawable/appointments" />
+
+                    <TextView
+                        android:id="@+id/tv_selected_date"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:textColor="@color/black"
+                        app:layout_constraintBottom_toBottomOf="@+id/iv_selected_date"
+                        app:layout_constraintEnd_toStartOf="@+id/imageView6"
+                        app:layout_constraintStart_toEndOf="@+id/iv_selected_date"
+                        app:layout_constraintTop_toTopOf="@+id/iv_selected_date" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
 

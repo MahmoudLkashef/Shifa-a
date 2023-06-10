@@ -16,11 +16,11 @@ class PatientActivityViewModel
 constructor(
     private val searchPatientByIdUseCase: SearchPatientByIdUseCase,
     private val application: Application
-): ViewModel() {
+) : ViewModel() {
     private val TAG = "PatientActivityViewModel"
 
-    fun searchPatientById(patientId: String){
-        if (SharedPreferencesUtils().getPatientFromSharedPreferences(application)==null) {
+    fun searchPatientById(patientId: String) {
+        if (SharedPreferencesUtils().getPatientFromSharedPreferences(application) == null) {
             viewModelScope.launch {
                 try {
                     searchPatientByIdUseCase.invoke(patientId) { patient ->

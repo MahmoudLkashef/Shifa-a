@@ -1,22 +1,27 @@
 package com.syncdev.shifaa.ui.doctor.schedule
 
+import CalendarAdapter
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import com.syncdev.domain.model.Calendar
+import androidx.fragment.app.viewModels
+import com.syncdev.domain.model.CalendarModel
 import com.syncdev.domain.model.SchedulePatient
 import com.syncdev.shifaa.R
 import com.syncdev.shifaa.databinding.FragmentDoctorScheduleBinding
-import com.syncdev.shifaa.utils.DateUtils
+import dagger.hilt.android.AndroidEntryPoint
 
 
+@AndroidEntryPoint
 class DoctorScheduleFragment : Fragment() {
     private lateinit var binding: FragmentDoctorScheduleBinding
     private lateinit var calendarAdapter: CalendarAdapter
     private lateinit var rescheduleAdapter: RescheduleAdapter
+    private val doctorScheduleViewModel by viewModels<DoctorScheduleViewModel>()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -28,14 +33,8 @@ class DoctorScheduleFragment : Fragment() {
             container,
             false
         )
-        val dateList = listOf<Calendar>(
-            Calendar(1, "01", "Sat"),
-            Calendar(2, "02", "Sun"),
-            Calendar(3, "03", "Mon"),
-            Calendar(4, "04", "Thu"),
-            Calendar(5, "05", "Wen"),
-            Calendar(6, "06", "Thur")
-        )
+
+        //TODO get a list of appointments here
 
         val patients= listOf<SchedulePatient>(
             SchedulePatient(1,"Karma Mohamed","Follow Up","10 Jan 2023","10:30 AM"),
@@ -45,12 +44,16 @@ class DoctorScheduleFragment : Fragment() {
         )
 
         calendarAdapter = CalendarAdapter()
-        rescheduleAdapter=RescheduleAdapter()
+        rescheduleAdapter = RescheduleAdapter()
 
-        binding.rvCalendar.adapter = calendarAdapter
-        binding.rvReschedulePatient.adapter=rescheduleAdapter
+        binding.apply {
+            rvCalendar.adapter = calendarAdapter
+            rvReschedulePatient.adapter=rescheduleAdapter
+        }
 
-        calendarAdapter.submitList(dateList)
+        doctorScheduleViewModel.getAvailableDaysList()
+
+        calendarAdapter.submitList(doctorScheduleViewModel.availableDays.value)
         rescheduleAdapter.submitList(patients)
 
         return binding.root
