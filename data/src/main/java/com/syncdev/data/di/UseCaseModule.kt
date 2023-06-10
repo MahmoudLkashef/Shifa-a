@@ -84,9 +84,11 @@ object UseCaseModule {
     }
 
     @Provides
-    fun provideCreateAppointmentRequestUseCase(remoteRepository: RemoteRepository): CreateAppointmentRequestUseCase{
+    fun provideCreateAppointmentRequestUseCase(remoteRepository: RemoteRepository): CreateAppointmentRequestUseCase {
         return CreateAppointmentRequestUseCase(remoteRepository)
+    }
 
+    @Provides
     fun provideUpdateDoctorByIdUseCase(remoteRepository: RemoteRepository):UpdateDoctorByIdUseCase{
         return UpdateDoctorByIdUseCase(remoteRepository)
 
