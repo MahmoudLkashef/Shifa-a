@@ -50,4 +50,6 @@ interface RemoteRepository {
     suspend fun searchPatientById(patientId: String, onPatientLoaded: (Patient?) -> Unit)
 
     suspend fun signOut()
+
+    suspend fun updateDoctorDataById(doctor:Doctor): Boolean
 }

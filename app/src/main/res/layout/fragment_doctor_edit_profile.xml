@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.syncdev.shifaa.ui.doctor.profile.edit_profile.DoctorEditProfileViewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        tools:context=".ui.doctor.profile.edit_profile.DoctorEditProfileFragment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageButton
+                android:id="@+id/button_back_doctor_edit_profile"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/image_button_round_corner"
+                android:elevation="8dp"
+                android:padding="10dp"
+                android:src="@drawable/back_arrow_ic"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_edit_doctor_profile_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="Edit Profile"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="@+id/button_back_doctor_edit_profile"
+                app:layout_constraintStart_toEndOf="@+id/button_back_doctor_edit_profile"
+                app:layout_constraintTop_toTopOf="@+id/button_back_doctor_edit_profile" />
+
+            <ImageView
+                android:id="@+id/img_edit_doctor_profile_pic"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginTop="32dp"
+                android:src="@drawable/doctor_male"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/button_back_doctor_edit_profile" />
+
+            <ImageView
+                android:id="@+id/img_edit_doctor_profile_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/edit_icon"
+                app:layout_constraintBottom_toBottomOf="@+id/img_edit_doctor_profile_pic"
+                app:layout_constraintEnd_toEndOf="@+id/img_edit_doctor_profile_pic"
+                app:layout_constraintTop_toBottomOf="@+id/img_edit_doctor_profile_pic" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_edit_doctor_first_name"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="8dp"
+                app:boxStrokeColor="@color/main_color"
+                app:hintEnabled="false"
+                app:hintTextColor="@color/main_color"
+                app:layout_constraintEnd_toStartOf="@+id/guideline_doctor_profile"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/img_edit_doctor_profile_icon"
+                app:startIconDrawable="@drawable/person_icon">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_edit_doctor_first_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    tools:hint="Mohamed"
+                    android:text="@={viewModel.firstName}"
+                    android:textSize="@dimen/text_size_small" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_edit_doctor_last_name"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="16dp"
+                app:boxStrokeColor="@color/main_color"
+                app:hintEnabled="false"
+                app:hintTextColor="@color/main_color"
+                app:layout_constraintBottom_toBottomOf="@+id/til_edit_doctor_first_name"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/guideline_doctor_profile"
+                app:layout_constraintTop_toTopOf="@+id/til_edit_doctor_first_name"
+                app:startIconDrawable="@drawable/person_icon">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_edit_doctor_last_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    tools:hint="Hasaan"
+                    android:text="@={viewModel.lastName}"
+                    android:textSize="@dimen/text_size_small" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_edit_doctor_phone_number"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="16dp"
+                app:boxStrokeColor="@color/main_color"
+                app:hintEnabled="false"
+                app:hintTextColor="@color/main_color"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/til_edit_doctor_first_name"
+                app:startIconDrawable="@drawable/phone_icon">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_edit_doctor_phone_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="@={viewModel.phoneNumber}"
+                    tools:hint="01165412210"
+                    android:textSize="@dimen/text_size_small"
+                    android:inputType="phone"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_edit_doctor_experience"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="16dp"
+                app:boxStrokeColor="@color/main_color"
+                app:hintEnabled="false"
+                app:hintTextColor="@color/main_color"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/til_edit_doctor_phone_number"
+                app:startIconDrawable="@drawable/work_experience">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_edit_doctor_experience"
+                    android:layout_width="match_parent"
+                    android:layout_height="58dp"
+                    android:text="@={viewModel.yearsOfExperience}"
+                    android:hint="Years of Experience"
+                    android:inputType="numberDecimal" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_edit_doctor_specialty"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="16dp"
+                app:boxBackgroundColor="@android:color/transparent"
+                app:boxStrokeColor="@color/main_color"
+                app:hintEnabled="false"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/til_edit_doctor_experience">
+
+            <AutoCompleteTextView
+                android:id="@+id/dropdown_menu_edit_doctor_specialty"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                tools:hint="Dentistry"
+                android:inputType="none" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_about_doctor"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="16dp"
+                app:boxStrokeColor="@color/main_color"
+                app:hintEnabled="false"
+                app:hintTextColor="@color/main_color"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/til_edit_doctor_specialty">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_about_doctor"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/poppins_regular"
+                    android:hint="About Me"
+                    android:text="@={viewModel.aboutDoctor}"
+                    android:textSize="@dimen/text_size_small" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_cancel_doctor_edit_profile"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/custom_outlined_button"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Cancel"
+                android:textAllCaps="false"
+                android:textColor="@color/main_color"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/guideline_doctor_profile"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/til_about_doctor" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_save_doctor_edit_profile"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/custom_filled_rounded_button"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Save"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="@+id/btn_cancel_doctor_edit_profile"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/guideline_doctor_profile"
+                app:layout_constraintTop_toTopOf="@+id/btn_cancel_doctor_edit_profile" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_doctor_profile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.5" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+</layout>

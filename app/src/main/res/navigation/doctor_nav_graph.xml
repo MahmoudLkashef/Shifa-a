@@ -37,7 +37,15 @@
         android:id="@+id/doctorProfileFragment"
         android:name="com.syncdev.shifaa.ui.doctor.profile.DoctorProfileFragment"
         android:label="fragment_doctor_profile"
-        tools:layout="@layout/fragment_doctor_profile" />
+        tools:layout="@layout/fragment_doctor_profile" >
+        <action
+            android:id="@+id/action_doctorProfileFragment_to_doctorEditProfileFragment"
+            app:destination="@id/doctorEditProfileFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
+    </fragment>
     <fragment
         android:id="@+id/appointmentRequestDetailsFragment"
         android:name="com.syncdev.shifaa.ui.doctor.patients.new_patients.request_details.AppointmentRequestDetailsFragment"
@@ -46,4 +54,9 @@
             android:name="patient_name"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/doctorEditProfileFragment"
+        android:name="com.syncdev.shifaa.ui.doctor.profile.edit_profile.DoctorEditProfileFragment"
+        android:label="DoctorEditProfileFragment"
+        tools:layout="@layout/fragment_doctor_edit_profile"/>
 </navigation>
