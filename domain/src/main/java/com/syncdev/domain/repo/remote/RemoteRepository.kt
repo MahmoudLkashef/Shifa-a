@@ -56,4 +56,7 @@ interface RemoteRepository {
     suspend fun fetchDoctorsFromFirebase(callback: (List<Doctor>?, DatabaseError?) -> Unit)
 
     suspend fun createAppointmentRequest(appointmentRequest: AppointmentRequest): Boolean
+
+    suspend fun updateDoctorDataById(doctor:Doctor): Boolean
+
 }

@@ -124,4 +124,24 @@ object Validation {
         }
     }
 
+    fun validateAboutMe(aboutMe: String, view: TextInputLayout): Boolean {
+        return if (aboutMe.isEmpty()) {
+            view.error = "Please enter information about yourself"
+            false
+        } else {
+            view.error = null
+            true
+        }
+    }
+
+    fun validateExperience(experience: String, view: TextInputLayout): Boolean {
+        return if (experience.isEmpty()) {
+            view.error = "Please enter years of experience"
+            false
+        } else {
+            view.error = null
+            true
+        }
+    }
+
 }

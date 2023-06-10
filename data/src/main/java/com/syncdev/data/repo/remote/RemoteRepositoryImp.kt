@@ -29,6 +29,7 @@ class RemoteRepositoryImp @Inject constructor(
     private val auth: FirebaseAuth
 ) : RemoteRepository {
 
+    private val TAG="RemoteRepositoryImp"
     /**
      * A suspend function that logs in a patient with the provided email and password.
      * @param email email of the patient to be logged in
@@ -202,6 +203,7 @@ class RemoteRepositoryImp @Inject constructor(
         auth.signOut()
     }
 
+
     override suspend fun fetchDoctorsFromFirebase(callback: (List<Doctor>?, DatabaseError?) -> Unit) {
         val database = firebaseDatabase.reference.child("Doctors")
 
@@ -261,6 +263,27 @@ class RemoteRepositoryImp @Inject constructor(
         return deferred.await()
     }
 
+
+
+    override suspend fun updateDoctorDataById(doctor: Doctor): Boolean {
+        return try {
+            val database = firebaseDatabase.reference.child("Doctors")
+            val doctorData = mapOf<String, Any>(
+                "firstName" to doctor.firstName,
+                "lastName" to doctor.lastName,
+                "phoneNumber" to doctor.phoneNumber,
+                "speciality" to doctor.speciality,
+                "yearsOfExperience" to doctor.yearsOfExperience,
+                "aboutDoctor" to doctor.aboutDoctor
+            )
+
+            database.child(doctor.id.toString()).updateChildren(doctorData).await()
+            true
+        } catch (e: Exception) {
+            Log.i(TAG, "updateDoctorDataById: ${e.message}")
+            false
+        }
+    }
 
     /**
      * Saves a data object to the Firebase Realtime Database at the specified [reference].

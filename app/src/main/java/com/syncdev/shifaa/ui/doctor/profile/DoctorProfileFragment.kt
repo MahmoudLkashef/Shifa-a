@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.syncdev.shifaa.R
 import com.syncdev.shifaa.databinding.FragmentDoctorProfileBinding
 import com.syncdev.shifaa.ui.auth.MainActivity
@@ -40,14 +41,19 @@ class DoctorProfileFragment : Fragment() {
             viewModel = doctorProfileViewModel
 
             cvLogoutDoctor.setOnClickListener {
-                Dialogs().showSignOutDialog(requireContext()){
+                Dialogs().showSignOutDialog(requireContext()) {
                     doctorProfileViewModel.signOut()
                 }
+            }
+
+            cvEditProfileDoctor.setOnClickListener {
+                findNavController().navigate(DoctorProfileFragmentDirections
+                    .actionDoctorProfileFragmentToDoctorEditProfileFragment())
             }
         }
 
         doctorProfileViewModel.signedOut.observe(viewLifecycleOwner, Observer { signedOut ->
-            if (signedOut){
+            if (signedOut) {
                 startActivity(Intent(requireContext(), MainActivity::class.java))
                 activity?.finish()
             }
