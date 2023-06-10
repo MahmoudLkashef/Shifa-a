@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
-        tools:context=".ui.patient.home.book_appointment.appointment_details.SelectAppointmentDateTimeFragment">
+        tools:context=".ui.patient.home.book_appointment.appointment_date_time.SelectAppointmentDateTimeFragment">
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -89,26 +89,51 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
-                app:chipSpacingHorizontal="23dp"
-                app:chipSpacingVertical="16dp"
-                app:singleSelection="true"
-                app:layout_constraintBottom_toTopOf="@+id/btn_next__select_date_time"
+                android:layout_marginBottom="16dp"
+                app:chipSpacingHorizontal="16dp"
+                app:chipSpacingVertical="12dp"
+                app:layout_constraintBottom_toTopOf="@+id/btn_select_date_time"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_select_time"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintVertical_bias="0.0"
+                app:singleSelection="true" />
 
             <Button
-                android:id="@+id/btn_next__select_date_time"
+                android:id="@+id/btn_select_date_time"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="24dp"
                 android:background="@drawable/custom_filled_rounded_button"
-                android:text="@string/next"
+                android:text="Select"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/cg_time"
                 app:layout_constraintStart_toStartOf="@+id/cg_time" />
+
+            <ImageView
+                android:id="@+id/iv_no_time_available"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:src="@drawable/no_data"
+                app:layout_constraintEnd_toEndOf="@+id/btn_select_date_time"
+                app:layout_constraintStart_toStartOf="@+id/btn_select_date_time"
+                app:layout_constraintTop_toBottomOf="@+id/cv_select_date" />
+
+            <TextView
+                android:id="@+id/tv_no_time_available"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="32dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="There is no available time for this day"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@+id/btn_select_date_time"
+                app:layout_constraintEnd_toEndOf="@+id/iv_no_time_available"
+                app:layout_constraintStart_toStartOf="@+id/iv_no_time_available"
+                app:layout_constraintTop_toBottomOf="@+id/iv_no_time_available"
+                app:layout_constraintVertical_bias="0.0" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </layout>

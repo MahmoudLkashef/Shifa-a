@@ -17,13 +17,13 @@ class PatientProfileViewModel
 @Inject constructor(
     private val signOutUseCase: SignOutUseCase,
     private val application: Application
-): ViewModel() {
+) : ViewModel() {
 
     val signedOut = MutableLiveData(false)
     val patient = MutableLiveData<Patient>()
     private val TAG = "PatientProfileViewModel"
 
-    fun signOut(){
+    fun signOut() {
         val sharedPreferencesUtils = SharedPreferencesUtils()
         viewModelScope.launch {
             signOutUseCase.invoke()
@@ -35,12 +35,12 @@ class PatientProfileViewModel
         }
     }
 
-    fun getPatientData(){
+    fun getPatientData() {
         patient.value = SharedPreferencesUtils()
             .getPatientFromSharedPreferences(application)
     }
 
-    fun getFullName(): String{
+    fun getFullName(): String {
         return patient.value?.firstName + " " + patient.value?.lastName
     }
 }

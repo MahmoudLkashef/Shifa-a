@@ -6,8 +6,10 @@ import com.syncdev.domain.usecase.auth.doctor.LoginDoctorUseCase
 import com.syncdev.domain.usecase.auth.doctor.RegisterDoctorUseCase
 import com.syncdev.domain.usecase.auth.patient.LoginPatientUseCase
 import com.syncdev.domain.usecase.auth.patient.RegisterPatientUseCase
+import com.syncdev.domain.usecase.doctor.GetAllDoctorsUseCase
 import com.syncdev.domain.usecase.doctor.SearchDoctorByIdUseCase
 import com.syncdev.domain.usecase.patient.SearchPatientByIdUseCase
+import com.syncdev.domain.usecase.patient.appointments.CreateAppointmentRequestUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -71,7 +73,17 @@ object UseCaseModule {
     }
 
     @Provides
-    fun signOut(remoteRepository: RemoteRepository): SignOutUseCase{
+    fun provideSignOutUseCase(remoteRepository: RemoteRepository): SignOutUseCase{
         return SignOutUseCase(remoteRepository)
+    }
+
+    @Provides
+    fun provideGetAllDoctorUseCase(remoteRepository: RemoteRepository): GetAllDoctorsUseCase{
+        return GetAllDoctorsUseCase(remoteRepository)
+    }
+
+    @Provides
+    fun provideCreateAppointmentRequestUseCase(remoteRepository: RemoteRepository): CreateAppointmentRequestUseCase{
+        return CreateAppointmentRequestUseCase(remoteRepository)
     }
 }

@@ -1,9 +1,14 @@
 package com.syncdev.shifaa.utils
 
 import android.os.Build
+import android.util.Log
 import androidx.annotation.RequiresApi
 import java.text.NumberFormat
+import java.text.SimpleDateFormat
 import java.time.LocalDate
+import com.syncdev.domain.model.CalendarModel
+import java.time.LocalTime
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 object DateUtils {
@@ -29,5 +34,60 @@ object DateUtils {
             NumberFormat.getInstance(Locale.getDefault())
         }
         return (1..31).map { formatter.format(it) }
+    }
+
+    fun getUpcoming21Days(): List<CalendarModel> {
+        val calendarModelList = mutableListOf<CalendarModel>()
+
+        val dateFormat = SimpleDateFormat("dd MMM", Locale.getDefault())
+        val calendarModel = Calendar.getInstance()
+
+        for (i in 0 until 21) {
+            val dayOfMonth = String.format("%02d", calendarModel.get(Calendar.DAY_OF_MONTH))
+            val dayOfWeek = SimpleDateFormat("EEE", Locale.getDefault()).format(calendarModel.time)
+            val formattedDate = dateFormat.format(calendarModel.time)
+
+            val calendarModelItem = CalendarModel(i, dayOfMonth, dayOfWeek)
+            calendarModelList.add(calendarModelItem)
+
+            calendarModel.add(Calendar.DAY_OF_MONTH, 1)
+        }
+
+        return calendarModelList
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun getAppointmentTimeList(selectedDate: String): MutableList<String> {
+        val timeSlots = mutableListOf<String>()
+
+        val startTime = LocalTime.of(9, 0,0,0)  // Starting time: 09:00 AM
+        val endTime = LocalTime.of(16, 0,0,0) // Ending time: 04:00 PM
+
+        val formatter = DateTimeFormatter.ofPattern("hh:mm a")
+
+        val calendar = Calendar.getInstance()
+        val dateFormat = SimpleDateFormat("dd-MMM-yyyy", Locale.getDefault())
+        val currentDate = dateFormat.format(calendar.time)
+        val currentTime = LocalTime.now()
+
+        if (selectedDate == currentDate) {
+            var currentTimeSlot = startTime
+            while (currentTimeSlot.isBefore(endTime)) {
+                if (currentTimeSlot.isAfter(currentTime)) {
+                    val formattedTime = currentTimeSlot.format(formatter)
+                    timeSlots.add(formattedTime)
+                }
+                currentTimeSlot = currentTimeSlot.plusMinutes(30)
+            }
+        } else {
+            var currentTimeSlot = startTime
+            while (currentTimeSlot.isBefore(endTime)) {
+                val formattedTime = currentTimeSlot.format(formatter)
+                timeSlots.add(formattedTime)
+                currentTimeSlot = currentTimeSlot.plusMinutes(30)
+            }
+        }
+
+        return timeSlots
     }
 }

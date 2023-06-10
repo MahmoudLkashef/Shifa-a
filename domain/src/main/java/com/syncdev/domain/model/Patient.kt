@@ -16,12 +16,12 @@ package com.syncdev.domain.model
  */
 data class Patient(
     var id: String? = null,
-    val firstName: String,
-    val lastName: String,
-    val age: String,
+    var firstName: String,
+    var lastName: String,
+    var age: String,
     val gender: String,
-    val phoneNumber: String,
-    val email: String
+    var phoneNumber: String,
+    var email: String
 ){
     // Add a no-argument constructor
     constructor() : this("", "", "", "", "", "", "")
