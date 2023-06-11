@@ -264,7 +264,11 @@ class RemoteRepositoryImp @Inject constructor(
     }
 
 
-
+    /**
+    Updates the data of a doctor in the database based on their ID.
+    @param doctor The updated Doctor object containing the new data.
+    @return Boolean value indicating whether the update was successful or not.
+     */
     override suspend fun updateDoctorDataById(doctor: Doctor): Boolean {
         return try {
             val database = firebaseDatabase.reference.child("Doctors")
@@ -278,6 +282,30 @@ class RemoteRepositoryImp @Inject constructor(
             )
 
             database.child(doctor.id.toString()).updateChildren(doctorData).await()
+            true
+        } catch (e: Exception) {
+            Log.i(TAG, "updateDoctorDataById: ${e.message}")
+            false
+        }
+    }
+
+
+    /**
+    Updates the data of a patient in the database based on their ID.
+    @param patient The updated Patient object containing the new data.
+    @return Boolean value indicating whether the update was successful or not.
+     */
+    override suspend fun updatePatientDataById(patient: Patient): Boolean {
+        return try {
+            val database = firebaseDatabase.reference.child("Patients")
+            val patientData = mapOf<String, Any>(
+                "firstName" to patient.firstName,
+                "lastName" to patient.lastName,
+                "phoneNumber" to patient.phoneNumber,
+                "age" to patient.age
+            )
+
+            database.child(patient.id.toString()).updateChildren(patientData).await()
             true
         } catch (e: Exception) {
             Log.i(TAG, "updateDoctorDataById: ${e.message}")

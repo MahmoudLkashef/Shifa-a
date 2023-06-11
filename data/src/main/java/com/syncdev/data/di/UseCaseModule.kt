@@ -10,6 +10,7 @@ import com.syncdev.domain.usecase.doctor.GetAllDoctorsUseCase
 import com.syncdev.domain.usecase.doctor.SearchDoctorByIdUseCase
 import com.syncdev.domain.usecase.doctor.UpdateDoctorByIdUseCase
 import com.syncdev.domain.usecase.patient.SearchPatientByIdUseCase
+import com.syncdev.domain.usecase.patient.UpdatePatientByIdUseCase
 import com.syncdev.domain.usecase.patient.appointments.CreateAppointmentRequestUseCase
 import dagger.Module
 import dagger.Provides
@@ -91,6 +92,10 @@ object UseCaseModule {
     @Provides
     fun provideUpdateDoctorByIdUseCase(remoteRepository: RemoteRepository):UpdateDoctorByIdUseCase{
         return UpdateDoctorByIdUseCase(remoteRepository)
+    }
 
+    @Provides
+    fun provideUpdatePatientByIdUseCase(remoteRepository: RemoteRepository):UpdatePatientByIdUseCase{
+        return UpdatePatientByIdUseCase(remoteRepository)
     }
 }

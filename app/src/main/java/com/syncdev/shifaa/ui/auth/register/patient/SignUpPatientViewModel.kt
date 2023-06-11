@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.FirebaseUser
 import com.syncdev.domain.model.Patient
 import com.syncdev.domain.usecase.auth.patient.RegisterPatientUseCase
+import com.syncdev.shifaa.utils.DateUtils
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -62,6 +63,7 @@ constructor(
     }
 
     private fun getPatientAge(): String{
-        return "${day.value.toString()}-${month.value.toString()}-${year.value.toString()}"
+        var monthNumber=DateUtils.getMonthNumber(month.value.toString())
+        return "${day.value.toString()}-${monthNumber}-${year.value.toString()}"
     }
 }

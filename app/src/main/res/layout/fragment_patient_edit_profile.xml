@@ -4,7 +4,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
+        <variable
+            name="viewModel"
+            type="com.syncdev.shifaa.ui.patient.profile.edit_profile.PatientEditProfileViewModel" />
     </data>
 
     <ScrollView
@@ -65,28 +67,57 @@
                 app:layout_constraintTop_toBottomOf="@+id/img_edit_patient_profile_pic" />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/til_edit_patient_name"
+                android:id="@+id/til_edit_patient_first_name"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="8dp"
+                app:boxStrokeColor="@color/main_color"
+                app:hintEnabled="false"
+                app:hintTextColor="@color/main_color"
+                app:layout_constraintEnd_toStartOf="@+id/guideline4"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/img_edit_profile_icon"
+                app:startIconDrawable="@drawable/person_icon">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_edit_patient_first_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="@={viewModel.firstName}"
+                    android:textSize="@dimen/text_size_small"
+                    tools:hint="Mohamed" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_edit_patient_last_name"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="16dp"
                 app:boxStrokeColor="@color/main_color"
                 app:hintEnabled="false"
                 app:hintTextColor="@color/main_color"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/guideline4"
                 app:layout_constraintTop_toBottomOf="@+id/img_edit_profile_icon"
                 app:startIconDrawable="@drawable/person_icon">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_edit_patient_name"
+                    android:id="@+id/et_edit_patient_last_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_regular"
-                    android:hint="Mohamed Hasaan"
-                    android:textSize="@dimen/text_size_small" />
+                    android:text="@={viewModel.lastName}"
+                    android:textSize="@dimen/text_size_small"
+                    tools:hint="Hasaan" />
+
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -102,7 +133,7 @@
                 app:hintTextColor="@color/main_color"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/til_edit_patient_name"
+                app:layout_constraintTop_toBottomOf="@+id/til_edit_patient_first_name"
                 app:startIconDrawable="@drawable/phone_icon">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -110,7 +141,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_regular"
-                    android:hint="01165412210"
+                    android:text="@={viewModel.phoneNumber}"
+                    tools:hint="01165412210"
                     android:textSize="@dimen/text_size_small" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -134,7 +166,8 @@
                     android:id="@+id/et_edit_patient_birth_date"
                     android:layout_width="match_parent"
                     android:layout_height="58dp"
-                    android:hint="19/2/2022"
+                    android:text="@={viewModel.age}"
+                    tools:hint="19/2/2022"
                     android:inputType="none" />
 
             </com.google.android.material.textfield.TextInputLayout>
