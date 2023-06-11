@@ -55,7 +55,7 @@ class PatientEditProfileFragment : Fragment() {
             viewModel = patientEditProfileViewModel
 
             val datePickerListener = DatePickerDialog.OnDateSetListener { view, year, month, day ->
-                etEditPatientBirthDate.setText("$day/$month/$year")
+                etEditPatientBirthDate.setText("$day-$month-$year")
             }
 
             etEditPatientBirthDate.setOnClickListener {
@@ -74,7 +74,7 @@ class PatientEditProfileFragment : Fragment() {
                 validateAndUpdateDoctorData()
             }
         }
-        
+
         return binding.root
     }
 
