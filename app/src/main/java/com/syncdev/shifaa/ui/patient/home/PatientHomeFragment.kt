@@ -30,6 +30,10 @@ class PatientHomeFragment : Fragment() {
             findNavController().navigate(PatientHomeFragmentDirections.actionPatientHomeFragmentToFindDoctorFragment())
         }
 
+        binding.btnMedicalCard.setOnClickListener {
+           findNavController().navigate(PatientHomeFragmentDirections.actionPatientHomeFragmentToMedicalCardFragment())
+        }
+
         return binding.root
     }
 
