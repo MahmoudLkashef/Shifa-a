@@ -5,19 +5,29 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import com.syncdev.shifaa.R
+import com.syncdev.shifaa.databinding.FragmentDoctorHomeBinding
 
 
 class DoctorHomeFragment : Fragment() {
-
-
+    private val TAG="DoctorHomeFragment"
+    private lateinit var binding:FragmentDoctorHomeBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_doctor_home, container, false)
-    }
+        binding = DataBindingUtil.inflate(
+            layoutInflater,
+            R.layout.fragment_doctor_home,
+            container,
+            false
+        )
 
+
+
+        return binding.root
+    }
 
 }
