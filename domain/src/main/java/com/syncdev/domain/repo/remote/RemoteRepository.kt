@@ -66,4 +66,6 @@ interface RemoteRepository {
 
     suspend fun createNewAppointment(appointment: Appointment): Boolean
 
+    suspend fun updatePatientDataById(patient: Patient):Boolean
+
 }

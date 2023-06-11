@@ -14,6 +14,8 @@ import com.syncdev.domain.usecase.patient.SearchPatientByIdUseCase
 import com.syncdev.domain.usecase.patient.appointment_requests.CreateAppointmentRequestUseCase
 import com.syncdev.domain.usecase.patient.appointment_requests.DeleteAppointmentRequestUseCase
 import com.syncdev.domain.usecase.patient.appointment_requests.GetAppointmentRequestsByDoctorIdUseCase
+import com.syncdev.domain.usecase.patient.UpdatePatientByIdUseCase
+import com.syncdev.domain.usecase.patient.appointments.CreateAppointmentRequestUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -94,7 +96,11 @@ object UseCaseModule {
     @Provides
     fun provideUpdateDoctorByIdUseCase(remoteRepository: RemoteRepository): UpdateDoctorByIdUseCase {
         return UpdateDoctorByIdUseCase(remoteRepository)
+    }
 
+    @Provides
+    fun provideUpdatePatientByIdUseCase(remoteRepository: RemoteRepository):UpdatePatientByIdUseCase{
+        return UpdatePatientByIdUseCase(remoteRepository)
     }
 
     @Provides
