@@ -2,6 +2,7 @@ package com.syncdev.domain.repo.remote
 
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseError
+import com.syncdev.domain.model.Appointment
 import com.syncdev.domain.model.AppointmentRequest
 import com.syncdev.domain.model.Patient
 import com.syncdev.domain.model.Doctor
@@ -58,5 +59,11 @@ interface RemoteRepository {
     suspend fun createAppointmentRequest(appointmentRequest: AppointmentRequest): Boolean
 
     suspend fun updateDoctorDataById(doctor:Doctor): Boolean
+
+    suspend fun getAppointmentRequestsByDoctorId(doctorId: String): List<AppointmentRequest>
+
+    suspend fun deleteAppointmentRequest(doctorId: String, date: String, time: String): Boolean
+
+    suspend fun createNewAppointment(appointment: Appointment): Boolean
 
 }

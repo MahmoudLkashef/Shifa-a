@@ -5,19 +5,27 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.syncdev.shifaa.R
 import com.syncdev.shifaa.databinding.FragmentDoctorNewPatientsBinding
+import com.syncdev.shifaa.ui.doctor.patients.DoctorPatientsFragmentDirections
 import com.syncdev.shifaa.ui.doctor.patients.past_patients.PatientTest
+import dagger.hilt.android.AndroidEntryPoint
 
 
+@AndroidEntryPoint
 class DoctorNewPatientsFragment : Fragment() {
 
 
     private lateinit var binding: FragmentDoctorNewPatientsBinding
     private lateinit var adapter: DoctorNewPatientAdapter
+    private val doctorNewPatientsViewModel by viewModels<DoctorNewPatientsViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,37 +38,60 @@ class DoctorNewPatientsFragment : Fragment() {
             container,
             false
         )
-        val navController = findNavController()
 
-        adapter = DoctorNewPatientAdapter(navController)
-        val newPatientsList = listOf<PatientTest>(
-            PatientTest(1,"Mohammed Magdy","22 Feb 2023","10:00 AM",R.drawable.patient_male),
-            PatientTest(2,"Mohammed Ayman","29 Feb 2023","10:30 AM",R.drawable.patient_male),
-            PatientTest(3,"Sarah Magdy","25 Jan 2023","11:00 AM",R.drawable.patient_female),
-            PatientTest(4,"Abdulmageed Awad","22 Oct 2022","11:30 AM",R.drawable.patient_male),
-            PatientTest(5,"Hossam Khedr","15 Feb 2023","12:00 PM",R.drawable.patient_male),
-            PatientTest(6,"Kholoud Rady","6 Feb 2023","12:30 PM",R.drawable.patient_female),
-            PatientTest(7,"Samy Ahmed","13 Dec 2022","1:00 PM",R.drawable.patient_male),
-            PatientTest(8,"Khaled Omar","26 Jan 2023","1:30 PM",R.drawable.patient_male),
-            PatientTest(9,"Aya Sayed","3 Mar 2023","2:00 PM",R.drawable.patient_female),
-            PatientTest(10,"Mohab Hussein","1 Mar 2023","2:30 PM",R.drawable.patient_male),
-            PatientTest(11,"Walaa Ali","11 Nov 2022","3:30 PM",R.drawable.patient_female),
-            PatientTest(12,"Lila Salah","8 Feb 2023","4:00 PM",R.drawable.patient_female),
-            PatientTest(13,"Mahmoud Reda","3 Feb 2023","4:30 PM",R.drawable.patient_male),
-            PatientTest(14,"Mohammed Hassaan","3 Feb 2023","5:00 PM",R.drawable.patient_male),
-        )
+        adapter = DoctorNewPatientAdapter(requireContext())
 
-        adapter.submitList(newPatientsList)
+        doctorNewPatientsViewModel.fetchAppointmentRequests()
 
-        binding.tvNewPatientsNumber.text = "${newPatientsList.size} Pending requests"
+        binding.apply {
+            rvNewPatients.adapter = adapter
+        }
 
-        binding.rvNewPatients.adapter = adapter
+        doctorNewPatientsViewModel.appointmentRequests.observe(viewLifecycleOwner, Observer {
+            adapter.submitList(it)
+            binding.tvNewPatientsNumber.text = "${it.size} Pending Requests"
+            if (it.isEmpty()){
+                showNoDataFound(true)
+            }else showNoDataFound(false)
+        })
 
+        doctorNewPatientsViewModel.updateList.observe(viewLifecycleOwner, Observer {update->
+            if (update){
+                doctorNewPatientsViewModel.fetchAppointmentRequests()
+            }
+        })
 
+        adapter.onSeeMoreClicked = {
+            val fullName = "${it.patient.firstName} " + it.patient.lastName
+            findNavController().navigate(
+                DoctorPatientsFragmentDirections
+                    .actionDoctorPatientsFragmentToAppointmentRequestDetailsFragment(
+                        patientName = fullName,
+                        patientId = it.patient.id!!,
+                        patientGender = it.patient.gender,
+                        time = it.time,
+                        date = it.date,
+                        comment = it.comment
+                    )
+            )
+        }
 
+        adapter.onDeclineClicked = {
+            doctorNewPatientsViewModel.deleteAppointmentRequest(
+                doctorId = it.doctorId,
+                date = it.date,
+                time = it.time
+            )
+        }
 
         return binding.root
     }
 
+    private fun showNoDataFound(show: Boolean){
+        binding.apply {
+            tvNoRequestsFound.isVisible = show
+            ivNoRequestsFound.isVisible = show
+        }
+    }
 
 }

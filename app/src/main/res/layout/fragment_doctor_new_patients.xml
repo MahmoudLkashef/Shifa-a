@@ -17,7 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_medium"
-            android:text="16 Pending requests"
+            tools:text="16 Pending requests"
             android:textColor="@color/gray"
             android:textSize="@dimen/sign_in_text_size_normal"
             android:textStyle="bold"
@@ -35,5 +35,29 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_new_patients_number"
             tools:listitem="@layout/new_patient_request_list_item" />
+
+        <ImageView
+            android:id="@+id/iv_no_requests_found"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_new_patients_number"
+            app:srcCompat="@drawable/no_requests" />
+
+        <TextView
+            android:id="@+id/tv_no_requests_found"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="64dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="No Appointment Requests Found"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_no_requests_found"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

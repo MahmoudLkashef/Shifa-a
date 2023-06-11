@@ -6,18 +6,26 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.Query
 import com.google.firebase.database.ValueEventListener
+import com.syncdev.domain.model.Appointment
 import com.syncdev.domain.model.AppointmentRequest
 import com.syncdev.domain.model.Patient
 import com.syncdev.domain.model.Doctor
 import com.syncdev.domain.repo.remote.RemoteRepository
 import com.syncdev.domain.utils.Constants
 import kotlinx.coroutines.CompletableDeferred
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.asDeferred
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
+import kotlin.coroutines.resume
+import kotlin.coroutines.resumeWithException
+import kotlin.coroutines.suspendCoroutine
 
 /**
  * Implementation of RemoteRepository interface that handles remote operations with Firebase Database and Authentication.
@@ -264,6 +272,110 @@ class RemoteRepositoryImp @Inject constructor(
     }
 
 
+    /**
+     * Retrieves a list of AppointmentRequest objects with a specific doctorId.
+     *
+     * @param doctorId The ID of the doctor to filter the appointment requests.
+     * @return A list of AppointmentRequest objects matching the doctorId.
+     */
+    override suspend fun getAppointmentRequestsByDoctorId(doctorId: String): List<AppointmentRequest> {
+        val database = FirebaseDatabase.getInstance()
+        val appointmentRequestsRef = database.getReference("Appointment Requests")
+        val appointmentRequests: MutableList<AppointmentRequest> = mutableListOf()
+
+        // Query the database to get the appointments with matching doctorId
+        val query: Query = appointmentRequestsRef.orderByChild("doctorId").equalTo(doctorId)
+
+        // Use a suspendCoroutine to wrap the asynchronous operation
+        return suspendCoroutine { continuation ->
+            query.addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    for (appointmentSnapshot in snapshot.children) {
+                        val appointment = appointmentSnapshot.getValue(AppointmentRequest::class.java)
+
+                        // Retrieve nested patient information
+                        val patientSnapshot = appointmentSnapshot.child("patient")
+                        val patient = patientSnapshot.getValue(Patient::class.java)
+
+                        appointment?.let {
+                            if (patient != null) {
+                                it.patient = patient // Assign the patient object to the appointment request
+                            }
+                            appointmentRequests.add(it)
+                        }
+                    }
+
+                    continuation.resume(appointmentRequests)
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    continuation.resumeWithException(error.toException())
+                }
+            })
+        }
+    }
+
+    override suspend fun deleteAppointmentRequest(
+        doctorId: String,
+        date: String,
+        time: String
+    ): Boolean {
+        val database = FirebaseDatabase.getInstance()
+        val appointmentRequestsRef = database.getReference("Appointment Requests")
+
+        // Query the database to find the appointment requests with matching doctorId
+        val query: Query = appointmentRequestsRef
+            .orderByChild("doctorId")
+            .equalTo(doctorId)
+
+        // Use a suspendCoroutine to wrap the asynchronous operation
+        return suspendCoroutine { continuation ->
+            query.addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    // Iterate over the appointment requests with matching doctorId
+                    for (appointmentSnapshot in snapshot.children) {
+                        val appointment = appointmentSnapshot.getValue(AppointmentRequest::class.java)
+
+                        // Check if the appointment matches the provided date and time
+                        if (appointment?.date == date && appointment.time == time) {
+                            appointmentSnapshot.ref.removeValue() // Delete the appointment request
+                        }
+                    }
+                    continuation.resume(true) // Resume the coroutine with true indicating success
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    continuation.resume(false) // Resume the coroutine with false indicating failure
+                }
+            })
+        }
+    }
+
+    override suspend fun createNewAppointment(appointment: Appointment): Boolean {
+        val database = FirebaseDatabase.getInstance()
+        val appointmentsRef = database.getReference("Appointments")
+
+        // Generate a new unique ID for the appointment
+        val appointmentId = appointmentsRef.push().key ?: return false
+
+        // Set the appointment ID
+        appointment.id = appointmentId
+
+        // Set the appointment state to be Upcoming
+        appointment.state = "Upcoming"
+
+        // Use a suspendCoroutine to wrap the asynchronous operation
+        return suspendCoroutine { continuation ->
+            appointmentsRef.child(appointmentId).setValue(appointment)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        continuation.resume(true) // Resume the coroutine with true indicating success
+                    } else {
+                        continuation.resume(false) // Resume the coroutine with false indicating failure
+                    }
+                }
+        }
+    }
 
     override suspend fun updateDoctorDataById(doctor: Doctor): Boolean {
         return try {

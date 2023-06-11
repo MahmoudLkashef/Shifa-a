@@ -1,12 +1,12 @@
 package com.syncdev.domain.model
 
 data class AppointmentRequest(
-    val patientId: String,
+    var patient: Patient,
     val doctorId: String,
     val date: String,
     val time: String,
     val comment: String
 ){
     // Add a no-argument constructor
-    constructor() : this("","","","","")
+    constructor() : this(Patient(), "", "", "", "")
 }

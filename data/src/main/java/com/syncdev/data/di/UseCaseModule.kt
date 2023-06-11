@@ -9,8 +9,11 @@ import com.syncdev.domain.usecase.auth.patient.RegisterPatientUseCase
 import com.syncdev.domain.usecase.doctor.GetAllDoctorsUseCase
 import com.syncdev.domain.usecase.doctor.SearchDoctorByIdUseCase
 import com.syncdev.domain.usecase.doctor.UpdateDoctorByIdUseCase
+import com.syncdev.domain.usecase.doctor.appointments.CreateNewAppointmentUseCase
 import com.syncdev.domain.usecase.patient.SearchPatientByIdUseCase
-import com.syncdev.domain.usecase.patient.appointments.CreateAppointmentRequestUseCase
+import com.syncdev.domain.usecase.patient.appointment_requests.CreateAppointmentRequestUseCase
+import com.syncdev.domain.usecase.patient.appointment_requests.DeleteAppointmentRequestUseCase
+import com.syncdev.domain.usecase.patient.appointment_requests.GetAppointmentRequestsByDoctorIdUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -29,7 +32,7 @@ object UseCaseModule {
      * @return An instance of [RegisterPatientUseCase].
      */
     @Provides
-    fun provideRegisterPatientUseCase(remoteRepository: RemoteRepository): RegisterPatientUseCase{
+    fun provideRegisterPatientUseCase(remoteRepository: RemoteRepository): RegisterPatientUseCase {
         return RegisterPatientUseCase(remoteRepository)
     }
 
@@ -64,22 +67,22 @@ object UseCaseModule {
     }
 
     @Provides
-    fun provideSearchDoctorByIdUseCase(remoteRepository: RemoteRepository): SearchDoctorByIdUseCase{
+    fun provideSearchDoctorByIdUseCase(remoteRepository: RemoteRepository): SearchDoctorByIdUseCase {
         return SearchDoctorByIdUseCase(remoteRepository)
     }
 
     @Provides
-    fun provideSearchPatientById(remoteRepository: RemoteRepository): SearchPatientByIdUseCase{
+    fun provideSearchPatientById(remoteRepository: RemoteRepository): SearchPatientByIdUseCase {
         return SearchPatientByIdUseCase(remoteRepository)
     }
 
     @Provides
-    fun provideSignOutUseCase(remoteRepository: RemoteRepository): SignOutUseCase{
+    fun provideSignOutUseCase(remoteRepository: RemoteRepository): SignOutUseCase {
         return SignOutUseCase(remoteRepository)
     }
 
     @Provides
-    fun provideGetAllDoctorUseCase(remoteRepository: RemoteRepository): GetAllDoctorsUseCase{
+    fun provideGetAllDoctorUseCase(remoteRepository: RemoteRepository): GetAllDoctorsUseCase {
         return GetAllDoctorsUseCase(remoteRepository)
     }
 
@@ -89,8 +92,23 @@ object UseCaseModule {
     }
 
     @Provides
-    fun provideUpdateDoctorByIdUseCase(remoteRepository: RemoteRepository):UpdateDoctorByIdUseCase{
+    fun provideUpdateDoctorByIdUseCase(remoteRepository: RemoteRepository): UpdateDoctorByIdUseCase {
         return UpdateDoctorByIdUseCase(remoteRepository)
 
+    }
+
+    @Provides
+    fun provideGetAppointRequestsByDoctorIdUseCase(remoteRepository: RemoteRepository): GetAppointmentRequestsByDoctorIdUseCase {
+        return GetAppointmentRequestsByDoctorIdUseCase(remoteRepository)
+    }
+
+    @Provides
+    fun provideDeleteAppointmentRequestUseCase(remoteRepository: RemoteRepository): DeleteAppointmentRequestUseCase{
+        return DeleteAppointmentRequestUseCase(remoteRepository)
+    }
+
+    @Provides
+    fun provideCreateNewAppointmentUseCase(remoteRepository: RemoteRepository): CreateNewAppointmentUseCase{
+        return CreateNewAppointmentUseCase(remoteRepository)
     }
 }
