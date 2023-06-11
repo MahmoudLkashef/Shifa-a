@@ -59,4 +59,6 @@ interface RemoteRepository {
 
     suspend fun updateDoctorDataById(doctor:Doctor): Boolean
 
+    suspend fun updatePatientDataById(patient: Patient):Boolean
+
 }
