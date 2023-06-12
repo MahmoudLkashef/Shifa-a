@@ -140,34 +140,38 @@
                 android:id="@+id/rv_daily_reminders_medicine"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="-4dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/rv_upcoming_appointments"
                 app:layout_constraintTop_toBottomOf="@+id/tv_daily_reminders_title_patient_home"
-                tools:listitem="@layout/daily_reminders_list_item"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+                tools:listitem="@layout/daily_reminders_list_item" />
 
             <TextView
-                android:id="@+id/textView15"
+                android:id="@+id/tv_upcoming_appointment_title_patient_home"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="19dp"
+                android:layout_marginTop="24dp"
                 android:fontFamily="@font/poppins_bold"
                 android:text="Upcoming Appointments"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
-                tools:layout_editor_absoluteY="280dp" />
+                app:layout_constraintTop_toBottomOf="@+id/view_medical_card_patient_home" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_upcoming_appointments"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView15"
-                tools:listitem="@layout/upcoming_appointments_patient_home_list_item"
+                android:layout_marginStart="-4dp"
+                android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                android:orientation="horizontal"/>
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/tv_upcoming_appointment_title_patient_home"
+                app:layout_constraintTop_toBottomOf="@+id/tv_upcoming_appointment_title_patient_home"
+                tools:listitem="@layout/upcoming_appointments_patient_home_list_item" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
