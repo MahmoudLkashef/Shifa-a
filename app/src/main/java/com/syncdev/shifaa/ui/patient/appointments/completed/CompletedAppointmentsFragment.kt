@@ -5,15 +5,21 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
-import com.syncdev.domain.model.SchedulePatient
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import com.syncdev.shifaa.R
 import com.syncdev.shifaa.databinding.FragmentCompletedAppointmentsBinding
+import com.syncdev.shifaa.ui.patient.appointments.AppointmentsViewModel
+import com.syncdev.shifaa.utils.Dialogs
 
 class CompletedAppointmentsFragment : Fragment() {
 
     private lateinit var binding:FragmentCompletedAppointmentsBinding
     private lateinit var completedAppointmentsAdapter: CompletedAppointmentsAdapter
+    private val appointmentsViewModel by activityViewModels<AppointmentsViewModel>()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -25,18 +31,36 @@ class CompletedAppointmentsFragment : Fragment() {
             container,
             false
         )
-        val doctors= listOf<SchedulePatient>(
-            SchedulePatient(1,"Farah Nader","completed","10 Jan 2023","10:30 AM"),
-            SchedulePatient(2,"Menna Ahmed","completed","10 Jan 2023","10:30 AM"),
-            SchedulePatient(3,"Layla Hasaan","completed","10 Jan 2023","10:30 AM"),
-            SchedulePatient(4,"Rana Reda","completed","10 Jan 2023","10:30 AM"),
-        )
 
-        completedAppointmentsAdapter= CompletedAppointmentsAdapter()
-        completedAppointmentsAdapter.submitList(doctors)
-        binding.tvCompletedAppointments.adapter=completedAppointmentsAdapter
+        appointmentsViewModel.getAppointmentsByState("Completed")
+
+        completedAppointmentsAdapter= CompletedAppointmentsAdapter(requireContext())
+
+        binding.apply {
+            tvCompletedAppointments.adapter=completedAppointmentsAdapter
+        }
+
+        completedAppointmentsAdapter.onLeaveAReviewClicked = {
+            Dialogs().showRateDoctorDialog(requireContext()){
+                Toast.makeText(requireContext(),it.toString(),Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        appointmentsViewModel.completedAppointmentsList.observe(viewLifecycleOwner, Observer {
+            completedAppointmentsAdapter.submitList(it)
+            if (it.isEmpty()){
+                showNoDataFound(true)
+            }else showNoDataFound(false)
+        })
 
         return binding.root
+    }
+
+    private fun showNoDataFound(show: Boolean){
+        binding.apply {
+            tvNoCompletedAppointments.isVisible = show
+            ivNoCompletedAppointments.isVisible = show
+        }
     }
 
 }
