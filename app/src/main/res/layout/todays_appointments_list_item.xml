@@ -58,13 +58,13 @@
             android:id="@+id/img_time_today_appointment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:tint="#818181"
             app:layout_constraintBottom_toBottomOf="@+id/tv_time_today_appointment"
             app:layout_constraintEnd_toStartOf="@+id/tv_time_today_appointment"
             app:layout_constraintHorizontal_bias="0.90"
             app:layout_constraintStart_toStartOf="@+id/tv_patient_name_today_appintment"
             app:layout_constraintTop_toTopOf="@+id/tv_time_today_appointment"
-            app:srcCompat="@drawable/baseline_access_time_24" />
+            app:srcCompat="@drawable/baseline_access_time_24"
+            app:tint="#818181" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

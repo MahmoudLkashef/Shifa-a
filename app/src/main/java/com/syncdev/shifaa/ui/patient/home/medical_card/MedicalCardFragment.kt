@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.chip.Chip
 import com.syncdev.shifaa.R
 import com.syncdev.shifaa.databinding.FragmentMedicalCardBinding
@@ -34,6 +35,10 @@ class MedicalCardFragment : Fragment() {
 
         binding.btnEditEmergencyContacts.setOnClickListener {
             Dialogs().editEmergencyContactsDialog(requireContext())
+        }
+
+        binding.btnBackMedicalCard.setOnClickListener {
+            findNavController().popBackStack()
         }
 
         return binding.root

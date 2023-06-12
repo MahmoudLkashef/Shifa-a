@@ -18,36 +18,156 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btn_book"
-                android:layout_width="250dp"
-                android:layout_height="64dp"
-                android:background="@drawable/custom_filled_rounded_button"
-                android:fontFamily="@font/poppins_bold"
-                android:text="Book An Appointment"
-                android:textColor="@color/white"
-                android:textSize="@dimen/text_size_small"
-                app:layout_constraintBottom_toBottomOf="parent"
+            <View
+                android:id="@+id/view_find_doctor_patient_home"
+                android:layout_width="0dp"
+                android:layout_height="85dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/custom_square"
+                android:backgroundTint="#EDECEC"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.5" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_home_title_patient_home" />
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btn_medical_card"
-                android:layout_width="250dp"
-                android:layout_height="64dp"
-                android:background="@drawable/custom_filled_rounded_button"
+            <TextView
+                android:id="@+id/tv_home_title_patient_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="Home"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_find_doctor_title_patient_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="Find a Doctor"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                app:layout_constraintStart_toEndOf="@+id/img_find_doctor_patient_home"
+                app:layout_constraintTop_toTopOf="@+id/view_find_doctor_patient_home" />
+
+            <ImageView
+                android:id="@+id/img_find_doctor_patient_home"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/view_find_doctor_patient_home"
+                app:layout_constraintStart_toStartOf="@+id/view_find_doctor_patient_home"
+                app:layout_constraintTop_toTopOf="@+id/view_find_doctor_patient_home"
+                app:srcCompat="@drawable/doc" />
+
+            <TextView
+                android:id="@+id/tv_book_appointment_title_patient_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_regular"
+                android:text="Book an appointment"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="@+id/tv_find_doctor_title_patient_home"
+                app:layout_constraintTop_toBottomOf="@+id/tv_find_doctor_title_patient_home" />
+
+            <View
+                android:id="@+id/view_medical_card_patient_home"
+                android:layout_width="0dp"
+                android:layout_height="85dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/custom_square"
+                android:backgroundTint="#EDECEC"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view_find_doctor_patient_home" />
+
+            <ImageView
+                android:id="@+id/img_medical_card_patient_home"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginStart="16dp"
+                app:layout_constraintBottom_toBottomOf="@+id/view_medical_card_patient_home"
+                app:layout_constraintStart_toStartOf="@+id/view_medical_card_patient_home"
+                app:layout_constraintTop_toTopOf="@+id/view_medical_card_patient_home"
+                app:srcCompat="@drawable/medical_card" />
+
+            <TextView
+                android:id="@+id/tv_medical_card_title_patient_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
                 android:fontFamily="@font/poppins_bold"
                 android:text="Medical Card"
-                android:textColor="@color/white"
-                android:textSize="@dimen/text_size_small"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                app:layout_constraintStart_toEndOf="@+id/img_medical_card_patient_home"
+                app:layout_constraintTop_toTopOf="@+id/img_medical_card_patient_home" />
+
+            <TextView
+                android:id="@+id/tv_emergency_title_patient_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_regular"
+                android:text="Emergency profile"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="@+id/tv_medical_card_title_patient_home"
+                app:layout_constraintTop_toBottomOf="@+id/tv_medical_card_title_patient_home" />
+
+            <TextView
+                android:id="@+id/tv_daily_reminders_title_patient_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="Your Daily Reminders"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="@+id/view_medical_card_patient_home"
+                app:layout_constraintTop_toBottomOf="@+id/rv_upcoming_appointments" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_daily_reminders_medicine"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btn_book" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_daily_reminders_title_patient_home"
+                tools:listitem="@layout/daily_reminders_list_item"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+            <TextView
+                android:id="@+id/textView15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="19dp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="Upcoming Appointments"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="280dp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_upcoming_appointments"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView15"
+                tools:listitem="@layout/upcoming_appointments_patient_home_list_item"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:orientation="horizontal"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

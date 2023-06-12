@@ -17,43 +17,30 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <ImageButton
-                android:id="@+id/btn_back_patient_reports"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:background="@drawable/image_button_round_corner"
-                android:elevation="8dp"
-                android:padding="10dp"
-                android:src="@drawable/back_arrow_ic"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
             <TextView
                 android:id="@+id/rv_reports_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
                 android:fontFamily="@font/poppins_bold"
                 android:text="Reports"
                 android:textColor="@color/black"
                 android:textSize="24sp"
-                app:layout_constraintBottom_toBottomOf="@+id/btn_back_patient_reports"
-                app:layout_constraintStart_toEndOf="@+id/btn_back_patient_reports"
-                app:layout_constraintTop_toTopOf="@+id/btn_back_patient_reports" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_patient_reports"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginTop="16dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btn_back_patient_reports"
-                tools:listitem="@layout/prescription_report_list_item"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+                app:layout_constraintTop_toBottomOf="@+id/rv_reports_title"
+                tools:listitem="@layout/prescription_report_list_item" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </layout>

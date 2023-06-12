@@ -26,11 +26,11 @@ class PatientHomeFragment : Fragment() {
             false
         )
 
-        binding.btnBook.setOnClickListener {
+        binding.viewFindDoctorPatientHome.setOnClickListener {
             findNavController().navigate(PatientHomeFragmentDirections.actionPatientHomeFragmentToFindDoctorFragment())
         }
 
-        binding.btnMedicalCard.setOnClickListener {
+        binding.viewMedicalCardPatientHome.setOnClickListener {
            findNavController().navigate(PatientHomeFragmentDirections.actionPatientHomeFragmentToMedicalCardFragment())
         }
 
