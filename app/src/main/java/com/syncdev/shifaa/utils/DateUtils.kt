@@ -1,7 +1,6 @@
 package com.syncdev.shifaa.utils
 
 import android.os.Build
-import android.util.Log
 import androidx.annotation.RequiresApi
 import java.text.NumberFormat
 import java.text.SimpleDateFormat
@@ -107,6 +106,18 @@ object DateUtils {
             "December" -> "12"
             else -> ""
         }
+    }
+
+    fun getCurrentDate(): String {
+        val dateFormat = SimpleDateFormat("dd-MMM-yyyy", Locale.getDefault())
+        val currentDate = Date()
+        return dateFormat.format(currentDate)
+    }
+
+    private fun getCurrentTime(): String {
+        val timeFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
+        val currentTime = Date()
+        return timeFormat.format(currentTime)
     }
 
 }

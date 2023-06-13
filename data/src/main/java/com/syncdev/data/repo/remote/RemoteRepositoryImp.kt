@@ -1,6 +1,8 @@
 package com.syncdev.data.repo.remote
 
+import android.os.Build
 import android.util.Log
+import androidx.annotation.RequiresApi
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DataSnapshot
@@ -16,14 +18,15 @@ import com.syncdev.domain.model.Doctor
 import com.syncdev.domain.repo.remote.RemoteRepository
 import com.syncdev.domain.utils.Constants
 import kotlinx.coroutines.CompletableDeferred
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.awaitAll
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.suspendCancellableCoroutine
-import kotlinx.coroutines.tasks.asDeferred
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
+import java.text.SimpleDateFormat
+import java.time.LocalTime
+import java.time.format.DateTimeFormatter
+import java.util.Date
+import java.util.Locale
 import javax.inject.Inject
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
@@ -439,7 +442,6 @@ class RemoteRepositoryImp @Inject constructor(
             val database: FirebaseDatabase = FirebaseDatabase.getInstance()
             val appointmentsRef: DatabaseReference = database.getReference("Appointments")
 
-            // Query to fetch the appointments for the specified doctor
             val query = appointmentsRef.orderByChild("doctor/id").equalTo(doctorId)
 
             val eventListener = object : ValueEventListener {
@@ -449,8 +451,9 @@ class RemoteRepositoryImp @Inject constructor(
                     for (appointmentSnapshot in dataSnapshot.children) {
                         val appointmentDate = appointmentSnapshot.child("date").value as? String
                         val appointmentTime = appointmentSnapshot.child("time").value as? String
+                        val appointmentState = appointmentSnapshot.child("state").value as? String
 
-                        if (appointmentDate == date && appointmentTime != null) {
+                        if (appointmentDate == date && appointmentTime != null && appointmentState == "Upcoming") {
                             preservedAppointments.add(appointmentTime)
                         }
                     }
@@ -480,6 +483,9 @@ class RemoteRepositoryImp @Inject constructor(
 
             val query = appointmentsRef.orderByChild("patient/id").equalTo(patientId)
 
+            val currentTime = getCurrentTime()
+            val currentDate = getCurrentDate()
+
             val eventListener = object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     val appointments: MutableList<Appointment> = mutableListOf()
@@ -487,7 +493,17 @@ class RemoteRepositoryImp @Inject constructor(
                     for (appointmentSnapshot in dataSnapshot.children) {
                         val appointment = appointmentSnapshot.getValue(Appointment::class.java)
                         if (appointment != null && appointment.state == state) {
-                            appointments.add(appointment)
+                            if(state == "Upcoming" && !isAppointmentUpcoming(
+                                    appointment.date,
+                                    appointment.time,
+                                    currentDate,
+                                    currentTime
+                                )
+                            ) {
+                                appointmentSnapshot.ref.removeValue()
+                            }else {
+                                appointments.add(appointment)
+                            }
                         }
                     }
 
@@ -525,6 +541,65 @@ class RemoteRepositoryImp @Inject constructor(
         }
     }
 
+    override suspend fun updateDoctorRating(doctorId: String, newRating: Float) {
+        val database: FirebaseDatabase = FirebaseDatabase.getInstance()
+        val doctorsRef: DatabaseReference = database.getReference("Doctors")
+
+        val doctorQuery = doctorsRef.child(doctorId)
+        doctorQuery.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                val doctor = dataSnapshot.getValue(Doctor::class.java)
+                if (doctor != null) {
+                    val totalRating = doctor.totalRating + newRating
+                    val numOfReviews = doctor.numOfReviews + 1
+
+                    // Update the doctor's total rating and number of reviews
+                    doctorQuery.child("totalRating").setValue(totalRating)
+                    doctorQuery.child("numOfReviews").setValue(numOfReviews)
+                }
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Handle cancellation or error
+                Log.i("updateDoctorRating", "onCancelled: ${databaseError.message}")
+            }
+        })
+    }
+
+    override suspend fun rescheduleAppointment(
+        appointmentId: String,
+        date: String,
+        time: String
+    ): Boolean =
+        suspendCancellableCoroutine { continuation ->
+            val database: FirebaseDatabase = FirebaseDatabase.getInstance()
+            val appointmentsRef: DatabaseReference = database.getReference("Appointments")
+
+            val appointmentQuery = appointmentsRef.child(appointmentId)
+            appointmentQuery.addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    val appointment = dataSnapshot.getValue(Appointment::class.java)
+                    if (appointment != null) {
+                        // Update the date and time values of the appointment
+                        appointmentQuery.child("date").setValue(date)
+                        appointmentQuery.child("time").setValue(time)
+                        continuation.resume(true) // Update successful
+                    } else {
+                        continuation.resume(false) // Appointment not found
+                    }
+                }
+
+                override fun onCancelled(databaseError: DatabaseError) {
+                    continuation.resume(false) // Update cancelled or error occurred
+                    Log.i("rescheduleAppointment", "onCancelled: ${databaseError.message}")
+                }
+            })
+
+            continuation.invokeOnCancellation {
+                // Handle cancellation if needed
+            }
+        }
+
 
     /**
      * Saves a data object to the Firebase Realtime Database at the specified [reference].
@@ -552,6 +627,39 @@ class RemoteRepositoryImp @Inject constructor(
                     Log.w("SaveData", "Failed to save data: ${task.exception}")
                 }
             }
+    }
+
+
+    private fun isAppointmentUpcoming(
+        appointmentDate: String,
+        appointmentTime: String,
+        currentDate: String,
+        currentTime: String
+    ): Boolean {
+        val dateFormat = SimpleDateFormat("dd-MMM-yyyy", Locale.getDefault())
+        val parsedAppointmentDate = dateFormat.parse(appointmentDate)
+        val parsedCurrentDate = dateFormat.parse(currentDate)
+
+        return if (parsedAppointmentDate == parsedCurrentDate) {
+            val timeFormat = SimpleDateFormat("hh:mm a", Locale.getDefault())
+            val parsedAppointmentTime = timeFormat.parse(appointmentTime)
+            val parsedCurrentTime = timeFormat.parse(currentTime)
+            parsedAppointmentTime.after(parsedCurrentTime)
+        } else {
+            parsedAppointmentDate.after(parsedCurrentDate)
+        }
+    }
+
+    private fun getCurrentDate(): String {
+        val dateFormat = SimpleDateFormat("dd-MMM-yyyy", Locale.getDefault())
+        val currentDate = Date()
+        return dateFormat.format(currentDate)
+    }
+
+    private fun getCurrentTime(): String {
+        val timeFormat = SimpleDateFormat("hh:mm a", Locale.getDefault())
+        val currentTime = Date()
+        return timeFormat.format(currentTime)
     }
 
 

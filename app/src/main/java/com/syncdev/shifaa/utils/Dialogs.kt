@@ -12,6 +12,9 @@ import androidx.core.view.isVisible
 import com.syncdev.shifaa.databinding.DialogRateDoctorBinding
 import androidx.databinding.DataBindingUtil
 import com.syncdev.shifaa.R
+import com.syncdev.shifaa.databinding.DialogCancelUpcomingAppointmentBinding
+import com.syncdev.shifaa.databinding.DialogCantCancelAppointmentBinding
+import com.syncdev.shifaa.databinding.DialogCantRescheduleAppointmentBinding
 import com.syncdev.shifaa.databinding.DialogSignOutBinding
 import com.syncdev.shifaa.databinding.EditEmergecyContactsDialogBinding
 import kotlinx.coroutines.CoroutineScope
@@ -107,6 +110,68 @@ class Dialogs {
             val secondContact = dialogBinding.etSecondEmergencyContactDialog.text.toString()
             Log.i(TAG, "editEmergencyContactsDialog: $firstContact / $secondContact")
             alertDialog.dismiss()
+        }
+
+        alertDialog.show()
+    }
+
+    fun showCancelUpcomingAppointmentDialog(context: Context, onCancelAppointment: () -> Unit) {
+        val dialogBinding = DialogCancelUpcomingAppointmentBinding.inflate(LayoutInflater.from(context))
+        val dialogView = dialogBinding.root
+
+        val dialogBuilder = AlertDialog.Builder(context)
+            .setView(dialogView)
+
+        val alertDialog = dialogBuilder.create()
+
+        //To make the background of the dialog transparent and show the rounded corners
+        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        dialogBinding.btnConfirmCancellingAppointment.setOnClickListener {
+            onCancelAppointment.invoke() // Invoke the provided method for sign out
+            alertDialog.dismiss() // Close the dialog if needed
+        }
+
+        dialogBinding.btnCloseCancelAppointmentDialog.setOnClickListener {
+            alertDialog.dismiss() // Close the dialog
+        }
+
+        alertDialog.show()
+    }
+
+    fun showCantCancelUpcomingAppointmentDialog(context: Context) {
+        val dialogBinding = DialogCantCancelAppointmentBinding.inflate(LayoutInflater.from(context))
+        val dialogView = dialogBinding.root
+
+        val dialogBuilder = AlertDialog.Builder(context)
+            .setView(dialogView)
+
+        val alertDialog = dialogBuilder.create()
+
+        //To make the background of the dialog transparent and show the rounded corners
+        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        dialogBinding.btnCantCancelAppointment.setOnClickListener {
+            alertDialog.dismiss() // Close the dialog
+        }
+
+        alertDialog.show()
+    }
+
+    fun showCantRescheduleUpcomingAppointmentDialog(context: Context) {
+        val dialogBinding = DialogCantRescheduleAppointmentBinding.inflate(LayoutInflater.from(context))
+        val dialogView = dialogBinding.root
+
+        val dialogBuilder = AlertDialog.Builder(context)
+            .setView(dialogView)
+
+        val alertDialog = dialogBuilder.create()
+
+        //To make the background of the dialog transparent and show the rounded corners
+        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        dialogBinding.btnCantRescheduleAppointment.setOnClickListener {
+            alertDialog.dismiss() // Close the dialog
         }
 
         alertDialog.show()

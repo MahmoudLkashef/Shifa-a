@@ -18,6 +18,8 @@ import com.syncdev.domain.usecase.patient.appointment_requests.GetPreservedAppoi
 import com.syncdev.domain.usecase.patient.appointments.CancelAppointmentByIdUseCase
 import com.syncdev.domain.usecase.patient.appointments.GetAppointmentsByPatientAndState
 import com.syncdev.domain.usecase.patient.UpdatePatientByIdUseCase
+import com.syncdev.domain.usecase.patient.appointments.RescheduleAppointmentUseCase
+import com.syncdev.domain.usecase.patient.appointments.UpdateDoctorRatingUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -133,5 +135,15 @@ object UseCaseModule {
     @Provides
     fun provideCancelAppointmentByIdUseCase(remoteRepository: RemoteRepository): CancelAppointmentByIdUseCase{
         return CancelAppointmentByIdUseCase(remoteRepository)
+    }
+
+    @Provides
+    fun provideUpdateDoctorRatingUseCase(remoteRepository: RemoteRepository): UpdateDoctorRatingUseCase{
+        return UpdateDoctorRatingUseCase(remoteRepository)
+    }
+
+    @Provides
+    fun provideRescheduleAppointmentUseCase(remoteRepository: RemoteRepository): RescheduleAppointmentUseCase{
+        return RescheduleAppointmentUseCase(remoteRepository)
     }
 }
