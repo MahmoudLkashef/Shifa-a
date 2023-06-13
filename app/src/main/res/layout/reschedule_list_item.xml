@@ -135,7 +135,7 @@
             app:layout_constraintTop_toBottomOf="@+id/img_calender_reschedule_icon" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_reschedule"
+            android:id="@+id/btn_leave_a_review"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"

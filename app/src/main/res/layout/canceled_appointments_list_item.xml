@@ -45,11 +45,13 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
             android:background="@drawable/custom_outline_rectangle_button"
             android:fontFamily="@font/poppins_regular"
             android:padding="5dp"
             android:text="Canceled"
             android:textColor="@android:color/holo_red_light"
+            app:layout_constraintBottom_toTopOf="@+id/view_line_canceled_appointments"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_doctor_name_canceled_appointments" />
 
@@ -70,6 +72,8 @@
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/view_line_canceled_appointments"
             app:layout_constraintTop_toBottomOf="@+id/view_line_canceled_appointments"
             app:srcCompat="@drawable/appointments" />

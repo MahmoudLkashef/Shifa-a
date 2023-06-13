@@ -7,12 +7,14 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipDrawable
-import com.syncdev.domain.usecase.doctor.SearchDoctorByIdUseCase
+import com.syncdev.domain.usecase.patient.appointment_requests.GetPreservedAppointmentsDateUseCase
 import com.syncdev.shifaa.R
 import com.syncdev.shifaa.utils.DateUtils
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
@@ -23,7 +25,7 @@ import javax.inject.Inject
 @HiltViewModel
 class SelectDateTimeViewModel
 @Inject constructor(
-    private val searchDoctorByIdUseCase: SearchDoctorByIdUseCase,
+    private val getPreservedAppointmentsDateUseCase: GetPreservedAppointmentsDateUseCase,
 ): ViewModel() {
 
     private val TAG = "SelectDateTimeViewModel"
@@ -41,9 +43,13 @@ class SelectDateTimeViewModel
     val errorMessage: LiveData<String> get() = _errorMessage
 
     @RequiresApi(Build.VERSION_CODES.O)
-    fun getAppointmentTimeList(selectedDate: String){
+    fun getAppointmentTimeList(selectedDate: String, doctorId: String){
         _appointmentTimeList.value?.clear()
-        _appointmentTimeList.postValue(DateUtils.getAppointmentTimeList(selectedDate))
+        val allTimes = DateUtils.getAppointmentTimeList(selectedDate)
+        viewModelScope.launch {
+            allTimes.removeAll(getPreservedAppointmentsDateUseCase.invoke(doctorId,selectedDate))
+            _appointmentTimeList.postValue(allTimes)
+        }
     }
 
     fun handleSelectedDate(date: Long): String {

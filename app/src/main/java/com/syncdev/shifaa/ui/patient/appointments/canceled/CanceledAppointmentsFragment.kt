@@ -5,15 +5,20 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
-import com.syncdev.domain.model.SchedulePatient
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import com.syncdev.shifaa.R
 import com.syncdev.shifaa.databinding.FragmentCanceledAppointmentsBinding
+import com.syncdev.shifaa.ui.patient.appointments.AppointmentsViewModel
 
 class CanceledAppointmentsFragment : Fragment() {
 
     private lateinit var binding:FragmentCanceledAppointmentsBinding
     private lateinit var canceledAppointmentsAdapter: CanceledAppointmentsAdapter
+    private val appointmentsViewModel by activityViewModels<AppointmentsViewModel>()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -26,18 +31,29 @@ class CanceledAppointmentsFragment : Fragment() {
             false
         )
 
-        val doctors= listOf<SchedulePatient>(
-            SchedulePatient(1,"Ahmed Nader","canceled","10 Jan 2023","10:30 AM"),
-            SchedulePatient(2,"Wazeer","canceled","10 Jan 2023","10:30 AM"),
-            SchedulePatient(3,"Mohamed Hasaan","canceled","10 Jan 2023","10:30 AM"),
-            SchedulePatient(4,"Mahmoud Reda","canceled","10 Jan 2023","10:30 AM"),
-        )
+        appointmentsViewModel.getAppointmentsByState("Canceled")
 
-        canceledAppointmentsAdapter= CanceledAppointmentsAdapter()
-        canceledAppointmentsAdapter.submitList(doctors)
-        binding.rvCanceledAppointments.adapter=canceledAppointmentsAdapter
+        canceledAppointmentsAdapter= CanceledAppointmentsAdapter(requireContext())
+
+        binding.apply {
+            rvCanceledAppointments.adapter=canceledAppointmentsAdapter
+        }
+
+        appointmentsViewModel.canceledAppointmentsList.observe(viewLifecycleOwner, Observer {
+            canceledAppointmentsAdapter.submitList(it)
+            if (it.isEmpty()){
+                showNoDataFound(true)
+            }else showNoDataFound(false)
+        })
 
         return binding.root
+    }
+
+    private fun showNoDataFound(show: Boolean){
+        binding.apply {
+            ivNoCanceledAppointments.isVisible = show
+            tvNoCanceledAppointments.isVisible = show
+        }
     }
 
 }

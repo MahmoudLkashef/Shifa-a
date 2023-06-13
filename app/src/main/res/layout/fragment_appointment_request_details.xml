@@ -23,7 +23,6 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="32dp"
                 android:layout_marginEnd="32dp"
                 android:layout_marginBottom="32dp"
                 android:background="@drawable/custom_filled_rounded_button"
@@ -34,8 +33,7 @@
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/guidelineVertical_guideline_appointment_request"
-                app:layout_constraintTop_toBottomOf="@+id/tv_comments_details_appointment_request" />
+                app:layout_constraintStart_toStartOf="@+id/guidelineVertical_guideline_appointment_request" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline_horizontal_guideline_appointment_request"
@@ -132,7 +130,7 @@
             <TextView
                 android:id="@+id/tv_comments_details_appointment_request"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="200dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="48dp"
                 android:fontFamily="@font/poppins_regular"
@@ -148,7 +146,6 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="32dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="32dp"
                 android:background="@drawable/custom_outlined_button"
@@ -158,8 +155,59 @@
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/guidelineVertical_guideline_appointment_request"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_comments_details_appointment_request" />
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_appointment_request_time_details"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="09:30 AM"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_guideline_appointment_request"
+                app:layout_constraintEnd_toEndOf="@+id/view_guideline_background_appointment_request"
+                app:layout_constraintStart_toStartOf="@+id/view_guideline_background_appointment_request"
+                app:layout_constraintTop_toBottomOf="@+id/tv_back_appointment_request"
+                app:layout_constraintVertical_bias="0.30" />
+
+            <ImageView
+                android:id="@+id/iv_appointment_request_time_details"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:tint="@color/white"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_appointment_request_time_details"
+                app:layout_constraintEnd_toStartOf="@+id/tv_appointment_request_time_details"
+                app:layout_constraintTop_toTopOf="@+id/tv_appointment_request_time_details"
+                app:layout_constraintVertical_bias="0.01999998"
+                app:srcCompat="@drawable/baseline_access_time_24" />
+
+            <TextView
+                android:id="@+id/tv_appointment_request_date_details"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="12-Jan-2023"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="@+id/tv_appointment_request_time_details"
+                app:layout_constraintStart_toStartOf="@+id/tv_appointment_request_time_details"
+                app:layout_constraintTop_toBottomOf="@+id/tv_appointment_request_time_details" />
+
+            <ImageView
+                android:id="@+id/iv_appointment_request_date_details"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginEnd="6dp"
+                android:tint="@color/white"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_appointment_request_date_details"
+                app:layout_constraintEnd_toStartOf="@+id/tv_appointment_request_date_details"
+                app:layout_constraintTop_toTopOf="@+id/tv_appointment_request_date_details"
+                app:layout_constraintVertical_bias="0.0"
+                app:srcCompat="@drawable/appointments" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
