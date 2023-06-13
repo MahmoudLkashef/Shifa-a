@@ -71,8 +71,8 @@
                     android:background="@drawable/view_light_blue_rounded_rec_background"
                     android:fontFamily="@font/poppins_regular"
                     android:inputType="text"
+                    android:gravity="top"
                     android:text="@={viewModel.problemComment}"
-                    android:textAlignment="viewStart"
                     android:textColor="@color/black"
                     android:textColorHint="@color/gray"
                     android:textSize="@dimen/sign_in_text_size_normal" />
