@@ -41,8 +41,11 @@ class CompletedAppointmentsFragment : Fragment() {
         }
 
         completedAppointmentsAdapter.onLeaveAReviewClicked = {
-            Dialogs().showRateDoctorDialog(requireContext()){
-                Toast.makeText(requireContext(),it.toString(),Toast.LENGTH_SHORT).show()
+            Dialogs().showRateDoctorDialog(requireContext()){rating->
+                appointmentsViewModel.updateDoctorRating(
+                    doctorId = it.doctor.id!!,
+                    newRating = rating
+                )
             }
         }
 

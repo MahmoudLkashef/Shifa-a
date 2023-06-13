@@ -34,7 +34,15 @@
         android:id="@+id/patientAppointmentsFragment"
         android:name="com.syncdev.shifaa.ui.patient.appointments.PatientAppointmentsFragment"
         android:label="fragment_patient_appointments"
-        tools:layout="@layout/fragment_patient_appointments" />
+        tools:layout="@layout/fragment_patient_appointments" >
+        <action
+            android:id="@+id/action_patientAppointmentsFragment_to_bookAppointmentDetailsFragment"
+            app:destination="@id/bookAppointmentDetailsFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
+    </fragment>
     <fragment
         android:id="@+id/patientMedicineFragment"
         android:name="com.syncdev.shifaa.ui.patient.medicine.PatientMedicineFragment"
@@ -90,6 +98,11 @@
             app:exitAnim="@anim/to_left"
             app:popEnterAnim="@anim/from_left"
             app:popExitAnim="@anim/to_right" />
+        <argument
+            android:name="appointmentId"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="" />
     </fragment>
     <fragment
         android:id="@+id/findDoctorFragment"
@@ -121,6 +134,11 @@
         <argument
             android:name="doctorId"
             app:argType="string" />
+        <argument
+            android:name="appointmentId"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue=""/>
     </fragment>
     <fragment
         android:id="@+id/problemDescriptionFragment"

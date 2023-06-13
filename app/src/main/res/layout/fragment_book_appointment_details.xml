@@ -31,9 +31,8 @@
             <View
                 android:id="@+id/view_blue_book_appointment_details"
                 android:layout_width="wrap_content"
-                android:layout_height="0dp"
+                android:layout_height="180dp"
                 android:background="@color/main_color"
-                app:layout_constraintBottom_toTopOf="@+id/guidelineHorizontal_book_appointment_details"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -74,7 +73,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/guidelineHorizontal_book_appointment_details"
+                app:layout_constraintTop_toBottomOf="@+id/view_blue_book_appointment_details"
                 app:layout_constraintVertical_bias="0.0" />
 
             <ImageView
@@ -83,7 +82,7 @@
                 android:layout_height="80dp"
                 android:layout_marginStart="16dp"
                 android:elevation="12dp"
-                app:ImgGender="@{viewModel.doctor.gender}"
+                app:ImgGenderDoctor="@{viewModel.doctor.gender}"
                 app:layout_constraintBottom_toBottomOf="@+id/view_white_book_appointment_details"
                 app:layout_constraintStart_toStartOf="@+id/view_white_book_appointment_details"
                 app:layout_constraintTop_toTopOf="@+id/view_white_book_appointment_details"
@@ -101,7 +100,7 @@
                 android:text=""
                 android:textColor="@color/black"
                 android:textSize="@dimen/text_size_normal"
-                app:layout_constraintBottom_toTopOf="@+id/guidelineHorizontal_book_appointment_details"
+                app:layout_constraintBottom_toBottomOf="@+id/view_blue_book_appointment_details"
                 app:layout_constraintEnd_toEndOf="@+id/view_white_book_appointment_details"
                 app:layout_constraintStart_toEndOf="@+id/iv_doctor_pic_book_appointment_details"
                 app:layout_constraintTop_toTopOf="@+id/view_white_book_appointment_details"
@@ -122,8 +121,8 @@
                 app:layout_constraintBottom_toBottomOf="@+id/view_white_book_appointment_details"
                 app:layout_constraintEnd_toEndOf="@+id/view_white_book_appointment_details"
                 app:layout_constraintStart_toEndOf="@+id/iv_doctor_pic_book_appointment_details"
-                app:layout_constraintTop_toTopOf="@+id/guidelineHorizontal_book_appointment_details"
-                app:layout_constraintVertical_bias="0.25" />
+                app:layout_constraintTop_toBottomOf="@+id/view_blue_book_appointment_details"
+                app:layout_constraintVertical_bias="0.0" />
 
             <View
                 android:id="@+id/view_num_of_patients_book_appointment_details"

@@ -1,7 +1,5 @@
 package com.syncdev.shifaa.ui.patient.home.book_appointment.appointment_details
 
-import android.graphics.Color
-import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -15,9 +13,10 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.snackbar.Snackbar
-import com.syncdev.domain.model.Doctor
 import com.syncdev.shifaa.R
 import com.syncdev.shifaa.databinding.FragmentBookAppointmentDetailsBinding
+import com.syncdev.shifaa.ui.patient.appointments.PatientAppointmentsFragmentDirections
+import com.syncdev.shifaa.ui.patient.home.PatientHomeFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -42,6 +41,8 @@ class BookAppointmentDetailsFragment : Fragment() {
 
         val args: BookAppointmentDetailsFragmentArgs by navArgs()
         val doctorId: String = args.doctorId
+        val appointmentId: String? = args.appointmentId
+
 
         bookAppointmentViewModel.setTime(args.time)
         bookAppointmentViewModel.setDate(args.date)
@@ -54,20 +55,34 @@ class BookAppointmentDetailsFragment : Fragment() {
         }
 
         binding.apply {
-            btnBookNowBookAppointmentDetails.setOnClickListener {
-                if (bookAppointmentViewModel.haveDateAndTime()){
-                    findNavController().navigate(
-                        BookAppointmentDetailsFragmentDirections
-                            .actionBookAppointmentDetailsFragmentToProblemDescriptionFragment(
-                                doctorId = doctorId,
-                                time = bookAppointmentViewModel.time.value!!,
-                                date = bookAppointmentViewModel.date.value!!
-                            )
-                    )
-                }else{
-                    showError()
-                }
+            if (appointmentId?.isNotEmpty()!!){
+                btnBookNowBookAppointmentDetails.text = "Reschedule"
             }
+
+            btnBookNowBookAppointmentDetails.setOnClickListener {
+                    if (bookAppointmentViewModel.haveDateAndTime()) {
+                        if (appointmentId == "") {
+                            findNavController().navigate(
+                                BookAppointmentDetailsFragmentDirections
+                                    .actionBookAppointmentDetailsFragmentToProblemDescriptionFragment(
+                                        doctorId = doctorId,
+                                        time = bookAppointmentViewModel.time.value!!,
+                                        date = bookAppointmentViewModel.date.value!!
+                                    )
+                            )
+                        }else{
+                            bookAppointmentViewModel.rescheduleAppointment(appointmentId!!)
+                        }
+                    } else {
+                        showError()
+                    }
+            }
+
+            bookAppointmentViewModel.navigateBack.observe(viewLifecycleOwner, Observer {navigateBack->
+                if (navigateBack){
+                    findNavController().popBackStack()
+                }
+            })
 
             ivBackBookAppointmentDetails.setOnClickListener {
                 findNavController().popBackStack()
@@ -76,7 +91,7 @@ class BookAppointmentDetailsFragment : Fragment() {
             cvAvailableTimeBookAppointmentDetails.setOnClickListener {
                 findNavController()
                     .navigate(BookAppointmentDetailsFragmentDirections
-                        .actionBookAppointmentDetailsFragmentToSelectAppointmentDateTimeFragment(doctorId))
+                        .actionBookAppointmentDetailsFragmentToSelectAppointmentDateTimeFragment(doctorId,appointmentId))
             }
         }
 

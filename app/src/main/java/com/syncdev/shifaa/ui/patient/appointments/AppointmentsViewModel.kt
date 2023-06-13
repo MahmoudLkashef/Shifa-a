@@ -9,6 +9,7 @@ import com.syncdev.shifaa.utils.SharedPreferencesUtils
 import com.syncdev.domain.model.Appointment
 import com.syncdev.domain.usecase.patient.appointments.CancelAppointmentByIdUseCase
 import com.syncdev.domain.usecase.patient.appointments.GetAppointmentsByPatientAndState
+import com.syncdev.domain.usecase.patient.appointments.UpdateDoctorRatingUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -18,6 +19,7 @@ class AppointmentsViewModel
 @Inject constructor(
     private val getAppointmentsByPatientAndState: GetAppointmentsByPatientAndState,
     private val cancelAppointmentByIdUseCase: CancelAppointmentByIdUseCase,
+    private val updateDoctorRatingUseCase: UpdateDoctorRatingUseCase,
     private val application: Application
 ):ViewModel() {
     private val TAG = "AppointmentsViewModel"
@@ -66,6 +68,16 @@ class AppointmentsViewModel
     fun cancelAppointmentById(appointmentId: String){
         viewModelScope.launch {
             _updateList.postValue(cancelAppointmentByIdUseCase.invoke(appointmentId))
+        }
+    }
+
+    fun validateModifyingAppointment(today: String, appointmentDate: String): Boolean{
+        return today != appointmentDate
+    }
+
+    fun updateDoctorRating(doctorId: String, newRating: Float){
+        viewModelScope.launch {
+            updateDoctorRatingUseCase.invoke(doctorId, newRating )
         }
     }
 
