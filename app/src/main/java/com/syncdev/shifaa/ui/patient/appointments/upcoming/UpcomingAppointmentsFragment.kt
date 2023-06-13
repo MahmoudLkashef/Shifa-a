@@ -5,15 +5,22 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
-import com.syncdev.domain.model.SchedulePatient
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import com.syncdev.shifaa.R
 import com.syncdev.shifaa.databinding.FragmentUpcomingAppointmentsBinding
+import com.syncdev.shifaa.ui.patient.appointments.AppointmentsViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class UpcomingAppointmentsFragment : Fragment() {
 
     private lateinit var binding:FragmentUpcomingAppointmentsBinding
     private lateinit var upcomingAppointmentsAdapter: UpcomingAppointmentsAdapter
+    private val appointmentsViewModel by activityViewModels<AppointmentsViewModel>()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -25,18 +32,39 @@ class UpcomingAppointmentsFragment : Fragment() {
             container,
             false
         )
-        val doctors= listOf<SchedulePatient>(
-            SchedulePatient(1,"Farah Nader","completed","10 Jan 2023","10:30 AM"),
-            SchedulePatient(2,"Menna Ahmed","completed","10 Jan 2023","10:30 AM"),
-            SchedulePatient(3,"Layla Hasaan","completed","10 Jan 2023","10:30 AM"),
-            SchedulePatient(4,"Rana Reda","completed","10 Jan 2023","10:30 AM"),
-        )
 
-        upcomingAppointmentsAdapter=UpcomingAppointmentsAdapter()
-        upcomingAppointmentsAdapter.submitList(doctors)
-        binding.rvUpcomingAppointments.adapter=upcomingAppointmentsAdapter
+        appointmentsViewModel.getAppointmentsByState("Upcoming")
+
+        upcomingAppointmentsAdapter=UpcomingAppointmentsAdapter(requireContext())
+        binding.apply {
+            rvUpcomingAppointments.adapter=upcomingAppointmentsAdapter
+        }
+
+        appointmentsViewModel.upcomingAppointmentsList.observe(viewLifecycleOwner, Observer {
+            upcomingAppointmentsAdapter.submitList(it)
+            if (it.isEmpty()){
+                showNoDataFound(true)
+            }else showNoDataFound(false)
+        })
+
+        appointmentsViewModel.updateList.observe(viewLifecycleOwner, Observer {update->
+            if (update){
+                appointmentsViewModel.getAppointmentsByState("Upcoming")
+            }
+        })
+
+        upcomingAppointmentsAdapter.onCancelClicked = {appointment->
+            appointment.id?.let { it -> appointmentsViewModel.cancelAppointmentById(it) }
+        }
 
         return binding.root
+    }
+
+    private fun showNoDataFound(show: Boolean){
+        binding.apply {
+            tvNoUpcomingAppointments.isVisible = show
+            ivNoUpcomingAppointments.isVisible = show
+        }
     }
 
 }

@@ -5,6 +5,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.Query
 import com.google.firebase.database.ValueEventListener
@@ -19,6 +20,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlinx.coroutines.tasks.asDeferred
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
@@ -396,6 +398,101 @@ class RemoteRepositoryImp @Inject constructor(
             false
         }
     }
+
+    override suspend fun getPreservedAppointmentsDate(
+        doctorId: String,
+        date: String
+    ): List<String> =
+        suspendCancellableCoroutine { continuation ->
+            val database: FirebaseDatabase = FirebaseDatabase.getInstance()
+            val appointmentsRef: DatabaseReference = database.getReference("Appointments")
+
+            // Query to fetch the appointments for the specified doctor
+            val query = appointmentsRef.orderByChild("doctor/id").equalTo(doctorId)
+
+            val eventListener = object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    val preservedAppointments: MutableList<String> = mutableListOf()
+
+                    for (appointmentSnapshot in dataSnapshot.children) {
+                        val appointmentDate = appointmentSnapshot.child("date").value as? String
+                        val appointmentTime = appointmentSnapshot.child("time").value as? String
+
+                        if (appointmentDate == date && appointmentTime != null) {
+                            preservedAppointments.add(appointmentTime)
+                        }
+                    }
+
+                    continuation.resume(preservedAppointments)
+                }
+
+                override fun onCancelled(databaseError: DatabaseError) {
+                    continuation.resumeWithException(databaseError.toException())
+                }
+            }
+
+            query.addListenerForSingleValueEvent(eventListener)
+
+            continuation.invokeOnCancellation {
+                query.removeEventListener(eventListener)
+            }
+        }
+
+    override suspend fun getAppointmentsByPatientAndState(
+        patientId: String,
+        state: String
+    ): List<Appointment> =
+        suspendCancellableCoroutine { continuation ->
+            val database: FirebaseDatabase = FirebaseDatabase.getInstance()
+            val appointmentsRef: DatabaseReference = database.getReference("Appointments")
+
+            val query = appointmentsRef.orderByChild("patient/id").equalTo(patientId)
+
+            val eventListener = object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    val appointments: MutableList<Appointment> = mutableListOf()
+
+                    for (appointmentSnapshot in dataSnapshot.children) {
+                        val appointment = appointmentSnapshot.getValue(Appointment::class.java)
+                        if (appointment != null && appointment.state == state) {
+                            appointments.add(appointment)
+                        }
+                    }
+
+                    continuation.resume(appointments)
+                }
+
+                override fun onCancelled(databaseError: DatabaseError) {
+                    continuation.resumeWithException(databaseError.toException())
+                }
+            }
+
+            query.addListenerForSingleValueEvent(eventListener)
+
+            continuation.invokeOnCancellation {
+                query.removeEventListener(eventListener)
+            }
+        }
+
+    override suspend fun cancelAppointmentById(appointmentId: String): Boolean {
+        return suspendCancellableCoroutine { continuation ->
+            val database: FirebaseDatabase = FirebaseDatabase.getInstance()
+            val appointmentsRef: DatabaseReference = database.getReference("Appointments")
+
+            val appointmentToUpdateRef = appointmentsRef.child(appointmentId)
+            val updatedData = mapOf("state" to "Canceled")
+
+            appointmentToUpdateRef.updateChildren(updatedData)
+                .addOnSuccessListener {
+                    continuation.resume(true)
+                }
+                .addOnFailureListener { exception ->
+                    continuation.resume(false)
+                    Log.i("cancelAppointmentById", "cancelAppointmentById: ${exception.message}")
+                }
+        }
+    }
+
 
     /**
      * Saves a data object to the Firebase Realtime Database at the specified [reference].

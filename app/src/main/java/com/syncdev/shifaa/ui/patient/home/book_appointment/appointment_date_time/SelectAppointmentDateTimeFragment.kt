@@ -58,7 +58,7 @@ class SelectAppointmentDateTimeFragment : Fragment() {
                 val selectedDate = selectDateTimeViewModel.handleSelectedDate(calendar.timeInMillis)
                 cgTime.removeAllViews()
                 selectDateTimeViewModel.setDate(selectedDate)
-                selectDateTimeViewModel.getAppointmentTimeList(selectedDate)
+                selectDateTimeViewModel.getAppointmentTimeList(selectedDate,doctorId)
             }
 
             buttonBackSelectAppointment.setOnClickListener {
