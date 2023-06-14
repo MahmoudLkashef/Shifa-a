@@ -117,13 +117,13 @@
             app:layout_constraintGuide_percent="0.5" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_cancel_reschedule"
+            android:id="@+id/btn_cancel_reschedule_doctor"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="44dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="16dp"
             android:background="@drawable/custom_outlined_button"
             android:fontFamily="@font/poppins_medium"
             android:text="Cancel"
@@ -135,21 +135,20 @@
             app:layout_constraintTop_toBottomOf="@+id/img_calender_reschedule_icon" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_leave_a_review"
+            android:id="@+id/btn_see_more_appointment_doctor"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="44dp"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
             android:background="@drawable/custom_filled_rounded_button"
             android:fontFamily="@font/poppins_medium"
-            android:text="Reschedule"
+            android:text="See More"
             android:textAllCaps="false"
             android:textColor="@color/white"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_cancel_reschedule_doctor"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/guideline3"
-            app:layout_constraintTop_toTopOf="@+id/btn_cancel_reschedule" />
+            app:layout_constraintTop_toTopOf="@+id/btn_cancel_reschedule_doctor" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

@@ -8,10 +8,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
-import com.syncdev.domain.model.CalendarModel
-import com.syncdev.domain.model.SchedulePatient
+import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.syncdev.shifaa.R
 import com.syncdev.shifaa.databinding.FragmentDoctorScheduleBinding
+import com.syncdev.shifaa.utils.DateUtils
+import com.syncdev.shifaa.utils.Dialogs
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -34,17 +36,11 @@ class DoctorScheduleFragment : Fragment() {
             false
         )
 
-        //TODO get a list of appointments here
 
-        val patients= listOf<SchedulePatient>(
-            SchedulePatient(1,"Karma Mohamed","Follow Up","10 Jan 2023","10:30 AM"),
-            SchedulePatient(2,"Ola Ibrahim","Follow Up","10 Jan 2023","10:30 AM"),
-            SchedulePatient(3,"Asmaa hassan","Follow Up","10 Jan 2023","10:30 AM"),
-            SchedulePatient(4,"Layla Mahmoud","Follow Up","10 Jan 2023","10:30 AM"),
-        )
+        doctorScheduleViewModel.getAppointmentsByDoctorId()
 
         calendarAdapter = CalendarAdapter()
-        rescheduleAdapter = RescheduleAdapter()
+        rescheduleAdapter = RescheduleAdapter(requireContext())
 
         binding.apply {
             rvCalendar.adapter = calendarAdapter
@@ -54,7 +50,53 @@ class DoctorScheduleFragment : Fragment() {
         doctorScheduleViewModel.getAvailableDaysList()
 
         calendarAdapter.submitList(doctorScheduleViewModel.availableDays.value)
-        rescheduleAdapter.submitList(patients)
+
+
+        calendarAdapter.onDateClicked = {
+            doctorScheduleViewModel.chosenDate.value = it.date
+            doctorScheduleViewModel.getAppointmentsByDate(it.date)
+        }
+
+        rescheduleAdapter.onSeeMoreClicked = { appointment ->
+            val patientName = "${appointment.patient.firstName} " + appointment.patient.lastName
+            findNavController().navigate(
+                DoctorScheduleFragmentDirections.actionDoctorScheduleFragmentToAppointmentRequestDetailsFragment(
+                    patientName = patientName,
+                    patientId = appointment.patient.id!!,
+                    patientGender = appointment.patient.gender,
+                    time = appointment.time,
+                    date = appointment.date,
+                    comment = appointment.comment,
+                    request = false
+                )
+            )
+        }
+
+        rescheduleAdapter.onCancelClicked = {appointment ->
+            val dialogs = Dialogs()
+            val today = DateUtils.getCurrentDate()
+            val canReschedule =doctorScheduleViewModel.validateModifyingAppointment(today,appointment.date)
+            if (canReschedule){
+                dialogs.showCancelUpcomingAppointmentDialog(requireContext()){
+                    doctorScheduleViewModel.cancelAppointmentById(appointment.id!!)
+                }
+            }else{
+                dialogs.showCantCancelUpcomingAppointmentDialog(requireContext())
+            }
+        }
+
+        doctorScheduleViewModel.updateList.observe(viewLifecycleOwner, Observer {update->
+            if (update){
+                doctorScheduleViewModel.getAppointmentsByDoctorId()
+            }
+        })
+
+        doctorScheduleViewModel.filteredAppointments.observe(viewLifecycleOwner, Observer {appointments->
+            rescheduleAdapter.submitList(appointments)
+        })
+
+
+
 
         return binding.root
     }

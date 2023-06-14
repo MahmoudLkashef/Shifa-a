@@ -78,4 +78,6 @@ interface RemoteRepository {
 
     suspend fun rescheduleAppointment(appointmentId: String, date: String, time: String): Boolean
 
+    suspend fun getAppointmentsByDoctorId(doctorId: String): List<Appointment>
+
 }
