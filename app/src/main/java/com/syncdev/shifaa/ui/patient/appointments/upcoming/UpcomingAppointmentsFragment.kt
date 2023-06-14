@@ -9,9 +9,13 @@ import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.syncdev.shifaa.R
 import com.syncdev.shifaa.databinding.FragmentUpcomingAppointmentsBinding
 import com.syncdev.shifaa.ui.patient.appointments.AppointmentsViewModel
+import com.syncdev.shifaa.ui.patient.appointments.PatientAppointmentsFragmentDirections
+import com.syncdev.shifaa.utils.DateUtils
+import com.syncdev.shifaa.utils.Dialogs
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -54,7 +58,35 @@ class UpcomingAppointmentsFragment : Fragment() {
         })
 
         upcomingAppointmentsAdapter.onCancelClicked = {appointment->
-            appointment.id?.let { it -> appointmentsViewModel.cancelAppointmentById(it) }
+            val dialogs = Dialogs()
+            val today = DateUtils.getCurrentDate()
+            val canCancel =appointmentsViewModel.validateModifyingAppointment(today,appointment.date)
+            if (canCancel){
+                dialogs.showCancelUpcomingAppointmentDialog(requireContext()) {
+                    appointment.id?.let { it -> appointmentsViewModel.cancelAppointmentById(it) }
+                }
+            } else {
+                dialogs.showCantCancelUpcomingAppointmentDialog(requireContext())
+            }
+        }
+
+        upcomingAppointmentsAdapter.onRescheduleClicked = {appointment->
+            val dialogs = Dialogs()
+            val today = DateUtils.getCurrentDate()
+            val canReschedule =appointmentsViewModel.validateModifyingAppointment(today,appointment.date)
+            if (canReschedule){
+                findNavController().navigate(
+                    PatientAppointmentsFragmentDirections
+                        .actionPatientAppointmentsFragmentToBookAppointmentDetailsFragment(
+                            appointment.doctor.id!!,
+                            "",
+                            "",
+                            appointment.id
+                        )
+                )
+            } else{
+                dialogs.showCantRescheduleUpcomingAppointmentDialog(requireContext())
+            }
         }
 
         return binding.root

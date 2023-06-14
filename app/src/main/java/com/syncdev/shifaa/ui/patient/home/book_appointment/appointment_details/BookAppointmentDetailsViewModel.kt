@@ -9,6 +9,7 @@ import com.syncdev.shifaa.utils.SharedPreferencesUtils
 import com.syncdev.domain.model.Doctor
 import com.syncdev.domain.model.Patient
 import com.syncdev.domain.usecase.doctor.SearchDoctorByIdUseCase
+import com.syncdev.domain.usecase.patient.appointments.RescheduleAppointmentUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -18,6 +19,7 @@ import javax.inject.Inject
 class BookAppointmentDetailsViewModel
 @Inject constructor(
     private val searchDoctorByIdUseCase: SearchDoctorByIdUseCase,
+    private val rescheduleAppointmentUseCase: RescheduleAppointmentUseCase,
     private val application: Application
 ): ViewModel(){
 
@@ -32,9 +34,22 @@ class BookAppointmentDetailsViewModel
     private var _time = MutableLiveData("")
     val time: LiveData<String> get() = _time
 
+    private var _navigateBack = MutableLiveData(false)
+    val navigateBack: LiveData<Boolean> get() = _navigateBack
+
     fun getDoctorById(doctorId: String){
         viewModelScope.launch {
             searchDoctorByIdUseCase.invoke(doctorId){_doctor.value = it}
+        }
+    }
+
+    fun rescheduleAppointment(appointmentId: String){
+        viewModelScope.launch {
+            _navigateBack.postValue(rescheduleAppointmentUseCase.invoke(
+                appointmentId,
+                date = date.value!!,
+                time = time.value!!
+            ))
         }
     }
 

@@ -44,6 +44,7 @@ class SelectAppointmentDateTimeFragment : Fragment() {
         )
         val args: BookAppointmentDetailsFragmentArgs by navArgs()
         val doctorId: String = args.doctorId
+        val appointmentId: String? = args.appointmentId
 
         initHideViews()
 
@@ -71,7 +72,8 @@ class SelectAppointmentDateTimeFragment : Fragment() {
                         SelectAppointmentDateTimeFragmentDirections.actionSelectAppointmentDateTimeFragmentToBookAppointmentDetailsFragment(
                             doctorId = doctorId,
                             date = selectDateTimeViewModel.date.value,
-                            time = selectDateTimeViewModel.time.value
+                            time = selectDateTimeViewModel.time.value,
+                            appointmentId = appointmentId
                         )
                     )
                 }else{
