@@ -134,7 +134,7 @@
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="@+id/view_medical_card_patient_home"
-                app:layout_constraintTop_toBottomOf="@+id/rv_upcoming_appointments" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_no_appointments_schedule_title" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_daily_reminders_medicine"
@@ -146,7 +146,9 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/rv_upcoming_appointments"
                 app:layout_constraintTop_toBottomOf="@+id/tv_daily_reminders_title_patient_home"
-                tools:listitem="@layout/daily_reminders_list_item" />
+                tools:listitem="@layout/daily_reminders_list_item">
+
+            </androidx.recyclerview.widget.RecyclerView>
 
             <TextView
                 android:id="@+id/tv_upcoming_appointment_title_patient_home"
@@ -167,11 +169,52 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="-4dp"
                 android:orientation="horizontal"
+                android:visibility="invisible"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/tv_upcoming_appointment_title_patient_home"
                 app:layout_constraintTop_toBottomOf="@+id/tv_upcoming_appointment_title_patient_home"
                 tools:listitem="@layout/upcoming_appointments_patient_home_list_item" />
+
+            <ImageView
+                android:id="@+id/img_empty_upcoming_appointments_state"
+                android:layout_width="0dp"
+                android:layout_height="120dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_upcoming_appointment_title_patient_home"
+                app:srcCompat="@drawable/calendar_state" />
+
+            <TextView
+                android:id="@+id/tv_schedule_empty_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_bold"
+                android:text="Your schedule is empty "
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/img_empty_upcoming_appointments_state" />
+
+            <TextView
+                android:id="@+id/tv_no_appointments_schedule_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:text="There are no appointments scheduled"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_schedule_empty_title" />
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/group_empty_state"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                app:constraint_referenced_ids="tv_schedule_empty_title,img_empty_upcoming_appointments_state,tv_no_appointments_schedule_title"
+                tools:layout_editor_absoluteX="411dp"
+                tools:layout_editor_absoluteY="303dp" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
