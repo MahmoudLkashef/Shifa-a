@@ -600,6 +600,38 @@ class RemoteRepositoryImp @Inject constructor(
             }
         }
 
+    override suspend fun getAppointmentsByDoctorId(doctorId: String): List<Appointment> =
+        suspendCancellableCoroutine { continuation ->
+            val database: FirebaseDatabase = FirebaseDatabase.getInstance()
+            val appointmentsRef: DatabaseReference = database.getReference("Appointments")
+
+            val query = appointmentsRef.orderByChild("doctor/id").equalTo(doctorId)
+
+            val eventListener = object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    val appointments: MutableList<Appointment> = mutableListOf()
+
+                    for (appointmentSnapshot in dataSnapshot.children) {
+                        val appointment = appointmentSnapshot.getValue(Appointment::class.java)
+                        if (appointment != null && appointment.state == "Upcoming") {
+                            appointments.add(appointment)
+                        }
+                    }
+
+                    continuation.resume(appointments)
+                }
+
+                override fun onCancelled(databaseError: DatabaseError) {
+                    continuation.resumeWithException(databaseError.toException())
+                }
+            }
+
+            query.addListenerForSingleValueEvent(eventListener)
+
+            continuation.invokeOnCancellation {
+                query.removeEventListener(eventListener)
+            }
+        }
 
     /**
      * Saves a data object to the Firebase Realtime Database at the specified [reference].

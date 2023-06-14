@@ -38,15 +38,15 @@ object DateUtils {
     fun getUpcoming21Days(): List<CalendarModel> {
         val calendarModelList = mutableListOf<CalendarModel>()
 
-        val dateFormat = SimpleDateFormat("dd MMM", Locale.getDefault())
+        val dateFormat = SimpleDateFormat("dd-MMM-yyyy", Locale.getDefault())
         val calendarModel = Calendar.getInstance()
 
         for (i in 0 until 21) {
             val dayOfMonth = String.format("%02d", calendarModel.get(Calendar.DAY_OF_MONTH))
             val dayOfWeek = SimpleDateFormat("EEE", Locale.getDefault()).format(calendarModel.time)
-            val formattedDate = dateFormat.format(calendarModel.time)
+            val date = dateFormat.format(calendarModel.time)
 
-            val calendarModelItem = CalendarModel(i, dayOfMonth, dayOfWeek)
+            val calendarModelItem = CalendarModel(i, dayOfMonth, dayOfWeek, date)
             calendarModelList.add(calendarModelItem)
 
             calendarModel.add(Calendar.DAY_OF_MONTH, 1)
