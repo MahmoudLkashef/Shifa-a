@@ -8,10 +8,13 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.syncdev.shifaa.R
 import com.syncdev.shifaa.databinding.ActivityPatientBinding
+import com.syncdev.shifaa.utils.Constants
 import dagger.hilt.android.AndroidEntryPoint
+import pub.devrel.easypermissions.AppSettingsDialog
+import pub.devrel.easypermissions.EasyPermissions
 
 @AndroidEntryPoint
-class PatientActivity : AppCompatActivity() {
+class PatientActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks {
 
     private lateinit var binding: ActivityPatientBinding
     private val patientActivityViewModel by viewModels<PatientActivityViewModel>()
@@ -24,6 +27,9 @@ class PatientActivity : AppCompatActivity() {
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragment_container_patient) as NavHostFragment
         val navController = navHostFragment.navController
 
+        //Request n notification permission if SDK = 33 or higher
+        requestPermission()
+
         //Get the firebase user from shared preferences and assign it to UserData.user
         //So we can use it later
         val patientId = patientActivityViewModel.getPatientId()
@@ -33,5 +39,53 @@ class PatientActivity : AppCompatActivity() {
         }
 
         binding.bottomNavPatient.setupWithNavController(navController)
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        EasyPermissions.onRequestPermissionsResult(requestCode,permissions,grantResults,this)
+    }
+
+    private fun requestPermission(){
+        if (Constants.RUNNING_TIRAMISU_OR_LATER){
+            if (!hasNotificationPermission()){
+                requestNotificationPermission()
+            }
+        }
+    }
+
+    private fun hasNotificationPermission() =
+        EasyPermissions.hasPermissions(
+            this,
+            Constants.NOTIFICATION_PERMISSION,
+        )
+
+    private fun requestNotificationPermission(){
+        EasyPermissions.requestPermissions(
+            this,
+            "You need to grant notification permission in order to get notified when you reach your destination.",
+            Constants.NOTIFICATION_REQUEST,
+            Constants.NOTIFICATION_PERMISSION
+        )
+    }
+
+    override fun onPermissionsGranted(requestCode: Int, perms: MutableList<String>) {
+        Log.i("Notification", "onPermissionsGranted: Notification ")
+    }
+
+    override fun onPermissionsDenied(requestCode: Int, perms: MutableList<String>) {
+        when(requestCode){
+            Constants.NOTIFICATION_REQUEST-> {
+                if (EasyPermissions.somePermissionPermanentlyDenied(this,perms)){
+                    AppSettingsDialog.Builder(this).build().show()
+                }else{
+                    requestNotificationPermission()
+                }
+            }
+        }
     }
 }

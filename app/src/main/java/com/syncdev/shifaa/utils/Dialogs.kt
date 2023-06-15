@@ -1,17 +1,13 @@
 package com.syncdev.shifaa.utils
 
 import android.app.AlertDialog
-import android.app.Dialog
 import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.util.Log
 import android.view.LayoutInflater
 import androidx.core.view.isGone
-import androidx.core.view.isVisible
 import com.syncdev.shifaa.databinding.DialogRateDoctorBinding
-import androidx.databinding.DataBindingUtil
-import com.syncdev.shifaa.R
 import com.syncdev.shifaa.databinding.DialogCancelUpcomingAppointmentBinding
 import com.syncdev.shifaa.databinding.DialogCantCancelAppointmentBinding
 import com.syncdev.shifaa.databinding.DialogCantRescheduleAppointmentBinding
