@@ -9,7 +9,15 @@
         android:id="@+id/doctorHomeFragment"
         android:name="com.syncdev.shifaa.ui.doctor.home.DoctorHomeFragment"
         android:label="fragment_doctor_home"
-        tools:layout="@layout/fragment_doctor_home" />
+        tools:layout="@layout/fragment_doctor_home" >
+        <action
+            android:id="@+id/action_doctorHomeFragment_to_patientDetailsFragment"
+            app:destination="@id/patientDetailsFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
+    </fragment>
     <fragment
         android:id="@+id/doctorScheduleFragment"
         android:name="com.syncdev.shifaa.ui.doctor.schedule.DoctorScheduleFragment"
@@ -74,4 +82,22 @@
         android:name="com.syncdev.shifaa.ui.doctor.profile.edit_profile.DoctorEditProfileFragment"
         android:label="DoctorEditProfileFragment"
         tools:layout="@layout/fragment_doctor_edit_profile"/>
+    <fragment
+        android:id="@+id/patientDetailsFragment"
+        android:name="com.syncdev.shifaa.ui.doctor.home.PatientDetailsFragment"
+        android:label="PatientDetailsFragment"
+        tools:layout="@layout/fragment_patient_details">
+        <action
+            android:id="@+id/action_patientDetailsFragment_to_patientMedicalHistoryFragment"
+            app:destination="@id/patientMedicalHistoryFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/patientMedicalHistoryFragment"
+        android:name="com.syncdev.shifaa.ui.doctor.home.PatientMedicalHistoryFragment"
+        android:label="PatientMedicalHistoryFragment"
+        tools:layout="@layout/fragment_patient_medical_history"/>
 </navigation>

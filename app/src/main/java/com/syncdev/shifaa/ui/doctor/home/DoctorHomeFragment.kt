@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.fragment.findNavController
 import com.syncdev.shifaa.R
 import com.syncdev.shifaa.databinding.FragmentDoctorHomeBinding
 
@@ -25,7 +26,9 @@ class DoctorHomeFragment : Fragment() {
             false
         )
 
-
+        binding.tvTodayAppointmentsTitle.setOnClickListener {
+            findNavController().navigate(DoctorHomeFragmentDirections.actionDoctorHomeFragmentToPatientDetailsFragment())
+        }
 
         return binding.root
     }

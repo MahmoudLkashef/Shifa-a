@@ -8,8 +8,8 @@ data class Appointment(
     val date: String,
     val comment: String,
     var state: String? = null,
-    var report: Report? = null
+    var prescription: Prescription? = null
 ){
     // Add a no-argument constructor
-    constructor(): this("", Patient(), Doctor(),"","","","",Report())
+    constructor(): this("", Patient(), Doctor(),"","","","",Prescription())
 }

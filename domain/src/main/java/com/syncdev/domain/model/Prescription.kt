@@ -1,6 +1,6 @@
 package com.syncdev.domain.model
 
-data class Report(
+data class Prescription(
     val id: String,
     val patientId: String,
     val doctorId: String,
