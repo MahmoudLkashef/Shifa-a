@@ -6,10 +6,12 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.util.Log
 import android.view.LayoutInflater
+import android.widget.ArrayAdapter
 import androidx.core.view.isGone
 import com.syncdev.shifaa.databinding.DialogRateDoctorBinding
 import com.google.android.material.chip.Chip
 import com.syncdev.domain.model.Medication
+import com.syncdev.shifaa.R
 import com.syncdev.shifaa.databinding.AddMedicinePrescriptionDialogBinding
 import com.syncdev.shifaa.databinding.DialogCancelUpcomingAppointmentBinding
 import com.syncdev.shifaa.databinding.DialogCantCancelAppointmentBinding
@@ -24,7 +26,7 @@ import kotlinx.coroutines.launch
 
 class Dialogs {
 
-    private val TAG="Dialogs"
+    private val TAG = "Dialogs"
     fun showSignOutDialog(context: Context, onSignOut: () -> Unit) {
         val dialogBinding = DialogSignOutBinding.inflate(LayoutInflater.from(context))
         val dialogView = dialogBinding.root
@@ -64,7 +66,8 @@ class Dialogs {
         dialogBinding.btnSubmitDoctorRating.isEnabled = false // Disable the submit button initially
 
         dialogBinding.rbRatingDoctor.setOnRatingBarChangeListener { _, rating, _ ->
-            dialogBinding.btnSubmitDoctorRating.isEnabled = rating > 0 // Enable the submit button if a rating is selected
+            dialogBinding.btnSubmitDoctorRating.isEnabled =
+                rating > 0 // Enable the submit button if a rating is selected
         }
 
         dialogBinding.btnSubmitDoctorRating.setOnClickListener {
@@ -116,7 +119,8 @@ class Dialogs {
     }
 
     fun showCancelUpcomingAppointmentDialog(context: Context, onCancelAppointment: () -> Unit) {
-        val dialogBinding = DialogCancelUpcomingAppointmentBinding.inflate(LayoutInflater.from(context))
+        val dialogBinding =
+            DialogCancelUpcomingAppointmentBinding.inflate(LayoutInflater.from(context))
         val dialogView = dialogBinding.root
 
         val dialogBuilder = AlertDialog.Builder(context)
@@ -159,7 +163,8 @@ class Dialogs {
     }
 
     fun showCantRescheduleUpcomingAppointmentDialog(context: Context) {
-        val dialogBinding = DialogCantRescheduleAppointmentBinding.inflate(LayoutInflater.from(context))
+        val dialogBinding =
+            DialogCantRescheduleAppointmentBinding.inflate(LayoutInflater.from(context))
         val dialogView = dialogBinding.root
 
         val dialogBuilder = AlertDialog.Builder(context)
@@ -177,21 +182,21 @@ class Dialogs {
         alertDialog.show()
     }
 
-    fun addNewMedicineToPrescriptionDialog(context: Context,viewModel: PrescriptionViewModel){
-        val dialogBinding=AddMedicinePrescriptionDialogBinding.inflate(LayoutInflater.from(context))
-        val dialogView = dialogBinding.root
-        val dialogBuilder = AlertDialog.Builder(context)
-            .setView(dialogView)
-
+    fun addNewMedicineToPrescriptionDialog(context: Context, viewModel: PrescriptionViewModel) {
+        val dialogBinding = AddMedicinePrescriptionDialogBinding.inflate(LayoutInflater.from(context))
+        val dialogBuilder = AlertDialog.Builder(context).setView(dialogBinding.root)
         val alertDialog = dialogBuilder.create()
 
         alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
         val scheduleLabelsList = mutableListOf<String>()
+        val medicineTypeList = context.resources.getStringArray(R.array.medicine_type)
+        val medicineTypeAdapter = ArrayAdapter(context, R.layout.dropdown_item, medicineTypeList)
+        dialogBinding.dropdownMenuMedicineTypeAddDialog.setAdapter(medicineTypeAdapter)
 
         dialogBinding.btnAddMedicineScheduleDialog.setOnClickListener {
-            var scheduleLabel=dialogBinding.etScheduleAddDialog.text.toString()
-            if(scheduleLabel.isNotEmpty()){
+            var scheduleLabel = dialogBinding.etScheduleAddDialog.text.toString()
+            if (scheduleLabel.isNotEmpty()) {
                 scheduleLabelsList.add(scheduleLabel)
                 dialogBinding.chipsGroupScheduleAddDialog.removeAllViews()
                 for (scheduleLabel in scheduleLabelsList) {
@@ -203,25 +208,59 @@ class Dialogs {
             }
         }
 
-        dialogBinding.btnSaveAddDialog.setOnClickListener {
-            val medicineData=Medication(
-                "",
-                dialogBinding.etMedicineNameAddDialog.text.toString(),
-                "",
-                dialogBinding.etDurationAddDialog.text.toString(),
-                dialogBinding.etDoseAddDialog.text.toString(),
-                dialogBinding.etFrequencyAddDialog.text.toString(),
-                scheduleLabelsList.toList()
-            )
-            viewModel.updateMedicationList(medicineData)
-            alertDialog.dismiss()
-        }
-
+        setupSaveButton(dialogBinding, viewModel, medicineTypeList, scheduleLabelsList, alertDialog)
         dialogBinding.btnCancelAddDialog.setOnClickListener {
             alertDialog.dismiss()
         }
-
         alertDialog.show()
+    }
+    private fun setupSaveButton(
+        dialogBinding: AddMedicinePrescriptionDialogBinding,
+        viewModel: PrescriptionViewModel,
+        medicineTypeList: Array<String>,
+        scheduleLabelsList: MutableList<String>,
+        alertDialog: AlertDialog
+    ) {
+        dialogBinding.btnSaveAddDialog.setOnClickListener {
+            if (validInputs(dialogBinding, medicineTypeList)) {
+                val medicineData = Medication(
+                    "",
+                    dialogBinding.etMedicineNameAddDialog.text.toString(),
+                    dialogBinding.dropdownMenuMedicineTypeAddDialog.text.toString(),
+                    dialogBinding.etDurationAddDialog.text.toString(),
+                    dialogBinding.etDoseAddDialog.text.toString(),
+                    dialogBinding.etFrequencyAddDialog.text.toString(),
+                    scheduleLabelsList.toList()
+                )
+                viewModel.updateMedicationList(medicineData)
+                alertDialog.dismiss()
+            }
+        }
+    }
+
+    private fun validInputs(
+        dialogBinding: AddMedicinePrescriptionDialogBinding,
+        medicineTypeList: Array<String>
+    ): Boolean {
+
+        return Validation.validateName(
+            dialogBinding.etMedicineNameAddDialog.text.toString(),
+            dialogBinding.tilMedicineNameAddDialog
+        ) and Validation.validateName(
+            dialogBinding.etDurationAddDialog.text.toString(),
+            dialogBinding.tilDurationAddDialog
+        ) and Validation.validateName(
+            dialogBinding.etDoseAddDialog.text.toString(),
+            dialogBinding.tilDoseAddDialog
+        ) and Validation.validateName(
+            dialogBinding.etFrequencyAddDialog.text.toString(),
+            dialogBinding.tilFrequencyAddDialog
+        ) and Validation.validateMedicineType(
+            dialogBinding.dropdownMenuMedicineTypeAddDialog.text.toString(),
+            medicineTypeList,
+            dialogBinding.tilMedicineTypeAddDialog
+        ) and Validation.validateScheduleLabel(dialogBinding.chipsGroupScheduleAddDialog.childCount,dialogBinding.tilScheduleAddDialog)
+
     }
 
 

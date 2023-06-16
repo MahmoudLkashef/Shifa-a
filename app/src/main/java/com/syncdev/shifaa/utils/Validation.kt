@@ -3,8 +3,8 @@ package com.syncdev.shifaa.utils
 import android.os.Build
 import android.util.Patterns
 import androidx.annotation.RequiresApi
+import com.google.android.material.chip.ChipGroup
 import com.google.android.material.textfield.TextInputLayout
-import com.google.firebase.auth.FirebaseUser
 
 object Validation {
 
@@ -124,6 +124,26 @@ object Validation {
         }
     }
 
+    fun validateMedicineType(medicineType: String, medicineTypeList: Array<out String>,view: TextInputLayout):Boolean{
+        return if (medicineTypeList.isEmpty()){
+            false
+        }else if (!medicineTypeList.contains(medicineType)){
+            view.error = "Select medicine type"
+            false
+        }else{
+            view.error = null
+            true
+        }
+    }
+
+    fun validateScheduleLabel(childCount: Int, view: TextInputLayout):Boolean{
+        return if(childCount >0){
+            true
+        } else {
+            view.error="Please enter schedule label"
+            false
+        }
+    }
     fun validateAboutMe(aboutMe: String, view: TextInputLayout): Boolean {
         return if (aboutMe.isEmpty()) {
             view.error = "Please enter information about yourself"

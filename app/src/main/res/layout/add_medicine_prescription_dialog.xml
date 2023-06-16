@@ -41,13 +41,41 @@
                     android:hint="Medicine Name" />
             </com.google.android.material.textfield.TextInputLayout>
 
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_medicine_type_add_dialog"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="4dp"
+                app:boxStrokeColor="@color/main_color"
+                app:hintEnabled="false"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/til_medicine_name_add_dialog">
+
+                <AutoCompleteTextView
+                    android:id="@+id/dropdown_menu_medicine_type_add_dialog"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/poppins_medium"
+                    android:hint="Medicine Type"
+                    android:inputType="none"
+                    android:textColorHint="@color/gray"
+                    android:textSize="@dimen/text_size_small" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/til_dose_add_dialog"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="100dp"
                 android:layout_marginEnd="4dp"
                 app:boxStrokeColor="@color/main_color"
                 app:hintEnabled="false"
@@ -60,9 +88,9 @@
                     android:id="@+id/et_dose_add_dialog"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:inputType="number"
                     android:fontFamily="@font/poppins_regular"
-                    android:hint="Number of Dose" />
+                    android:hint="Dosage in mg"
+                    android:inputType="number" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -84,9 +112,9 @@
                     android:id="@+id/et_duration_add_dialog"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:inputType="number"
                     android:fontFamily="@font/poppins_regular"
-                    android:hint="Duration" />
+                    android:hint="Duration in Days"
+                    android:inputType="number" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -108,8 +136,9 @@
                     android:id="@+id/et_frequency_add_dialog"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:inputType="number"
                     android:fontFamily="@font/poppins_regular"
-                    android:hint="Frequency" />
+                    android:hint="Frequency Per Day" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
