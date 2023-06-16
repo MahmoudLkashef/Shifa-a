@@ -166,4 +166,14 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <!-- months -->
 
+    <string-array name="medicine_type">
+        <item>Pills</item>
+        <item>Drops</item>
+        <item>Liquid</item>
+        <item>Spray</item>
+        <item>Injection</item>
+        <item>Topical</item>
+        <item>Inhale</item>
+    </string-array>
+
 </resources>

@@ -32,6 +32,7 @@ class PrescriptionAdapter : ListAdapter<Medication, PrescriptionAdapter.Prescrip
                 tvDosePrescription.text="Dose: ${item.dosage} Unit"
                 tvDurationPrescription.text="Duration: ${item.period} Days"
                 tvFrequencyPrescription.text="Frequency: ${item.frequency}"
+                tvMedicineTypePrescription.text="Type: ${item.type}"
                 tvMedicineNamePrescription.text=item.name
             }
         }

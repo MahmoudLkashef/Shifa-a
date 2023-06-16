@@ -16,7 +16,6 @@ class PrescriptionViewModel:ViewModel() {
         val currentList =_medication.value ?: ArrayList()
         currentList.add(medication)
         _medication.postValue(currentList)
-        Log.i(TAG, "updateMedicationList: ${medicationList.value?.size}")
     }
 
 }
