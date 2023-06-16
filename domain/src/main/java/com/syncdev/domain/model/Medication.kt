@@ -5,8 +5,10 @@ data class Medication(
     var name: String,
     var type: String,
     var period: String,
-    var dosage: String
+    var dosage: String,
+    var frequency:String,
+    var scheduleLabels:List<String>
 ){
     // Add a no-argument constructor
-    constructor(): this("","","","","")
+    constructor(): this("","","","","","", emptyList())
 }

@@ -8,11 +8,15 @@ import android.util.Log
 import android.view.LayoutInflater
 import androidx.core.view.isGone
 import com.syncdev.shifaa.databinding.DialogRateDoctorBinding
+import com.google.android.material.chip.Chip
+import com.syncdev.domain.model.Medication
+import com.syncdev.shifaa.databinding.AddMedicinePrescriptionDialogBinding
 import com.syncdev.shifaa.databinding.DialogCancelUpcomingAppointmentBinding
 import com.syncdev.shifaa.databinding.DialogCantCancelAppointmentBinding
 import com.syncdev.shifaa.databinding.DialogCantRescheduleAppointmentBinding
 import com.syncdev.shifaa.databinding.DialogSignOutBinding
 import com.syncdev.shifaa.databinding.EditEmergecyContactsDialogBinding
+import com.syncdev.shifaa.ui.doctor.home.PrescriptionViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -168,6 +172,53 @@ class Dialogs {
 
         dialogBinding.btnCantRescheduleAppointment.setOnClickListener {
             alertDialog.dismiss() // Close the dialog
+        }
+
+        alertDialog.show()
+    }
+
+    fun addNewMedicineToPrescriptionDialog(context: Context,viewModel:PrescriptionViewModel){
+        val dialogBinding=AddMedicinePrescriptionDialogBinding.inflate(LayoutInflater.from(context))
+        val dialogView = dialogBinding.root
+        val dialogBuilder = AlertDialog.Builder(context)
+            .setView(dialogView)
+
+        val alertDialog = dialogBuilder.create()
+
+        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        val scheduleLabelsList = mutableListOf<String>()
+
+        dialogBinding.btnAddMedicineScheduleDialog.setOnClickListener {
+            var scheduleLabel=dialogBinding.etScheduleAddDialog.text.toString()
+            if(scheduleLabel.isNotEmpty()){
+                scheduleLabelsList.add(scheduleLabel)
+                dialogBinding.chipsGroupScheduleAddDialog.removeAllViews()
+                for (scheduleLabel in scheduleLabelsList) {
+                    val chip = Chip(dialogBinding.chipsGroupScheduleAddDialog.context)
+                    chip.text = scheduleLabel
+                    dialogBinding.chipsGroupScheduleAddDialog.addView(chip)
+                }
+                dialogBinding.etScheduleAddDialog.text?.clear()
+            }
+        }
+
+        dialogBinding.btnSaveAddDialog.setOnClickListener {
+            val medicineData=Medication(
+                "",
+                dialogBinding.etMedicineNameAddDialog.text.toString(),
+                "",
+                dialogBinding.etDurationAddDialog.text.toString(),
+                dialogBinding.etDoseAddDialog.text.toString(),
+                dialogBinding.etFrequencyAddDialog.text.toString(),
+                scheduleLabelsList.toList()
+            )
+            viewModel.updateMedicationList(medicineData)
+            alertDialog.dismiss()
+        }
+
+        dialogBinding.btnCancelAddDialog.setOnClickListener {
+            alertDialog.dismiss()
         }
 
         alertDialog.show()

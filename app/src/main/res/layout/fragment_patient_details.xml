@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            tools:context=".ui.doctor.home.PatientDetailsFragment">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageButton
+                    android:id="@+id/btn_back_patient_details"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/image_button_round_corner"
+                    android:elevation="8dp"
+                    android:padding="10dp"
+                    android:src="@drawable/back_arrow_ic"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_patient_details_todays_appointment_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="Patient Details"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/btn_back_patient_details"
+                    app:layout_constraintStart_toEndOf="@+id/btn_back_patient_details"
+                    app:layout_constraintTop_toTopOf="@+id/btn_back_patient_details" />
+
+                <View
+                    android:id="@+id/view_patient_medical_history"
+                    android:layout_width="0dp"
+                    android:layout_height="85dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/custom_square"
+                    android:backgroundTint="#EDECEC"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_patient_comment_patient_details" />
+
+                <ImageView
+                    android:id="@+id/img_medical_card_patient_home"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_marginStart="16dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/view_patient_medical_history"
+                    app:layout_constraintStart_toStartOf="@+id/view_patient_medical_history"
+                    app:layout_constraintTop_toTopOf="@+id/view_patient_medical_history"
+                    app:srcCompat="@drawable/medical_history_report" />
+
+                <TextView
+                    android:id="@+id/tv_patient_medical_history_title_patient_details"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="Patient Medical History"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/img_medical_card_patient_home"
+                    app:layout_constraintStart_toEndOf="@+id/img_medical_card_patient_home"
+                    app:layout_constraintTop_toTopOf="@+id/img_medical_card_patient_home" />
+
+                <TextView
+                    android:id="@+id/tv_patient_comment_title_patient_details"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="32dp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="Patient Comment"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/btn_back_patient_details" />
+
+                <TextView
+                    android:id="@+id/tv_patient_comment_patient_details"
+                    android:layout_width="0dp"
+                    android:layout_height="120dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/custom_outlined_button"
+                    android:padding="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_patient_comment_title_patient_details"
+                    tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vehicula cursus molestie. Sed sagittis elit et ultrices pellentesque. Suspendisse elementum mi erat, a luctus mauris tincidunt in. Sed nec purus risus. Nullam congue odio egestas ex faucibus posuere." />
+
+                <TextView
+                    android:id="@+id/tv_write_prescription_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="Write Prescription"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    app:layout_constraintStart_toStartOf="@+id/view_patient_medical_history"
+                    app:layout_constraintTop_toBottomOf="@+id/view_patient_medical_history" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="5dp"
+                    app:cardUseCompatPadding="true"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_write_prescription_title">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/tv_doctor_name_prescription"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginEnd="8dp"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="Dr. Mohamed Ayman moahmed mohamed"
+                            android:textColor="@color/main_color"
+                            app:layout_constraintEnd_toStartOf="@+id/guideline7"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/tv_doctor_specialty_prescription"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginEnd="8dp"
+                            android:fontFamily="@font/poppins_regular"
+                            android:text="Aduiology"
+                            android:textColor="@color/black"
+                            app:layout_constraintEnd_toStartOf="@+id/guideline7"
+                            app:layout_constraintStart_toStartOf="@+id/tv_doctor_name_prescription"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_doctor_name_prescription" />
+
+                        <TextView
+                            android:id="@+id/tv_doctor_email_prescription"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginEnd="8dp"
+                            android:fontFamily="@font/poppins_regular"
+                            android:text="Mohamed.Aymen@gmail.com"
+                            android:textColor="@color/black"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/guideline7"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.constraintlayout.widget.Guideline
+                            android:id="@+id/guideline7"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            app:layout_constraintGuide_percent="0.5" />
+
+                        <TextView
+                            android:id="@+id/tv_doctor_number_prescription"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:fontFamily="@font/poppins_regular"
+                            android:text="Phone: 01100141225"
+                            android:textColor="@color/black"
+                            app:layout_constraintEnd_toEndOf="@+id/tv_doctor_email_prescription"
+                            app:layout_constraintStart_toStartOf="@+id/tv_doctor_email_prescription"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_doctor_email_prescription" />
+
+                        <TextView
+                            android:id="@+id/tv_prescription_date"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:fontFamily="@font/poppins_regular"
+                            android:text="Date: 20-5-2023"
+                            android:textColor="@color/black"
+                            app:layout_constraintEnd_toEndOf="@+id/tv_doctor_number_prescription"
+                            app:layout_constraintStart_toStartOf="@+id/tv_doctor_number_prescription"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_doctor_number_prescription" />
+
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rv_medicine_prescription"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/view3"
+                            tools:listitem="@layout/prescription_list_item" />
+
+                        <View
+                            android:id="@+id/view3"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_marginStart="4dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="4dp"
+                            android:background="@drawable/custom_outline_rectangle_button"
+                            android:backgroundTint="@color/main_color"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_prescription_date" />
+
+                        <TextView
+                            android:id="@+id/tv_medicine_title_prescription"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="Medicine"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            app:layout_constraintBottom_toBottomOf="@+id/view3"
+                            app:layout_constraintStart_toStartOf="@+id/view3"
+                            app:layout_constraintTop_toTopOf="@+id/view3" />
+
+                        <Button
+                            android:id="@+id/btn_save_prescription"
+                            style="@style/button_main_style"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginBottom="32dp"
+                            android:background="@drawable/custom_filled_rounded_button"
+                            android:text="Save Prescription"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/til_prescription_note" />
+
+                        <TextView
+                            android:id="@+id/tv_click_add_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="16dp"
+                            android:fontFamily="@font/poppins_regular"
+                            android:text="Click + To Add Medicine"
+                            app:layout_constraintBottom_toBottomOf="@+id/view3"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/view3" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/til_prescription_note"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="80dp"
+                            android:layout_marginStart="4dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="4dp"
+                            app:boxStrokeColor="@color/main_color"
+                            app:hintEnabled="false"
+                            app:hintTextColor="@color/main_color"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/rv_medicine_prescription">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/et_prescription_note"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:fontFamily="@font/poppins_regular"
+                                android:gravity="top"
+                                android:hint="Note"
+                                android:textSize="@dimen/text_size_small" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_add_new_medicine_prescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="32dp"
+            android:clickable="true"
+            android:layout_gravity="bottom|end"
+            app:backgroundTint="#D6E5FF"
+            app:srcCompat="@drawable/baseline_add_24" />
+
+    </FrameLayout>
+</layout>
