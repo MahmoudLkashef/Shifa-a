@@ -1,4 +1,4 @@
-package com.syncdev.shifaa.ui.doctor.home
+package com.syncdev.shifaa.ui.doctor.home.prescription
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

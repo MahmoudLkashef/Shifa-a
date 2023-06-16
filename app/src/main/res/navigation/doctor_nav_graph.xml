@@ -97,7 +97,7 @@
         tools:layout="@layout/fragment_doctor_edit_profile"/>
     <fragment
         android:id="@+id/patientDetailsFragment"
-        android:name="com.syncdev.shifaa.ui.doctor.home.PatientDetailsFragment"
+        android:name="com.syncdev.shifaa.ui.doctor.home.prescription.PatientDetailsFragment"
         android:label="PatientDetailsFragment"
         tools:layout="@layout/fragment_patient_details">
         <action
@@ -110,7 +110,7 @@
     </fragment>
     <fragment
         android:id="@+id/patientMedicalHistoryFragment"
-        android:name="com.syncdev.shifaa.ui.doctor.home.PatientMedicalHistoryFragment"
+        android:name="com.syncdev.shifaa.ui.doctor.home.prescription.patient_medical_history.PatientMedicalHistoryFragment"
         android:label="PatientMedicalHistoryFragment"
         tools:layout="@layout/fragment_patient_medical_history"/>
 </navigation>

@@ -1,19 +1,26 @@
 package com.syncdev.shifaa.ui.doctor.home
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
-import androidx.navigation.fragment.findNavController
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import com.syncdev.shifaa.R
 import com.syncdev.shifaa.databinding.FragmentDoctorHomeBinding
+import dagger.hilt.android.AndroidEntryPoint
 
 
+@AndroidEntryPoint
 class DoctorHomeFragment : Fragment() {
     private val TAG="DoctorHomeFragment"
     private lateinit var binding:FragmentDoctorHomeBinding
+    private lateinit var homeAdapter: TodayAppointmentsAdapter
+    private val doctorHomeViewModel by viewModels<DoctorHomeViewModel>()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -26,11 +33,43 @@ class DoctorHomeFragment : Fragment() {
             false
         )
 
-        binding.tvTodayAppointmentsTitle.setOnClickListener {
-            findNavController().navigate(DoctorHomeFragmentDirections.actionDoctorHomeFragmentToPatientDetailsFragment())
+        homeAdapter = TodayAppointmentsAdapter(requireContext())
+
+        doctorHomeViewModel.getDoctor()
+
+        binding.apply {
+            rvTodayAppointment.adapter = homeAdapter
         }
 
+        doctorHomeViewModel.upcomingAppointments.observe(viewLifecycleOwner, Observer {
+            Log.i("HEHE", "getTodayAppointments: ${it.size}")
+            homeAdapter.submitList(it)
+            if (it.isEmpty()){
+                showNoUpcomingAppointments(true)
+            }else showNoUpcomingAppointments(false)
+        })
+
+        doctorHomeViewModel.doctor.observe(viewLifecycleOwner, Observer {doctor->
+            if (doctor != null){
+                val fullName = "Dr. ${doctor?.firstName} " + doctor?.lastName
+                binding.tvDoctorNameHome.text = fullName
+                doctorHomeViewModel.getTodayAppointments()
+            }
+        })
+        
+        homeAdapter.onAppointmentClicked = {appointment ->  
+            
+        }
+
+
         return binding.root
+    }
+
+    private fun showNoUpcomingAppointments(show: Boolean){
+        binding.apply {
+            tvNoUpcomingDoctorHome.isVisible = show
+            ivNoUpcomingDoctorHome.isVisible = show
+        }
     }
 
 }

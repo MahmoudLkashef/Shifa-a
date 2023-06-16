@@ -16,7 +16,7 @@ import com.syncdev.shifaa.databinding.DialogCantCancelAppointmentBinding
 import com.syncdev.shifaa.databinding.DialogCantRescheduleAppointmentBinding
 import com.syncdev.shifaa.databinding.DialogSignOutBinding
 import com.syncdev.shifaa.databinding.EditEmergecyContactsDialogBinding
-import com.syncdev.shifaa.ui.doctor.home.PrescriptionViewModel
+import com.syncdev.shifaa.ui.doctor.home.prescription.PrescriptionViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -177,7 +177,7 @@ class Dialogs {
         alertDialog.show()
     }
 
-    fun addNewMedicineToPrescriptionDialog(context: Context,viewModel:PrescriptionViewModel){
+    fun addNewMedicineToPrescriptionDialog(context: Context,viewModel: PrescriptionViewModel){
         val dialogBinding=AddMedicinePrescriptionDialogBinding.inflate(LayoutInflater.from(context))
         val dialogView = dialogBinding.root
         val dialogBuilder = AlertDialog.Builder(context)

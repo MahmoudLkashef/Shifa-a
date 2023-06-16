@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fillViewport="true"
-            tools:context=".ui.doctor.home.PatientDetailsFragment">
+            tools:context=".ui.doctor.home.prescription.PatientDetailsFragment">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"

@@ -522,6 +522,31 @@ class RemoteRepositoryImp @Inject constructor(
             }
         }
 
+    override suspend fun getAppointmentsByDoctorAndDate(
+        doctorId: String,
+        date: String
+    ): List<Appointment> {
+        return suspendCancellableCoroutine { continuation ->
+            val appointmentsRef = FirebaseDatabase.getInstance().reference.child("Appointments")
+            appointmentsRef.addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    val appointments = mutableListOf<Appointment>()
+                    for (appointmentSnapshot in dataSnapshot.children) {
+                        val appointment = appointmentSnapshot.getValue(Appointment::class.java)
+                        if (appointment != null && appointment.doctor.id == doctorId && appointment.date == date && appointment.state == "Upcoming") {
+                            appointments.add(appointment)
+                        }
+                    }
+                    continuation.resume(appointments)
+                }
+
+                override fun onCancelled(databaseError: DatabaseError) {
+                    continuation.resumeWithException(databaseError.toException())
+                }
+            })
+        }
+    }
+
     override suspend fun cancelAppointmentById(appointmentId: String): Boolean {
         return suspendCancellableCoroutine { continuation ->
             val database: FirebaseDatabase = FirebaseDatabase.getInstance()
