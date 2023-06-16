@@ -7,6 +7,7 @@ import com.syncdev.domain.usecase.auth.doctor.RegisterDoctorUseCase
 import com.syncdev.domain.usecase.auth.patient.LoginPatientUseCase
 import com.syncdev.domain.usecase.auth.patient.RegisterPatientUseCase
 import com.syncdev.domain.usecase.doctor.GetAllDoctorsUseCase
+import com.syncdev.domain.usecase.doctor.SavePrescriptionUseCase
 import com.syncdev.domain.usecase.doctor.SearchDoctorByIdUseCase
 import com.syncdev.domain.usecase.doctor.UpdateDoctorByIdUseCase
 import com.syncdev.domain.usecase.doctor.appointments.CreateNewAppointmentUseCase
@@ -157,5 +158,10 @@ object UseCaseModule {
     @Provides
     fun provideGetUpcomingAppointmentsUseCase(remoteRepository: RemoteRepository): GetUpcomingAppointmentsByDoctorIdUseCase{
         return GetUpcomingAppointmentsByDoctorIdUseCase(remoteRepository)
+    }
+
+    @Provides
+    fun provideSavePrescriptionUseCase(remoteRepository: RemoteRepository):SavePrescriptionUseCase{
+        return SavePrescriptionUseCase(remoteRepository)
     }
 }

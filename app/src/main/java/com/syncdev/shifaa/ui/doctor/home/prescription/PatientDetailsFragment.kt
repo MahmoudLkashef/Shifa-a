@@ -5,14 +5,23 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.size
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
+import com.google.android.material.snackbar.Snackbar
+import com.syncdev.domain.model.Prescription
 import com.syncdev.shifaa.R
 import com.syncdev.shifaa.databinding.FragmentPatientDetailsBinding
+import com.syncdev.shifaa.ui.patient.home.book_appointment.appointment_details.BookAppointmentDetailsFragmentArgs
+import com.syncdev.shifaa.utils.DateUtils
 import com.syncdev.shifaa.utils.Dialogs
+import com.syncdev.shifaa.utils.Validation
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class PatientDetailsFragment : Fragment() {
 
     private val TAG = "PatientDetailsFragment"
@@ -31,6 +40,16 @@ class PatientDetailsFragment : Fragment() {
             false
         )
 
+        val args: PatientDetailsFragmentArgs by navArgs()
+        val appointmentId=args.appointmentId
+        val doctorId=args.doctorId
+        val patientId=args.patientId
+        val patientComment=args.comment
+        val doctorName=args.doctorName
+        val doctorEmail=args.doctorEmail
+        val doctorPhone=args.doctorPhone
+        val doctorSpecialty=args.doctorSpecialty
+
         val prescriptionAdapter = PrescriptionAdapter()
 
         prescriptionViewModel.medicationList.observe(viewLifecycleOwner, Observer {
@@ -38,9 +57,20 @@ class PatientDetailsFragment : Fragment() {
         })
 
 
+        prescriptionViewModel.savedState.observe(viewLifecycleOwner, Observer {saved->
+            if(saved)findNavController().popBackStack()
+        })
+
         binding.apply {
 
-            rvMedicinePrescription.adapter=prescriptionAdapter
+            tvPatientCommentPatientDetails.text=patientComment
+            tvDoctorNamePrescription.text=doctorName
+            tvDoctorNumberPrescription.text=doctorPhone
+            tvDoctorSpecialtyPrescription.text=doctorSpecialty
+            tvDoctorEmailPrescription.text=doctorEmail
+            tvPrescriptionDate.text=DateUtils.getCurrentDateNumber()
+
+            rvMedicinePrescription.adapter = prescriptionAdapter
 
             viewPatientMedicalHistory.setOnClickListener {
                 findNavController().navigate(
@@ -50,8 +80,23 @@ class PatientDetailsFragment : Fragment() {
             }
 
             fabAddNewMedicinePrescription.setOnClickListener {
-                Dialogs().addNewMedicineToPrescriptionDialog(requireContext(),prescriptionViewModel)
+                Dialogs().addNewMedicineToPrescriptionDialog(
+                    requireContext(),
+                    prescriptionViewModel
+                )
+            }
 
+            btnSavePrescription.setOnClickListener {
+                if (validInputs()) {
+                    val prescription = Prescription(
+                        "",
+                        patientId,
+                        doctorId,
+                        prescriptionViewModel.medicationList.value?.toList()!!,
+                        etPrescriptionNote.text.toString()
+                    )
+                    prescriptionViewModel.savePatientPrescription(prescription,appointmentId)
+                }
             }
 
             btnBackPatientDetails.setOnClickListener {
@@ -59,8 +104,27 @@ class PatientDetailsFragment : Fragment() {
             }
         }
 
-
         return binding.root
+    }
+
+    private fun validMedication(): Boolean {
+        return if (binding.rvMedicinePrescription.size > 0) {
+            return true
+        } else {
+            Snackbar.make(
+                requireView(),
+                "Please Add Medicine to Prescription",
+                Snackbar.LENGTH_LONG
+            ).show()
+            false
+        }
+    }
+
+    private fun validInputs(): Boolean {
+        return Validation.validateNote(
+            binding.etPrescriptionNote.text.toString(),
+            binding.tilPrescriptionNote
+        ) and validMedication()
     }
 
 }

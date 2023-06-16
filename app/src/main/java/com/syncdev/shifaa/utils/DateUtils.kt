@@ -114,6 +114,12 @@ object DateUtils {
         return dateFormat.format(currentDate)
     }
 
+    fun getCurrentDateNumber(): String {
+        val dateFormat = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
+        val currentDate = Date()
+        return dateFormat.format(currentDate)
+    }
+
     private fun getCurrentTime(): String {
         val timeFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
         val currentTime = Date()

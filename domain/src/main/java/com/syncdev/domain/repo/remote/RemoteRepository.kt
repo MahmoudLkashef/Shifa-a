@@ -2,10 +2,7 @@ package com.syncdev.domain.repo.remote
 
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseError
-import com.syncdev.domain.model.Appointment
-import com.syncdev.domain.model.AppointmentRequest
-import com.syncdev.domain.model.Patient
-import com.syncdev.domain.model.Doctor
+import com.syncdev.domain.model.*
 
 /**
  * An interface representing a repository for accessing remote data sources.
@@ -81,5 +78,9 @@ interface RemoteRepository {
     suspend fun getAppointmentsByDoctorId(doctorId: String): List<Appointment>
 
     suspend fun getAppointmentsByDoctorAndDate(doctorId: String, date: String): List<Appointment>
+
+    suspend fun savePrescription(prescription: Prescription,appointmentId:String):Boolean
+
+    suspend fun updateAppointmentState(appointmentId: String, newState: String)
 
 }

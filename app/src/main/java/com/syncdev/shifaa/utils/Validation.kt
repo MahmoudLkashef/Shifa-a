@@ -164,4 +164,14 @@ object Validation {
         }
     }
 
+    fun validateNote(note: String, view: TextInputLayout): Boolean {
+        return if (note.isEmpty()) {
+            view.error = "Please enter note"
+            false
+        } else {
+            view.error = null
+            true
+        }
+    }
+
 }
