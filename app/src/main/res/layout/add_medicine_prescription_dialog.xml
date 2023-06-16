@@ -136,6 +136,7 @@
                     android:id="@+id/et_frequency_add_dialog"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:inputType="number"
                     android:fontFamily="@font/poppins_regular"
                     android:hint="Frequency Per Day" />
             </com.google.android.material.textfield.TextInputLayout>
