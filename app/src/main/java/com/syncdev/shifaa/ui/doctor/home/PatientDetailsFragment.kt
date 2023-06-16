@@ -55,6 +55,10 @@ class PatientDetailsFragment : Fragment() {
                 Dialogs().addNewMedicineToPrescriptionDialog(requireContext(),prescriptionViewModel)
 
             }
+
+            btnBackPatientDetails.setOnClickListener {
+                findNavController().popBackStack()
+            }
         }
 
 
