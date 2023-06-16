@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -44,8 +45,13 @@ class AppointmentRequestDetailsFragment : Fragment() {
         val time = args.time
         val date = args.date
         val comment = args.comment
+        val request = args.request
 
         appointmentRequestViewModel.getPatient(patientId)
+
+        if (!request){
+            hideButtons()
+        }
 
         binding.apply {
             tvPtientNameAppointmentRequest.text = patientName
@@ -104,6 +110,13 @@ class AppointmentRequestDetailsFragment : Fragment() {
 
     private fun navigateBack(){
         findNavController().popBackStack()
+    }
+
+    private fun hideButtons(){
+        binding.apply {
+            btnAcceptAppointmentRequest.isVisible = false
+            btnDeclineAppointmentRequest.isVisible = false
+        }
     }
 
 }

@@ -15,6 +15,7 @@ class CalendarAdapter : ListAdapter<CalendarModel, CalendarAdapter.CalendarViewH
     //To make the first item to be selected by default
     //referring to today
     private var selectedItemPosition = 0
+    var onDateClicked: ((CalendarModel) ->Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CalendarViewHolder {
         val binding = CalendarListItemBinding.inflate(
@@ -53,6 +54,8 @@ class CalendarAdapter : ListAdapter<CalendarModel, CalendarAdapter.CalendarViewH
                     selectedItemPosition = adapterPosition
                     notifyItemChanged(previousSelectedItemPosition)
                     notifyItemChanged(selectedItemPosition)
+
+                    onDateClicked?.invoke(item)
                 }
             }
         }
