@@ -18,7 +18,7 @@ import com.syncdev.shifaa.databinding.DialogCantCancelAppointmentBinding
 import com.syncdev.shifaa.databinding.DialogCantRescheduleAppointmentBinding
 import com.syncdev.shifaa.databinding.DialogSignOutBinding
 import com.syncdev.shifaa.databinding.EditEmergecyContactsDialogBinding
-import com.syncdev.shifaa.ui.doctor.home.PrescriptionViewModel
+import com.syncdev.shifaa.ui.doctor.home.prescription.PrescriptionViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay

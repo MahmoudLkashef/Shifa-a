@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isInvisible
+import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -93,12 +95,21 @@ class DoctorScheduleFragment : Fragment() {
 
         doctorScheduleViewModel.filteredAppointments.observe(viewLifecycleOwner, Observer {appointments->
             rescheduleAdapter.submitList(appointments)
+            if (appointments.isEmpty()){
+                showNoData(true)
+            }else {
+                showNoData(false)
+            }
         })
 
-
-
-
         return binding.root
+    }
+
+    private fun showNoData(show: Boolean){
+        binding.apply {
+            tvNoDataSchedule.isVisible = show
+            ivNoDataSchedule.isVisible = show
+        }
     }
 
 

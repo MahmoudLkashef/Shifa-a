@@ -58,12 +58,38 @@
                 android:id="@+id/rv_today_appointment"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
                 android:orientation="horizontal"
+                android:visibility="invisible"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_today_appointments_title"
                 tools:listitem="@layout/todays_appointments_list_item" />
+
+            <ImageView
+                android:id="@+id/iv_no_upcoming_doctor_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:src="@drawable/no_upcopming_doctor_home"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_today_appointments_title" />
+
+            <TextView
+                android:id="@+id/tv_no_upcoming_doctor_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="You have no upcoming appointments"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/iv_no_upcoming_doctor_home" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </layout>

@@ -1,4 +1,4 @@
-package com.syncdev.shifaa.ui.doctor.home
+package com.syncdev.shifaa.ui.doctor.home.prescription
 
 import android.util.Log
 import androidx.lifecycle.LiveData

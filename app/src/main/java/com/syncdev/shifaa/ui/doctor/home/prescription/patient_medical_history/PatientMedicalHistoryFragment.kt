@@ -1,4 +1,4 @@
-package com.syncdev.shifaa.ui.doctor.home
+package com.syncdev.shifaa.ui.doctor.home.prescription.patient_medical_history
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
