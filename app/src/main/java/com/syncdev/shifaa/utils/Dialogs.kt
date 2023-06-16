@@ -182,61 +182,6 @@ class Dialogs {
         alertDialog.show()
     }
 
-    /*fun addNewMedicineToPrescriptionDialog(context: Context, viewModel: PrescriptionViewModel) {
-        val dialogBinding =
-            AddMedicinePrescriptionDialogBinding.inflate(LayoutInflater.from(context))
-        val dialogView = dialogBinding.root
-        val dialogBuilder = AlertDialog.Builder(context)
-            .setView(dialogView)
-
-        val alertDialog = dialogBuilder.create()
-
-        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-
-        val scheduleLabelsList = mutableListOf<String>()
-
-        val medicineTypeList = context.resources.getStringArray(R.array.medicine_type)
-        val medicineTypeAdapter = ArrayAdapter(context, R.layout.dropdown_item, medicineTypeList)
-        dialogBinding.dropdownMenuMedicineTypeAddDialog.setAdapter(medicineTypeAdapter)
-
-        dialogBinding.btnAddMedicineScheduleDialog.setOnClickListener {
-            var scheduleLabel = dialogBinding.etScheduleAddDialog.text.toString()
-            if (scheduleLabel.isNotEmpty()) {
-                scheduleLabelsList.add(scheduleLabel)
-                dialogBinding.chipsGroupScheduleAddDialog.removeAllViews()
-                for (scheduleLabel in scheduleLabelsList) {
-                    val chip = Chip(dialogBinding.chipsGroupScheduleAddDialog.context)
-                    chip.text = scheduleLabel
-                    dialogBinding.chipsGroupScheduleAddDialog.addView(chip)
-                }
-                dialogBinding.etScheduleAddDialog.text?.clear()
-            }
-        }
-
-        dialogBinding.btnSaveAddDialog.setOnClickListener {
-            if (validInputs(dialogBinding, medicineTypeList)) {
-                val medicineData = Medication(
-                    "",
-                    dialogBinding.etMedicineNameAddDialog.text.toString(),
-                    dialogBinding.dropdownMenuMedicineTypeAddDialog.text.toString(),
-                    dialogBinding.etDurationAddDialog.text.toString(),
-                    dialogBinding.etDoseAddDialog.text.toString(),
-                    dialogBinding.etFrequencyAddDialog.text.toString(),
-                    scheduleLabelsList.toList()
-                )
-                viewModel.updateMedicationList(medicineData)
-                alertDialog.dismiss()
-            }
-        }
-
-        dialogBinding.btnCancelAddDialog.setOnClickListener {
-            alertDialog.dismiss()
-        }
-
-        alertDialog.show()
-    }
-*/
-
     fun addNewMedicineToPrescriptionDialog(context: Context, viewModel: PrescriptionViewModel) {
         val dialogBinding = AddMedicinePrescriptionDialogBinding.inflate(LayoutInflater.from(context))
         val dialogBuilder = AlertDialog.Builder(context).setView(dialogBinding.root)

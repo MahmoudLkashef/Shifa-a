@@ -167,7 +167,8 @@
     <!-- months -->
 
     <string-array name="medicine_type">
-        <item>Pills</item>
+        <item>Capsule</item>
+        <item>Tablets</item>
         <item>Drops</item>
         <item>Liquid</item>
         <item>Spray</item>
