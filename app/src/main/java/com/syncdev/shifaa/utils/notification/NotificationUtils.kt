@@ -8,7 +8,7 @@ import com.google.gson.Gson
 import com.syncdev.domain.model.Medication
 
 class NotificationUtils(private val context: Context) {
-    private fun createMedicationReminders(medications: List<Medication>) {
+    fun createMedicationReminders(medications: List<Medication>) {
         medications.forEach { medication ->
 
             // Convert the list of medications to a JSON string

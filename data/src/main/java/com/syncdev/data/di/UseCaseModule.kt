@@ -1,5 +1,6 @@
 package com.syncdev.data.di
 
+import com.syncdev.domain.repo.local.LocalRepository
 import com.syncdev.domain.repo.remote.RemoteRepository
 import com.syncdev.domain.usecase.auth.SignOutUseCase
 import com.syncdev.domain.usecase.auth.doctor.LoginDoctorUseCase
@@ -12,6 +13,7 @@ import com.syncdev.domain.usecase.doctor.appointments.GetAppointmentsByDoctorIdU
 import com.syncdev.domain.usecase.doctor.appointments.GetCompletedAppointmentsByDoctorIdUseCase
 import com.syncdev.domain.usecase.doctor.appointments.GetUpcomingAppointmentsByDoctorIdUseCase
 import com.syncdev.domain.usecase.doctor.appointments.UpdatePatientChronicDiseasesUseCase
+import com.syncdev.domain.usecase.patient.InsertScheduledMedicationsUseCase
 import com.syncdev.domain.usecase.patient.SearchPatientByIdUseCase
 import com.syncdev.domain.usecase.patient.appointment_requests.CreateAppointmentRequestUseCase
 import com.syncdev.domain.usecase.patient.appointment_requests.DeleteAppointmentRequestUseCase
@@ -188,5 +190,10 @@ object UseCaseModule {
     @Provides
     fun provideGetCompletedAppointmentsByPatientIdUseCase(remoteRepository: RemoteRepository): GetCompletedAppointmentsByPatientIdUseCase{
         return GetCompletedAppointmentsByPatientIdUseCase(remoteRepository)
+    }
+
+    @Provides
+    fun provideInsertScheduledMedicationsUseCase(localRepository: LocalRepository): InsertScheduledMedicationsUseCase{
+        return InsertScheduledMedicationsUseCase(localRepository)
     }
 }
