@@ -1,6 +1,5 @@
 package com.syncdev.shifaa.ui.doctor.home.prescription
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -28,9 +27,13 @@ class PrescriptionViewModel @Inject constructor(private val savePrescriptionUseC
         _medication.postValue(currentList)
     }
 
-    fun savePatientPrescription(prescription: Prescription, appointmentId: String) {
+    fun savePatientPrescription(
+        prescription: Prescription,
+        appointmentId: String,
+        patientId: String
+    ) {
         viewModelScope.launch {
-            _savedState.postValue(savePrescriptionUseCase.invoke(prescription, appointmentId))
+            _savedState.postValue(savePrescriptionUseCase.invoke(prescription, appointmentId,patientId))
         }
     }
 

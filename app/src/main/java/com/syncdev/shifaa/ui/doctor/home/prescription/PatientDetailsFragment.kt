@@ -15,7 +15,6 @@ import com.google.android.material.snackbar.Snackbar
 import com.syncdev.domain.model.Prescription
 import com.syncdev.shifaa.R
 import com.syncdev.shifaa.databinding.FragmentPatientDetailsBinding
-import com.syncdev.shifaa.ui.patient.home.book_appointment.appointment_details.BookAppointmentDetailsFragmentArgs
 import com.syncdev.shifaa.utils.DateUtils
 import com.syncdev.shifaa.utils.Dialogs
 import com.syncdev.shifaa.utils.Validation
@@ -75,7 +74,7 @@ class PatientDetailsFragment : Fragment() {
             viewPatientMedicalHistory.setOnClickListener {
                 findNavController().navigate(
                     PatientDetailsFragmentDirections
-                        .actionPatientDetailsFragmentToPatientMedicalHistoryFragment()
+                        .actionPatientDetailsFragmentToPatientMedicalHistoryFragment(patientId)
                 )
             }
 
@@ -95,7 +94,7 @@ class PatientDetailsFragment : Fragment() {
                         prescriptionViewModel.medicationList.value?.toList()!!,
                         etPrescriptionNote.text.toString()
                     )
-                    prescriptionViewModel.savePatientPrescription(prescription,appointmentId)
+                    prescriptionViewModel.savePatientPrescription(prescription,appointmentId,patientId)
                 }
             }
 

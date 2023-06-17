@@ -208,8 +208,12 @@ class Dialogs {
         //To make the background of the dialog transparent and show the rounded corners
         alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
+        val bloodTypesList = context.resources.getStringArray(R.array.blood_types)
+        val medicineTypeAdapter = ArrayAdapter(context, R.layout.dropdown_item, bloodTypesList)
+        dialogBinding.dropdownMenuBloodTypeMedicalCardUpdateDialog.setAdapter(medicineTypeAdapter)
+
         dialogBinding.btnSaveMedicalCardUpdateDialog.setOnClickListener {
-            val bloodType = dialogBinding.etBloodTypeMedicalCardUpdateDialog.text.toString()
+            val bloodType = dialogBinding.dropdownMenuBloodTypeMedicalCardUpdateDialog.text.toString()
             val height = dialogBinding.etHeightMedicalCardUpdateDialog.text.toString()
             val weight = dialogBinding.etWeightMedicalCardUpdateDialog.text.toString()
             onSaveClicked.invoke(bloodType, height, weight)

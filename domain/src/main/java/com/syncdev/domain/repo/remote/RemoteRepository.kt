@@ -79,7 +79,7 @@ interface RemoteRepository {
 
     suspend fun getAppointmentsByDoctorAndDate(doctorId: String, date: String): List<Appointment>
 
-    suspend fun savePrescription(prescription: Prescription,appointmentId:String):Boolean
+    suspend fun savePrescription(prescription: Prescription,appointmentId:String,patientId: String):Boolean
 
     suspend fun updateAppointmentState(appointmentId: String, newState: String)
 
@@ -87,4 +87,9 @@ interface RemoteRepository {
 
     suspend fun getCompletedAppointmentsByPatientId(doctorId: String): List<Appointment>
 
+    suspend fun getPatientMedicalHistory(patientId:String,callback: (MedicalHistory?) -> Unit)
+
+    suspend fun updatePatientMedicalHistory(patientId: String,medicalHistory: MedicalHistory):Boolean
+
+    suspend fun updatePatientChronicDiseases(patientId: String,chronicDiseases:List<String>):Boolean
 }

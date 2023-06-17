@@ -6,14 +6,12 @@ import com.syncdev.domain.usecase.auth.doctor.LoginDoctorUseCase
 import com.syncdev.domain.usecase.auth.doctor.RegisterDoctorUseCase
 import com.syncdev.domain.usecase.auth.patient.LoginPatientUseCase
 import com.syncdev.domain.usecase.auth.patient.RegisterPatientUseCase
-import com.syncdev.domain.usecase.doctor.GetAllDoctorsUseCase
-import com.syncdev.domain.usecase.doctor.SavePrescriptionUseCase
-import com.syncdev.domain.usecase.doctor.SearchDoctorByIdUseCase
-import com.syncdev.domain.usecase.doctor.UpdateDoctorByIdUseCase
+import com.syncdev.domain.usecase.doctor.*
 import com.syncdev.domain.usecase.doctor.appointments.CreateNewAppointmentUseCase
 import com.syncdev.domain.usecase.doctor.appointments.GetAppointmentsByDoctorIdUseCase
 import com.syncdev.domain.usecase.doctor.appointments.GetCompletedAppointmentsByDoctorIdUseCase
 import com.syncdev.domain.usecase.doctor.appointments.GetUpcomingAppointmentsByDoctorIdUseCase
+import com.syncdev.domain.usecase.doctor.appointments.UpdatePatientChronicDiseasesUseCase
 import com.syncdev.domain.usecase.patient.SearchPatientByIdUseCase
 import com.syncdev.domain.usecase.patient.appointment_requests.CreateAppointmentRequestUseCase
 import com.syncdev.domain.usecase.patient.appointment_requests.DeleteAppointmentRequestUseCase
@@ -165,6 +163,21 @@ object UseCaseModule {
     @Provides
     fun provideSavePrescriptionUseCase(remoteRepository: RemoteRepository):SavePrescriptionUseCase{
         return SavePrescriptionUseCase(remoteRepository)
+    }
+
+    @Provides
+    fun provideGetPatientMedicalHistoryUseCase(remoteRepository: RemoteRepository):GetPatientMedicalHistoryUseCase{
+        return GetPatientMedicalHistoryUseCase(remoteRepository)
+    }
+
+    @Provides
+    fun updatePatientMedicalHistoryUseCase(remoteRepository: RemoteRepository):UpdatePatientMedicalHistoryUseCase{
+        return UpdatePatientMedicalHistoryUseCase(remoteRepository)
+    }
+
+    @Provides
+    fun updatePatientChronicDiseasesUseCase(remoteRepository: RemoteRepository):UpdatePatientChronicDiseasesUseCase{
+        return UpdatePatientChronicDiseasesUseCase(remoteRepository)
     }
 
     @Provides
