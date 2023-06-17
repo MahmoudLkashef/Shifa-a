@@ -75,6 +75,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:src="@drawable/no_upcopming_doctor_home"
+                android:visibility="visible"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_today_appointments_title" />
@@ -87,6 +88,7 @@
                 android:fontFamily="@font/poppins_medium"
                 android:text="You have no upcoming appointments"
                 android:textColor="@color/black"
+                android:visibility="visible"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/iv_no_upcoming_doctor_home" />

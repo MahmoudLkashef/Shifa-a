@@ -11,6 +11,10 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import com.syncdev.domain.model.Appointment
+import com.syncdev.domain.model.Doctor
+import com.syncdev.domain.model.Patient
+import com.syncdev.domain.model.Prescription
 import com.syncdev.shifaa.R
 import com.syncdev.shifaa.databinding.FragmentDoctorHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -43,7 +47,6 @@ class DoctorHomeFragment : Fragment() {
         }
 
         doctorHomeViewModel.upcomingAppointments.observe(viewLifecycleOwner, Observer {
-            Log.i("HEHE", "getTodayAppointments: ${it.size}")
             homeAdapter.submitList(it)
             if (it.isEmpty()) {
                 showNoUpcomingAppointments(true)
@@ -59,29 +62,19 @@ class DoctorHomeFragment : Fragment() {
         })
 
         homeAdapter.onAppointmentClicked = { appointment ->
-     /*       findNavController().navigate(
-                DoctorHomeFragmentDirections.actionDoctorHomeFragmentToPatientDetailsFragment(
-                    appointment.patient.id.toString(),
-                    appointment.doctor.id.toString()
-                )
-            )*/
+                   findNavController().navigate(
+                       DoctorHomeFragmentDirections.actionDoctorHomeFragmentToPatientDetailsFragment(
+                           appointment.id.toString(),
+                           appointment.patient.id.toString(),
+                           appointment.doctor.id.toString(),
+                           appointment.comment,
+                           "${appointment.doctor.firstName} ${appointment.doctor.lastName}",
+                           appointment.doctor.email,
+                           appointment.doctor.phoneNumber,
+                           appointment.doctor.speciality
+                       )
+                   )
         }
-
-        binding.tvTodayAppointmentsTitle.setOnClickListener{
-            findNavController().navigate(
-                DoctorHomeFragmentDirections.actionDoctorHomeFragmentToPatientDetailsFragment(
-                    "-NY43R493WjPuvsKHrKi",
-                    "Q2SL9cS6HoMlMOvxdIbxxvbS8ed2",
-                    "Bm8RUQ6ybRRhFMdJCA56baIm5pI3",
-                    "Hello from comment",
-                    "Dr. Ahmed Mohamed",
-                    "Ahmed.mohamed@gmail.com",
-                    "01100251232",
-                    "Audiology"
-                )
-            )
-        }
-
 
         return binding.root
     }
@@ -90,6 +83,7 @@ class DoctorHomeFragment : Fragment() {
         binding.apply {
             tvNoUpcomingDoctorHome.isVisible = show
             ivNoUpcomingDoctorHome.isVisible = show
+            rvTodayAppointment.isVisible=!show
         }
     }
 
