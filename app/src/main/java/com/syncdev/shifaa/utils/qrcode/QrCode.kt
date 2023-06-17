@@ -2,6 +2,7 @@ package com.syncdev.shifaa.utils.qrcode
 
 import android.graphics.Bitmap
 import com.google.gson.Gson
+import com.google.gson.JsonObject
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.WriterException
 import com.journeyapps.barcodescanner.BarcodeEncoder
@@ -9,15 +10,17 @@ import com.syncdev.domain.model.Medication
 
 object QrCode {
 
-    fun serializeMedicines(medicines: List<Medication>): String {
+    /*    fun serializeMedicines(medicines: List<Medication>): String {
+            val gson = Gson()
+            return gson.toJson(medicines)
+        }*/
+    fun serializeMedicines(medicines: List<Medication>, type: String): String {
         val gson = Gson()
-        return gson.toJson(medicines)
-    }
+        val jsonObject = JsonObject()
+        jsonObject.addProperty("type", type)
+        jsonObject.add("medications", gson.toJsonTree(medicines))
 
-
-    fun deserializeMedications(jsonString: String): List<Medication> {
-        val gson = Gson()
-        return gson.fromJson(jsonString, Array<Medication>::class.java).toList()
+        return jsonObject.toString()
     }
 
     fun generateQRCode(data: String): Bitmap? {
