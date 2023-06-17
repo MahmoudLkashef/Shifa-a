@@ -1,6 +1,8 @@
 package com.syncdev.data.repo.remote
 
+import android.os.Build
 import android.util.Log
+import androidx.annotation.RequiresApi
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DataSnapshot
@@ -18,6 +20,9 @@ import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.Period
+import java.time.format.DateTimeFormatter
 import java.util.Date
 import java.util.Locale
 import javax.inject.Inject
@@ -553,13 +558,18 @@ class RemoteRepositoryImp @Inject constructor(
             }
         }
 
-    override suspend fun savePrescription(prescription: Prescription, appointmentId: String):Boolean {
+    override suspend fun savePrescription(
+        prescription: Prescription,
+        appointmentId: String,
+        patientId: String
+    ): Boolean {
         return try {
             val database: FirebaseDatabase = FirebaseDatabase.getInstance()
             val appointmentsRef: DatabaseReference = database.getReference("Appointments")
-            val prescriptionsRef=database.getReference("Prescriptions")
+            val prescriptionsRef = database.getReference("Prescriptions")
             val prescriptionRef =
                 appointmentsRef.child(appointmentId).child("prescription")
+            val patientRef=database.getReference("Patients").child(patientId).child("prescription")
 
             // Add unique key to prescription
             prescription.id = prescriptionRef.push().key
@@ -570,11 +580,14 @@ class RemoteRepositoryImp @Inject constructor(
             // Create prescriptions root and append prescription to it
             prescriptionsRef.child(prescription.id.toString()).setValue(prescriptionMap)
 
+            // Append prescription to patient
+            patientRef.setValue(prescriptionMap)
+
             // Set the value of the prescription reference with the prescription map
             prescriptionRef.setValue(prescriptionMap)
 
             // Update appointment state
-            updateAppointmentState(appointmentId,"Completed")
+            updateAppointmentState(appointmentId, "Completed")
 
             true
 
@@ -594,6 +607,128 @@ class RemoteRepositoryImp @Inject constructor(
             appointmentRef.setValue(newState)
         } catch (e: Exception) {
             Log.i(TAG, "updateAppointmentState: ${e.message}")
+        }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    override suspend fun getPatientMedicalHistory(
+        patientId: String,
+        callback: (MedicalHistory?) -> Unit
+    ) {
+        val database: FirebaseDatabase = FirebaseDatabase.getInstance()
+
+        val medicalHistoryRef = database.getReference("PatientMedicalHistory/$patientId")
+
+        var patientAge = ""
+        searchPatientById(patientId) {
+            it?.let {
+                patientAge = calculateAge(it.age).toString()
+            }
+        }
+
+        medicalHistoryRef.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                val medicalHistory = dataSnapshot.getValue(MedicalHistory::class.java)
+                medicalHistory?.age = patientAge
+
+                if (medicalHistory == null) {
+                    val newMedicalHistory = MedicalHistory(
+                        bloodType = "",
+                        age = patientAge,
+                        height = "",
+                        weight = "",
+                        chronicDiseases = emptyList(),
+                        medication = emptyList<Medication>()
+                    )
+
+                    medicalHistoryRef.setValue(newMedicalHistory)
+                        .addOnSuccessListener {
+                            callback(newMedicalHistory)
+                        }
+                        .addOnFailureListener { exception ->
+                            Log.e(TAG, "Failed to create medical history: ${exception.message}")
+                            callback(null)
+                        }
+                } else {
+                    callback(medicalHistory)
+                }
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                Log.i(TAG, "onCancelled: ${databaseError.message}")
+                callback(null)
+            }
+        })
+
+    }
+
+    override suspend fun updatePatientMedicalHistory(
+        patientId: String,
+        medicalHistory: MedicalHistory
+    ): Boolean {
+        return try {
+            val database: FirebaseDatabase = FirebaseDatabase.getInstance()
+
+            val medicalHistoryRef = database.getReference("PatientMedicalHistory/$patientId")
+
+            val updates: MutableMap<String, Any?> = HashMap()
+
+            if (!medicalHistory.bloodType.isNullOrEmpty()) {
+                updates["bloodType"] = medicalHistory.bloodType
+            }
+
+            if (!medicalHistory.height.isNullOrEmpty()) {
+                updates["height"] = medicalHistory.height
+            }
+
+            if (!medicalHistory.weight.isNullOrEmpty()) {
+                updates["weight"] = medicalHistory.weight
+            }
+
+            val completable = CompletableDeferred<Boolean>()
+
+            medicalHistoryRef.updateChildren(updates)
+                .addOnSuccessListener {
+                    // Success
+                    Log.i(TAG, "Patient medical history updated successfully")
+                    completable.complete(true)
+                }
+                .addOnFailureListener { e ->
+                    // Error
+                    Log.e(TAG, "Failed to update patient medical history: ${e.message}")
+                    completable.complete(false)
+                }
+
+            completable.await()
+        } catch (e: Exception) {
+            Log.e(TAG, "updatePatientMedicalHistory: ${e.message}")
+            false
+        }
+    }
+
+
+    override suspend fun updatePatientChronicDiseases(
+        patientId: String,
+        chronicDiseases: List<String>
+    ): Boolean {
+        return try {
+            val database: FirebaseDatabase = FirebaseDatabase.getInstance()
+
+            val medicalHistoryRef = database.getReference("PatientMedicalHistory/$patientId")
+
+            return suspendCancellableCoroutine { continuation ->
+                medicalHistoryRef.child("chronicDiseases").setValue(chronicDiseases)
+                    .addOnSuccessListener {
+                        continuation.resume(true)
+                    }
+                    .addOnFailureListener { e ->
+                        Log.e(TAG, "Failed to update chronic diseases: ${e.message}")
+                        continuation.resume(false)
+                    }
+            }
+        } catch (e: Exception) {
+            Log.i(TAG, "updatePatientChronicDiseases: ${e.message}")
+            false
         }
     }
 
@@ -794,5 +929,14 @@ class RemoteRepositoryImp @Inject constructor(
         return timeFormat.format(currentTime)
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun calculateAge(dateOfBirth: String): Int? {
+        val formatter = DateTimeFormatter.ofPattern("d-M-yyyy")
+        val currentDate = LocalDate.now()
+        val birthDate = LocalDate.parse(dateOfBirth, formatter)
+
+        val period = Period.between(birthDate, currentDate)
+        return period.years
+    }
 
 }

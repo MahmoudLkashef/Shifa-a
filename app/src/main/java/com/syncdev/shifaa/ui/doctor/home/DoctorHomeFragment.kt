@@ -71,8 +71,8 @@ class DoctorHomeFragment : Fragment() {
             findNavController().navigate(
                 DoctorHomeFragmentDirections.actionDoctorHomeFragmentToPatientDetailsFragment(
                     "-NY43R493WjPuvsKHrKi",
-                    "1234",
-                    "321",
+                    "Q2SL9cS6HoMlMOvxdIbxxvbS8ed2",
+                    "Bm8RUQ6ybRRhFMdJCA56baIm5pI3",
                     "Hello from comment",
                     "Dr. Ahmed Mohamed",
                     "Ahmed.mohamed@gmail.com",

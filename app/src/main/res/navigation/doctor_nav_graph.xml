@@ -136,5 +136,9 @@
         android:id="@+id/patientMedicalHistoryFragment"
         android:name="com.syncdev.shifaa.ui.doctor.home.prescription.patient_medical_history.PatientMedicalHistoryFragment"
         android:label="PatientMedicalHistoryFragment"
-        tools:layout="@layout/fragment_patient_medical_history" />
+        tools:layout="@layout/fragment_patient_medical_history">
+        <argument
+            android:name="patientId"
+            app:argType="string" />
+    </fragment>
 </navigation>

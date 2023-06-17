@@ -34,7 +34,7 @@
             android:layout_height="24dp"
             android:layout_marginTop="16dp"
             android:fontFamily="@font/poppins_medium"
-            android:text="Audiology"
+            android:text="500 mg"
             android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/tv_medicine_name_patient_details"
