@@ -9,6 +9,7 @@ import com.syncdev.domain.usecase.auth.patient.RegisterPatientUseCase
 import com.syncdev.domain.usecase.doctor.*
 import com.syncdev.domain.usecase.doctor.appointments.CreateNewAppointmentUseCase
 import com.syncdev.domain.usecase.doctor.appointments.GetAppointmentsByDoctorIdUseCase
+import com.syncdev.domain.usecase.doctor.appointments.GetCompletedAppointmentsByDoctorIdUseCase
 import com.syncdev.domain.usecase.doctor.appointments.GetUpcomingAppointmentsByDoctorIdUseCase
 import com.syncdev.domain.usecase.doctor.appointments.UpdatePatientChronicDiseasesUseCase
 import com.syncdev.domain.usecase.patient.SearchPatientByIdUseCase
@@ -19,6 +20,7 @@ import com.syncdev.domain.usecase.patient.appointment_requests.GetPreservedAppoi
 import com.syncdev.domain.usecase.patient.appointments.CancelAppointmentByIdUseCase
 import com.syncdev.domain.usecase.patient.appointments.GetAppointmentsByPatientAndState
 import com.syncdev.domain.usecase.patient.UpdatePatientByIdUseCase
+import com.syncdev.domain.usecase.patient.appointments.GetCompletedAppointmentsByPatientIdUseCase
 import com.syncdev.domain.usecase.patient.appointments.RescheduleAppointmentUseCase
 import com.syncdev.domain.usecase.patient.appointments.UpdateDoctorRatingUseCase
 import dagger.Module
@@ -176,5 +178,15 @@ object UseCaseModule {
     @Provides
     fun updatePatientChronicDiseasesUseCase(remoteRepository: RemoteRepository):UpdatePatientChronicDiseasesUseCase{
         return UpdatePatientChronicDiseasesUseCase(remoteRepository)
+    }
+
+    @Provides
+    fun provideGetCompletedAppointmentsByDoctorIdUseCase(remoteRepository: RemoteRepository): GetCompletedAppointmentsByDoctorIdUseCase{
+        return GetCompletedAppointmentsByDoctorIdUseCase(remoteRepository)
+    }
+
+    @Provides
+    fun provideGetCompletedAppointmentsByPatientIdUseCase(remoteRepository: RemoteRepository): GetCompletedAppointmentsByPatientIdUseCase{
+        return GetCompletedAppointmentsByPatientIdUseCase(remoteRepository)
     }
 }

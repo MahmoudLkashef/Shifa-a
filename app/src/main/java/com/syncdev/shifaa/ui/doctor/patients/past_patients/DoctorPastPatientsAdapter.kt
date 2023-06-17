@@ -1,14 +1,19 @@
 package com.syncdev.shifaa.ui.doctor.patients.past_patients
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.syncdev.domain.model.Appointment
+import com.syncdev.domain.model.Patient
+import com.syncdev.shifaa.R
 import com.syncdev.shifaa.databinding.PastPatientListItemBinding
 
-class DoctorPastPatientsAdapter :
-    ListAdapter<PatientTest, DoctorPastPatientsAdapter.DoctorPastPatientsViewHolder>(
+class DoctorPastPatientsAdapter(private val context: Context) :
+    ListAdapter<Appointment, DoctorPastPatientsAdapter.DoctorPastPatientsViewHolder>(
         DiffCallback()
     ) {
 
@@ -19,7 +24,7 @@ class DoctorPastPatientsAdapter :
     ): DoctorPastPatientsViewHolder {
         val binding =
         PastPatientListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return DoctorPastPatientsViewHolder(binding)
+        return DoctorPastPatientsViewHolder(binding,context)
     }
 
     override fun onBindViewHolder(holder: DoctorPastPatientsViewHolder, position: Int) {
@@ -27,13 +32,24 @@ class DoctorPastPatientsAdapter :
         holder.bind(item)
     }
 
-    class DoctorPastPatientsViewHolder(private val binding: PastPatientListItemBinding) :
+    class DoctorPastPatientsViewHolder(
+        private val binding: PastPatientListItemBinding,
+        private val context: Context
+        ) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: PatientTest) {
+        fun bind(appointment: Appointment) {
+            val fullName = "${appointment.patient.firstName} " + appointment.patient.lastName
             binding.apply {
-                tvPastPatientName.text = item.name
-                tvPastPatientApptDate.text = item.date
-                ivPastPatient.setImageResource(item.profilePic)
+                tvPastPatientName.text = fullName
+                tvPastPatientApptDate.text = appointment.date
+                when(appointment.patient.gender){
+                    "Male" -> ivPastPatient.setImageDrawable(
+                        ContextCompat.getDrawable(context, R.drawable.patient_male)
+                    )
+                    "Female" -> ivPastPatient.setImageDrawable(
+                        ContextCompat.getDrawable(context, R.drawable.patient_female)
+                    )
+                }
             }
         }
     }
@@ -41,12 +57,12 @@ class DoctorPastPatientsAdapter :
 }
 
 
-class DiffCallback : DiffUtil.ItemCallback<PatientTest>() {
-    override fun areItemsTheSame(oldItem: PatientTest, newItem: PatientTest): Boolean {
+class DiffCallback : DiffUtil.ItemCallback<Appointment>() {
+    override fun areItemsTheSame(oldItem: Appointment, newItem: Appointment): Boolean {
         return oldItem.id == newItem.id
     }
 
-    override fun areContentsTheSame(oldItem: PatientTest, newItem: PatientTest): Boolean {
+    override fun areContentsTheSame(oldItem: Appointment, newItem: Appointment): Boolean {
         return oldItem == newItem
     }
 }
