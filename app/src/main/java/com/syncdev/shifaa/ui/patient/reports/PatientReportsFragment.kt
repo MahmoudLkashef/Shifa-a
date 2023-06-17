@@ -1,18 +1,31 @@
 package com.syncdev.shifaa.ui.patient.reports
 
+import android.app.Dialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import com.syncdev.shifaa.R
 import com.syncdev.shifaa.databinding.FragmentPatientReportsBinding
+import com.syncdev.shifaa.utils.Dialogs
+import com.syncdev.shifaa.utils.qrcode.QrCode
+import dagger.hilt.android.AndroidEntryPoint
 
 
+@AndroidEntryPoint
 class PatientReportsFragment : Fragment() {
+
     private val TAG="PatientReportsFragment"
     private lateinit var binding:FragmentPatientReportsBinding
+    private lateinit var reportsAdapter: PatientReportsAdapter
+    private val reportsViewModel by viewModels<PatientReportsViewModel>()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -25,8 +38,40 @@ class PatientReportsFragment : Fragment() {
             false
         )
 
+        reportsAdapter = PatientReportsAdapter()
+
+        reportsViewModel.getReports()
+
+        binding.apply {
+            rvPatientReports.adapter = reportsAdapter
+        }
+
+        reportsViewModel.reports.observe(viewLifecycleOwner, Observer {
+            reportsAdapter.submitList(it)
+            if (it.isEmpty()){
+                showNoReports(true)
+            }else showNoReports(false)
+        })
+
+        reportsAdapter.onDispenseMedicineClicked = {medications ->
+            val serializedMedicines = QrCode.serializeMedicines(medications)
+            val qrCode = QrCode.generateQRCode(serializedMedicines)
+            if (qrCode != null) {
+                Dialogs().showQrCodeDialog(requireContext(),qrCode){
+                    Toast.makeText(requireContext(),"Done",Toast.LENGTH_LONG).show()
+                }
+            }
+        }
+
+
         return binding.root
     }
 
+    private fun showNoReports(show: Boolean){
+        binding.apply {
+            ivNoReportsFound.isVisible = show
+            tvNoReportsFound.isVisible = show
+        }
+    }
 
 }

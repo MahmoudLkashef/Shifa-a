@@ -1,62 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fillViewport="true"
-    tools:context=".ui.patient.medicine.PatientMedicineFragment">
+    xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    </data>
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        tools:context=".ui.patient.medicine.PatientMedicineFragment">
 
-        <TextView
-            android:id="@+id/tv_medications_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:fontFamily="@font/poppins_bold"
-            android:text="Medications"
-            android:textColor="@color/black"
-            android:textSize="24sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_calendar_medication"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:orientation="horizontal"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_medications_title"
-            tools:listitem="@layout/calendar_list_item" />
+            android:layout_height="wrap_content">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_medications"
-            android:layout_width="409dp"
-            android:layout_height="537dp"
-            android:background="@color/ternary_color"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rv_calendar_medication"
-            tools:listitem="@layout/medication_list_item" />
+            <TextView
+                android:id="@+id/tv_medications_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="Medications"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <View
-            android:id="@+id/view_horizontal_medication"
-            android:layout_width="0dp"
-            android:layout_height="2dp"
-            android:background="#AEB0B1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/rv_calendar_medication"
-            app:layout_constraintTop_toBottomOf="@+id/rv_calendar_medication" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_calendar_medication"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_medications_title"
+                tools:listitem="@layout/calendar_list_item" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_medications"
+                android:layout_width="409dp"
+                android:layout_height="537dp"
+                android:background="@color/ternary_color"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rv_calendar_medication"
+                tools:listitem="@layout/medication_list_item" />
+
+            <View
+                android:id="@+id/view_horizontal_medication"
+                android:layout_width="0dp"
+                android:layout_height="2dp"
+                android:background="#AEB0B1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/rv_calendar_medication"
+                app:layout_constraintTop_toBottomOf="@+id/rv_calendar_medication" />
+
+            <ImageView
+                android:id="@+id/tv_no_medicine"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-50dp"
+                android:src="@drawable/no_medicine"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rv_calendar_medication" />
+
+            <TextView
+                android:id="@+id/iv_no_medicine"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:gravity="center"
+                android:text="You don't have medicine sheduled for this day"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_no_medicine"
+                app:layout_constraintEnd_toEndOf="@+id/tv_no_medicine"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="@+id/tv_no_medicine" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>
