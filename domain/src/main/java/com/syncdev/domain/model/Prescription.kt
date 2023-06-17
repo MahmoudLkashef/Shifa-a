@@ -1,9 +1,9 @@
 package com.syncdev.domain.model
 
 data class Prescription(
-    val id: String? = null,
-    val patientId: String,
-    val doctorId: String,
+    var id: String? = null,
+    var patientId: String,
+    var doctorId: String,
     val medicines: List<Medication>,
     val advice: String
 ){

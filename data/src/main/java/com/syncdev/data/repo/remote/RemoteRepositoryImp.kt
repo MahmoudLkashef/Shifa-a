@@ -1,8 +1,6 @@
 package com.syncdev.data.repo.remote
 
-import android.os.Build
 import android.util.Log
-import androidx.annotation.RequiresApi
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DataSnapshot
@@ -11,10 +9,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.Query
 import com.google.firebase.database.ValueEventListener
-import com.syncdev.domain.model.Appointment
-import com.syncdev.domain.model.AppointmentRequest
-import com.syncdev.domain.model.Patient
-import com.syncdev.domain.model.Doctor
+import com.syncdev.domain.model.*
 import com.syncdev.domain.repo.remote.RemoteRepository
 import com.syncdev.domain.utils.Constants
 import kotlinx.coroutines.CompletableDeferred
@@ -23,8 +18,6 @@ import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 import java.text.SimpleDateFormat
-import java.time.LocalTime
-import java.time.format.DateTimeFormatter
 import java.util.Date
 import java.util.Locale
 import javax.inject.Inject
@@ -42,7 +35,8 @@ class RemoteRepositoryImp @Inject constructor(
     private val auth: FirebaseAuth
 ) : RemoteRepository {
 
-    private val TAG="RemoteRepositoryImp"
+    private val TAG = "RemoteRepositoryImp"
+
     /**
      * A suspend function that logs in a patient with the provided email and password.
      * @param email email of the patient to be logged in
@@ -75,7 +69,7 @@ class RemoteRepositoryImp @Inject constructor(
                 val exists = deferred.await()
                 Log.i("loginPatient", "exists: $exists")
 
-                if(exists) user
+                if (exists) user
                 else null
             } catch (e: Exception) {
                 Log.w("LoginPatient", "failure ${e.message}")
@@ -163,7 +157,7 @@ class RemoteRepositoryImp @Inject constructor(
                 val result = auth.createUserWithEmailAndPassword(doctor.email, password).await()
                 val user = result.user
                 Log.d("RegisterDoctor", "success")
-                if(user!=null){
+                if (user != null) {
                     saveUserData(doctor, Constants.DOCTORS_TABLE, user.uid)
                 }
                 user
@@ -177,7 +171,7 @@ class RemoteRepositoryImp @Inject constructor(
     override suspend fun searchDoctorById(
         doctorId: String,
         onDoctorLoaded: (Doctor?) -> Unit
-    ){
+    ) {
         val database = firebaseDatabase.reference.child("Doctors")
         database.orderByChild("id").equalTo(doctorId)
             .addListenerForSingleValueEvent(object : ValueEventListener {
@@ -196,7 +190,7 @@ class RemoteRepositoryImp @Inject constructor(
     override suspend fun searchPatientById(
         patientId: String,
         onPatientLoaded: (Patient?) -> Unit
-    ){
+    ) {
         val database = firebaseDatabase.reference.child("Patients")
         database.orderByChild("id").equalTo(patientId)
             .addListenerForSingleValueEvent(object : ValueEventListener {
@@ -296,7 +290,8 @@ class RemoteRepositoryImp @Inject constructor(
             query.addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     for (appointmentSnapshot in snapshot.children) {
-                        val appointment = appointmentSnapshot.getValue(AppointmentRequest::class.java)
+                        val appointment =
+                            appointmentSnapshot.getValue(AppointmentRequest::class.java)
 
                         // Retrieve nested patient information
                         val patientSnapshot = appointmentSnapshot.child("patient")
@@ -304,7 +299,8 @@ class RemoteRepositoryImp @Inject constructor(
 
                         appointment?.let {
                             if (patient != null) {
-                                it.patient = patient // Assign the patient object to the appointment request
+                                it.patient =
+                                    patient // Assign the patient object to the appointment request
                             }
                             appointmentRequests.add(it)
                         }
@@ -319,7 +315,6 @@ class RemoteRepositoryImp @Inject constructor(
             })
         }
     }
-
 
 
     override suspend fun deleteAppointmentRequest(
@@ -341,7 +336,8 @@ class RemoteRepositoryImp @Inject constructor(
                 override fun onDataChange(snapshot: DataSnapshot) {
                     // Iterate over the appointment requests with matching doctorId
                     for (appointmentSnapshot in snapshot.children) {
-                        val appointment = appointmentSnapshot.getValue(AppointmentRequest::class.java)
+                        val appointment =
+                            appointmentSnapshot.getValue(AppointmentRequest::class.java)
 
                         // Check if the appointment matches the provided date and time
                         if (appointment?.date == date && appointment.time == time) {
@@ -385,10 +381,10 @@ class RemoteRepositoryImp @Inject constructor(
     }
 
     /**
-    * Updates the data of a doctor in the database based on their ID.
-    * @param doctor The updated Doctor object containing the new data.
-    * @return Boolean value indicating whether the update was successful or not.
-    */
+     * Updates the data of a doctor in the database based on their ID.
+     * @param doctor The updated Doctor object containing the new data.
+     * @return Boolean value indicating whether the update was successful or not.
+     */
 
     override suspend fun updateDoctorDataById(doctor: Doctor): Boolean {
         return try {
@@ -412,10 +408,10 @@ class RemoteRepositoryImp @Inject constructor(
 
 
     /**
-    * Updates the data of a patient in the database based on their ID.
-    * @param patient The updated Patient object containing the new data.
-    * @return Boolean value indicating whether the update was successful or not.
-    */
+     * Updates the data of a patient in the database based on their ID.
+     * @param patient The updated Patient object containing the new data.
+     * @return Boolean value indicating whether the update was successful or not.
+     */
     override suspend fun updatePatientDataById(patient: Patient): Boolean {
         return try {
             val database = firebaseDatabase.reference.child("Patients")
@@ -493,7 +489,7 @@ class RemoteRepositoryImp @Inject constructor(
                     for (appointmentSnapshot in dataSnapshot.children) {
                         val appointment = appointmentSnapshot.getValue(Appointment::class.java)
                         if (appointment != null && appointment.state == state) {
-                            if(state == "Upcoming" && !isAppointmentUpcoming(
+                            if (state == "Upcoming" && !isAppointmentUpcoming(
                                     appointment.date,
                                     appointment.time,
                                     currentDate,
@@ -501,7 +497,7 @@ class RemoteRepositoryImp @Inject constructor(
                                 )
                             ) {
                                 appointmentSnapshot.ref.removeValue()
-                            }else {
+                            } else {
                                 appointments.add(appointment)
                             }
                         }
@@ -525,26 +521,101 @@ class RemoteRepositoryImp @Inject constructor(
     override suspend fun getAppointmentsByDoctorAndDate(
         doctorId: String,
         date: String
-    ): List<Appointment> {
-        return suspendCancellableCoroutine { continuation ->
+    ): List<Appointment> =
+        suspendCancellableCoroutine { continuation ->
             val appointmentsRef = FirebaseDatabase.getInstance().reference.child("Appointments")
-            appointmentsRef.addValueEventListener(object : ValueEventListener {
+
+            val query: Query = appointmentsRef.orderByChild("doctor/id").equalTo(doctorId)
+
+            val valueEventListener = object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     val appointments = mutableListOf<Appointment>()
+
                     for (appointmentSnapshot in dataSnapshot.children) {
                         val appointment = appointmentSnapshot.getValue(Appointment::class.java)
-                        if (appointment != null && appointment.doctor.id == doctorId && appointment.date == date && appointment.state == "Upcoming") {
+                        if (appointment != null && appointment.date == date && appointment.state == "Upcoming") {
                             appointments.add(appointment)
                         }
                     }
+
                     continuation.resume(appointments)
                 }
 
                 override fun onCancelled(databaseError: DatabaseError) {
                     continuation.resumeWithException(databaseError.toException())
                 }
-            })
+            }
+
+            query.addListenerForSingleValueEvent(valueEventListener)
+
+            continuation.invokeOnCancellation {
+                query.removeEventListener(valueEventListener)
+            }
         }
+
+    override suspend fun savePrescription(prescription: Prescription, appointmentId: String):Boolean {
+        return try {
+            val database: FirebaseDatabase = FirebaseDatabase.getInstance()
+            val appointmentsRef: DatabaseReference = database.getReference("Appointments")
+            val prescriptionsRef=database.getReference("Prescriptions")
+            val prescriptionRef =
+                appointmentsRef.child(appointmentId).child("prescription")
+
+            // Add unique key to prescription
+            prescription.id = prescriptionRef.push().key
+
+            // Convert prescription object to a map
+            val prescriptionMap = prescription.toMap(prescription)
+
+            // Create prescriptions root and append prescription to it
+            prescriptionsRef.child(prescription.id.toString()).setValue(prescriptionMap)
+
+            // Set the value of the prescription reference with the prescription map
+            prescriptionRef.setValue(prescriptionMap)
+
+            // Update appointment state
+            updateAppointmentState(appointmentId,"Completed")
+
+            true
+
+        } catch (e: Exception) {
+            Log.i(TAG, "savePrescription: ${e.message}")
+            false
+        }
+    }
+
+    override suspend fun updateAppointmentState(appointmentId: String, newState: String) {
+        try {
+            val database: FirebaseDatabase = FirebaseDatabase.getInstance()
+            val appointmentsRef: DatabaseReference = database.getReference("Appointments")
+            val appointmentRef = appointmentsRef.child(appointmentId).child("state")
+
+            // Update the value of the state reference with the new state
+            appointmentRef.setValue(newState)
+        } catch (e: Exception) {
+            Log.i(TAG, "updateAppointmentState: ${e.message}")
+        }
+    }
+
+    private fun Prescription.toMap(prescription: Prescription): Map<String, Any?> {
+        return mapOf(
+            "id" to prescription.id,
+            "patientId" to prescription.patientId,
+            "doctorId" to prescription.doctorId,
+            "medicines" to prescription.medicines.map { it.toMap(it) },
+            "advice" to prescription.advice
+        )
+    }
+
+    private fun Medication.toMap(medication: Medication): Map<String, Any?> {
+        return mapOf(
+            "name" to medication.name,
+            "type" to medication.type,
+            "period" to medication.period,
+            "dosage" to medication.dosage,
+            "frequency" to medication.frequency,
+            "scheduleLabels" to medication.scheduleLabels
+        )
     }
 
     override suspend fun cancelAppointmentById(appointmentId: String): Boolean {
@@ -669,11 +740,15 @@ class RemoteRepositoryImp @Inject constructor(
         val database = firebaseDatabase.getReference(reference)
 
         // Generate a unique key for the new child node and store it in the `id` variable
-        when(model){
-            is Patient -> {model.id = id}
-            is Doctor -> {model.id = id}
+        when (model) {
+            is Patient -> {
+                model.id = id
+            }
+            is Doctor -> {
+                model.id = id
+            }
         }
-        
+
         // Set the value of the newly created child node to the `model` object using the `setValue()` method
         // on the child node reference obtained by appending the `id` to the `database` reference.
         database.child(id).setValue(model)
