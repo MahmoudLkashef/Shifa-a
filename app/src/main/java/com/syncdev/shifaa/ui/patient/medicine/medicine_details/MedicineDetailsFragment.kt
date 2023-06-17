@@ -1,4 +1,4 @@
-package com.syncdev.shifaa.ui.patient.medicine
+package com.syncdev.shifaa.ui.patient.medicine.medicine_details
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

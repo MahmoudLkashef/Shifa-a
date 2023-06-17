@@ -83,4 +83,8 @@ interface RemoteRepository {
 
     suspend fun updateAppointmentState(appointmentId: String, newState: String)
 
+    suspend fun getCompletedAppointmentsByDoctorId(doctorId: String): List<Appointment>
+
+    suspend fun getCompletedAppointmentsByPatientId(doctorId: String): List<Appointment>
+
 }

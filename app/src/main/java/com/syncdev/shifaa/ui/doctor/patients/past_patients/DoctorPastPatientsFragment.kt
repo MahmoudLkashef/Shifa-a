@@ -5,16 +5,22 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import com.syncdev.shifaa.R
 import com.syncdev.shifaa.databinding.FragmentDoctorPastPatientsBinding
+import dagger.hilt.android.AndroidEntryPoint
 
 
+@AndroidEntryPoint
 class DoctorPastPatientsFragment : Fragment() {
 
     private lateinit var binding: FragmentDoctorPastPatientsBinding
     private lateinit var adapter: DoctorPastPatientsAdapter
+    private val pastPatientsViewModel by viewModels<DoctorPastPatientsViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,35 +34,34 @@ class DoctorPastPatientsFragment : Fragment() {
             false
         )
 
-        adapter = DoctorPastPatientsAdapter()
-        val pastPatientsList = listOf<PatientTest>(
-            PatientTest(1,"Mohammed Magdy","22 Feb 2023","10:00 AM",R.drawable.patient_male),
-            PatientTest(2,"Mohammed Ayman","29 Feb 2023","10:30 AM",R.drawable.patient_male),
-            PatientTest(3,"Sarah Magdy","25 Jan 2023","11:00 AM",R.drawable.patient_female),
-            PatientTest(4,"Abdulmageed Awad","22 Oct 2022","11:30 AM",R.drawable.patient_male),
-            PatientTest(5,"Hossam Khedr","15 Feb 2023","12:00 PM",R.drawable.patient_male),
-            PatientTest(6,"Kholoud Rady","6 Feb 2023","12:30 PM",R.drawable.patient_female),
-            PatientTest(7,"Samy Ahmed","13 Dec 2022","1:00 PM",R.drawable.patient_male),
-            PatientTest(8,"Khaled Omar","26 Jan 2023","1:30 PM",R.drawable.patient_male),
-            PatientTest(9,"Aya Sayed","3 Mar 2023","2:00 PM",R.drawable.patient_female),
-            PatientTest(10,"Mohab Hussein","1 Mar 2023","2:30 PM",R.drawable.patient_male),
-            PatientTest(11,"Walaa Ali","11 Nov 2022","3:30 PM",R.drawable.patient_female),
-            PatientTest(12,"Lila Salah","8 Feb 2023","4:00 PM",R.drawable.patient_female),
-            PatientTest(13,"Mahmoud Reda","3 Feb 2023","4:30 PM",R.drawable.patient_male),
-            PatientTest(14,"Mohammed Hassaan","3 Feb 2023","5:00 PM",R.drawable.patient_male),
-        )
+        adapter = DoctorPastPatientsAdapter(requireContext())
 
-        binding.rvPastPatients.layoutManager = GridLayoutManager(requireContext(),2)
+        binding.apply {
+            rvPastPatients.layoutManager = GridLayoutManager(requireContext(),2)
+            rvPastPatients.adapter = adapter
+        }
 
-        binding.tvPastPatientsNumber.text = "${pastPatientsList.size} Old patients"
+        pastPatientsViewModel.getCompletedAppointments()
 
-        adapter.submitList(pastPatientsList)
+        pastPatientsViewModel.completedAppointments.observe(viewLifecycleOwner, Observer {
+            adapter.submitList(it)
+            val numOfPatients = "${it.size} Previous patients"
+            binding.tvPastPatientsNumber.text = numOfPatients
+            if (it.isEmpty()){
+                showNoOldPatients(true)
+            } else showNoOldPatients(false)
+        })
 
-        binding.rvPastPatients.adapter = adapter
 
 
         return binding.root
     }
 
+    private fun showNoOldPatients(show: Boolean){
+        binding.apply {
+            ivNoOldPatients.isVisible = show
+            tvNoOldPatients.isVisible = show
+        }
+    }
 
 }

@@ -729,6 +729,62 @@ class RemoteRepositoryImp @Inject constructor(
             }
         }
 
+    override suspend fun getCompletedAppointmentsByDoctorId(doctorId: String): List<Appointment> {
+        return suspendCoroutine { continuation ->
+            val database: DatabaseReference = FirebaseDatabase.getInstance().reference
+            val appointmentsRef: DatabaseReference = database.child("Appointments")
+
+            val query: Query = appointmentsRef.orderByChild("doctor/id").equalTo(doctorId)
+
+            val eventListener = object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    val appointmentList = mutableListOf<Appointment>()
+                    for (appointmentSnapshot in dataSnapshot.children) {
+                        val appointment = appointmentSnapshot.getValue(Appointment::class.java)
+                        if (appointment?.state == "Completed") {
+                            appointmentList.add(appointment)
+                        }
+                    }
+                    continuation.resume(appointmentList)
+                }
+
+                override fun onCancelled(databaseError: DatabaseError) {
+                    continuation.resumeWithException(databaseError.toException())
+                }
+            }
+
+            query.addListenerForSingleValueEvent(eventListener)
+        }
+    }
+
+    override suspend fun getCompletedAppointmentsByPatientId(patientId: String): List<Appointment> {
+        return suspendCoroutine { continuation ->
+            val database: DatabaseReference = FirebaseDatabase.getInstance().reference
+            val appointmentsRef: DatabaseReference = database.child("Appointments")
+
+            val query: Query = appointmentsRef.orderByChild("patient/id").equalTo(patientId)
+
+            val eventListener = object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    val appointmentList = mutableListOf<Appointment>()
+                    for (appointmentSnapshot in dataSnapshot.children) {
+                        val appointment = appointmentSnapshot.getValue(Appointment::class.java)
+                        if (appointment?.state == "Completed") {
+                            appointmentList.add(appointment)
+                        }
+                    }
+                    continuation.resume(appointmentList)
+                }
+
+                override fun onCancelled(databaseError: DatabaseError) {
+                    continuation.resumeWithException(databaseError.toException())
+                }
+            }
+
+            query.addListenerForSingleValueEvent(eventListener)
+        }
+    }
+
     /**
      * Saves a data object to the Firebase Realtime Database at the specified [reference].
      *

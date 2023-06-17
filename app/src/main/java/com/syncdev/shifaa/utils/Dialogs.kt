@@ -2,6 +2,7 @@ package com.syncdev.shifaa.utils
 
 import android.app.AlertDialog
 import android.content.Context
+import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.util.Log
@@ -17,6 +18,7 @@ import com.syncdev.shifaa.databinding.AddNewChronicDiseasesDialogBinding
 import com.syncdev.shifaa.databinding.DialogCancelUpcomingAppointmentBinding
 import com.syncdev.shifaa.databinding.DialogCantCancelAppointmentBinding
 import com.syncdev.shifaa.databinding.DialogCantRescheduleAppointmentBinding
+import com.syncdev.shifaa.databinding.DialogDispenseMedicineBinding
 import com.syncdev.shifaa.databinding.DialogSignOutBinding
 import com.syncdev.shifaa.databinding.EditEmergecyContactsDialogBinding
 import com.syncdev.shifaa.databinding.UpdatePatientMedicalCardDialogBinding
@@ -273,6 +275,32 @@ class Dialogs {
         dialogBinding.btnCancelAddDialog.setOnClickListener {
             alertDialog.dismiss()
         }
+        alertDialog.show()
+    }
+
+    fun showQrCodeDialog(context: Context,qrCode: Bitmap, onDone: () -> Unit) {
+        val dialogBinding = DialogDispenseMedicineBinding.inflate(LayoutInflater.from(context))
+        val dialogView = dialogBinding.root
+
+        val dialogBuilder = AlertDialog.Builder(context)
+            .setView(dialogView)
+
+        val alertDialog = dialogBuilder.create()
+
+        //To make the background of the dialog transparent and show the rounded corners
+        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        dialogBinding.apply {
+            btnDoneQrcodeDialog.setOnClickListener {
+                onDone.invoke() // Invoke the provided method for sign out
+                alertDialog.dismiss() // Close the dialog if needed
+            }
+            btnCancelQrcodeDialog.setOnClickListener {
+                alertDialog.dismiss() // Close the dialog
+            }
+            ivQrCodeDialog.setImageBitmap(Bitmap.createBitmap(qrCode))
+        }
+
         alertDialog.show()
     }
 

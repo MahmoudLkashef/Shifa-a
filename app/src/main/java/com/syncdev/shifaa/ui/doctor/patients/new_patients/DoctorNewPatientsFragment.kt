@@ -9,13 +9,10 @@ import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.lifecycleScope
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.syncdev.shifaa.R
 import com.syncdev.shifaa.databinding.FragmentDoctorNewPatientsBinding
 import com.syncdev.shifaa.ui.doctor.patients.DoctorPatientsFragmentDirections
-import com.syncdev.shifaa.ui.doctor.patients.past_patients.PatientTest
 import dagger.hilt.android.AndroidEntryPoint
 
 
