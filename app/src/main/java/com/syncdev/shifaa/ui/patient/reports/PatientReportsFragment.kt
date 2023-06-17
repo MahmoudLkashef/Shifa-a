@@ -54,7 +54,7 @@ class PatientReportsFragment : Fragment() {
         })
 
         reportsAdapter.onDispenseMedicineClicked = {medications ->
-            val serializedMedicines = QrCode.serializeMedicines(medications)
+            val serializedMedicines = QrCode.serializeMedicines(medications,"Medications")
             val qrCode = QrCode.generateQRCode(serializedMedicines)
             if (qrCode != null) {
                 Dialogs().showQrCodeDialog(requireContext(),qrCode){

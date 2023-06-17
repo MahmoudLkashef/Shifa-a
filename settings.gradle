@@ -16,3 +16,4 @@ rootProject.name = "Shifa'a"
 include ':app'
 include ':data'
 include ':domain'
+include ':shifaa_scanner'
