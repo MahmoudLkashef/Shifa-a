@@ -126,4 +126,31 @@ object DateUtils {
         return timeFormat.format(currentTime)
     }
 
+    fun calculateTimes(frequency: Int): List<String> {
+        val times = mutableListOf<String>()
+
+        val format = SimpleDateFormat("hh:mm a", Locale.US)
+        val calendar = Calendar.getInstance()
+        calendar.set(Calendar.HOUR_OF_DAY, 8)
+        calendar.set(Calendar.MINUTE, 0)
+        calendar.set(Calendar.SECOND, 0)
+
+        val hoursToAdd = 24 / frequency
+
+        for (i in 1..frequency) {
+            times.add(format.format(calendar.time))
+            calendar.add(Calendar.HOUR_OF_DAY, hoursToAdd)
+        }
+
+        return times
+    }
+
+    fun calculateEndDate(startDate: String, period: Int): String {
+        val format = SimpleDateFormat("dd-MMM-yyyy", Locale.US)
+        val calendar = Calendar.getInstance()
+        calendar.time = format.parse(startDate)
+        calendar.add(Calendar.DAY_OF_MONTH, period - 1)
+        return format.format(calendar.time)
+    }
+
 }

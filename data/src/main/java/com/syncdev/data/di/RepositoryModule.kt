@@ -2,7 +2,10 @@ package com.syncdev.data.di
 
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
+import com.syncdev.data.local.ScheduledMedicationDao
+import com.syncdev.data.repo.local.LocalRepositoryImp
 import com.syncdev.data.repo.remote.RemoteRepositoryImp
+import com.syncdev.domain.repo.local.LocalRepository
 import com.syncdev.domain.repo.remote.RemoteRepository
 import dagger.Module
 import dagger.Provides
@@ -28,5 +31,12 @@ object RepositoryModule {
         auth: FirebaseAuth
     ): RemoteRepository {
         return RemoteRepositoryImp(firebaseDatabase, auth)
+    }
+
+    @Provides
+    fun provideLocalRepository(
+        scheduledMedicationDao: ScheduledMedicationDao
+    ): LocalRepository {
+        return LocalRepositoryImp(scheduledMedicationDao)
     }
 }
