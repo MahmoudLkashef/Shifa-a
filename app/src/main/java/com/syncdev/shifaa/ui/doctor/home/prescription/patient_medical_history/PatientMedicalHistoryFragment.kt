@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.chip.Chip
 import com.syncdev.shifaa.R
 import com.syncdev.shifaa.databinding.FragmentPatientMedicalHistoryBinding
+import com.syncdev.shifaa.utils.Dialogs
 
 class PatientMedicalHistoryFragment : Fragment() {
     private val TAG = "PatientMedicalHistoryFragment"
@@ -27,20 +28,30 @@ class PatientMedicalHistoryFragment : Fragment() {
             false
         )
 
-        binding.apply {
-            btnBackPatientMedicalHistory.setOnClickListener {
-                findNavController().popBackStack()
-            }
-        }
-
         val chronicDiseases = mutableListOf<String>("Hypertension")
 
         displayChronicDiseasesList(chronicDiseases)
 
-        binding.btnAddChronicDiseasesPatientDetails.setOnClickListener {
-            val data="Diabetes"
-            chronicDiseases.add(data)
-            displayChronicDiseasesList(chronicDiseases)
+        binding.apply {
+
+            btnBackPatientMedicalHistory.setOnClickListener {
+                findNavController().popBackStack()
+            }
+
+            btnAddChronicDiseasesPatientDetails.setOnClickListener {
+                Dialogs().showAddNewChronicDiseasesDialog(requireContext()){chronicDisease ->
+                    chronicDiseases.add(chronicDisease)
+                    displayChronicDiseasesList(chronicDiseases)
+                }
+            }
+
+            btnUpdatePatientDetails.setOnClickListener {
+                Dialogs().showUpdatePatientMedicalCardDialog(requireContext()){bloodType,height,weight->
+                    binding.tvBloodTypePatientDetails.text=bloodType
+                    binding.tvHeightPatientDetails.text=height
+                    binding.tvWeightPatientDetails.text=weight
+                }
+            }
         }
 
         return binding.root

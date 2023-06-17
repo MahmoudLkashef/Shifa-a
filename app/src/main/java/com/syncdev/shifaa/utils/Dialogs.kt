@@ -13,11 +13,13 @@ import com.google.android.material.chip.Chip
 import com.syncdev.domain.model.Medication
 import com.syncdev.shifaa.R
 import com.syncdev.shifaa.databinding.AddMedicinePrescriptionDialogBinding
+import com.syncdev.shifaa.databinding.AddNewChronicDiseasesDialogBinding
 import com.syncdev.shifaa.databinding.DialogCancelUpcomingAppointmentBinding
 import com.syncdev.shifaa.databinding.DialogCantCancelAppointmentBinding
 import com.syncdev.shifaa.databinding.DialogCantRescheduleAppointmentBinding
 import com.syncdev.shifaa.databinding.DialogSignOutBinding
 import com.syncdev.shifaa.databinding.EditEmergecyContactsDialogBinding
+import com.syncdev.shifaa.databinding.UpdatePatientMedicalCardDialogBinding
 import com.syncdev.shifaa.ui.doctor.home.prescription.PrescriptionViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -162,6 +164,64 @@ class Dialogs {
         alertDialog.show()
     }
 
+    fun showAddNewChronicDiseasesDialog(context: Context,onSaveClicked: (chronicDisease:String) -> Unit) {
+        val dialogBinding = AddNewChronicDiseasesDialogBinding.inflate(LayoutInflater.from(context))
+        val dialogView = dialogBinding.root
+
+        val dialogBuilder = AlertDialog.Builder(context)
+            .setView(dialogView)
+
+        val alertDialog = dialogBuilder.create()
+
+        //To make the background of the dialog transparent and show the rounded corners
+        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        dialogBinding.btnSaveChronicAddDialog.setOnClickListener {
+            val chronicDisease=dialogBinding.etChronicDiseasesAddDialog.text.toString()
+            onSaveClicked.invoke(chronicDisease)
+            alertDialog.dismiss()
+        }
+
+        dialogBinding.btnCancelChronicAddDialog.setOnClickListener {
+            alertDialog.dismiss()
+        }
+
+        alertDialog.show()
+
+    }
+
+    fun showUpdatePatientMedicalCardDialog(
+        context: Context,
+        onSaveClicked: (bloodType: String, height: String, weight: String) -> Unit
+    ) {
+        val dialogBinding =
+            UpdatePatientMedicalCardDialogBinding.inflate(LayoutInflater.from(context))
+        val dialogView = dialogBinding.root
+
+        val dialogBuilder = AlertDialog.Builder(context)
+            .setView(dialogView)
+
+        val alertDialog = dialogBuilder.create()
+
+        //To make the background of the dialog transparent and show the rounded corners
+        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        dialogBinding.btnSaveMedicalCardUpdateDialog.setOnClickListener {
+            val bloodType = dialogBinding.etBloodTypeMedicalCardUpdateDialog.text.toString()
+            val height = dialogBinding.etHeightMedicalCardUpdateDialog.text.toString()
+            val weight = dialogBinding.etWeightMedicalCardUpdateDialog.text.toString()
+            onSaveClicked.invoke(bloodType, height, weight)
+            alertDialog.dismiss()
+        }
+
+        dialogBinding.btnCancelMedicalCardUpdateDialog.setOnClickListener {
+            alertDialog.dismiss()
+        }
+
+        alertDialog.show()
+
+    }
+
     fun showCantRescheduleUpcomingAppointmentDialog(context: Context) {
         val dialogBinding =
             DialogCantRescheduleAppointmentBinding.inflate(LayoutInflater.from(context))
@@ -183,7 +243,8 @@ class Dialogs {
     }
 
     fun addNewMedicineToPrescriptionDialog(context: Context, viewModel: PrescriptionViewModel) {
-        val dialogBinding = AddMedicinePrescriptionDialogBinding.inflate(LayoutInflater.from(context))
+        val dialogBinding =
+            AddMedicinePrescriptionDialogBinding.inflate(LayoutInflater.from(context))
         val dialogBuilder = AlertDialog.Builder(context).setView(dialogBinding.root)
         val alertDialog = dialogBuilder.create()
 
@@ -214,6 +275,7 @@ class Dialogs {
         }
         alertDialog.show()
     }
+
     private fun setupSaveButton(
         dialogBinding: AddMedicinePrescriptionDialogBinding,
         viewModel: PrescriptionViewModel,
@@ -259,7 +321,10 @@ class Dialogs {
             dialogBinding.dropdownMenuMedicineTypeAddDialog.text.toString(),
             medicineTypeList,
             dialogBinding.tilMedicineTypeAddDialog
-        ) and Validation.validateScheduleLabel(dialogBinding.chipsGroupScheduleAddDialog.childCount,dialogBinding.tilScheduleAddDialog)
+        ) and Validation.validateScheduleLabel(
+            dialogBinding.chipsGroupScheduleAddDialog.childCount,
+            dialogBinding.tilScheduleAddDialog
+        )
 
     }
 
