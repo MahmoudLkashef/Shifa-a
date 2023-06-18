@@ -106,9 +106,10 @@
                 android:id="@+id/view_completed_appointments_dashboard"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:layout_marginStart="36dp"
                 android:background="@drawable/custom_square"
                 android:backgroundTint="#C3EFFF"
+                app:layout_constraintBottom_toBottomOf="@+id/view_total_patients_this_month"
+                app:layout_constraintEnd_toStartOf="@+id/view_canceled_appointments_dashboard"
                 app:layout_constraintStart_toEndOf="@+id/view_total_patients_this_month"
                 app:layout_constraintTop_toTopOf="@+id/view_total_patients_this_month" />
 
@@ -116,12 +117,10 @@
                 android:id="@+id/view_canceled_appointments_dashboard"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:layout_marginStart="40dp"
-                android:layout_marginEnd="16dp"
                 android:background="@drawable/custom_square"
                 android:backgroundTint="#FEF3F2"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/view_completed_appointments_dashboard"
+                app:layout_constraintBottom_toBottomOf="@+id/view_completed_appointments_dashboard"
+                app:layout_constraintEnd_toEndOf="@+id/view_total_patients"
                 app:layout_constraintTop_toTopOf="@+id/view_total_patients_this_month" />
 
             <TextView

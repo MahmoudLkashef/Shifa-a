@@ -146,7 +146,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/rv_upcoming_appointments"
                 app:layout_constraintTop_toBottomOf="@+id/tv_daily_reminders_title_patient_home"
-                tools:listitem="@layout/daily_reminders_list_item">
+                tools:listitem="@layout/daily_reminders_list_item"
+                tools:visibility="invisible">
 
             </androidx.recyclerview.widget.RecyclerView>
 
@@ -215,6 +216,27 @@
                 app:constraint_referenced_ids="tv_schedule_empty_title,img_empty_upcoming_appointments_state,tv_no_appointments_schedule_title"
                 tools:layout_editor_absoluteX="411dp"
                 tools:layout_editor_absoluteY="303dp" />
+
+            <ImageView
+                android:id="@+id/img_daily_reminder_empty_state"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_daily_reminders_title_patient_home"
+                app:srcCompat="@drawable/bell_illustration" />
+
+            <TextView
+                android:id="@+id/tv_daily_reminder_empty_state"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_regular"
+                android:text="You have no reminders yet"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/img_daily_reminder_empty_state" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
