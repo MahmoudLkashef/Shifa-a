@@ -19,6 +19,8 @@ import com.syncdev.shifaa.utils.DateUtils
 import com.syncdev.shifaa.utils.Dialogs
 import com.syncdev.shifaa.utils.Validation
 import dagger.hilt.android.AndroidEntryPoint
+import kotlin.random.Random
+import kotlin.random.nextInt
 
 @AndroidEntryPoint
 class PatientDetailsFragment : Fragment() {

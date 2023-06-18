@@ -47,7 +47,15 @@
         android:id="@+id/patientMedicineFragment"
         android:name="com.syncdev.shifaa.ui.patient.medicine.PatientMedicineFragment"
         android:label="fragment_patient_medicine"
-        tools:layout="@layout/fragment_patient_medicine" />
+        tools:layout="@layout/fragment_patient_medicine" >
+        <action
+            android:id="@+id/action_patientMedicineFragment_to_medicineDetailsFragment"
+            app:destination="@id/medicineDetailsFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
+    </fragment>
     <fragment
         android:id="@+id/patientProfileFragment"
         android:name="com.syncdev.shifaa.ui.patient.profile.PatientProfileFragment"
@@ -169,5 +177,14 @@
         android:name="com.syncdev.shifaa.ui.patient.home.medical_card.MedicalCardFragment"
         android:label="MedicalCardFragment"
         tools:layout="@layout/fragment_medical_card"/>
+    <fragment
+        android:id="@+id/medicineDetailsFragment"
+        android:name="com.syncdev.shifaa.ui.patient.medicine.medicine_details.MedicineDetailsFragment"
+        android:label="MedicineDetailsFragment"
+        tools:layout="@layout/fragment_medicine_details">
+        <argument
+            android:name="medicineId"
+            app:argType="integer" />
+    </fragment>
 
 </navigation>

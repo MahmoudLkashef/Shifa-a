@@ -11,6 +11,9 @@ interface ScheduledMedicationDao {
     @Query("SELECT * FROM scheduled_medications")
     suspend fun getAllScheduledMedications(): List<ScheduledMedication>
 
+    @Query("SELECT * FROM scheduled_medications WHERE id = :scheduledMedicationId")
+    suspend fun getScheduledMedicationById(scheduledMedicationId: Int): ScheduledMedication
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertScheduledMedication(scheduledMedication: ScheduledMedication)
 

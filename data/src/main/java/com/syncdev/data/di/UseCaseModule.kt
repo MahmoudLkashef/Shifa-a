@@ -13,6 +13,8 @@ import com.syncdev.domain.usecase.doctor.appointments.GetAppointmentsByDoctorIdU
 import com.syncdev.domain.usecase.doctor.appointments.GetCompletedAppointmentsByDoctorIdUseCase
 import com.syncdev.domain.usecase.doctor.appointments.GetUpcomingAppointmentsByDoctorIdUseCase
 import com.syncdev.domain.usecase.doctor.appointments.UpdatePatientChronicDiseasesUseCase
+import com.syncdev.domain.usecase.patient.GetAllScheduledMedicationsUseCase
+import com.syncdev.domain.usecase.patient.GetScheduledMedicationByIdUseCase
 import com.syncdev.domain.usecase.patient.InsertScheduledMedicationsUseCase
 import com.syncdev.domain.usecase.patient.SearchPatientByIdUseCase
 import com.syncdev.domain.usecase.patient.UpdateEmergencyContactsUseCase
@@ -201,5 +203,15 @@ object UseCaseModule {
     @Provides
     fun provideUpdateEmergencyContactsUseCase(remoteRepository: RemoteRepository):UpdateEmergencyContactsUseCase{
         return UpdateEmergencyContactsUseCase(remoteRepository)
+    }
+
+    @Provides
+    fun provideGetAllScheduledMedicationsUseCase(localRepository: LocalRepository): GetAllScheduledMedicationsUseCase{
+        return GetAllScheduledMedicationsUseCase(localRepository)
+    }
+
+    @Provides
+    fun provideGetScheduledMedicationByIdUseCase(localRepository: LocalRepository): GetScheduledMedicationByIdUseCase{
+        return GetScheduledMedicationByIdUseCase(localRepository)
     }
 }

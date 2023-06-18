@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="viewModel"
+            type="com.syncdev.shifaa.ui.patient.medicine.medicine_details.MedicineDetailsViewModel" />
     </data>
 
     <ScrollView
@@ -88,7 +90,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_bold"
-                android:text="Voltaren"
+                android:hint="Voltaren"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="@+id/tv_medicine_details_name_title"
@@ -108,7 +110,7 @@
 
             <TextView
                 android:id="@+id/tv_medicine_details_frequency"
-                android:text="2 times a day"
+                android:hint="2 times a day"
                 app:layout_constraintEnd_toEndOf="@+id/tv_medicine_details_frequency_title"
                 app:layout_constraintStart_toStartOf="@+id/tv_medicine_details_frequency_title"
                 app:layout_constraintTop_toBottomOf="@+id/tv_medicine_details_frequency_title"
@@ -151,7 +153,8 @@
                 style="@style/medicine_details_content"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="500 mg"
+                android:text="@{viewModel.medicine.dosage + ` mg`}"
+                android:hint="500 mg"
                 app:layout_constraintEnd_toEndOf="@+id/tv_medicine_details_dosage_title"
                 app:layout_constraintStart_toStartOf="@+id/tv_medicine_details_dosage_title"
                 app:layout_constraintTop_toBottomOf="@+id/tv_medicine_details_dosage_title" />
@@ -162,9 +165,9 @@
                 android:layout_height="50dp"
                 android:layout_marginBottom="32dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/tv_medicine_details_scheduled_title"
-                app:layout_constraintStart_toStartOf="@+id/tv_medicine_details_scheduled_title"
-                app:layout_constraintTop_toBottomOf="@+id/tv_medicine_details_scheduled_title"/>
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_medicine_details_scheduled_title" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
