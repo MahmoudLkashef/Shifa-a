@@ -12,4 +12,12 @@ class LocalRepositoryImp @Inject constructor(
     override suspend fun insertScheduledMedications(scheduledMedications: List<ScheduledMedication>) {
         scheduledMedicationDao.insertScheduledMedications(scheduledMedications)
     }
+
+    override suspend fun getAllScheduledMedications(): List<ScheduledMedication> {
+        return scheduledMedicationDao.getAllScheduledMedications()
+    }
+
+    override suspend fun getScheduledMedicationById(scheduledMedicationId: Int): ScheduledMedication {
+        return scheduledMedicationDao.getScheduledMedicationById(scheduledMedicationId)
+    }
 }
