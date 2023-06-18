@@ -4,11 +4,14 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.result.ActivityResultLauncher
+import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
 import com.google.gson.JsonParser
 import com.journeyapps.barcodescanner.ScanContract
 import com.journeyapps.barcodescanner.ScanOptions
 import com.syncdev.shifaa_scanner.databinding.ActivityMainBinding
+import com.syncdev.shifaa_scanner.emergency.EmergencyActivity
+import com.syncdev.shifaa_scanner.model.MedicalHistory
 import com.syncdev.shifaa_scanner.model.Medication
 import com.syncdev.shifaa_scanner.pharmacist.MedicationActivity
 
@@ -21,21 +24,58 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        /*      val barcodeLauncher = registerForActivityResult(ScanContract()) { result ->
+                  if (result.contents != null) {
+                      val (type, medications) = deserializeMedicines(result.contents)
+                      if(type=="Medications"){
+                          val intent = Intent(this, MedicationActivity::class.java)
+                          val medicationList = ArrayList(medications)
+                          intent.putParcelableArrayListExtra("Medications",medicationList)
+                          startActivity(intent)
+                      }
+                  }
+              }*/
+
+/*        val jsontest =
+            "{\"type\":\"MedicalCard\",\"medicalCard\":{\"age\":\"6\",\"bloodType\":\"A-\",\"chronicDiseases\":[\"test\",\"test 2\",\"hasaan\"],\"emergencyContacts\":[\"01100141414\",\"01012345678\"],\"height\":\"180\",\"id\":\"\",\"medication\":[],\"weight\":\"100\"}}"*/
         val barcodeLauncher = registerForActivityResult(ScanContract()) { result ->
             if (result.contents != null) {
-                val (type, medications) = deserializeMedicines(result.contents)
-                if(type=="Medications"){
-                    val intent = Intent(this, MedicationActivity::class.java)
-                    val medicationList = ArrayList(medications)
-                    intent.putParcelableArrayListExtra("Medications",medicationList)
-                    startActivity(intent)
+                val deserializedData = deserializeData(result.contents)
+                if (deserializedData != null) {
+                    val (type, data) = deserializedData
+                    when (type) {
+                        "Medications" -> {
+                            val intent = Intent(this, MedicationActivity::class.java)
+                            val medicationList = data as List<Medication>
+                            intent.putParcelableArrayListExtra(
+                                "Medications",
+                                ArrayList(medicationList)
+                            )
+                            startActivity(intent)
+                        }
+                        "MedicalCard" -> {
+                            val medicalHistory = data as MedicalHistory
+                            val intent = Intent(this, EmergencyActivity::class.java)
+                            intent.putExtra("MedicalHistory", medicalHistory)
+                            startActivity(intent)
+                        }
+                    }
+                } else {
+                    Snackbar.make(binding.root, "Invalid QR Code", Snackbar.LENGTH_LONG).show()
                 }
             }
         }
 
+
         binding.btnScan.setOnClickListener {
             scannerOptions(barcodeLauncher)
         }
+/*        val dataa = deserializeData(jsontest)
+        Log.i(TAG, "onCreatedr: $dataa")
+        if (dataa != null) {
+            val (type, data) = dataa
+            Log.i(TAG, "onCreatee: $type   $data")
+        }*/
     }
 
     private fun scannerOptions(barcodeLauncher: ActivityResultLauncher<ScanOptions>) {
@@ -56,6 +96,32 @@ class MainActivity : AppCompatActivity() {
             gson.fromJson(medicationJson, Medication::class.java)
         }
         return Pair(type, medications)
+    }
+
+
+    private fun deserializeMedicalHistory(json: String): Pair<String, MedicalHistory> {
+        val gson = Gson()
+        val jsonObject = JsonParser.parseString(json).asJsonObject
+        val type = jsonObject.get("type").asString
+        val medicalCardJson = jsonObject.get("medicalCard").asJsonObject
+        val medicalHistory = gson.fromJson(medicalCardJson, MedicalHistory::class.java)
+        return Pair(type, medicalHistory)
+    }
+
+    private fun deserializeData(json: String): Pair<String, Any>? {
+        val gson = Gson()
+        val jsonObject = JsonParser.parseString(json).asJsonObject
+        val type = jsonObject.get("type").asString
+
+        return when (type) {
+            "Medications" -> {
+                deserializeMedicines(json)
+            }
+            "MedicalCard" -> {
+                deserializeMedicalHistory(json)
+            }
+            else -> null
+        }
     }
 
 }

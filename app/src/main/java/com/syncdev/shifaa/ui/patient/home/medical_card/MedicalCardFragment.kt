@@ -10,7 +10,6 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.chip.Chip
-import com.google.zxing.qrcode.encoder.QRCode
 import com.syncdev.domain.model.MedicalHistory
 import com.syncdev.shifaa.R
 import com.syncdev.shifaa.databinding.FragmentMedicalCardBinding
@@ -81,9 +80,9 @@ class MedicalCardFragment : Fragment() {
         binding.apply {
             tvPatientNameMedicalCard.text=medicalCardViewModel.getPatientName()
             tvBloodTypeMedicalCard.text=medicalHistory.bloodType
-            tvAgeMedicalCard.text=medicalHistory.age
-            tvWeightMedicalCard.text=medicalHistory.weight
-            tvHeightMedicalCard.text=medicalHistory.height
+            tvAgeMedicalCard.text="${medicalHistory.age} Years"
+            tvWeightMedicalCard.text="${medicalHistory.weight} KG"
+            tvHeightMedicalCard.text="${medicalHistory.height} CM"
             displayChronicDiseasesList(medicalHistory.chronicDiseases)
             if(medicalHistory.emergencyContacts.isNotEmpty()){
                 tvFirstEmergencyContact.text= medicalHistory.emergencyContacts[0]

@@ -117,11 +117,13 @@ class Dialogs {
         }
 
         dialogBinding.btnSaveEmergencyContactsDialog.setOnClickListener {
-            val firstContact = dialogBinding.etFirstEmergencyContactDialog.text.toString()
-            val secondContact = dialogBinding.etSecondEmergencyContactDialog.text.toString()
-            Log.i(TAG, "editEmergencyContactsDialog: $firstContact / $secondContact")
-            onSavedClicked(firstContact, secondContact)
-            alertDialog.dismiss()
+            if (validEmergencyContacts(dialogBinding)) {
+                val firstContact = dialogBinding.etFirstEmergencyContactDialog.text.toString()
+                val secondContact = dialogBinding.etSecondEmergencyContactDialog.text.toString()
+                Log.i(TAG, "editEmergencyContactsDialog: $firstContact / $secondContact")
+                onSavedClicked(firstContact, secondContact)
+                alertDialog.dismiss()
+            }
         }
 
         alertDialog.show()
@@ -317,7 +319,7 @@ class Dialogs {
         alertDialog.show()
     }
 
-    fun showMedicalCardQrCode(context: Context, qrCode: Bitmap){
+    fun showMedicalCardQrCode(context: Context, qrCode: Bitmap) {
         val dialogBinding = MedicalCardQrCodeDialogBinding.inflate(LayoutInflater.from(context))
         val dialogView = dialogBinding.root
 
@@ -384,6 +386,16 @@ class Dialogs {
             dialogBinding.tilScheduleAddDialog
         )
 
+    }
+
+    private fun validEmergencyContacts(dialogBinding: EditEmergecyContactsDialogBinding): Boolean {
+        return Validation.validatePhoneNumber(
+            dialogBinding.etFirstEmergencyContactDialog.text.toString(),
+            dialogBinding.tilFirstEmergecyContactDialog
+        ) and Validation.validatePhoneNumber(
+            dialogBinding.etSecondEmergencyContactDialog.text.toString(),
+            dialogBinding.tilSecondEmergecyContactDialog
+        )
     }
 
 

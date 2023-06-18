@@ -119,10 +119,10 @@ class PatientMedicalHistoryFragment : Fragment() {
 
     private fun setDataOnViews(medicalHistory: MedicalHistory) {
         binding.apply {
-            tvAgePatientDetails.text = medicalHistory.age.takeIf { it.isNotEmpty() }
+            tvAgePatientDetails.text = medicalHistory.age.takeIf { it.isNotEmpty() }+" Years"
             tvBloodTypePatientDetails.text = medicalHistory.bloodType.takeIf { it.isNotEmpty() }
-            tvHeightPatientDetails.text = medicalHistory.height.takeIf { it.isNotEmpty() }
-            tvWeightPatientDetails.text = medicalHistory.weight.takeIf { it.isNotEmpty() }
+            tvHeightPatientDetails.text = medicalHistory.height.takeIf { it.isNotEmpty() }+" CM"
+            tvWeightPatientDetails.text = medicalHistory.weight.takeIf { it.isNotEmpty() }+" KG"
         }
     }
 

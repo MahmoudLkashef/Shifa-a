@@ -11,7 +11,9 @@ data class MedicalHistory(
     var height:String,
     var weight:String,
     var chronicDiseases:List<String>,
-    var medication:List<Medication>
+    var medication:List<Medication>,
+    var emergencyContacts: List<String> = emptyList(),
+    var patientName:String=""
 ): Parcelable {
-    constructor(): this("","","","","", emptyList(), emptyList())
+    constructor(): this("","","","","", emptyList(), emptyList(), emptyList(),"")
 }

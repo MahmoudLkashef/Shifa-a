@@ -620,9 +620,11 @@ class RemoteRepositoryImp @Inject constructor(
 
         val medicalHistoryRef = database.getReference("PatientMedicalHistory/$patientId")
 
+        var patientName=""
         var patientAge = ""
         searchPatientById(patientId) {
             it?.let {
+                patientName="${it.firstName} ${it.lastName}"
                 patientAge = calculateAge(it.age).toString()
             }
         }
@@ -631,6 +633,7 @@ class RemoteRepositoryImp @Inject constructor(
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val medicalHistory = dataSnapshot.getValue(MedicalHistory::class.java)
                 medicalHistory?.age = patientAge
+                medicalHistory?.patientName=patientName
 
                 if (medicalHistory == null) {
                     val newMedicalHistory = MedicalHistory(
@@ -640,7 +643,8 @@ class RemoteRepositoryImp @Inject constructor(
                         weight = "",
                         chronicDiseases = emptyList(),
                         medication = emptyList<Medication>(),
-                        emergencyContacts = emptyList()
+                        emergencyContacts = emptyList(),
+                        patientName = patientName
                     )
 
                     medicalHistoryRef.setValue(newMedicalHistory)
