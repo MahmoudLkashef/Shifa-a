@@ -11,6 +11,7 @@ import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.syncdev.shifaa.R
 import com.syncdev.shifaa.databinding.FragmentPatientMedicineBinding
 import com.syncdev.shifaa.utils.DateUtils
@@ -66,6 +67,13 @@ class PatientMedicineFragment : Fragment() {
             }
         })
 
+        medicineAdapter.onMedicineClicked ={medicineId->
+            findNavController().navigate(
+                PatientMedicineFragmentDirections
+                    .actionPatientMedicineFragmentToMedicineDetailsFragment(medicineId)
+            )
+        }
+
 
         return binding.root
     }
@@ -75,6 +83,7 @@ class PatientMedicineFragment : Fragment() {
             ivNoMedicine.isVisible = show
             tvNoMedicine.isVisible = show
             viewHorizontalMedication.isVisible = !show
+            rvMedications.isVisible = !show
         }
     }
 

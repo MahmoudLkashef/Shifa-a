@@ -744,6 +744,7 @@ class RemoteRepositoryImp @Inject constructor(
 
     private fun Medication.toMap(medication: Medication): Map<String, Any?> {
         return mapOf(
+            "id" to medication.id,
             "name" to medication.name,
             "type" to medication.type,
             "period" to medication.period,

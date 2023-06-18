@@ -65,7 +65,6 @@ class PatientReportsFragment : Fragment() {
                     reportsViewModel.insertScheduledMedication(scheduledMedications)
                     NotificationUtils(requireContext()).createMedicationReminders(medications)
                     Log.i(TAG, "$scheduledMedications")
-                    Toast.makeText(requireContext(),"Done",Toast.LENGTH_LONG).show()
                 }
             }
         }

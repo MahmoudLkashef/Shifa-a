@@ -153,4 +153,16 @@ object DateUtils {
         return format.format(calendar.time)
     }
 
+    fun calculateDays(startDate: String, endDate: String): String {
+        val formatter = SimpleDateFormat("dd-MMM-yyyy", Locale.getDefault())
+
+        val startDateObj = formatter.parse(startDate)
+        val endDateObj = formatter.parse(endDate)
+
+        val diffInMillis = endDateObj.time - startDateObj.time
+        val days = diffInMillis / (24 * 60 * 60 * 1000)
+
+        return "${days + 1} days"
+    }
+
 }

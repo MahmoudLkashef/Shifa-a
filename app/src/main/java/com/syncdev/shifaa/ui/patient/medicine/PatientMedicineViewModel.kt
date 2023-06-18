@@ -55,6 +55,9 @@ constructor(
         val filteredMedications = allMedicine.value?.filter { medication ->
             val endDate = formatter.parse(medication.endDate)
             endDate?.let { it.compareTo(filterDate) >= 0 } ?: false
+        }?.sortedBy { medication ->
+            val timeFormatter = SimpleDateFormat("hh:mm a", Locale.getDefault())
+            timeFormatter.parse(medication.time)
         }
 
         _medicineByDay.value = filteredMedications

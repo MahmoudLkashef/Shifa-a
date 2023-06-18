@@ -38,6 +38,7 @@ class MedicineAdapter(private val context: Context) :
             binding.apply {
                 tvMedicationNameCv.text = medicine.name
                 tvMedicationTypeCv.text = medicine.type
+                tvMedicationTimeCv.text = medicine.time
                 val drawable = ImageMapping(context).getDrawableByType(medicine.type)
                 ivMedication.setImageDrawable(drawable)
 
