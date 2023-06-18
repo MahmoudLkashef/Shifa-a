@@ -19,7 +19,7 @@ class MedicationActivity : AppCompatActivity() {
         binding=ActivityMedicationBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val medicationAdapter=MedicationAdapter()
+        val medicationAdapter=MedicationAdapter(this)
 
         val medications = intent.getParcelableArrayListExtra<Medication>("Medications")
 
