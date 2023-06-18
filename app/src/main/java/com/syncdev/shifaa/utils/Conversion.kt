@@ -16,7 +16,7 @@ object Conversion {
 
                 for (i in 0 until frequency){
                     val scheduledMedication = ScheduledMedication(
-                        Random.nextInt(1,10000000),
+                        medication.id.toInt()+i,
                         medication.name,
                         medication.type,
                         medication.dosage,

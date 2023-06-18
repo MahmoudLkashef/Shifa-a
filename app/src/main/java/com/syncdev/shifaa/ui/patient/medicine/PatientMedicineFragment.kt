@@ -2,6 +2,7 @@ package com.syncdev.shifaa.ui.patient.medicine
 
 import CalendarAdapter
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -9,8 +10,11 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.syncdev.shifaa.R
 import com.syncdev.shifaa.databinding.FragmentPatientMedicineBinding
+import com.syncdev.shifaa.utils.DateUtils
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -19,6 +23,7 @@ class PatientMedicineFragment : Fragment() {
 
     private lateinit var binding: FragmentPatientMedicineBinding
     private lateinit var calenderAdapter: CalendarAdapter
+    private lateinit var medicineAdapter: MedicineAdapter
     private val patientMedicineViewModel by viewModels<PatientMedicineViewModel>()
 
     override fun onCreateView(
@@ -34,16 +39,40 @@ class PatientMedicineFragment : Fragment() {
         )
 
         calenderAdapter = CalendarAdapter()
+        medicineAdapter = MedicineAdapter(requireContext())
 
         binding.apply {
             rvCalendarMedication.adapter = calenderAdapter
+            rvMedications.adapter = medicineAdapter
         }
 
         patientMedicineViewModel.getAvailableDaysList()
+        patientMedicineViewModel.getAllMedicine()
 
         calenderAdapter.submitList(
             patientMedicineViewModel.availableDays.value
         )
+
+        calenderAdapter.onDateClicked ={
+            patientMedicineViewModel.chosenDate.value = it.date
+            patientMedicineViewModel.filterMedicationsByEndDate(date = it.date)
+        }
+
+        patientMedicineViewModel.medicineByDay.observe(viewLifecycleOwner, Observer {
+            medicineAdapter.submitList(it)
+            if (it != null) {
+                if (it.isEmpty()){
+                    showNoMedicine(true)
+                }else showNoMedicine(false)
+            }
+        })
+
+        medicineAdapter.onMedicineClicked ={medicineId->
+            findNavController().navigate(
+                PatientMedicineFragmentDirections
+                    .actionPatientMedicineFragmentToMedicineDetailsFragment(medicineId)
+            )
+        }
 
 
         return binding.root
@@ -54,6 +83,7 @@ class PatientMedicineFragment : Fragment() {
             ivNoMedicine.isVisible = show
             tvNoMedicine.isVisible = show
             viewHorizontalMedication.isVisible = !show
+            rvMedications.isVisible = !show
         }
     }
 

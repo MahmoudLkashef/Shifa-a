@@ -27,6 +27,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlin.random.Random
 
 class Dialogs {
 
@@ -318,7 +319,7 @@ class Dialogs {
         dialogBinding.btnSaveAddDialog.setOnClickListener {
             if (validInputs(dialogBinding, medicineTypeList)) {
                 val medicineData = Medication(
-                    "",
+                    id = Random.nextInt(1,1000000000).toString(),
                     dialogBinding.etMedicineNameAddDialog.text.toString(),
                     dialogBinding.dropdownMenuMedicineTypeAddDialog.text.toString(),
                     dialogBinding.etDurationAddDialog.text.toString(),
