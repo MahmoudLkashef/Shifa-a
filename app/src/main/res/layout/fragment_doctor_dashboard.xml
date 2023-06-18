@@ -1,29 +1,275 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fillViewport="true"
-    tools:context=".ui.doctor.dashboard.DoctorDashboardFragment">
+    xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    </data>
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        tools:context=".ui.doctor.dashboard.DoctorDashboardFragment">
 
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Dashboard"
-            android:textSize="34sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.5" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <TextView
+                android:id="@+id/tv_dashboard_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="Dashboard"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/view_total_patients"
+                android:layout_width="0dp"
+                android:layout_height="120dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/custom_square"
+                android:backgroundTint="@color/main_color"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_dashboard_title" />
+
+            <ImageView
+                android:id="@+id/img_total_patients_rating"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginEnd="16dp"
+                android:src="@drawable/total_patients_rating"
+                app:layout_constraintBottom_toBottomOf="@+id/view_total_patients"
+                app:layout_constraintEnd_toEndOf="@+id/view_total_patients"
+                app:layout_constraintTop_toTopOf="@+id/view_total_patients" />
+
+            <TextView
+                android:id="@+id/tv_total_patients_this_year_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="Total Patients This Year"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/view_total_patients"
+                app:layout_constraintTop_toTopOf="@+id/img_total_patients_rating" />
+
+            <TextView
+                android:id="@+id/tv_total_patient_this_year"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="55 Patients"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/tv_total_patients_this_year_title"
+                app:layout_constraintTop_toBottomOf="@+id/tv_total_patients_this_year_title" />
+
+            <TextView
+                android:id="@+id/tv_this_month_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="This Month"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="@+id/view_total_patients"
+                app:layout_constraintTop_toBottomOf="@+id/view_total_patients" />
+
+            <View
+                android:id="@+id/view_total_patients_this_month"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/custom_square"
+                android:backgroundTint="#EEEEFF"
+                app:layout_constraintStart_toStartOf="@+id/tv_this_month_title"
+                app:layout_constraintTop_toBottomOf="@+id/tv_this_month_title" />
+
+            <View
+                android:id="@+id/view_completed_appointments_dashboard"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginStart="36dp"
+                android:background="@drawable/custom_square"
+                android:backgroundTint="#C3EFFF"
+                app:layout_constraintStart_toEndOf="@+id/view_total_patients_this_month"
+                app:layout_constraintTop_toTopOf="@+id/view_total_patients_this_month" />
+
+            <View
+                android:id="@+id/view_canceled_appointments_dashboard"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginStart="40dp"
+                android:background="@drawable/custom_square"
+                android:backgroundTint="#FEF3F2"
+                app:layout_constraintStart_toEndOf="@+id/view_completed_appointments_dashboard"
+                app:layout_constraintTop_toTopOf="@+id/view_total_patients_this_month" />
+
+            <TextView
+                android:id="@+id/tv_total_patients_this_month"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="100"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="@+id/view_total_patients_this_month"
+                app:layout_constraintStart_toStartOf="@+id/view_total_patients_this_month"
+                app:layout_constraintTop_toTopOf="@+id/view_total_patients_this_month" />
+
+            <TextView
+                android:id="@+id/tv_patients_this_month_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/poppins_regular"
+                android:text="Patients"
+                app:layout_constraintBottom_toBottomOf="@+id/view_total_patients_this_month"
+                app:layout_constraintEnd_toEndOf="@+id/tv_total_patients_this_month"
+                app:layout_constraintStart_toStartOf="@+id/tv_total_patients_this_month"
+                app:layout_constraintTop_toBottomOf="@+id/tv_total_patients_this_month" />
+
+            <TextView
+                android:id="@+id/tv_canceled_appointments_dashboard"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="5"
+                android:textColor="#A95132"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="@+id/view_canceled_appointments_dashboard"
+                app:layout_constraintStart_toStartOf="@+id/view_canceled_appointments_dashboard"
+                app:layout_constraintTop_toTopOf="@+id/view_canceled_appointments_dashboard" />
+
+            <TextView
+                android:id="@+id/tv_canceled_appointments_title_dashboard"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/poppins_regular"
+                android:text="Canceled"
+                app:layout_constraintBottom_toBottomOf="@+id/view_canceled_appointments_dashboard"
+                app:layout_constraintEnd_toEndOf="@+id/tv_canceled_appointments_dashboard"
+                app:layout_constraintStart_toStartOf="@+id/tv_canceled_appointments_dashboard"
+                app:layout_constraintTop_toBottomOf="@+id/tv_canceled_appointments_dashboard" />
+
+            <TextView
+                android:id="@+id/tv_completed_appointments_dashboard"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="20"
+                android:textColor="#268CB3"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="@+id/view_completed_appointments_dashboard"
+                app:layout_constraintStart_toStartOf="@+id/view_completed_appointments_dashboard"
+                app:layout_constraintTop_toTopOf="@+id/view_completed_appointments_dashboard" />
+
+            <TextView
+                android:id="@+id/tv_completed_dashboard_title_dashboard"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/poppins_regular"
+                android:text="Completed"
+                app:layout_constraintBottom_toBottomOf="@+id/view_completed_appointments_dashboard"
+                app:layout_constraintEnd_toEndOf="@+id/tv_completed_appointments_dashboard"
+                app:layout_constraintStart_toStartOf="@+id/tv_completed_appointments_dashboard"
+                app:layout_constraintTop_toBottomOf="@+id/tv_completed_appointments_dashboard" />
+
+            <View
+                android:id="@+id/view_doctor_review_dashboard"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:background="#FEF3F2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view_completed_appointments_dashboard" />
+
+            <ImageView
+                android:id="@+id/img_star_rate_dashboard"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="16dp"
+                android:src="@drawable/baseline_star_rate_24"
+                app:layout_constraintBottom_toBottomOf="@+id/view_doctor_review_dashboard"
+                app:layout_constraintStart_toStartOf="@+id/view_doctor_review_dashboard"
+                app:layout_constraintTop_toTopOf="@+id/view_doctor_review_dashboard" />
+
+            <TextView
+                android:id="@+id/tv_your_total_starts_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="Your Total Starts Reviews:"
+                app:layout_constraintBottom_toBottomOf="@+id/img_star_rate_dashboard"
+                app:layout_constraintStart_toEndOf="@+id/img_star_rate_dashboard"
+                app:layout_constraintTop_toTopOf="@+id/img_star_rate_dashboard" />
+
+            <TextView
+                android:id="@+id/tv_doctor_total_starts_dashboard"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="4.5"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_your_total_starts_title"
+                app:layout_constraintStart_toEndOf="@+id/tv_your_total_starts_title"
+                app:layout_constraintTop_toTopOf="@+id/tv_your_total_starts_title" />
+
+            <TextView
+                android:id="@+id/tv_todays_patients_title_dashboard"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Today's Patients"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="@+id/view_doctor_review_dashboard"
+                app:layout_constraintTop_toBottomOf="@+id/view_doctor_review_dashboard" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_todays_patient_dashboard"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/tv_todays_patients_title_dashboard"
+                app:layout_constraintTop_toBottomOf="@+id/tv_todays_patients_title_dashboard"
+                tools:listitem="@layout/todays_appointments_list_item"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:orientation="horizontal"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>
