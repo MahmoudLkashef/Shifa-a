@@ -10,7 +10,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#C1C9FD"
+        android:background="#E3F2FD"
         android:fillViewport="true"
         tools:context=".MainActivity">
 
@@ -23,16 +23,17 @@
                 android:id="@+id/tv_qr_scanner_title"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="100dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/poppins_bold"
                 android:gravity="center"
-                android:text="QR SCANNER"
+                android:text="Shifaa QR SCANNER"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
             <TextView
                 android:id="@+id/tv_instructions_title"
@@ -41,8 +42,9 @@
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="32dp"
+                android:fontFamily="@font/poppins_medium"
                 android:gravity="center"
-                android:text="Place qr code inside the frame to scan please avoid shake to get results quickly"
+                android:text="Place QR code inside the frame to scan please avoid shake to get results quickly"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -65,7 +67,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="50dp"
-                android:layout_marginTop="80dp"
+                android:layout_marginTop="64dp"
                 android:layout_marginEnd="50dp"
                 android:padding="15dp"
                 android:text="Scan QR Code"
@@ -76,6 +78,16 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/img_qr_code" />
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginTop="64dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/shifaa_logo" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
