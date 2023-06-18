@@ -15,6 +15,8 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.syncdev.domain.model.Medication
 import com.syncdev.shifaa.R
+import com.syncdev.shifaa.utils.Constants
+import java.util.Calendar
 
 /**
  * A [CoroutineWorker] subclass responsible for scheduling medication notifications.
@@ -55,6 +57,33 @@ class NotificationWorker(
         val intervalMillis = (24 * 60 * 60 * 1000) / dosageTimes
         val currentTime = System.currentTimeMillis()
 
+        val startHour = 8 // Start hour for the notifications (8:00 AM)
+
+        // Get the current time components
+        val calendar = Calendar.getInstance()
+        calendar.timeInMillis = currentTime
+        val currentHour = calendar.get(Calendar.HOUR_OF_DAY)
+        val currentMinute = calendar.get(Calendar.MINUTE)
+
+        // Calculate the delay until the start time
+        val delayMillis: Long
+        if (currentHour < startHour || (currentHour == startHour && currentMinute < 0)) {
+            // The start time is in the future, calculate the delay until it
+            calendar.set(Calendar.HOUR_OF_DAY, startHour)
+            calendar.set(Calendar.MINUTE, 0)
+            calendar.set(Calendar.SECOND, 0)
+            calendar.set(Calendar.MILLISECOND, 0)
+            delayMillis = calendar.timeInMillis - currentTime
+        } else {
+            // The start time has already passed for today, calculate the delay until tomorrow's start time
+            calendar.add(Calendar.DAY_OF_MONTH, 1)
+            calendar.set(Calendar.HOUR_OF_DAY, startHour)
+            calendar.set(Calendar.MINUTE, 0)
+            calendar.set(Calendar.SECOND, 0)
+            calendar.set(Calendar.MILLISECOND, 0)
+            delayMillis = calendar.timeInMillis - currentTime
+        }
+
         for (i in 1..periodDays) {
             for (j in 1..dosageTimes) {
                 val notificationId = generateNotificationId(
@@ -63,7 +92,7 @@ class NotificationWorker(
                     i,
                     j
                 )
-                val notificationTime = currentTime + (intervalMillis * ((i - 1) * dosageTimes + j))
+                val notificationTime = currentTime + delayMillis + (intervalMillis * ((i - 1) * dosageTimes + j))
                 val notificationBuilder = buildNotification(
                     applicationContext,
                     medicationName,
@@ -78,7 +107,11 @@ class NotificationWorker(
                     applicationContext,
                     notificationId,
                     notificationIntent,
-                    PendingIntent.FLAG_UPDATE_CURRENT
+                    if (Constants.RUNNING_S_OR_LATER){
+                        PendingIntent.FLAG_MUTABLE
+                    }
+                    else
+                        PendingIntent.FLAG_UPDATE_CURRENT
                 )
 
                 // Set the alarm to trigger the notification

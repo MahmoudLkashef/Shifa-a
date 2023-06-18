@@ -2,6 +2,7 @@ package com.syncdev.shifaa.ui.patient.reports
 
 import android.app.Dialog
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,7 +14,9 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.syncdev.shifaa.R
 import com.syncdev.shifaa.databinding.FragmentPatientReportsBinding
+import com.syncdev.shifaa.utils.Conversion
 import com.syncdev.shifaa.utils.Dialogs
+import com.syncdev.shifaa.utils.notification.NotificationUtils
 import com.syncdev.shifaa.utils.qrcode.QrCode
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -58,6 +61,10 @@ class PatientReportsFragment : Fragment() {
             val qrCode = QrCode.generateQRCode(serializedMedicines)
             if (qrCode != null) {
                 Dialogs().showQrCodeDialog(requireContext(),qrCode){
+                    val scheduledMedications = reportsViewModel.convertMedicationsToScheduledMedications(medications)
+                    reportsViewModel.insertScheduledMedication(scheduledMedications)
+                    NotificationUtils(requireContext()).createMedicationReminders(medications)
+                    Log.i(TAG, "$scheduledMedications")
                     Toast.makeText(requireContext(),"Done",Toast.LENGTH_LONG).show()
                 }
             }
