@@ -569,7 +569,8 @@ class RemoteRepositoryImp @Inject constructor(
             val prescriptionsRef = database.getReference("Prescriptions")
             val prescriptionRef =
                 appointmentsRef.child(appointmentId).child("prescription")
-            val patientRef=database.getReference("Patients").child(patientId).child("prescription")
+            val patientRef =
+                database.getReference("Patients").child(patientId).child("prescription")
 
             // Add unique key to prescription
             prescription.id = prescriptionRef.push().key
@@ -619,9 +620,11 @@ class RemoteRepositoryImp @Inject constructor(
 
         val medicalHistoryRef = database.getReference("PatientMedicalHistory/$patientId")
 
+        var patientName=""
         var patientAge = ""
         searchPatientById(patientId) {
             it?.let {
+                patientName="${it.firstName} ${it.lastName}"
                 patientAge = calculateAge(it.age).toString()
             }
         }
@@ -630,6 +633,7 @@ class RemoteRepositoryImp @Inject constructor(
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val medicalHistory = dataSnapshot.getValue(MedicalHistory::class.java)
                 medicalHistory?.age = patientAge
+                medicalHistory?.patientName=patientName
 
                 if (medicalHistory == null) {
                     val newMedicalHistory = MedicalHistory(
@@ -638,7 +642,9 @@ class RemoteRepositoryImp @Inject constructor(
                         height = "",
                         weight = "",
                         chronicDiseases = emptyList(),
-                        medication = emptyList<Medication>()
+                        medication = emptyList<Medication>(),
+                        emergencyContacts = emptyList(),
+                        patientName = patientName
                     )
 
                     medicalHistoryRef.setValue(newMedicalHistory)
@@ -728,6 +734,35 @@ class RemoteRepositoryImp @Inject constructor(
             }
         } catch (e: Exception) {
             Log.i(TAG, "updatePatientChronicDiseases: ${e.message}")
+            false
+        }
+    }
+
+    override suspend fun updateEmergencyContacts(
+        patientId: String,
+        emergencyContacts: List<String>
+    ): Boolean {
+        return try {
+            val database: FirebaseDatabase = FirebaseDatabase.getInstance()
+
+            val medicalHistoryRef = database.getReference("PatientMedicalHistory/$patientId")
+
+            val completable = CompletableDeferred<Boolean>()
+
+            medicalHistoryRef.child("emergencyContacts").setValue(emergencyContacts)
+                .addOnSuccessListener {
+                    Log.e(TAG, "updated emergency contacts successfully")
+                    completable.complete(true)
+                }
+                .addOnFailureListener {
+                    Log.e(TAG, "Failed to update emergency contacts: ${it.message}")
+                    completable.complete(false)
+                }
+
+            completable.await()
+
+        } catch (e: Exception) {
+            Log.i(TAG, "updateEmergencyContacts: ${e.message}")
             false
         }
     }

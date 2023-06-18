@@ -92,4 +92,6 @@ interface RemoteRepository {
     suspend fun updatePatientMedicalHistory(patientId: String,medicalHistory: MedicalHistory):Boolean
 
     suspend fun updatePatientChronicDiseases(patientId: String,chronicDiseases:List<String>):Boolean
+
+    suspend fun updateEmergencyContacts(patientId:String,emergencyContacts:List<String>):Boolean
 }

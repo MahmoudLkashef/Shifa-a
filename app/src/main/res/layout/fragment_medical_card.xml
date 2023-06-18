@@ -74,7 +74,7 @@
 
                     <TextView
                         android:id="@+id/tv_patient_name_medical_card"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:fontFamily="@font/poppins_bold"
@@ -82,32 +82,10 @@
                         android:textColor="@color/black"
                         android:textSize="16sp"
                         app:layout_constraintBottom_toBottomOf="@+id/img_patient_medical_card"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/img_patient_medical_card"
                         app:layout_constraintTop_toTopOf="@+id/img_patient_medical_card"
-                        app:layout_constraintVertical_bias="0.25" />
-
-                    <TextView
-                        android:id="@+id/tv_patient_email_medical_card"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="4dp"
-                        android:fontFamily="@font/poppins_regular"
-                        android:text="Ahmed.Mohamed@gmail.com"
-                        app:layout_constraintBottom_toBottomOf="@+id/img_mail_medical_card"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toEndOf="@+id/img_mail_medical_card"
-                        app:layout_constraintTop_toTopOf="@+id/img_mail_medical_card"
-                        app:layout_constraintVertical_bias="0.65999997" />
-
-                    <ImageView
-                        android:id="@+id/img_mail_medical_card"
-                        android:layout_width="26dp"
-                        android:layout_height="20dp"
-                        android:layout_marginTop="16dp"
-                        android:src="@drawable/baseline_mail_outline_24"
-                        app:layout_constraintStart_toStartOf="@+id/tv_patient_name_medical_card"
-                        app:layout_constraintTop_toBottomOf="@+id/tv_patient_name_medical_card" />
+                        app:layout_constraintVertical_bias="0.50" />
 
                     <View
                         android:id="@+id/view_blood_type_medical_card"
@@ -373,7 +351,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:fontFamily="@font/poppins_medium"
-                        android:text="01012345678"
+                        android:text="-"
                         app:layout_constraintBottom_toBottomOf="@+id/img_phone1_emergency"
                         app:layout_constraintStart_toEndOf="@+id/img_phone1_emergency"
                         app:layout_constraintTop_toTopOf="@+id/img_phone1_emergency" />
@@ -394,7 +372,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:fontFamily="@font/poppins_medium"
-                        android:text="01123456789"
+                        android:text="-"
                         app:layout_constraintBottom_toBottomOf="@+id/img_phone2_emergency"
                         app:layout_constraintStart_toEndOf="@+id/img_phone2_emergency"
                         app:layout_constraintTop_toTopOf="@+id/img_phone2_emergency" />
@@ -410,6 +388,18 @@
                         android:textAllCaps="false"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="@+id/textView3" />
+
+                    <ImageView
+                        android:id="@+id/img_qr_code_card"
+                        android:layout_width="50dp"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="8dp"
+                        app:layout_constraintBottom_toTopOf="@+id/tv_patient_name_medical_card"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/qr_code_card" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>

@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Shifaa">
         <activity
+            android:name=".emergency.EmergencyActivity"
+            android:exported="false" />
+        <activity
             android:name=".pharmacist.MedicationActivity"
             android:exported="false" />
         <activity
