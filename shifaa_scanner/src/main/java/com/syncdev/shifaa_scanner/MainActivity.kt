@@ -3,6 +3,7 @@ package com.syncdev.shifaa_scanner
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.result.ActivityResultLauncher
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
@@ -24,20 +25,6 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        /*      val barcodeLauncher = registerForActivityResult(ScanContract()) { result ->
-                  if (result.contents != null) {
-                      val (type, medications) = deserializeMedicines(result.contents)
-                      if(type=="Medications"){
-                          val intent = Intent(this, MedicationActivity::class.java)
-                          val medicationList = ArrayList(medications)
-                          intent.putParcelableArrayListExtra("Medications",medicationList)
-                          startActivity(intent)
-                      }
-                  }
-              }*/
-
-/*        val jsontest =
-            "{\"type\":\"MedicalCard\",\"medicalCard\":{\"age\":\"6\",\"bloodType\":\"A-\",\"chronicDiseases\":[\"test\",\"test 2\",\"hasaan\"],\"emergencyContacts\":[\"01100141414\",\"01012345678\"],\"height\":\"180\",\"id\":\"\",\"medication\":[],\"weight\":\"100\"}}"*/
         val barcodeLauncher = registerForActivityResult(ScanContract()) { result ->
             if (result.contents != null) {
                 val deserializedData = deserializeData(result.contents)
@@ -66,16 +53,9 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-
         binding.btnScan.setOnClickListener {
             scannerOptions(barcodeLauncher)
         }
-/*        val dataa = deserializeData(jsontest)
-        Log.i(TAG, "onCreatedr: $dataa")
-        if (dataa != null) {
-            val (type, data) = dataa
-            Log.i(TAG, "onCreatee: $type   $data")
-        }*/
     }
 
     private fun scannerOptions(barcodeLauncher: ActivityResultLauncher<ScanOptions>) {
@@ -109,18 +89,23 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun deserializeData(json: String): Pair<String, Any>? {
-        val gson = Gson()
-        val jsonObject = JsonParser.parseString(json).asJsonObject
-        val type = jsonObject.get("type").asString
+        return try {
+            val gson = Gson()
+            val jsonObject = JsonParser.parseString(json).asJsonObject
+            val type = jsonObject.get("type").asString
 
-        return when (type) {
-            "Medications" -> {
-                deserializeMedicines(json)
+             when (type) {
+                "Medications" -> {
+                    deserializeMedicines(json)
+                }
+                "MedicalCard" -> {
+                    deserializeMedicalHistory(json)
+                }
+                else -> null
             }
-            "MedicalCard" -> {
-                deserializeMedicalHistory(json)
-            }
-            else -> null
+        }catch (e:Exception){
+            Log.i(TAG, "deserializeData: ${e.message}")
+            null
         }
     }
 
