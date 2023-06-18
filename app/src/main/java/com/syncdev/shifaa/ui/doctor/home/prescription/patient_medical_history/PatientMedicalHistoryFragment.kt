@@ -55,16 +55,19 @@ class PatientMedicalHistoryFragment : Fragment() {
                 displayChronicDiseasesList(chronicDiseases)
             })
 
-        val patientMedicationAdapter=PatientMedicationAdapter()
+        val patientMedicationAdapter = PatientMedicationAdapter()
 
-        val medicationListTest= listOf<Medication>(
-            Medication("","Panadol Cold Flue","Tablets","3","500","3",
+        val medicationListTest = listOf<Medication>(
+            Medication(
+                "", "Panadol Cold Flue", "Tablets", "3", "500", "3",
                 listOf("After Breakfast")
             ),
-            Medication("","Panadol Cold Flue","Tablets","3","500","3",
+            Medication(
+                "", "Panadol Cold Flue", "Tablets", "3", "500", "3",
                 listOf("After Breakfast")
             ),
-            Medication("","Panadol Cold Flue","Tablets","3","500","3",
+            Medication(
+                "", "Panadol Cold Flue", "Tablets", "3", "500", "3",
                 listOf("After Breakfast")
             )
         )
@@ -73,7 +76,7 @@ class PatientMedicalHistoryFragment : Fragment() {
 
         binding.apply {
 
-            rvPatientMedicationsPatientDetails.adapter=patientMedicationAdapter
+            rvPatientMedicationsPatientDetails.adapter = patientMedicationAdapter
 
             btnBackPatientMedicalHistory.setOnClickListener {
                 findNavController().popBackStack()
@@ -118,19 +121,24 @@ class PatientMedicalHistoryFragment : Fragment() {
     }
 
     private fun setDataOnViews(medicalHistory: MedicalHistory) {
+        val height = if (medicalHistory.height.isEmpty()) "- CM" else "${medicalHistory.height} CM"
+        val weight = if (medicalHistory.weight.isEmpty()) "- KG" else "${medicalHistory.weight} KG"
         binding.apply {
-            tvAgePatientDetails.text = medicalHistory.age.takeIf { it.isNotEmpty() }+" Years"
+            tvAgePatientDetails.text = medicalHistory.age.takeIf { it.isNotEmpty() } + " Years"
             tvBloodTypePatientDetails.text = medicalHistory.bloodType.takeIf { it.isNotEmpty() }
-            tvHeightPatientDetails.text = medicalHistory.height.takeIf { it.isNotEmpty() }+" CM"
-            tvWeightPatientDetails.text = medicalHistory.weight.takeIf { it.isNotEmpty() }+" KG"
+            tvHeightPatientDetails.text = height
+            tvWeightPatientDetails.text = weight
         }
     }
 
-    private fun updateMedicalCardData(medicalHistory: MedicalHistory){
+    private fun updateMedicalCardData(medicalHistory: MedicalHistory) {
         binding.apply {
-            if(medicalHistory.bloodType.isNotEmpty())tvBloodTypePatientDetails.text=medicalHistory.bloodType
-            if(medicalHistory.weight.isNotEmpty())tvWeightPatientDetails.text=medicalHistory.weight
-            if(medicalHistory.height.isNotEmpty())tvHeightPatientDetails.text=medicalHistory.height
+            if (medicalHistory.bloodType.isNotEmpty()) tvBloodTypePatientDetails.text =
+                medicalHistory.bloodType
+            if (medicalHistory.weight.isNotEmpty()) tvWeightPatientDetails.text =
+                medicalHistory.weight
+            if (medicalHistory.height.isNotEmpty()) tvHeightPatientDetails.text =
+                medicalHistory.height
         }
     }
 
