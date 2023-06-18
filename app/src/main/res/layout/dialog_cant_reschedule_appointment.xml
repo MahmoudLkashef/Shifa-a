@@ -15,14 +15,17 @@
 
         <TextView
             android:id="@+id/tv_cant_reschedule_upcoming_appointment_title"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="32dp"
+            android:layout_marginEnd="8dp"
             android:fontFamily="@font/poppins_bold"
             android:text="Reschedule Upcoming Appointment ?"
             android:textColor="@color/black"
             android:textSize="16sp"
+            app:layout_constraintEnd_toStartOf="@+id/iv_cant_reschedule_upcoming_appointment"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
