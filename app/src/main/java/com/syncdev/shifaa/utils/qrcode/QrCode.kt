@@ -6,6 +6,7 @@ import com.google.gson.JsonObject
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.WriterException
 import com.journeyapps.barcodescanner.BarcodeEncoder
+import com.syncdev.domain.model.MedicalHistory
 import com.syncdev.domain.model.Medication
 
 object QrCode {
@@ -19,6 +20,15 @@ object QrCode {
         val jsonObject = JsonObject()
         jsonObject.addProperty("type", type)
         jsonObject.add("medications", gson.toJsonTree(medicines))
+
+        return jsonObject.toString()
+    }
+
+    fun serializeMedicalCard(medicalHistory: MedicalHistory,type:String):String{
+        val gson = Gson()
+        val jsonObject = JsonObject()
+        jsonObject.addProperty("type", type)
+        jsonObject.add("medicalCard", gson.toJsonTree(medicalHistory))
 
         return jsonObject.toString()
     }

@@ -21,6 +21,7 @@ import com.syncdev.shifaa.databinding.DialogCantRescheduleAppointmentBinding
 import com.syncdev.shifaa.databinding.DialogDispenseMedicineBinding
 import com.syncdev.shifaa.databinding.DialogSignOutBinding
 import com.syncdev.shifaa.databinding.EditEmergecyContactsDialogBinding
+import com.syncdev.shifaa.databinding.MedicalCardQrCodeDialogBinding
 import com.syncdev.shifaa.databinding.UpdatePatientMedicalCardDialogBinding
 import com.syncdev.shifaa.ui.doctor.home.prescription.PrescriptionViewModel
 import kotlinx.coroutines.CoroutineScope
@@ -96,7 +97,10 @@ class Dialogs {
         alertDialog.show()
     }
 
-    fun editEmergencyContactsDialog(context: Context) {
+    fun editEmergencyContactsDialog(
+        context: Context,
+        onSavedClicked: (firstContact: String, SecondContact: String) -> Unit
+    ) {
         val dialogBinding = EditEmergecyContactsDialogBinding.inflate(LayoutInflater.from(context))
         val dialogView = dialogBinding.root
 
@@ -116,6 +120,7 @@ class Dialogs {
             val firstContact = dialogBinding.etFirstEmergencyContactDialog.text.toString()
             val secondContact = dialogBinding.etSecondEmergencyContactDialog.text.toString()
             Log.i(TAG, "editEmergencyContactsDialog: $firstContact / $secondContact")
+            onSavedClicked(firstContact, secondContact)
             alertDialog.dismiss()
         }
 
@@ -166,7 +171,10 @@ class Dialogs {
         alertDialog.show()
     }
 
-    fun showAddNewChronicDiseasesDialog(context: Context,onSaveClicked: (chronicDisease:String) -> Unit) {
+    fun showAddNewChronicDiseasesDialog(
+        context: Context,
+        onSaveClicked: (chronicDisease: String) -> Unit
+    ) {
         val dialogBinding = AddNewChronicDiseasesDialogBinding.inflate(LayoutInflater.from(context))
         val dialogView = dialogBinding.root
 
@@ -179,7 +187,7 @@ class Dialogs {
         alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
         dialogBinding.btnSaveChronicAddDialog.setOnClickListener {
-            val chronicDisease=dialogBinding.etChronicDiseasesAddDialog.text.toString()
+            val chronicDisease = dialogBinding.etChronicDiseasesAddDialog.text.toString()
             onSaveClicked.invoke(chronicDisease)
             alertDialog.dismiss()
         }
@@ -213,7 +221,8 @@ class Dialogs {
         dialogBinding.dropdownMenuBloodTypeMedicalCardUpdateDialog.setAdapter(medicineTypeAdapter)
 
         dialogBinding.btnSaveMedicalCardUpdateDialog.setOnClickListener {
-            val bloodType = dialogBinding.dropdownMenuBloodTypeMedicalCardUpdateDialog.text.toString()
+            val bloodType =
+                dialogBinding.dropdownMenuBloodTypeMedicalCardUpdateDialog.text.toString()
             val height = dialogBinding.etHeightMedicalCardUpdateDialog.text.toString()
             val weight = dialogBinding.etWeightMedicalCardUpdateDialog.text.toString()
             onSaveClicked.invoke(bloodType, height, weight)
@@ -282,7 +291,7 @@ class Dialogs {
         alertDialog.show()
     }
 
-    fun showQrCodeDialog(context: Context,qrCode: Bitmap, onDone: () -> Unit) {
+    fun showQrCodeDialog(context: Context, qrCode: Bitmap, onDone: () -> Unit) {
         val dialogBinding = DialogDispenseMedicineBinding.inflate(LayoutInflater.from(context))
         val dialogView = dialogBinding.root
 
@@ -304,6 +313,23 @@ class Dialogs {
             }
             ivQrCodeDialog.setImageBitmap(Bitmap.createBitmap(qrCode))
         }
+
+        alertDialog.show()
+    }
+
+    fun showMedicalCardQrCode(context: Context, qrCode: Bitmap){
+        val dialogBinding = MedicalCardQrCodeDialogBinding.inflate(LayoutInflater.from(context))
+        val dialogView = dialogBinding.root
+
+        val dialogBuilder = AlertDialog.Builder(context)
+            .setView(dialogView)
+
+        val alertDialog = dialogBuilder.create()
+
+        //To make the background of the dialog transparent and show the rounded corners
+        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        dialogBinding.imgQrCodeCardDialog.setImageBitmap(Bitmap.createBitmap(qrCode))
 
         alertDialog.show()
     }

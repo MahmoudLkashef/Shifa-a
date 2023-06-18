@@ -6,16 +6,25 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.chip.Chip
+import com.google.zxing.qrcode.encoder.QRCode
+import com.syncdev.domain.model.MedicalHistory
 import com.syncdev.shifaa.R
 import com.syncdev.shifaa.databinding.FragmentMedicalCardBinding
 import com.syncdev.shifaa.utils.Dialogs
+import com.syncdev.shifaa.utils.qrcode.QrCode
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MedicalCardFragment : Fragment() {
 
     private val TAG="MedicalCardFragment"
     private lateinit var binding:FragmentMedicalCardBinding
+    private val medicalCardViewModel by viewModels<MedicalCardViewModel>()
+    private lateinit var medicalCardData:MedicalHistory
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,12 +38,28 @@ class MedicalCardFragment : Fragment() {
             false
         )
 
-        val chronicDiseases: List<String> = listOf("Diabetes", "Hypertension", "Asthma", "Arthritis")
 
-        displayChronicDiseasesList(chronicDiseases)
+        medicalCardViewModel.getPatientMedicalHistory()
+
+        medicalCardViewModel.patientMedicalHistory.observe(viewLifecycleOwner, Observer {medicalHistory->
+            setDataOnViews(medicalHistory)
+            medicalCardData=medicalHistory
+        })
 
         binding.btnEditEmergencyContacts.setOnClickListener {
-            Dialogs().editEmergencyContactsDialog(requireContext())
+            Dialogs().editEmergencyContactsDialog(requireContext()){firstContact,secondContact->
+                binding.tvFirstEmergencyContact.text=firstContact
+                binding.tvSecondEmergencyContact.text=secondContact
+                medicalCardViewModel.updateEmergencyContacts(listOf(firstContact,secondContact))
+            }
+        }
+
+        binding.imgQrCodeCard.setOnClickListener {
+            val serializeMedicalCard=QrCode.serializeMedicalCard(medicalCardData,"MedicalCard")
+            val qrCode=QrCode.generateQRCode(serializeMedicalCard)
+            if(qrCode!=null){
+                Dialogs().showMedicalCardQrCode(requireContext(),qrCode)
+            }
         }
 
         binding.btnBackMedicalCard.setOnClickListener {
@@ -49,6 +74,21 @@ class MedicalCardFragment : Fragment() {
             val chip = Chip(binding.chipsGroupChronicDiseases.context)
             chip.text = disease
             binding.chipsGroupChronicDiseases.addView(chip)
+        }
+    }
+
+    private fun setDataOnViews(medicalHistory: MedicalHistory) {
+        binding.apply {
+            tvPatientNameMedicalCard.text=medicalCardViewModel.getPatientName()
+            tvBloodTypeMedicalCard.text=medicalHistory.bloodType
+            tvAgeMedicalCard.text=medicalHistory.age
+            tvWeightMedicalCard.text=medicalHistory.weight
+            tvHeightMedicalCard.text=medicalHistory.height
+            displayChronicDiseasesList(medicalHistory.chronicDiseases)
+            if(medicalHistory.emergencyContacts.isNotEmpty()){
+                tvFirstEmergencyContact.text= medicalHistory.emergencyContacts[0]
+                tvSecondEmergencyContact.text= medicalHistory.emergencyContacts[1]
+            }
         }
     }
 
