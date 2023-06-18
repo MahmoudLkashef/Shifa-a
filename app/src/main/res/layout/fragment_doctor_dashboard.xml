@@ -73,7 +73,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="55 Patients"
+                android:text="0 Patients"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="bold"
@@ -117,8 +117,10 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_marginStart="40dp"
+                android:layout_marginEnd="16dp"
                 android:background="@drawable/custom_square"
                 android:backgroundTint="#FEF3F2"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/view_completed_appointments_dashboard"
                 app:layout_constraintTop_toTopOf="@+id/view_total_patients_this_month" />
 
@@ -128,7 +130,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/poppins_bold"
-                android:text="100"
+                android:text="0"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="@+id/view_total_patients_this_month"
@@ -149,12 +151,12 @@
                 app:layout_constraintTop_toBottomOf="@+id/tv_total_patients_this_month" />
 
             <TextView
-                android:id="@+id/tv_canceled_appointments_dashboard"
+                android:id="@+id/tv_pending_appointments_dashboard"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/poppins_bold"
-                android:text="5"
+                android:text="0"
                 android:textColor="#A95132"
                 android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="@+id/view_canceled_appointments_dashboard"
@@ -162,17 +164,17 @@
                 app:layout_constraintTop_toTopOf="@+id/view_canceled_appointments_dashboard" />
 
             <TextView
-                android:id="@+id/tv_canceled_appointments_title_dashboard"
+                android:id="@+id/tv_pending_appointments_title_dashboard"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="8dp"
                 android:fontFamily="@font/poppins_regular"
-                android:text="Canceled"
+                android:text="Pending"
                 app:layout_constraintBottom_toBottomOf="@+id/view_canceled_appointments_dashboard"
-                app:layout_constraintEnd_toEndOf="@+id/tv_canceled_appointments_dashboard"
-                app:layout_constraintStart_toStartOf="@+id/tv_canceled_appointments_dashboard"
-                app:layout_constraintTop_toBottomOf="@+id/tv_canceled_appointments_dashboard" />
+                app:layout_constraintEnd_toEndOf="@+id/tv_pending_appointments_dashboard"
+                app:layout_constraintStart_toStartOf="@+id/tv_pending_appointments_dashboard"
+                app:layout_constraintTop_toBottomOf="@+id/tv_pending_appointments_dashboard" />
 
             <TextView
                 android:id="@+id/tv_completed_appointments_dashboard"
@@ -180,7 +182,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/poppins_bold"
-                android:text="20"
+                android:text="0"
                 android:textColor="#268CB3"
                 android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="@+id/view_completed_appointments_dashboard"
@@ -239,7 +241,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:fontFamily="@font/poppins_medium"
-                android:text="4.5"
+                android:text="0"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_your_total_starts_title"
                 app:layout_constraintStart_toEndOf="@+id/tv_your_total_starts_title"
@@ -260,16 +262,42 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_todays_patient_dashboard"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/tv_todays_patients_title_dashboard"
                 app:layout_constraintTop_toBottomOf="@+id/tv_todays_patients_title_dashboard"
-                tools:listitem="@layout/todays_appointments_list_item"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                android:orientation="horizontal"/>
+                tools:listitem="@layout/todays_appointments_list_item" />
+
+            <ImageView
+                android:id="@+id/img_empty_todays_appointment_state"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_todays_patients_title_dashboard"
+                app:srcCompat="@drawable/no_upcopming_doctor_home" />
+
+            <TextView
+                android:id="@+id/tv_empty_todays_appointments_state"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/poppins_regular"
+                android:text="You have no upcoming appointments"
+                android:textColor="@color/black"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/img_empty_todays_appointment_state"
+                app:layout_constraintVertical_bias="0.120000005" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </layout>

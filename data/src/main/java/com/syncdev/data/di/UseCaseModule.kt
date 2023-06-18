@@ -111,7 +111,7 @@ object UseCaseModule {
     }
 
     @Provides
-    fun provideUpdatePatientByIdUseCase(remoteRepository: RemoteRepository):UpdatePatientByIdUseCase{
+    fun provideUpdatePatientByIdUseCase(remoteRepository: RemoteRepository): UpdatePatientByIdUseCase {
         return UpdatePatientByIdUseCase(remoteRepository)
     }
 
@@ -121,97 +121,106 @@ object UseCaseModule {
     }
 
     @Provides
-    fun provideDeleteAppointmentRequestUseCase(remoteRepository: RemoteRepository): DeleteAppointmentRequestUseCase{
+    fun provideDeleteAppointmentRequestUseCase(remoteRepository: RemoteRepository): DeleteAppointmentRequestUseCase {
         return DeleteAppointmentRequestUseCase(remoteRepository)
     }
 
     @Provides
-    fun provideCreateNewAppointmentUseCase(remoteRepository: RemoteRepository): CreateNewAppointmentUseCase{
+    fun provideCreateNewAppointmentUseCase(remoteRepository: RemoteRepository): CreateNewAppointmentUseCase {
         return CreateNewAppointmentUseCase(remoteRepository)
     }
 
     @Provides
-    fun provideGetPreservedAppointmentsDateUseCase(remoteRepository: RemoteRepository): GetPreservedAppointmentsDateUseCase{
+    fun provideGetPreservedAppointmentsDateUseCase(remoteRepository: RemoteRepository): GetPreservedAppointmentsDateUseCase {
         return GetPreservedAppointmentsDateUseCase(remoteRepository)
     }
 
     @Provides
-    fun provideGetAppointmentsByPatientAndState(remoteRepository: RemoteRepository): GetAppointmentsByPatientAndState{
+    fun provideGetAppointmentsByPatientAndState(remoteRepository: RemoteRepository): GetAppointmentsByPatientAndState {
         return GetAppointmentsByPatientAndState(remoteRepository)
     }
 
     @Provides
-    fun provideCancelAppointmentByIdUseCase(remoteRepository: RemoteRepository): CancelAppointmentByIdUseCase{
+    fun provideCancelAppointmentByIdUseCase(remoteRepository: RemoteRepository): CancelAppointmentByIdUseCase {
         return CancelAppointmentByIdUseCase(remoteRepository)
     }
 
     @Provides
-    fun provideUpdateDoctorRatingUseCase(remoteRepository: RemoteRepository): UpdateDoctorRatingUseCase{
+    fun provideUpdateDoctorRatingUseCase(remoteRepository: RemoteRepository): UpdateDoctorRatingUseCase {
         return UpdateDoctorRatingUseCase(remoteRepository)
     }
 
     @Provides
-    fun provideRescheduleAppointmentUseCase(remoteRepository: RemoteRepository): RescheduleAppointmentUseCase{
+    fun provideRescheduleAppointmentUseCase(remoteRepository: RemoteRepository): RescheduleAppointmentUseCase {
         return RescheduleAppointmentUseCase(remoteRepository)
     }
 
     @Provides
-    fun provideGetAppointmentsByDoctorUseCase(remoteRepository: RemoteRepository): GetAppointmentsByDoctorIdUseCase{
+    fun provideGetAppointmentsByDoctorUseCase(remoteRepository: RemoteRepository): GetAppointmentsByDoctorIdUseCase {
         return GetAppointmentsByDoctorIdUseCase(remoteRepository)
     }
 
     @Provides
-    fun provideGetUpcomingAppointmentsUseCase(remoteRepository: RemoteRepository): GetUpcomingAppointmentsByDoctorIdUseCase{
+    fun provideGetUpcomingAppointmentsUseCase(remoteRepository: RemoteRepository): GetUpcomingAppointmentsByDoctorIdUseCase {
         return GetUpcomingAppointmentsByDoctorIdUseCase(remoteRepository)
     }
 
     @Provides
-    fun provideSavePrescriptionUseCase(remoteRepository: RemoteRepository):SavePrescriptionUseCase{
+    fun provideSavePrescriptionUseCase(remoteRepository: RemoteRepository): SavePrescriptionUseCase {
         return SavePrescriptionUseCase(remoteRepository)
     }
 
     @Provides
-    fun provideGetPatientMedicalHistoryUseCase(remoteRepository: RemoteRepository):GetPatientMedicalHistoryUseCase{
+    fun provideGetPatientMedicalHistoryUseCase(remoteRepository: RemoteRepository): GetPatientMedicalHistoryUseCase {
         return GetPatientMedicalHistoryUseCase(remoteRepository)
     }
 
     @Provides
-    fun updatePatientMedicalHistoryUseCase(remoteRepository: RemoteRepository):UpdatePatientMedicalHistoryUseCase{
+    fun updatePatientMedicalHistoryUseCase(remoteRepository: RemoteRepository): UpdatePatientMedicalHistoryUseCase {
         return UpdatePatientMedicalHistoryUseCase(remoteRepository)
     }
 
     @Provides
-    fun updatePatientChronicDiseasesUseCase(remoteRepository: RemoteRepository):UpdatePatientChronicDiseasesUseCase{
+    fun updatePatientChronicDiseasesUseCase(remoteRepository: RemoteRepository): UpdatePatientChronicDiseasesUseCase {
         return UpdatePatientChronicDiseasesUseCase(remoteRepository)
     }
 
     @Provides
-    fun provideGetCompletedAppointmentsByDoctorIdUseCase(remoteRepository: RemoteRepository): GetCompletedAppointmentsByDoctorIdUseCase{
+    fun provideGetCompletedAppointmentsByDoctorIdUseCase(remoteRepository: RemoteRepository): GetCompletedAppointmentsByDoctorIdUseCase {
         return GetCompletedAppointmentsByDoctorIdUseCase(remoteRepository)
     }
 
     @Provides
-    fun provideGetCompletedAppointmentsByPatientIdUseCase(remoteRepository: RemoteRepository): GetCompletedAppointmentsByPatientIdUseCase{
+    fun provideGetCompletedAppointmentsByPatientIdUseCase(remoteRepository: RemoteRepository): GetCompletedAppointmentsByPatientIdUseCase {
         return GetCompletedAppointmentsByPatientIdUseCase(remoteRepository)
     }
 
     @Provides
-    fun provideInsertScheduledMedicationsUseCase(localRepository: LocalRepository): InsertScheduledMedicationsUseCase{
+    fun provideInsertScheduledMedicationsUseCase(localRepository: LocalRepository): InsertScheduledMedicationsUseCase {
         return InsertScheduledMedicationsUseCase(localRepository)
     }
 
     @Provides
-    fun provideUpdateEmergencyContactsUseCase(remoteRepository: RemoteRepository):UpdateEmergencyContactsUseCase{
+    fun provideUpdateEmergencyContactsUseCase(remoteRepository: RemoteRepository): UpdateEmergencyContactsUseCase {
         return UpdateEmergencyContactsUseCase(remoteRepository)
     }
 
     @Provides
-    fun provideGetAllScheduledMedicationsUseCase(localRepository: LocalRepository): GetAllScheduledMedicationsUseCase{
+    fun provideGetAllScheduledMedicationsUseCase(localRepository: LocalRepository): GetAllScheduledMedicationsUseCase {
         return GetAllScheduledMedicationsUseCase(localRepository)
     }
 
     @Provides
-    fun provideGetScheduledMedicationByIdUseCase(localRepository: LocalRepository): GetScheduledMedicationByIdUseCase{
+    fun provideGetScheduledMedicationByIdUseCase(localRepository: LocalRepository): GetScheduledMedicationByIdUseCase {
         return GetScheduledMedicationByIdUseCase(localRepository)
+    }
+
+    @Provides
+    fun provideGetAppointmentsUseCase(remoteRepository: RemoteRepository): GetAppointmentsUseCase {
+        return GetAppointmentsUseCase(
+            GetUpcomingAppointmentsByDoctorIdUseCase(remoteRepository),
+            GetCompletedAppointmentsByDoctorIdUseCase(remoteRepository),
+            GetAppointmentRequestsByDoctorIdUseCase(remoteRepository)
+        )
     }
 }
