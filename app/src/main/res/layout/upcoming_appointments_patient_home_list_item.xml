@@ -41,9 +41,9 @@
 
         <TextView
             android:id="@+id/tv_time_upcoming_appointments_home"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="4dp"
             android:layout_marginEnd="8dp"
             android:fontFamily="@font/poppins_medium"
             android:text="10:00 am"
@@ -58,7 +58,7 @@
             android:id="@+id/tv_date_upcoming_appointments_home"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="4dp"
             android:fontFamily="@font/poppins_medium"
             android:text="14-05-2023"
             android:textColor="@color/black"
