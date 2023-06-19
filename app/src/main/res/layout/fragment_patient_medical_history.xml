@@ -32,14 +32,17 @@
 
             <TextView
                 android:id="@+id/tv_patient_medical_history_title"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
                 android:fontFamily="@font/poppins_bold"
                 android:text="Patient Medical History"
                 android:textColor="@color/black"
                 android:textSize="24sp"
                 app:layout_constraintBottom_toBottomOf="@+id/btn_back_patient_medical_history"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/btn_back_patient_medical_history"
                 app:layout_constraintTop_toTopOf="@+id/btn_back_patient_medical_history" />
 
@@ -48,7 +51,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="8dp"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="5dp"

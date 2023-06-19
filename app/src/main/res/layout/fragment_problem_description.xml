@@ -70,7 +70,7 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/view_light_blue_rounded_rec_background"
                     android:fontFamily="@font/poppins_regular"
-                    android:inputType="text"
+                    android:inputType="textMultiLine"
                     android:gravity="top"
                     android:text="@={viewModel.problemComment}"
                     android:textColor="@color/black"

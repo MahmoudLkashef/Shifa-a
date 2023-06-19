@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="250dp"
-    android:layout_height="150dp"
+    android:layout_height="170dp"
     android:layout_margin="5dp"
     app:cardCornerRadius="8dp"
     app:cardElevation="8dp">
@@ -71,8 +71,11 @@
             android:layout_width="24dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/tv_doctor_specialty_upcoming_appointments_home"
             app:layout_constraintTop_toBottomOf="@+id/tv_doctor_specialty_upcoming_appointments_home"
+            app:layout_constraintVertical_bias="0.0"
             app:srcCompat="@drawable/calendar_month_icon" />
 
         <ImageView
