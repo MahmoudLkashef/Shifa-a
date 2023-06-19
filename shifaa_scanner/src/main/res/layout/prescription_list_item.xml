@@ -65,14 +65,17 @@
 
             <TextView
                 android:id="@+id/tv_medication_name_cv"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginEnd="80dp"
                 android:fontFamily="@font/poppins_bold"
                 android:text="Panadol"
                 android:textColor="@color/black"
                 android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/iv_medication"
                 app:layout_constraintTop_toTopOf="parent" />
 
