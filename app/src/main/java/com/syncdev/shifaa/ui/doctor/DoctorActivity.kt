@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import com.syncdev.shifaa.R
 import com.syncdev.shifaa.databinding.ActivityDoctorBinding
@@ -33,5 +34,16 @@ class DoctorActivity : AppCompatActivity() {
         }
 
         binding.bottomNavDoctor.setupWithNavController(navController)
+
+        binding.bottomNavDoctor.setOnItemSelectedListener { item ->
+            // When an item in the bottom navigation view is selected, this listener is triggered
+
+            // Navigate to the associated destination based on the selected item
+            NavigationUI.onNavDestinationSelected(item, navController)
+
+            // Return true to indicate that the selection event has been handled
+            // This ensures that the selected item remains visually highlighted
+            return@setOnItemSelectedListener true
+        }
     }
 }
