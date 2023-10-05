@@ -1,19 +1,18 @@
 package com.syncdev.shifaa.ui.doctor.patients.new_patients.request_details
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.snackbar.Snackbar
-import com.syncdev.domain.model.Appointment
 import com.syncdev.shifaa.R
 import com.syncdev.shifaa.databinding.FragmentAppointmentRequestDetailsBinding
 import com.syncdev.shifaa.utils.Internet

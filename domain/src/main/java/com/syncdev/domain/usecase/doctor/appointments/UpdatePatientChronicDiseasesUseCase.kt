@@ -1,8 +1,11 @@
 package com.syncdev.domain.usecase.doctor.appointments
 
-import com.syncdev.domain.repo.remote.RemoteRepository
+import com.syncdev.domain.repo.MainRepository
+import javax.inject.Inject
 
-class UpdatePatientChronicDiseasesUseCase(private val remoteRepository: RemoteRepository) {
+class UpdatePatientChronicDiseasesUseCase @Inject constructor(
+    private val mainRepository: MainRepository
+) {
     suspend operator fun invoke(patientId: String, chronicDiseases: List<String>): Boolean =
-        remoteRepository.updatePatientChronicDiseases(patientId, chronicDiseases)
+        mainRepository.updatePatientChronicDiseases(patientId, chronicDiseases)
 }

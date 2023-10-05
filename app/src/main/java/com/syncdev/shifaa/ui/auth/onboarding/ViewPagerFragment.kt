@@ -1,10 +1,10 @@
 package com.syncdev.shifaa.ui.auth.onboarding
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.syncdev.shifaa.databinding.FragmentViewPagerBinding
 import com.syncdev.shifaa.ui.auth.onboarding.screens.OnBoardingFirstFragment
 import com.syncdev.shifaa.ui.auth.onboarding.screens.OnBoardingSecondFragment

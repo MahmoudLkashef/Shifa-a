@@ -1,13 +1,13 @@
-package com.syncdev.data.repo.local
+package com.syncdev.data.local.data_source
 
 import com.syncdev.data.local.ScheduledMedicationDao
+import com.syncdev.domain.local.LocalDataSource
 import com.syncdev.domain.model.ScheduledMedication
-import com.syncdev.domain.repo.local.LocalRepository
 import javax.inject.Inject
 
-class LocalRepositoryImp @Inject constructor(
+class LocalDataSourceImp @Inject constructor(
     private val scheduledMedicationDao: ScheduledMedicationDao
-) :LocalRepository {
+) : LocalDataSource {
 
     override suspend fun insertScheduledMedications(scheduledMedications: List<ScheduledMedication>) {
         scheduledMedicationDao.insertScheduledMedications(scheduledMedications)

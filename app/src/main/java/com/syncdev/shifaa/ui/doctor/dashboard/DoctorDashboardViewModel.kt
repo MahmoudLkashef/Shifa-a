@@ -8,7 +8,6 @@ import androidx.lifecycle.viewModelScope
 import com.syncdev.domain.model.Appointment
 import com.syncdev.domain.model.AppointmentRequest
 import com.syncdev.domain.usecase.doctor.GetAppointmentsUseCase
-import com.syncdev.domain.usecase.doctor.appointments.GetUpcomingAppointmentsByDoctorIdUseCase
 import com.syncdev.shifaa.utils.DateUtils
 import com.syncdev.shifaa.utils.SharedPreferencesUtils
 import dagger.hilt.android.lifecycle.HiltViewModel

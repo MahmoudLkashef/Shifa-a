@@ -1,7 +1,7 @@
 package com.syncdev.shifaa_scanner.emergency
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.chip.Chip
 import com.syncdev.shifaa_scanner.databinding.ActivityEmergencyBinding
 import com.syncdev.shifaa_scanner.model.MedicalHistory

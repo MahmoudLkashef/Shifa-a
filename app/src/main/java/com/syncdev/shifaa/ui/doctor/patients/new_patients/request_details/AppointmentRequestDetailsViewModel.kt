@@ -6,15 +6,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.syncdev.domain.model.Appointment
-import com.syncdev.shifaa.utils.SharedPreferencesUtils
 import com.syncdev.domain.model.Doctor
 import com.syncdev.domain.model.Patient
 import com.syncdev.domain.usecase.doctor.appointments.CreateNewAppointmentUseCase
 import com.syncdev.domain.usecase.patient.SearchPatientByIdUseCase
 import com.syncdev.domain.usecase.patient.appointment_requests.DeleteAppointmentRequestUseCase
+import com.syncdev.shifaa.utils.SharedPreferencesUtils
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import okhttp3.internal.wait
 import javax.inject.Inject
 
 

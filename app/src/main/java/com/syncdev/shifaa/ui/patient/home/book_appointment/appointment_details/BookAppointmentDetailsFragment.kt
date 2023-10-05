@@ -1,13 +1,13 @@
 package com.syncdev.shifaa.ui.patient.home.book_appointment.appointment_details
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -15,8 +15,6 @@ import androidx.navigation.fragment.navArgs
 import com.google.android.material.snackbar.Snackbar
 import com.syncdev.shifaa.R
 import com.syncdev.shifaa.databinding.FragmentBookAppointmentDetailsBinding
-import com.syncdev.shifaa.ui.patient.appointments.PatientAppointmentsFragmentDirections
-import com.syncdev.shifaa.ui.patient.home.PatientHomeFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
 
 

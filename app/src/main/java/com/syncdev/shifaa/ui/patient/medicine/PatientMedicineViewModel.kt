@@ -1,7 +1,5 @@
 package com.syncdev.shifaa.ui.patient.medicine
 
-import android.app.Application
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -11,11 +9,8 @@ import com.syncdev.domain.model.ScheduledMedication
 import com.syncdev.domain.usecase.patient.GetAllScheduledMedicationsUseCase
 import com.syncdev.shifaa.utils.DateUtils
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 import java.util.Locale
 import javax.inject.Inject
 

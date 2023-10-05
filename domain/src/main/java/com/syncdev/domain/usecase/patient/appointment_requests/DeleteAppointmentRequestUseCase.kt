@@ -1,13 +1,14 @@
 package com.syncdev.domain.usecase.patient.appointment_requests
 
-import com.syncdev.domain.repo.remote.RemoteRepository
+import com.syncdev.domain.repo.MainRepository
+import javax.inject.Inject
 
-class DeleteAppointmentRequestUseCase(
-    private val remoteRepository: RemoteRepository
+class DeleteAppointmentRequestUseCase @Inject constructor(
+    private val mainRepository: MainRepository
 ) {
     suspend operator fun invoke(
         doctorId: String,
         date: String,
         time: String
-    ): Boolean = remoteRepository.deleteAppointmentRequest(doctorId, date, time)
+    ): Boolean = mainRepository.deleteAppointmentRequest(doctorId, date, time)
 }

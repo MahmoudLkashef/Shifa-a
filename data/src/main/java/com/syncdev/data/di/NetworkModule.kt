@@ -5,6 +5,9 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 import com.syncdev.data.remote.ApiService
+import com.syncdev.data.remote.data_source.RemoteDataSourceImp
+import com.syncdev.domain.remote.RemoteDataSource
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -67,7 +70,7 @@ object NetworkModule {
      */
     @Provides
     @Singleton
-    fun provideFirebaseDatabase(): FirebaseDatabase{
+    fun provideFirebaseDatabase(): FirebaseDatabase {
         return FirebaseDatabase.getInstance()
     }
 
@@ -77,7 +80,16 @@ object NetworkModule {
      */
     @Provides
     @Singleton
-    fun provideFirebaseAuth(): FirebaseAuth{
+    fun provideFirebaseAuth(): FirebaseAuth {
         return Firebase.auth
     }
+}
+
+@Module
+@InstallIn(SingletonComponent::class)
+abstract class RemoteBindsModule {
+
+    @Binds
+    abstract fun provideRemoteDataSource(remoteDataSourceImp: RemoteDataSourceImp): RemoteDataSource
+
 }

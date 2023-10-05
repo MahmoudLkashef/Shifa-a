@@ -8,7 +8,6 @@ import androidx.lifecycle.viewModelScope
 import com.syncdev.domain.model.AppointmentRequest
 import com.syncdev.domain.model.Patient
 import com.syncdev.domain.usecase.patient.appointment_requests.CreateAppointmentRequestUseCase
-import com.syncdev.domain.usecase.patient.appointment_requests.DeleteAppointmentRequestUseCase
 import com.syncdev.shifaa.utils.SharedPreferencesUtils
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch

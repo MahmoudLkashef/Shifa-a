@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.syncdev.domain.model.Appointment
-import com.syncdev.domain.model.Patient
 import com.syncdev.shifaa.R
 import com.syncdev.shifaa.databinding.PastPatientListItemBinding
 

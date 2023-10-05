@@ -2,11 +2,11 @@ package com.syncdev.shifaa.ui.doctor.home.prescription.patient_medical_history
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -16,7 +16,6 @@ import com.syncdev.domain.model.MedicalHistory
 import com.syncdev.domain.model.Medication
 import com.syncdev.shifaa.R
 import com.syncdev.shifaa.databinding.FragmentPatientMedicalHistoryBinding
-import com.syncdev.shifaa.ui.doctor.home.prescription.PatientDetailsFragmentArgs
 import com.syncdev.shifaa.utils.Dialogs
 import dagger.hilt.android.AndroidEntryPoint
 

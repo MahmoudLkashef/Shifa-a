@@ -9,7 +9,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.widget.ArrayAdapter
 import androidx.core.view.isGone
-import com.syncdev.shifaa.databinding.DialogRateDoctorBinding
 import com.google.android.material.chip.Chip
 import com.syncdev.domain.model.Medication
 import com.syncdev.shifaa.R
@@ -19,6 +18,7 @@ import com.syncdev.shifaa.databinding.DialogCancelUpcomingAppointmentBinding
 import com.syncdev.shifaa.databinding.DialogCantCancelAppointmentBinding
 import com.syncdev.shifaa.databinding.DialogCantRescheduleAppointmentBinding
 import com.syncdev.shifaa.databinding.DialogDispenseMedicineBinding
+import com.syncdev.shifaa.databinding.DialogRateDoctorBinding
 import com.syncdev.shifaa.databinding.DialogSignOutBinding
 import com.syncdev.shifaa.databinding.EditEmergecyContactsDialogBinding
 import com.syncdev.shifaa.databinding.MedicalCardQrCodeDialogBinding

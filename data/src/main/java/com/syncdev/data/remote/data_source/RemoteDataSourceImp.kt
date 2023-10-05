@@ -1,4 +1,4 @@
-package com.syncdev.data.repo.remote
+package com.syncdev.data.remote.data_source
 
 import android.os.Build
 import android.util.Log
@@ -12,7 +12,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.Query
 import com.google.firebase.database.ValueEventListener
 import com.syncdev.domain.model.*
-import com.syncdev.domain.repo.remote.RemoteRepository
+import com.syncdev.domain.remote.RemoteDataSource
 import com.syncdev.domain.utils.Constants
 import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.Dispatchers
@@ -35,10 +35,10 @@ import kotlin.coroutines.suspendCoroutine
  * @param firebaseDatabase an instance of FirebaseDatabase to handle database operations
  * @param auth an instance of FirebaseAuth to handle authentication operations
  */
-class RemoteRepositoryImp @Inject constructor(
+class RemoteDataSourceImp @Inject constructor(
     private val firebaseDatabase: FirebaseDatabase,
     private val auth: FirebaseAuth
-) : RemoteRepository {
+) : RemoteDataSource {
 
     private val TAG = "RemoteRepositoryImp"
 
@@ -620,11 +620,11 @@ class RemoteRepositoryImp @Inject constructor(
 
         val medicalHistoryRef = database.getReference("PatientMedicalHistory/$patientId")
 
-        var patientName=""
+        var patientName = ""
         var patientAge = ""
         searchPatientById(patientId) {
             it?.let {
-                patientName="${it.firstName} ${it.lastName}"
+                patientName = "${it.firstName} ${it.lastName}"
                 patientAge = calculateAge(it.age).toString()
             }
         }
@@ -633,7 +633,7 @@ class RemoteRepositoryImp @Inject constructor(
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val medicalHistory = dataSnapshot.getValue(MedicalHistory::class.java)
                 medicalHistory?.age = patientAge
-                medicalHistory?.patientName=patientName
+                medicalHistory?.patientName = patientName
 
                 if (medicalHistory == null) {
                     val newMedicalHistory = MedicalHistory(
@@ -971,6 +971,7 @@ class RemoteRepositoryImp @Inject constructor(
             is Patient -> {
                 model.id = id
             }
+
             is Doctor -> {
                 model.id = id
             }
