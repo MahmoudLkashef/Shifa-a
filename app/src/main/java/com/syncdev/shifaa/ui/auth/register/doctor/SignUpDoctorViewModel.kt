@@ -8,7 +8,6 @@ import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.FirebaseUser
 import com.syncdev.domain.model.Doctor
 import com.syncdev.domain.usecase.auth.doctor.RegisterDoctorUseCase
-import com.syncdev.shifaa.utils.Internet
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject

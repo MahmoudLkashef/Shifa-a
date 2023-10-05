@@ -3,7 +3,6 @@ package com.syncdev.shifaa.utils
 import android.os.Build
 import android.util.Patterns
 import androidx.annotation.RequiresApi
-import com.google.android.material.chip.ChipGroup
 import com.google.android.material.textfield.TextInputLayout
 
 object Validation {

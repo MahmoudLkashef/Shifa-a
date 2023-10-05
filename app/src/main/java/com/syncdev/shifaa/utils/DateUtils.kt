@@ -2,10 +2,10 @@ package com.syncdev.shifaa.utils
 
 import android.os.Build
 import androidx.annotation.RequiresApi
+import com.syncdev.domain.model.CalendarModel
 import java.text.NumberFormat
 import java.text.SimpleDateFormat
 import java.time.LocalDate
-import com.syncdev.domain.model.CalendarModel
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
 import java.util.*

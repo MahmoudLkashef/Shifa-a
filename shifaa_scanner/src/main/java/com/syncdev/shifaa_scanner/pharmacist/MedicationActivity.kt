@@ -1,10 +1,9 @@
 package com.syncdev.shifaa_scanner.pharmacist
 
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import com.syncdev.shifaa_scanner.databinding.ActivityMedicationBinding
 import com.syncdev.shifaa_scanner.model.Medication
 

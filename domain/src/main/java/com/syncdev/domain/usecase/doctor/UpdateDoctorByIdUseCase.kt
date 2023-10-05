@@ -1,8 +1,12 @@
 package com.syncdev.domain.usecase.doctor
 
 import com.syncdev.domain.model.Doctor
-import com.syncdev.domain.repo.remote.RemoteRepository
+import com.syncdev.domain.repo.MainRepository
+import javax.inject.Inject
 
-class UpdateDoctorByIdUseCase(private val remoteRepository: RemoteRepository) {
-    suspend operator fun invoke(doctor: Doctor):Boolean = remoteRepository.updateDoctorDataById(doctor)
+class UpdateDoctorByIdUseCase @Inject constructor(
+    private val mainRepository: MainRepository
+) {
+    suspend operator fun invoke(doctor: Doctor): Boolean =
+        mainRepository.updateDoctorDataById(doctor)
 }

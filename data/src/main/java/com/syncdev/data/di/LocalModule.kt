@@ -4,6 +4,9 @@ import android.content.Context
 import androidx.room.Room
 import com.syncdev.data.local.AppDatabase
 import com.syncdev.data.local.ScheduledMedicationDao
+import com.syncdev.data.local.data_source.LocalDataSourceImp
+import com.syncdev.domain.local.LocalDataSource
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -29,4 +32,11 @@ object LocalModule {
     fun provideScheduledMedicationDao(appDatabase: AppDatabase): ScheduledMedicationDao {
         return appDatabase.scheduledMedicationDao()
     }
+}
+
+@Module
+@InstallIn(SingletonComponent::class)
+abstract class LocalBindsModule {
+    @Binds
+    abstract fun provideLocalDataSource(localDataSourceImp: LocalDataSourceImp): LocalDataSource
 }

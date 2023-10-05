@@ -1,7 +1,6 @@
 package com.syncdev.shifaa.utils
 
 import android.os.Build
-import com.google.firebase.auth.FirebaseUser
 
 object Constants {
     const val NAVIGATION_STATE = "navigationState"

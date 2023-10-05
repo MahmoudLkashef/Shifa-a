@@ -5,9 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.syncdev.shifaa.utils.SharedPreferencesUtils
 import com.syncdev.domain.model.Doctor
-import com.syncdev.domain.model.Patient
 import com.syncdev.domain.usecase.doctor.SearchDoctorByIdUseCase
 import com.syncdev.domain.usecase.patient.appointments.RescheduleAppointmentUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel

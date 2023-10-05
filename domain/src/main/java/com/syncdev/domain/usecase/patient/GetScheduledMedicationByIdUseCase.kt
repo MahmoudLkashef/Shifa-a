@@ -1,12 +1,13 @@
 package com.syncdev.domain.usecase.patient
 
 import com.syncdev.domain.model.ScheduledMedication
-import com.syncdev.domain.repo.local.LocalRepository
+import com.syncdev.domain.repo.MainRepository
+import javax.inject.Inject
 
-class GetScheduledMedicationByIdUseCase(
-    private val localRepository: LocalRepository
+class GetScheduledMedicationByIdUseCase @Inject constructor(
+    private val mainRepository: MainRepository
 ) {
     suspend operator fun invoke(
         scheduledMedicationId: Int
-    ): ScheduledMedication = localRepository.getScheduledMedicationById(scheduledMedicationId)
+    ): ScheduledMedication = mainRepository.getScheduledMedicationById(scheduledMedicationId)
 }

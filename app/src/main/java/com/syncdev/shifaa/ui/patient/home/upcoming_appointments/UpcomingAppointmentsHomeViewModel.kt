@@ -1,14 +1,13 @@
 package com.syncdev.shifaa.ui.patient.home.upcoming_appointments
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.syncdev.shifaa.utils.SharedPreferencesUtils
 import com.syncdev.domain.model.Appointment
 import com.syncdev.domain.usecase.patient.appointments.GetAppointmentsByPatientAndState
+import com.syncdev.shifaa.utils.SharedPreferencesUtils
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject

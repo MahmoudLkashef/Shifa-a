@@ -3,11 +3,11 @@ package com.syncdev.shifaa.ui.auth.forget_password
 import android.os.Bundle
 import android.text.InputType
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.syncdev.shifaa.R
 import com.syncdev.shifaa.databinding.FragmentSendOtpBinding

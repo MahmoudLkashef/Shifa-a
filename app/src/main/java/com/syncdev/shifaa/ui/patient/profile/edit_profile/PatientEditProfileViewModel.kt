@@ -4,7 +4,6 @@ import android.app.Application
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.syncdev.domain.model.Doctor
 import com.syncdev.domain.model.Patient
 import com.syncdev.domain.usecase.patient.UpdatePatientByIdUseCase
 import com.syncdev.shifaa.utils.SharedPreferencesUtils

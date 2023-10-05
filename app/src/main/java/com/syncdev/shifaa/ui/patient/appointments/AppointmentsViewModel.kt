@@ -5,11 +5,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.syncdev.shifaa.utils.SharedPreferencesUtils
 import com.syncdev.domain.model.Appointment
 import com.syncdev.domain.usecase.patient.appointments.CancelAppointmentByIdUseCase
 import com.syncdev.domain.usecase.patient.appointments.GetAppointmentsByPatientAndState
 import com.syncdev.domain.usecase.patient.appointments.UpdateDoctorRatingUseCase
+import com.syncdev.shifaa.utils.SharedPreferencesUtils
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject

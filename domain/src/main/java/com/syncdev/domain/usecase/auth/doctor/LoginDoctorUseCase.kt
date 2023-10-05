@@ -1,18 +1,18 @@
 package com.syncdev.domain.usecase.auth.doctor
 
-import com.syncdev.domain.repo.remote.RemoteRepository
+import com.syncdev.domain.repo.MainRepository
 import javax.inject.Inject
 
 /**
  * Use case for logging in a doctor.
  *
- * This class provides a simplified and testable way to log in a doctor by calling the [RemoteRepository]
+ * This class provides a simplified and testable way to log in a doctor by calling the [MainRepository]
  * which handles the actual network request.
  *
- * @param remoteRepository The [RemoteRepository] dependency used to make the network request.
+ * @param mainRepository The [MainRepository] dependency used to make the network request.
  */
-class LoginDoctorUseCase(
-    private val remoteRepository: RemoteRepository
+class LoginDoctorUseCase @Inject constructor(
+    private val mainRepository: MainRepository
 ) {
     /**
      * Logs in a doctor.
@@ -26,5 +26,5 @@ class LoginDoctorUseCase(
     suspend operator fun invoke(
         email: String,
         password: String
-    ) = remoteRepository.loginDoctor(email, password)
+    ) = mainRepository.loginDoctor(email, password)
 }

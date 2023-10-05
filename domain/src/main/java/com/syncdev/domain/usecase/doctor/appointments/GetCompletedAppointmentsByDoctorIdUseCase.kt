@@ -1,12 +1,13 @@
 package com.syncdev.domain.usecase.doctor.appointments
 
 import com.syncdev.domain.model.Appointment
-import com.syncdev.domain.repo.remote.RemoteRepository
+import com.syncdev.domain.repo.MainRepository
+import javax.inject.Inject
 
-class GetCompletedAppointmentsByDoctorIdUseCase(
-    private val remoteRepository: RemoteRepository
+class GetCompletedAppointmentsByDoctorIdUseCase @Inject constructor(
+    private val mainRepository: MainRepository
 ) {
     suspend operator fun invoke(
         doctorId: String
-    ): List<Appointment> = remoteRepository.getCompletedAppointmentsByDoctorId(doctorId)
+    ): List<Appointment> = mainRepository.getCompletedAppointmentsByDoctorId(doctorId)
 }

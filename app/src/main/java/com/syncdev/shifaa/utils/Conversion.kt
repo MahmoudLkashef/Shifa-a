@@ -2,7 +2,6 @@ package com.syncdev.shifaa.utils
 
 import com.syncdev.domain.model.Medication
 import com.syncdev.domain.model.ScheduledMedication
-import kotlin.random.Random
 
 object Conversion {
     fun createScheduledMedicine(medications: List<Medication>): List<ScheduledMedication>{

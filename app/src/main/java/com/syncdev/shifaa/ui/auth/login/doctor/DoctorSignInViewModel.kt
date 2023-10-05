@@ -1,16 +1,12 @@
 package com.syncdev.shifaa.ui.auth.login.doctor
 
 import android.app.Application
-import android.content.Context
-import android.content.SharedPreferences
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.FirebaseUser
-import com.google.gson.Gson
-import com.syncdev.domain.model.Doctor
 import com.syncdev.domain.usecase.auth.doctor.LoginDoctorUseCase
 import com.syncdev.shifaa.utils.Constants
 import com.syncdev.shifaa.utils.SharedPreferencesUtils

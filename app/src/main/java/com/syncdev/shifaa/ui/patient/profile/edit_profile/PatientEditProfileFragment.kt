@@ -2,24 +2,20 @@ package com.syncdev.shifaa.ui.patient.profile.edit_profile
 
 import android.app.DatePickerDialog
 import android.os.Bundle
-import android.text.Editable
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
-import com.syncdev.domain.model.Patient
 import com.syncdev.shifaa.R
 import com.syncdev.shifaa.databinding.FragmentPatientEditProfileBinding
 import com.syncdev.shifaa.utils.Internet
 import com.syncdev.shifaa.utils.Validation
 import dagger.hilt.android.AndroidEntryPoint
-import java.util.*
+import java.util.Calendar
 
 @AndroidEntryPoint
 class PatientEditProfileFragment : Fragment() {

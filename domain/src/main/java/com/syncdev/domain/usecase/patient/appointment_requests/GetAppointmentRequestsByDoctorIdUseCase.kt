@@ -1,12 +1,13 @@
 package com.syncdev.domain.usecase.patient.appointment_requests
 
 import com.syncdev.domain.model.AppointmentRequest
-import com.syncdev.domain.repo.remote.RemoteRepository
+import com.syncdev.domain.repo.MainRepository
+import javax.inject.Inject
 
-class GetAppointmentRequestsByDoctorIdUseCase(
-    private val remoteRepository: RemoteRepository
+class GetAppointmentRequestsByDoctorIdUseCase @Inject constructor(
+    private val mainRepository: MainRepository
 ) {
     suspend operator fun invoke(
         doctorId: String
-    ): List<AppointmentRequest> = remoteRepository.getAppointmentRequestsByDoctorId(doctorId)
+    ): List<AppointmentRequest> = mainRepository.getAppointmentRequestsByDoctorId(doctorId)
 }
