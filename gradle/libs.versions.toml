@@ -1,25 +1,29 @@
 [versions]
-firebase-version="31.5.0"
+firebase-version = "32.3.1"
 android-gif-drawable = "1.2.25"
 androidx-junit = "1.1.5"
 appcompat = "1.6.1"
 coil = "2.2.2"
 constraintlayout = "2.1.4"
-retrofit="2.9.0"
-room-version="2.5.2"
+retrofit = "2.9.0"
+room-version = "2.5.2"
 zxing-core = "3.4.1"
 core-ktx = "1.9.0"
 easypermissions = "3.0.0"
 espresso-core = "3.5.1"
-gson = "2.8.7"
+gson = "2.9.0"
 hilt-version = "2.48"
 junit = "4.13.2"
 coroutines-version = "1.6.4"
 lifecycle-viewmodel-ktx = "2.6.2"
 material = "1.9.0"
-navigation-fragment-ktx = "2.7.3"
+navigation-fragment-ktx = "2.7.4"
 work-runtime-ktx = "2.8.1"
 zxing-android-embedded = "4.3.0"
+gms_version = "4.4.0"
+android-gradle = "7.4.0"
+kotlin = "1.7.21"
+ksp-version = "1.9.0-1.0.13"
 
 [libraries]
 android-gif-drawable = { module = "pl.droidsonroids.gif:android-gif-drawable", version.ref = "android-gif-drawable" }
@@ -49,11 +53,15 @@ coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-androi
 coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines-version" }
 material = { module = "com.google.android.material:material", version.ref = "material" }
 zxing-android-embedded = { module = "com.journeyapps:zxing-android-embedded", version.ref = "zxing-android-embedded" }
-firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebase-version"}
+firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebase-version" }
 firebase-auth = { module = "com.google.firebase:firebase-auth-ktx" }
 firebase-database = { module = "com.google.firebase:firebase-database-ktx" }
 firebase-analytics = { module = "com.google.firebase:firebase-analytics-ktx" }
 firebase-messaging = { module = "com.google.firebase:firebase-messaging-ktx" }
+safe-args = { module = "androidx.navigation:navigation-safe-args-gradle-plugin", version.ref = "navigation-fragment-ktx" }
+google-services = { module = "com.google.gms:google-services", version.ref = "gms_version" }
+
+
 [bundles]
 firebase = [
     "firebase-auth",
@@ -84,3 +92,8 @@ room = [
 
 
 [plugins]
+android-application = { id = "com.android.application", version.ref = "android-gradle" }
+android-library = { id = "com.android.library", version.ref = "android-gradle" }
+kotlin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt-version" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp-version" }
